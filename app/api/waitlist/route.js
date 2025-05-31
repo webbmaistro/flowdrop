@@ -11,7 +11,7 @@ export async function POST(request) {
   try {
     const { email } = await request.json()
     
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('waitlist')
       .insert([{ email }])
       .select()
