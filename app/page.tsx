@@ -43,32 +43,53 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            AI-powered workflow builder meets instant cloud deployment. 
+            AI-powered workflow builder with instant cloud deployment. 
             Build, deploy, and scale your n8n automations without the complexity.
           </p>
 
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto mb-12">
+            <div className="flex flex-col gap-4">
+              <button
+                onClick={() => alert('Free trial coming soon!')}
+                className="w-full px-6 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center justify-center gap-2"
+              >
+                Start Free Trial
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => alert('Demo video coming soon!')}
+                className="w-full px-6 py-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium"
+              >
+                View Demo
+              </button>
+            </div>
+          </div>
+
+          <div className="max-w-md mx-auto border-t border-gray-800 pt-8">
+            <p className="text-sm text-gray-400 mb-4">
+              Get notified about new features and updates:
+            </p>
             {!submitted ? (
               <div className="flex gap-2">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
+                  placeholder="Your email"
                   className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
                 />
                 <button
                   onClick={handleSubmit}
                   className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center gap-2"
                 >
-                  Join Waitlist
+                  Subscribe
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </div>
             ) : (
               <div className="p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400">
                 <Check className="w-5 h-5 inline mr-2" />
-                Thanks! We'll notify you when we launch.
+                Thanks! We'll keep you updated.
               </div>
             )}
           </div>
