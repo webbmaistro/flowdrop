@@ -83,7 +83,7 @@ export default function LandingPage() {
             <Cpu className="w-10 h-10 text-purple-500 mb-4" />
             <h3 className="text-xl font-semibold mb-2">Managed Infrastructure</h3>
             <p className="text-gray-400">
-              We handle the servers, updates, and security patches
+            We handle the servers, updates, and security patches
             </p>
           </div>
         </div>
