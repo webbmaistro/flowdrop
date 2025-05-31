@@ -8,24 +8,35 @@ import GoogleSignIn from './components/GoogleSignIn';
 export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async () => {
-    if (email && email.includes('@')) {
-      try {
-        const response = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
-        
-        if (response.ok) {
-          setSubmitted(true);
-        }
-      } catch (error) {
-        console.error('Error submitting email:', error);
+    if (!email || !email.includes('@')) {
+      setError('Please enter a valid email address');
+      return;
+    }
+
+    setError('');
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setSubmitted(true);
+        setEmail('');
+      } else {
+        setError(data.error || 'Failed to subscribe. Please try again.');
       }
+    } catch (error) {
+      console.error('Error submitting email:', error);
+      setError('Failed to subscribe. Please try again.');
     }
   };
 
@@ -80,21 +91,26 @@ export default function LandingPage() {
               Get notified about new features and updates:
             </p>
             {!submitted ? (
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your email"
-                  className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
-                />
-                <button
-                  onClick={handleSubmit}
-                  className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center gap-2"
-                >
-                  Subscribe
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+              <div className="flex flex-col gap-2">
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Your email"
+                    className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
+                  />
+                  <button
+                    onClick={handleSubmit}
+                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center gap-2"
+                  >
+                    Subscribe
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+                {error && (
+                  <p className="text-red-400 text-sm">{error}</p>
+                )}
               </div>
             ) : (
               <div className="p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400">
