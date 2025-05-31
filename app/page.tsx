@@ -3,6 +3,7 @@
 
 import React, { useState } from 'react';
 import { Zap, Cloud, Cpu, ArrowRight, Check } from 'lucide-react';
+import GoogleSignIn from './components/GoogleSignIn';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -49,8 +50,17 @@ export default function LandingPage() {
 
           <div className="max-w-md mx-auto mb-12">
             <div className="flex flex-col gap-4">
+              <GoogleSignIn />
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-800"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-black text-gray-400">or</span>
+                </div>
+              </div>
               <button
-                onClick={() => alert('Free trial coming soon!')}
+                onClick={() => window.location.href = '/signin'}
                 className="w-full px-6 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center justify-center gap-2"
               >
                 Start Free Trial
