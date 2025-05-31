@@ -8,10 +8,23 @@ export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (email && email.includes('@')) {
-      console.log('Waitlist signup:', email);
-      setSubmitted(true);
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+        
+        if (response.ok) {
+          setSubmitted(true);
+        }
+      } catch (error) {
+        console.error('Error submitting email:', error);
+      }
     }
   };
 
@@ -84,7 +97,7 @@ export default function LandingPage() {
             <Cpu className="w-10 h-10 text-purple-500 mb-4" />
             <h3 className="text-xl font-semibold mb-2">Managed Infrastructure</h3>
             <p className="text-gray-400">
-            We handle the servers, updates, and security patches
+              We handle the servers, updates, and security patches
             </p>
           </div>
         </div>

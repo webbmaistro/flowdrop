@@ -11,7 +11,7 @@ export async function POST(request) {
   try {
     const { email } = await request.json()
     
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('waitlist')
       .insert([{ email }])
       .select()
@@ -36,6 +36,28 @@ export async function POST(request) {
     return Response.json({ 
       success: false, 
       error: 'Failed to add to waitlist' 
+    }, { status: 500 })
+  }
+}
+
+export async function GET() {
+  try {
+    const { count, error } = await supabase
+      .from('waitlist')
+      .select('*', { count: 'exact', head: true })
+    
+    if (error) throw error
+    
+    return Response.json({ 
+      success: true, 
+      count 
+    })
+    
+  } catch (error) {
+    console.error('Count error:', error)
+    return Response.json({ 
+      success: false, 
+      error: 'Failed to get count' 
     }, { status: 500 })
   }
 } 
