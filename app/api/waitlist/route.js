@@ -12,29 +12,13 @@ export async function POST(request) {
     const { error } = await supabase
       .from('waitlist')
       .insert([{ email }])
-      .select()
     
-    if (error) {
-      if (error.code === '23505') {
-        return Response.json({ 
-          success: false, 
-          error: 'Email already registered!' 
-        }, { status: 400 })
-      }
-      throw error
-    }
+    if (error) throw error
     
-    return Response.json({ 
-      success: true, 
-      message: 'Successfully added to waitlist!' 
-    })
-    
+    return Response.json({ success: true })
   } catch (error) {
-    console.error('Waitlist error:', error)
-    return Response.json({ 
-      success: false, 
-      error: 'Failed to add to waitlist' 
-    }, { status: 500 })
+    console.error('Error:', error)
+    return Response.json({ error: error.message }, { status: 500 })
   }
 }
 
