@@ -1,6 +1,5 @@
 "use client"
 
-import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 const plans = [
@@ -35,7 +34,6 @@ const plans = [
 ]
 
 export default function PricingPage() {
-  const router = useRouter()
   const [loadingId, setLoadingId] = useState<string | null>(null)
 
   const startCheckout = async (priceId: string) => {
