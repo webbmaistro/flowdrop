@@ -49,6 +49,22 @@ export default function Dashboard() {
     router.push('/')
   }
 
+  const handleUpgrade = async (priceId: string) => {
+    const response = await fetch('/api/stripe/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        priceId,
+        userId: user?.id
+      })
+    });
+    
+    const { url } = await response.json();
+    if (url) {
+      window.location.href = url;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-black text-white p-6">
       <div className="max-w-6xl mx-auto">
@@ -64,6 +80,41 @@ export default function Dashboard() {
         </div>
         
         <p className="text-gray-400 mb-4">Welcome, {user?.email}!</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-gray-800 p-6 rounded-lg">
+            <h3 className="text-xl font-bold mb-4">Starter</h3>
+            <p className="text-gray-400 mb-4">Perfect for getting started</p>
+            <button 
+              onClick={() => handleUpgrade('price_1RXx3jFzNR6a9wq2grkZXFY3')}
+              className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg"
+            >
+              Upgrade to Starter
+            </button>
+          </div>
+          
+          <div className="bg-gray-800 p-6 rounded-lg border-2 border-purple-500">
+            <h3 className="text-xl font-bold mb-4">Pro</h3>
+            <p className="text-gray-400 mb-4">For professional users</p>
+            <button 
+              onClick={() => handleUpgrade('price_1RXx4EFzNR6a9wq2JQlwLFqm')}
+              className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg"
+            >
+              Upgrade to Pro
+            </button>
+          </div>
+          
+          <div className="bg-gray-800 p-6 rounded-lg">
+            <h3 className="text-xl font-bold mb-4">Business</h3>
+            <p className="text-gray-400 mb-4">For teams and businesses</p>
+            <button 
+              onClick={() => handleUpgrade('price_1RXx4zFzNR6a9wq2WBJlo1sI')}
+              className="w-full px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg"
+            >
+              Upgrade to Business
+            </button>
+          </div>
+        </div>
         
         <button className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg">
           Create New Workflow
