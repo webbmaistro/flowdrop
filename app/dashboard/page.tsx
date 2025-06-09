@@ -15,6 +15,16 @@ export default function Dashboard() {
   const router = useRouter()
 
   useEffect(() => {
+    // Handle OAuth callback
+    const urlParams = new URLSearchParams(window.location.search)
+    const code = urlParams.get('code')
+
+    if (code) {
+      supabase.auth.exchangeCodeForSession(code).then(() => {
+        window.history.replaceState({}, '', '/dashboard')
+      })
+    }
+
     // Check if user is logged in
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) {

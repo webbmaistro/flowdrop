@@ -23,7 +23,7 @@ export default function GoogleSignIn() {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: 'https://flowdrop.xyz/dashboard'
+          redirectTo: window.location.origin + '/dashboard'
         }
       })
 
