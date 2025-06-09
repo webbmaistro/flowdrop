@@ -2,6 +2,7 @@
 
 import { createClient } from '@supabase/supabase-js'
 import { FcGoogle } from 'react-icons/fc'
+import { useEffect } from 'react'
 
 const supabase = createClient(
   'https://zocqlxonwsvhkamywijo.supabase.com',
@@ -9,12 +10,20 @@ const supabase = createClient(
 )
 
 export default function GoogleSignIn() {
+  useEffect(() => {
+    try {
+      localStorage.getItem('test')
+    } catch (e) {
+      console.warn('Storage access denied, auth may not persist')
+    }
+  }, [])
+
   const handleGoogleSignIn = async () => {
     try {
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`
+          redirectTo: 'https://flowdrop.xyz/dashboard'
         }
       })
 
