@@ -1,7 +1,9 @@
 import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2024-04-10', // Required for Stripe Node SDK
+});
 
 export async function POST(req) {
   try {
