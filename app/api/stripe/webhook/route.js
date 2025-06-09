@@ -1,5 +1,4 @@
 import Stripe from 'stripe'
-import { buffer } from 'micro'
 import { NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 
@@ -8,14 +7,25 @@ export const config = { api: { bodyParser: false } }
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 
+async function readRawBody(readable) {
+  const reader = readable.getReader()
+  const chunks = []
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    chunks.push(value)
+  }
+  return Buffer.concat(chunks)
+}
+
 export async function POST(req) {
   const sig = req.headers.get('stripe-signature')
-  const body = await buffer(req)
+  const rawBody = await readRawBody(req.body)
 
   let event
 
   try {
-    event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET)
+    event = stripe.webhooks.constructEvent(rawBody, sig, process.env.STRIPE_WEBHOOK_SECRET)
   } catch (err) {
     console.error('Webhook signature verification failed:', err)
     return new NextResponse('Webhook Error', { status: 400 })
