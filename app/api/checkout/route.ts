@@ -16,15 +16,25 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 
 export async function POST(req: Request) {
   try {
-    const { priceId } = await req.json();
+    const body = await req.json();
+    const { priceId, email } = body;
 
-    if (!priceId) {
-      return new Response('Missing priceId', { status: 400 });
+    if (!priceId || !email) {
+      return new Response(
+        JSON.stringify({ error: 'Missing required fields: priceId and email' }), 
+        { 
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
     }
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
+      customer_email: email,
       line_items: [
         {
           price: priceId,
