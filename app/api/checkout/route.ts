@@ -7,43 +7,18 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 export async function POST(req: Request) {
   try {
-    // Get environment variables inside the function
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-    if (!baseUrl) {
-      console.error('Missing NEXT_PUBLIC_BASE_URL');
-      return new Response(
-        JSON.stringify({ error: 'Server error: base URL missing' }), 
-        { 
-          status: 500,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-    }
-
     const body = await req.json();
-    const { priceId, email } = body;
 
-    if (!priceId || !email) {
-      return new Response(
-        JSON.stringify({ error: 'Missing required fields: priceId and email' }), 
-        { 
-          status: 400,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-    }
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    if (!baseUrl) throw new Error('Missing NEXT_PUBLIC_BASE_URL');
+    if (!body.priceId) return new Response('Missing priceId', { status: 400 });
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
-      customer_email: email,
       line_items: [
         {
-          price: priceId,
+          price: body.priceId,
           quantity: 1,
         },
       ],
@@ -58,9 +33,9 @@ export async function POST(req: Request) {
       },
     });
   } catch (err) {
-    console.error('Stripe checkout error:', err);
+    console.error('Stripe error:', err);
     return new Response(
-      JSON.stringify({ error: 'Stripe checkout session failed' }), 
+      JSON.stringify({ error: 'Stripe checkout failed' }), 
       { 
         status: 500,
         headers: {
