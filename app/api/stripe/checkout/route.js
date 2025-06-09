@@ -2,7 +2,7 @@ import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2024-04-10', // Required for Stripe Node SDK
+  apiVersion: '2024-04-10', // 🔥 This is critical
 });
 
 export async function POST(req) {
@@ -25,7 +25,7 @@ export async function POST(req) {
 
     return NextResponse.json({ url: session.url });
   } catch (err) {
-    console.error('Stripe checkout error:', err);
+    console.error('❌ Stripe checkout error:', err);
     return NextResponse.json({ error: 'Stripe checkout failed' }, { status: 500 });
   }
 } 
