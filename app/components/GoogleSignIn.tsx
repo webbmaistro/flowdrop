@@ -13,8 +13,8 @@ export default function GoogleSignIn() {
   useEffect(() => {
     try {
       localStorage.getItem('test')
-    } catch (e) {
-      console.warn('Storage access denied, auth may not persist')
+    } catch (error) {
+      console.error('Storage access denied:', error)
     }
   }, [])
 
