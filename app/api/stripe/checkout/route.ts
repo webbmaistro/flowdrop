@@ -38,5 +38,4 @@ export async function POST(req: Request) {
     const message = err instanceof Error ? err.message : 'Unknown error';
     return Response.json({ error: message }, { status: 500 });
   }
-}
-"// Fix build" 
+} 
