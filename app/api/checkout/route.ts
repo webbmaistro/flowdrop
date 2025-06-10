@@ -32,16 +32,9 @@ export async function POST(req: Request) {
         'Content-Type': 'application/json',
       },
     });
-  } catch (err) {
-    console.error('Stripe error:', err);
-    return new Response(
-      JSON.stringify({ error: 'Stripe checkout failed' }), 
-      { 
-        status: 500,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+  } catch (error: unknown) {
+    console.error('Stripe error:', error);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    return Response.json({ error: message }, { status: 500 });
   }
 } 
