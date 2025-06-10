@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     if (!body.priceId) return new Response('Missing priceId', { status: 400 });
 
     const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
+      mode: 'subscription',
       payment_method_types: ['card'],
       line_items: [
         {
