@@ -1,40 +1,40 @@
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2022-11-15',
+  apiVersion: '2025-05-28.basil',
 });
 
 export async function POST(req: Request) {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     const body = await req.json();
-    console.log('Received body:', body);
 
-    const priceId = body.priceId;
-    if (!priceId || typeof priceId !== 'string') {
-      return new Response('Missing or invalid priceId', { status: 400 });
-    }
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    if (!baseUrl) throw new Error('Missing NEXT_PUBLIC_BASE_URL');
+    if (!body.priceId) return new Response('Missing priceId', { status: 400 });
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
       mode: 'payment',
+      payment_method_types: ['card'],
       line_items: [
         {
-          price: priceId,
+          price: body.priceId,
           quantity: 1,
         },
       ],
-      customer_email: 'test@flowdrop.xyz', // ✅ hardcoded email that Stripe accepts
       success_url: `${baseUrl}/success`,
       cancel_url: `${baseUrl}/cancel`,
     });
 
     return new Response(JSON.stringify({ url: session.url }), {
       status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-  } catch (err: any) {
-    console.error('Stripe checkout error:', err.message);
-    return new Response('Internal Server Error', { status: 500 });
+  } catch (err) {
+    console.error('Stripe error:', err);
+    const message = err instanceof Error ? err.message : 'Unknown error';
+    return Response.json({ error: message }, { status: 500 });
   }
 }
 "// Fix build" 
