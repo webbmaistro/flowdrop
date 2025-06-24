@@ -4,7 +4,7 @@ import { emailTemplates } from '../../../../lib/emailTemplates';
 import { createClient } from '@supabase/supabase-js'
 
 export async function GET() {
-  // 1) read your env at runtime
+  // 1. Read env vars at request time
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY
   if (!url || !key) {
@@ -14,12 +14,12 @@ export async function GET() {
     )
   }
 
-  // 2) init the client here
+  // 2. Init client inside handler
   const supabase = createClient(url, key)
 
-  // 3) fetch rows
+  // 3. Fetch subscribers
   const { data: subscribers, error } = await supabase
-    .from('subscriber_list')     // or 'subscriberList'
+    .from('subscriber_list')   // or 'subscriberList' if that's your table name
     .select('email')
 
   if (error) {
@@ -29,7 +29,7 @@ export async function GET() {
     )
   }
 
-  // 4) respond
+  // 4. Return JSON
   return NextResponse.json({ success: true, subscribers })
 }
 
