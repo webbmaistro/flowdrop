@@ -4,22 +4,22 @@ import { emailTemplates } from '../../../../lib/emailTemplates';
 import { createClient } from '@supabase/supabase-js'
 
 export async function GET() {
-  // 1. Read env-vars at request time
-  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
-  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+  // 1. Read env vars at request time
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!url || !key) {
     return NextResponse.json(
       { success: false, error: 'Missing Supabase env vars' },
       { status: 500 }
     )
   }
 
-  // 2. Initialize Supabase client inside handler
-  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+  // 2. Init client inside handler
+  const supabase = createClient(url, key)
 
-  // 3. Fetch subscriber emails
+  // 3. Fetch subscribers
   const { data: subscribers, error } = await supabase
-    .from('subscriber_list')    // or 'subscriberList' if that's your exact table name
+    .from('subscriber_list')   // or 'subscriberList' if that's your table name
     .select('email')
 
   if (error) {
@@ -29,7 +29,7 @@ export async function GET() {
     )
   }
 
-  // 4. Return JSON response
+  // 4. Return JSON
   return NextResponse.json({ success: true, subscribers })
 }
 
