@@ -1,30 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
 import resend from '../../../../lib/resend';
 import { emailTemplates } from '../../../../lib/emailTemplates';
 
 export async function GET() {
-  // --- Supabase env setup: tweak here if you add/change env vars ---
-  // Only initialize inside the handler for best practice
-  const { createClient } = await import('@supabase/supabase-js');
+  // Step 1: Read env vars inside the handler
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+  // Step 2: Gracefully handle missing env vars
   if (!url || !key) {
+    // You can tune this error response later
     return new Response(
       JSON.stringify({ success: false, error: 'Missing supabase env vars' }),
       { status: 500 }
     );
   }
+
+  // Step 3: Create the Supabase client only if vars are present
   const supabase = createClient(url, key);
 
   try {
-    const { data: subscribers, error } = await supabase
-      .from('subscriber_list')
-      .select('email');
+    // Step 4: Use the client for your query
+    const { count, error } = await supabase
+      .from('subscriberList')
+      .select('*', { head: true, count: 'exact' });
     if (error) throw error;
-    return NextResponse.json({ success: true, subscribers });
+    return NextResponse.json({ success: true, count });
   } catch (error) {
-    console.error('Error fetching subscribers:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch subscribers' }, { status: 500 });
+    // You can tune this error response later
+    console.error('Error fetching subscriber count:', error);
+    return NextResponse.json({ success: false, error: 'Failed to fetch subscriber count' }, { status: 500 });
   }
 }
 
