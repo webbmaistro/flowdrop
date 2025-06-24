@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from 'react';
-import { Zap, Cloud, Cpu, ArrowRight, Check, Play } from 'lucide-react';
+import { Zap, Cloud, Cpu, ArrowRight, Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 import GoogleSignIn from './components/GoogleSignIn';
 
