@@ -3,13 +3,13 @@ import { createClient } from '@supabase/supabase-js';
 import resend from '../../../../lib/resend';
 import { emailTemplates } from '../../../../lib/emailTemplates';
 
-// --- Supabase env setup: adjust here if you add SUPABASE_URL later ---
-// This matches your existing Vercel variables (NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)
-// and stops the "Missing SUPABASE_URL / NEXT_PUBLIC_SUPABASE_URL" build error.
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+// --- Supabase env-var checks (tweak as needed) ---
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-if (!supabaseUrl) throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL');
+if (!supabaseUrl) throw new Error('Missing SUPABASE_URL / NEXT_PUBLIC_SUPABASE_URL');
 if (!supabaseKey) throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY');
+// --- End Supabase env-var checks ---
+
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET() {
