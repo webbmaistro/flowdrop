@@ -1,31 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import resend from '../../../../lib/resend';
 import { emailTemplates } from '../../../../lib/emailTemplates';
+import { createClient } from '@supabase/supabase-js'
 
 export async function GET() {
-  // --- Supabase env setup: tweak here if you add/change env vars ---
-  // Only initialize inside the handler for best practice
-  const { createClient } = await import('@supabase/supabase-js');
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!url || !key) {
-    return new Response(
-      JSON.stringify({ success: false, error: 'Missing supabase env vars' }),
+  // 1. Read env-vars at request time
+  const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return NextResponse.json(
+      { success: false, error: 'Missing Supabase env vars' },
       { status: 500 }
-    );
+    )
   }
-  const supabase = createClient(url, key);
 
-  try {
-    const { data: subscribers, error } = await supabase
-      .from('subscriber_list')
-      .select('email');
-    if (error) throw error;
-    return NextResponse.json({ success: true, subscribers });
-  } catch (error) {
-    console.error('Error fetching subscribers:', error);
-    return NextResponse.json({ success: false, error: 'Failed to fetch subscribers' }, { status: 500 });
+  // 2. Initialize Supabase client inside handler
+  const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
+
+  // 3. Fetch subscriber emails
+  const { data: subscribers, error } = await supabase
+    .from('subscriber_list')    // or 'subscriberList' if that's your exact table name
+    .select('email')
+
+  if (error) {
+    return NextResponse.json(
+      { success: false, error: error.message },
+      { status: 500 }
+    )
   }
+
+  // 4. Return JSON response
+  return NextResponse.json({ success: true, subscribers })
 }
 
 export async function POST(request: NextRequest) {
