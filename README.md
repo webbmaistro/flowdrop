@@ -20,32 +20,6 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Email Integration with Resend
-
-This project uses [Resend](https://resend.com) for email functionality. To set up email sending:
-
-1. Sign up for a Resend account at [resend.com](https://resend.com)
-2. Get your API key from the Resend dashboard
-3. Add the following environment variable:
-   ```
-   RESEND_API_KEY=your_resend_api_key_here
-   ```
-
-### Email Features
-
-- **Welcome Emails**: Automatically sent when users join the subscriber list
-- **Contact Form**: Sends notifications to you and confirmation emails to users
-- **Newsletter System**: Admin can send bulk emails to subscribers
-- **Email Templates**: Consistent branding across all emails
-
-### Email Templates
-
-All emails use consistent templates with:
-- Dark theme matching the website design
-- Purple brand colors (#8B5CF6)
-- Responsive design
-- Professional formatting
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
