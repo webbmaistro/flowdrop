@@ -15,7 +15,7 @@ export async function POST(request) {
     }
 
     // Send email to you (the business owner)
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from: 'Flowdrop Contact <contact@flowdrop.xyz>',
       to: ['webb@flowdrop.xyz'],
       subject: `New Contact Form Submission from ${name}`,

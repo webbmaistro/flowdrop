@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert email into subscriber list
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('subscriber_list')
       .insert([{ email }])
       .select();

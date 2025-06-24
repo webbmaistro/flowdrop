@@ -111,7 +111,7 @@ export default function ContactPage() {
             animate="visible"
             className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
           >
-            Let&apos;s build something amazing
+            Let's build something amazing
           </motion.h1>
           
           <motion.p
@@ -237,7 +237,7 @@ export default function ContactPage() {
                   </div>
                   <h3 className="text-xl font-semibold text-white mb-2">Message sent!</h3>
                   <p className="text-gray-400">
-                    We&apos;ll get back to you within 24 hours.
+                    We'll get back to you within 24 hours.
                   </p>
                 </motion.div>
               )}
