@@ -3,31 +3,25 @@ import { createClient } from '@supabase/supabase-js';
 import resend from '../../../../lib/resend';
 import { emailTemplates } from '../../../../lib/emailTemplates';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+// --- Supabase env-var checks (tweak as needed) ---
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!supabaseUrl) throw new Error('Missing SUPABASE_URL / NEXT_PUBLIC_SUPABASE_URL');
+if (!supabaseKey) throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY');
+// --- End Supabase env-var checks ---
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function GET() {
   try {
-    const { data: emails, error } = await supabase
-      .from('subscriber_list')
-      .select('email, created_at')
-      .order('created_at', { ascending: false });
-    
+    const { count, error } = await supabase
+      .from('subscriberList')
+      .select('*', { head: true, count: 'exact' });
     if (error) throw error;
-    
-    return NextResponse.json({ 
-      success: true, 
-      emails 
-    });
-    
+    return NextResponse.json({ success: true, count });
   } catch (error) {
-    console.error('Error fetching emails:', error);
-    return NextResponse.json({ 
-      success: false, 
-      error: 'Failed to fetch emails' 
-    }, { status: 500 });
+    console.error('Error fetching subscriber count:', error);
+    return NextResponse.json({ success: false, error: 'Failed to fetch subscriber count' }, { status: 500 });
   }
 }
 
