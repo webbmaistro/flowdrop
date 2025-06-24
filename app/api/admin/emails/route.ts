@@ -3,32 +3,23 @@ import { createClient } from '@supabase/supabase-js';
 import resend from '../../../../lib/resend';
 import { emailTemplates } from '../../../../lib/emailTemplates';
 
+// --- Supabase env setup: adjust here if you add SUPABASE_URL later ---
+// This matches your existing Vercel variables (NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY)
+// and stops the "Missing SUPABASE_URL / NEXT_PUBLIC_SUPABASE_URL" build error.
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+if (!supabaseUrl) throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL');
+if (!supabaseKey) throw new Error('Missing SUPABASE_SERVICE_ROLE_KEY');
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export async function GET() {
-  // Step 1: Read env vars inside the handler
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-  // Step 2: Gracefully handle missing env vars
-  if (!url || !key) {
-    // You can tune this error response later
-    return new Response(
-      JSON.stringify({ success: false, error: 'Missing supabase env vars' }),
-      { status: 500 }
-    );
-  }
-
-  // Step 3: Create the Supabase client only if vars are present
-  const supabase = createClient(url, key);
-
   try {
-    // Step 4: Use the client for your query
     const { count, error } = await supabase
       .from('subscriberList')
       .select('*', { head: true, count: 'exact' });
     if (error) throw error;
     return NextResponse.json({ success: true, count });
   } catch (error) {
-    // You can tune this error response later
     console.error('Error fetching subscriber count:', error);
     return NextResponse.json({ success: false, error: 'Failed to fetch subscriber count' }, { status: 500 });
   }
