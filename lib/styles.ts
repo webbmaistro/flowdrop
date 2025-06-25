@@ -117,10 +117,10 @@ export const glassmorphism = {
 
 // Common component variants
 export const buttonVariants = {
-  primary: 'bg-primary-main hover:bg-primary-hover text-white font-medium rounded-xl px-6 py-3 transition-all duration-200 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main',
-  secondary: 'bg-background-card hover:bg-background-glass text-text-primary font-medium rounded-xl px-6 py-3 transition-all duration-200 border border-border-primary hover:border-primary-main focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main',
-  outline: 'border-2 border-primary-main hover:bg-primary-main text-primary-main hover:text-white font-medium rounded-xl px-6 py-3 transition-all duration-200 focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main',
-  ghost: 'hover:bg-background-glass text-text-secondary hover:text-text-primary font-medium rounded-xl px-6 py-3 transition-all duration-200 focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main',
+  primary: 'bg-primary-main hover:bg-primary-hover text-white font-medium rounded-xl px-6 py-3 transition-all duration-300 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main group',
+  secondary: 'bg-background-card hover:bg-background-glass text-text-primary font-medium rounded-xl px-6 py-3 transition-all duration-300 border border-border-primary hover:border-primary-main focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main group',
+  outline: 'border-2 border-primary-main hover:bg-primary-main text-primary-main hover:text-white font-medium rounded-xl px-6 py-3 transition-all duration-300 focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main group',
+  ghost: 'hover:bg-background-glass text-text-secondary hover:text-text-primary font-medium rounded-xl px-6 py-3 transition-all duration-300 focus:ring-2 focus:ring-primary-main focus:ring-offset-2 focus:ring-offset-background-main group',
 } as const;
 
 export const inputVariants = {

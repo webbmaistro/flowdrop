@@ -156,3 +156,43 @@ html {
 .text-balance {
   text-wrap: balance;
 }
+
+/* Navigation link styling - prevent button inheritance */
+.not-button-link {
+  background: none !important;
+  border: none !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 0.75rem !important;
+  margin: 0 !important;
+  font-weight: normal !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  display: inline-block !important;
+  position: relative !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.not-button-link:hover {
+  background: rgba(139, 92, 246, 0.1) !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: translateY(-1px) !important;
+  color: var(--color-primary) !important;
+}
+
+.not-button-link:focus {
+  background: rgba(139, 92, 246, 0.15) !important;
+  border: none !important;
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.3) !important;
+  outline: none !important;
+}
+
+.not-button-link:active {
+  background: rgba(139, 92, 246, 0.2) !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: translateY(0) !important;
+}

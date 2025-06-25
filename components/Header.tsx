@@ -35,17 +35,16 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Don't render header at all if shouldHideHeader is true
-  if (shouldHideHeader) return null;
-
   return (
     <>
       <motion.header
         className={cn(
           'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-          isScrolled
-            ? 'bg-background-glass backdrop-blur-lg border-b border-white/10'
-            : 'bg-transparent'
+          shouldHideHeader 
+            ? 'opacity-0 pointer-events-none' 
+            : isScrolled
+              ? 'bg-background-glass backdrop-blur-lg border-b border-white/10'
+              : 'bg-transparent'
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -67,25 +66,29 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={cn(
-                    'text-text-secondary hover:text-text-primary transition-colors duration-200 relative',
-                    pathname === item.href && 'text-text-primary'
-                  )}
-                >
-                  {item.name}
-                  {pathname === item.href && (
-                    <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-main"
-                      layoutId="activeTab"
-                      transition={{ duration: 0.3 }}
-                    />
-                  )}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={cn(
+                      'text-text-secondary transition-all duration-200 relative',
+                      'not-button-link',
+                      isActive && 'text-text-primary'
+                    )}
+                  >
+                    {item.name}
+                    {isActive && (
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-main"
+                        layoutId="activeTab"
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </Link>
+                );
+              })}
             </nav>
 
             {/* CTA Button */}
@@ -127,19 +130,23 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
             <div className="bg-background-glass backdrop-blur-lg border-b border-white/10">
               <div className="container mx-auto px-6 py-4">
                 <nav className="flex flex-col space-y-4">
-                  {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className={cn(
-                        'text-text-secondary hover:text-text-primary transition-colors duration-200 py-2',
-                        pathname === item.href && 'text-text-primary'
-                      )}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {navigation.map((item) => {
+                    const isActive = pathname === item.href;
+                    return (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={cn(
+                          'text-text-secondary transition-all duration-200 py-2',
+                          'not-button-link',
+                          isActive && 'text-text-primary'
+                        )}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    );
+                  })}
                   <div className="pt-4 border-t border-white/10">
                     <Button
                       variant="primary"
