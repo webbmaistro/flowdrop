@@ -39,6 +39,7 @@ export default function LandingPage() {
 
   return (
     <>
+      <div className="bg-red-500 text-white p-10">If this is red, Tailwind works!</div>
       <a href="#main-content" className="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-accent text-white px-4 py-2 rounded focus:ring-2 focus:ring-accent">Skip to content</a>
       <main id="main-content">
         <Section className="pt-20 pb-12">
