@@ -1,30 +1,3 @@
-# Flowdrop – Design System Quick Start
-
-## ✨ Replicated Landing-Page Design (Dark Glassmorphism + Purple Accent)
-
-### Quick Start
-- All UI primitives are in `app/components/ui/` (`Button`, `Card`, `Section`).
-- Colors, radii, and shadows are defined in `tailwind.config.ts`.
-- Global styles and font (Inter) are in `app/globals.css`.
-- Toast system: `lib/ui/useToast.tsx` (see usage in your app root).
-- Animations: Framer Motion powers fade/scale for sections, cards, and buttons.
-- Accessibility: Focus rings, aria-labels, and skip link included.
-
-### 🖌️ Tweak Colors & Tokens
-- Edit `tailwind.config.ts` under `theme.extend.colors` for palette.
-- Adjust glass/shadow/radius in `boxShadow`, `borderRadius`.
-- Utility classes: `.btn-primary`, `.card-glass` (see plugin in config).
-
-### 🌗 Dark Mode
-- The palette is dark by default. To add light mode, extend `tailwind.config.ts` and `globals.css` with `dark:` variants and a toggle in your layout.
-
-### 🖼️ Example Screenshot
-![Screenshot](./public/screenshot.png)
-
----
-
-For more, see the code comments in each primitive and the design tokens in `tailwind.config.ts`.
-
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
