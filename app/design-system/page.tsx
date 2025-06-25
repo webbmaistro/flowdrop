@@ -17,22 +17,16 @@ import {
   Cloud, 
   Cpu, 
   ArrowRight, 
-  Check, 
   Mail, 
   Lock, 
-  Eye, 
-  EyeOff,
   Star,
   Heart,
-  Settings,
-  User,
-  Bell
+  Settings
 } from 'lucide-react';
-import { typography, glassmorphism } from '@/lib/styles';
+import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
 export default function DesignSystemPage() {
-  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -205,7 +199,7 @@ export default function DesignSystemPage() {
                     />
                     <Input
                       label="Password"
-                      type={showPassword ? "text" : "password"}
+                      type="password"
                       placeholder="Enter your password"
                       icon={<Lock className="w-4 h-4" />}
                       iconPosition="right"

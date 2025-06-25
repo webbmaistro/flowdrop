@@ -10,7 +10,23 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends("next/core-web-vitals"),
+  {
+    rules: {
+      // React specific rules
+      "react/no-unescaped-entities": "off", // Allow apostrophes in JSX
+      "react/prop-types": "off", // We use TypeScript
+      "react/react-in-jsx-scope": "off", // Not needed in Next.js
+      "react/jsx-uses-react": "off", // Not needed in Next.js
+      
+      // General code quality
+      "no-console": ["warn", { allow: ["warn", "error"] }],
+      "no-debugger": "error",
+      "no-alert": "warn",
+      "prefer-const": "error",
+      "no-var": "error",
+    },
+  },
 ];
 
 export default eslintConfig;

@@ -1,14 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// TODO: Fix types when we have time
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-05-28.basil',
 });
 
+interface CheckoutRequest {
+  priceId: string;
+}
+
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const body = await req.json() as CheckoutRequest;
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
     if (!baseUrl) throw new Error('Missing NEXT_PUBLIC_BASE_URL');
