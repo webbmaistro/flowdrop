@@ -32,7 +32,7 @@ export default function LandingPage() {
       } else {
         setError(data.error || 'Failed to subscribe. Please try again.');
       }
-    } catch (error) {
+    } catch {
       setError('Failed to subscribe. Please try again.');
     }
   };

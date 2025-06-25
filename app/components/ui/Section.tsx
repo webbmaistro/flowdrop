@@ -1,7 +1,12 @@
-import { HTMLAttributes, FC } from 'react';
+import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import clsx from 'clsx';
 
-interface SectionProps extends HTMLAttributes<HTMLDivElement> {}
+type SectionProps = PropsWithChildren<
+  HTMLAttributes<HTMLDivElement>
+> & {
+  /** Extra utility classes to merge with the default padding / max-width */
+  className?: string;
+};
 
 const Section: FC<SectionProps> = ({ children, className = '', ...props }) => {
   return (
@@ -13,4 +18,5 @@ const Section: FC<SectionProps> = ({ children, className = '', ...props }) => {
     </div>
   );
 };
+
 export default Section; 
