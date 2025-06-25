@@ -1,11 +1,11 @@
-import { motion } from 'framer-motion';
+import { HTMLMotionProps, motion } from 'framer-motion';
 import clsx from 'clsx';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
-}
+export type CardProps = HTMLMotionProps<'div'> & {
+  className?: string;
+};
 
-export default function Card({ children, className, ...props }: CardProps) {
+export default function Card({ className, children, ...props }: CardProps) {
   return (
     <motion.div
       className={clsx('card-glass', className)}
