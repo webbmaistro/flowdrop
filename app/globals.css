@@ -6,13 +6,13 @@
 
 html {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  background: theme('colors.bg-primary');
-  color: theme('colors.text-primary');
+  background: theme('colors.bg.primary');
+  color: theme('colors.text.primary');
 }
 
 ::selection {
   background: theme('colors.accent');
-  color: theme('colors.text-primary');
+  color: theme('colors.text.primary');
 }
 
 ::-webkit-scrollbar {

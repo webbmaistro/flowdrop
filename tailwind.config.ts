@@ -5,13 +5,17 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#1A1A1D',
-        'bg-secondary': '#23232A',
-        'bg-footer': '#18181B',
+        bg: {
+          primary: '#1A1A1D',
+          secondary: '#23232A',
+          footer: '#18181B',
+        },
         accent: '#8B5CF6',
         'accent-hover': '#6D28D9',
-        'text-primary': '#FFFFFF',
-        'text-secondary': '#A1A1AA',
+        text: {
+          primary: '#FFFFFF',
+          secondary: '#A1A1AA',
+        },
         border: '#27272A',
         error: '#EF4444',
         success: '#22C55E',
