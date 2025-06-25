@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background Colors */
+  --background: #1A1A1D;
+  --background-card: #23232A;
+  --background-footer: #18181B;
+  --background-glass: rgba(255, 255, 255, 0.05);
+  
+  /* Text Colors */
+  --foreground: #FFFFFF;
+  --foreground-secondary: #D1D5DB;
+  --foreground-muted: #A1A1AA;
+  
+  /* Accent Colors */
+  --primary: #8B5CF6;
+  --primary-hover: #7C3AED;
+  --primary-dark: #6D28D9;
+  
+  /* Semantic Colors */
+  --success: #22C55E;
+  --error: #EF4444;
+  --warning: #F59E0B;
+  
+  /* Border Colors */
+  --border: #27272A;
+  --border-secondary: #374151;
+  
+  /* Focus Ring */
+  --ring: #8B5CF6;
+  
+  /* Radius */
+  --radius: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 }
 
 @theme inline {
+  /* Background Colors */
   --color-background: var(--background);
+  --color-background-card: var(--background-card);
+  --color-background-footer: var(--background-footer);
+  --color-background-glass: var(--background-glass);
+  
+  /* Text Colors */
   --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-foreground-muted: var(--foreground-muted);
+  
+  /* Accent Colors */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-dark: var(--primary-dark);
+  
+  /* Semantic Colors */
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  
+  /* Border Colors */
+  --color-border: var(--border);
+  --color-border-secondary: var(--border-secondary);
+  
+  /* Focus Ring */
+  --color-ring: var(--ring);
+  
+  /* Radius */
+  --radius: var(--radius);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Global Styles */
+* {
+  border-color: var(--border);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism Utility */
+.glass {
+  background: var(--background-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+.focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--foreground-muted);
+}
+
+/* Animation utilities */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Text balance for better typography */
+.text-balance {
+  text-wrap: balance;
 }

@@ -2,8 +2,12 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Zap, Cloud, Cpu, ArrowRight, Check } from 'lucide-react';
+import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import GoogleSignIn from './components/GoogleSignIn';
+import { typography } from '@/lib/styles';
+import { cn } from '@/lib/utils';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -40,143 +44,232 @@ export default function LandingPage() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex justify-center mb-6">
-            <div className="p-3 bg-purple-600 rounded-xl">
-              <Zap className="w-8 h-8" />
-            </div>
-          </div>
-          
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Deploy n8n workflows in seconds
-          </h1>
-          
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            AI-powered workflow builder with instant cloud deployment. 
-            Build, deploy, and scale your n8n automations without the complexity.
-          </p>
-
-          <div className="max-w-md mx-auto mb-12">
-            <div className="flex flex-col gap-4">
-              <GoogleSignIn />
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-800"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-2 bg-black text-gray-400">or</span>
-                </div>
+    <div className="min-h-screen bg-background text-text-primary">
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
+        <div className="relative container mx-auto px-6">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants} className="flex justify-center mb-6">
+              <div className="p-4 bg-background-glass backdrop-blur-lg rounded-2xl border border-white/10">
+                <Zap className="w-8 h-8 text-primary-main" />
               </div>
-              <button
-                onClick={() => window.location.href = '/signin'}
-                className="w-full px-6 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center justify-center gap-2"
-              >
-                Start Free Trial
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => alert('Demo video coming soon!')}
-                className="w-full px-6 py-4 bg-gray-800 hover:bg-gray-700 rounded-lg font-medium"
-              >
-                View Demo
-              </button>
-            </div>
-          </div>
-
-          <div className="max-w-md mx-auto border-t border-gray-800 pt-8">
-            <p className="text-sm text-gray-400 mb-4">
-              Get notified about new features and updates:
-            </p>
-            {!submitted ? (
-              <div className="flex flex-col gap-2">
-                <div className="flex gap-2">
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Your email"
-                    className="flex-1 px-4 py-3 bg-gray-900 border border-gray-800 rounded-lg focus:outline-none focus:border-purple-500"
-                  />
-                  <button
-                    onClick={handleSubmit}
-                    className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium flex items-center gap-2"
-                  >
-                    Subscribe
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-                {error && (
-                  <p className="text-red-400 text-sm">{error}</p>
-                )}
-              </div>
-            ) : (
-              <div className="p-4 bg-green-900/20 border border-green-800 rounded-lg text-green-400">
-                <Check className="w-5 h-5 inline mr-2" />
-                Thanks! We'll keep you updated.
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 py-20">
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          <div className="p-6 bg-gray-900 rounded-xl border border-gray-800">
-            <Cloud className="w-10 h-10 text-purple-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Instant Deployment</h3>
-            <p className="text-gray-400">
-              One-click n8n instances with automatic scaling and backups
-            </p>
-          </div>
-          
-          <div className="p-6 bg-gray-900 rounded-xl border border-gray-800">
-            <Zap className="w-10 h-10 text-purple-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">AI Workflow Builder</h3>
-            <p className="text-gray-400">
-              Describe what you want to automate and let AI build it
-            </p>
-          </div>
-          
-          <div className="p-6 bg-gray-900 rounded-xl border border-gray-800">
-            <Cpu className="w-10 h-10 text-purple-500 mb-4" />
-            <h3 className="text-xl font-semibold mb-2">Managed Infrastructure</h3>
-            <p className="text-gray-400">
-              We handle the servers, updates, and security patches
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 py-20">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-12">Simple, usage-based pricing</h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-6 bg-gray-900 rounded-xl border border-gray-800">
-              <h3 className="text-xl font-semibold mb-2">Hobby</h3>
-              <p className="text-3xl font-bold mb-4">$0<span className="text-lg font-normal text-gray-400">/mo</span></p>
-              <ul className="text-left text-gray-400 space-y-2">
-                <li>• 1,000 workflow executions</li>
-                <li>• 1 n8n instance</li>
-                <li>• Community support</li>
-              </ul>
-            </div>
+            </motion.div>
             
-            <div className="p-6 bg-purple-900/20 rounded-xl border border-purple-800">
-              <h3 className="text-xl font-semibold mb-2">Pro</h3>
-              <p className="text-3xl font-bold mb-4">$29<span className="text-lg font-normal text-gray-400">/mo</span></p>
-              <ul className="text-left text-gray-400 space-y-2">
-                <li>• Unlimited executions</li>
-                <li>• Multiple instances</li>
-                <li>• Priority support</li>
-              </ul>
-            </div>
-          </div>
+            <motion.h1 
+              variants={itemVariants}
+              className={cn(typography.h1, "mb-6 text-balance")}
+            >
+              Deploy n8n workflows in seconds
+            </motion.h1>
+            
+            <motion.p 
+              variants={itemVariants}
+              className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
+            >
+              AI-powered workflow builder with instant cloud deployment. 
+              Build, deploy, and scale your n8n automations without the complexity.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
+              <div className="flex flex-col gap-4">
+                <GoogleSignIn />
+                <div className="relative">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-border-primary"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-background text-text-muted">or</span>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => window.location.href = '/signin'}
+                  variant="primary"
+                  size="lg"
+                  icon={<ArrowRight className="w-5 h-5" />}
+                >
+                  Start Free Trial
+                </Button>
+                <Button
+                  onClick={() => alert('Demo video coming soon!')}
+                  variant="secondary"
+                  size="lg"
+                >
+                  View Demo
+                </Button>
+              </div>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="max-w-md mx-auto border-t border-border-primary pt-8">
+              <p className={cn(typography.bodySmall, "text-text-muted mb-4")}>
+                Get notified about new features and updates:
+              </p>
+              {!submitted ? (
+                <div className="flex flex-col gap-2">
+                  <div className="flex gap-2">
+                    <Input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Your email"
+                      variant="glass"
+                    />
+                    <Button
+                      onClick={handleSubmit}
+                      variant="primary"
+                      icon={<ArrowRight className="w-4 h-4" />}
+                    >
+                      Subscribe
+                    </Button>
+                  </div>
+                  {error && (
+                    <p className="text-error-500 text-sm">{error}</p>
+                  )}
+                </div>
+              ) : (
+                <motion.div 
+                  className="p-4 bg-success-500/20 border border-success-500/30 rounded-xl text-success-500"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Check className="w-5 h-5 inline mr-2" />
+                  Thanks! We'll keep you updated.
+                </motion.div>
+              )}
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <Card variant="glass" hover className="text-center">
+                <CardContent className="pt-8">
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <Cloud className="w-8 h-8 text-primary-main" />
+                    </div>
+                  </div>
+                  <CardTitle className="mb-4">Instant Deployment</CardTitle>
+                  <p className={typography.body}>
+                    One-click n8n instances with automatic scaling and backups
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            
+            <motion.div variants={itemVariants}>
+              <Card variant="glass" hover className="text-center">
+                <CardContent className="pt-8">
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <Zap className="w-8 h-8 text-primary-main" />
+                    </div>
+                  </div>
+                  <CardTitle className="mb-4">AI Workflow Builder</CardTitle>
+                  <p className={typography.body}>
+                    Describe what you want to automate and let AI build it
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+            
+            <motion.div variants={itemVariants}>
+              <Card variant="glass" hover className="text-center">
+                <CardContent className="pt-8">
+                  <div className="flex justify-center mb-6">
+                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <Cpu className="w-8 h-8 text-primary-main" />
+                    </div>
+                  </div>
+                  <CardTitle className="mb-4">Managed Infrastructure</CardTitle>
+                  <p className={typography.body}>
+                    We handle the servers, updates, and security patches
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-2xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12")}>
+              Simple, usage-based pricing
+            </motion.h2>
+            
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
+              <Card variant="glass" hover>
+                <CardHeader>
+                  <CardTitle>Hobby</CardTitle>
+                  <CardDescription>Perfect for getting started</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold mb-4">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                  <ul className="text-left text-text-muted space-y-2">
+                    <li>• 1,000 workflow executions</li>
+                    <li>• 1 n8n instance</li>
+                    <li>• Community support</li>
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card variant="glass" hover className="border-primary-main/30 bg-primary-main/5">
+                <CardHeader>
+                  <CardTitle>Pro</CardTitle>
+                  <CardDescription>For power users and teams</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold mb-4">$29<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                  <ul className="text-left text-text-muted space-y-2">
+                    <li>• Unlimited executions</li>
+                    <li>• Multiple instances</li>
+                    <li>• Priority support</li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
     </div>
   );
 }
