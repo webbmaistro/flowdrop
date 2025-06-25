@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Download, LogOut } from 'lucide-react';
 
-interface WaitlistEmail {
+interface SubscriberListEmail {
   email: string;
   created_at: string;
 }
@@ -12,7 +12,7 @@ export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [emails, setEmails] = useState<WaitlistEmail[]>([]);
+  const [emails, setEmails] = useState<SubscriberListEmail[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [error, setError] = useState('');
 
@@ -25,7 +25,7 @@ export default function AdminPage() {
 
   const fetchEmails = async () => {
     try {
-      const response = await fetch('/api/admin/emails');
+      const response = await fetch('/api/subscriberList');
       const data = await response.json();
       if (data.success) {
         setEmails(data.emails);
@@ -76,7 +76,7 @@ export default function AdminPage() {
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = 'waitlist_emails.csv';
+    link.download = 'subscriberList_emails.csv';
     link.click();
   };
 
