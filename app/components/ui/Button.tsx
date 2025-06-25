@@ -1,10 +1,11 @@
 import { forwardRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import clsx from 'clsx';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = HTMLMotionProps<'button'> & {
+  className?: string;
   'aria-label'?: string;
-}
+};
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, className, 'aria-label': ariaLabel, ...props }, ref) => (
