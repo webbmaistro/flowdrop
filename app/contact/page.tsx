@@ -2,55 +2,15 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, MessageSquare, Phone, MapPin, Send, Check } from 'lucide-react';
-import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Mail, Send, Check } from 'lucide-react';
+import { Button, Input, Card, CardContent } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
-
-const contactMethods = [
-  {
-    title: 'Email Support',
-    description: 'Get help with technical questions',
-    icon: Mail,
-    contact: 'support@flowdrop.com',
-    response: 'Usually responds within 24 hours',
-    color: 'text-primary-main',
-    bgColor: 'bg-primary-main/20',
-  },
-  {
-    title: 'Sales Inquiries',
-    description: 'Questions about pricing and plans',
-    icon: MessageSquare,
-    contact: 'sales@flowdrop.com',
-    response: 'Usually responds within 4 hours',
-    color: 'text-success-500',
-    bgColor: 'bg-success-500/20',
-  },
-  {
-    title: 'Phone Support',
-    description: 'Speak with our team directly',
-    icon: Phone,
-    contact: '+1 (555) 123-4567',
-    response: 'Available Mon-Fri, 9AM-6PM EST',
-    color: 'text-warning-500',
-    bgColor: 'bg-warning-500/20',
-  },
-  {
-    title: 'Office Location',
-    description: 'Visit our headquarters',
-    icon: MapPin,
-    contact: 'San Francisco, CA',
-    response: 'By appointment only',
-    color: 'text-error-500',
-    bgColor: 'bg-error-500/20',
-  },
-];
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    company: '',
     subject: '',
     message: '',
   });
@@ -73,7 +33,6 @@ export default function ContactPage() {
       setFormData({
         name: '',
         email: '',
-        company: '',
         subject: '',
         message: '',
       });
@@ -113,7 +72,7 @@ export default function ContactPage() {
           >
             <motion.div variants={itemVariants} className="flex justify-center mb-6">
               <div className="p-4 bg-primary-main/20 rounded-2xl">
-                <MessageSquare className="w-8 h-8 text-primary-main" />
+                <Mail className="w-8 h-8 text-primary-main" />
               </div>
             </motion.div>
             
@@ -126,55 +85,17 @@ export default function ContactPage() {
             
             <motion.p 
               variants={itemVariants}
-              className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
+              className={cn(typography.bodyLarge, "mb-8 max-w-2xl mx-auto text-balance")}
             >
-              Have questions about FlowDrop? We're here to help. 
-              Reach out to our team and we'll get back to you as soon as possible.
+              Have questions about FlowDrop? We're here to help.
             </motion.p>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* Contact Methods */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12 text-center")}>
-              Contact Methods
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {contactMethods.map((method) => (
-                <motion.div key={method.title} variants={itemVariants}>
-                  <Card variant="glass" hover className="h-full">
-                    <CardContent className="pt-6">
-                      <div className="flex items-start space-x-4">
-                        <div className={cn("p-3 rounded-xl", method.bgColor)}>
-                          <method.icon className={cn("w-6 h-6", method.color)} />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-semibold mb-2">{method.title}</h3>
-                          <p className={cn(typography.bodySmall, "text-text-muted mb-3")}>
-                            {method.description}
-                          </p>
-                          <p className="font-medium text-text-primary mb-1">
-                            {method.contact}
-                          </p>
-                          <p className={cn(typography.bodySmall, "text-text-muted")}>
-                            {method.response}
-                          </p>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-2xl px-6 py-4">
+                <Mail className="w-5 h-5 text-primary-main" />
+                <span className="text-lg font-medium text-text-primary">webb@flowdrop.xyz</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -237,13 +158,6 @@ export default function ContactPage() {
                       </div>
                       
                       <Input
-                        label="Company"
-                        placeholder="Your company (optional)"
-                        value={formData.company}
-                        onChange={(e) => handleInputChange('company', e.target.value)}
-                      />
-                      
-                      <Input
                         label="Subject"
                         placeholder="What's this about?"
                         value={formData.subject}
@@ -278,60 +192,6 @@ export default function ContactPage() {
                       </Button>
                     </form>
                   )}
-                </CardContent>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12")}>
-              Frequently Asked Questions
-            </motion.h2>
-            
-            <motion.div variants={itemVariants} className="grid gap-8 md:grid-cols-2">
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">What's your response time?</h3>
-                  <p className={typography.body}>
-                    We typically respond to all inquiries within 24 hours, often much sooner for urgent matters.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">Do you offer custom solutions?</h3>
-                  <p className={typography.body}>
-                    Yes! For enterprise customers, we offer custom integrations and dedicated support.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">Can I schedule a demo?</h3>
-                  <p className={typography.body}>
-                    Absolutely! Contact our sales team to schedule a personalized demo of FlowDrop.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">Where are you located?</h3>
-                  <p className={typography.body}>
-                    Our headquarters is in San Francisco, but we serve customers worldwide.
-                  </p>
                 </CardContent>
               </Card>
             </motion.div>

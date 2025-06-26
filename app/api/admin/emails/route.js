@@ -1,8 +1,8 @@
 import { createClient } from '@supabase/supabase-js'
 
 const supabase = createClient(
-  'https://zocqlxonwsvhkamywijo.supabase.co',
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvY3FseG9ud3N2aGthbXl3aWpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2NTE2NDUsImV4cCI6MjA2NDIyNzY0NX0.sHKkSxqVa8WFvyaPj4z9WStGdDcR0tbaE6Ri1oasC9E'
+  'https://tuzdkodujqmbtonnhvqe.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1emRrb2R1anFtYnRvbm5odnFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxODk4NzQsImV4cCI6MjA2NTc2NTg3NH0.rQCx_cHa7oiJ9RU33bBnxmioZlz7loCf7rUUsEUWCrI'
 )
 
 export async function GET() {
