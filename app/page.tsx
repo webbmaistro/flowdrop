@@ -246,7 +246,11 @@ export default function LandingPage() {
                     <li>• Basic Webby AI Copilot</li>
                     <li>• Community support</li>
                   </ul>
-                  <Button variant="primary" className="w-full">
+                  <Button 
+                    variant="primary" 
+                    className="w-full"
+                    onClick={() => window.location.href = '/signin'}
+                  >
                     Start Free
                   </Button>
                 </CardContent>
@@ -268,7 +272,11 @@ export default function LandingPage() {
                     <li>• Enhanced Webby AI Copilot</li>
                     <li>• Priority support</li>
                   </ul>
-                  <Button variant="primary" className="w-full">
+                  <Button 
+                    variant="primary" 
+                    className="w-full"
+                    onClick={() => window.location.href = '/signin'}
+                  >
                     Get Started
                   </Button>
                 </CardContent>
@@ -307,7 +315,11 @@ export default function LandingPage() {
                     <li>• Unlimited Webby AI Copilot</li>
                     <li>• Dedicated support</li>
                   </ul>
-                  <Button variant="primary" className="w-full">
+                  <Button 
+                    variant="primary" 
+                    className="w-full"
+                    onClick={() => window.location.href = '/signin'}
+                  >
                     Get Started
                   </Button>
                 </CardContent>
@@ -332,7 +344,7 @@ export default function LandingPage() {
                   <Button 
                     variant="primary" 
                     className="w-full"
-                    onClick={() => window.location.href = '/contact'}
+                    onClick={() => window.location.href = '/signin'}
                   >
                     Contact Sales
                   </Button>

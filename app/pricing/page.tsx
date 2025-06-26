@@ -65,7 +65,7 @@ export default function PricingPage() {
         'API access'
       ],
       cta: 'Get Started',
-      ctaAction: (priceId: string) => startCheckout(priceId)
+      ctaAction: () => window.location.href = '/signin'
     },
     {
       name: 'Builder',
@@ -86,7 +86,7 @@ export default function PricingPage() {
         '$9 per additional seat'
       ],
       cta: 'Get Started',
-      ctaAction: (priceId: string) => startCheckout(priceId)
+      ctaAction: () => window.location.href = '/signin'
     },
     {
       name: 'Growth',
@@ -107,7 +107,7 @@ export default function PricingPage() {
         '24/7 priority support'
       ],
       cta: 'Contact Sales',
-      ctaAction: () => window.location.href = '/contact'
+      ctaAction: () => window.location.href = '/signin'
     },
   ];
 
@@ -258,7 +258,7 @@ export default function PricingPage() {
                           variant="primary"
                           size="lg"
                           className="w-full"
-                          onClick={() => plan.ctaAction(plan.priceId || '')}
+                          onClick={() => plan.ctaAction()}
                           loading={plan.priceId ? loadingId === plan.priceId : false}
                           disabled={plan.priceId ? loadingId === plan.priceId : false}
                         >

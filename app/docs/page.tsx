@@ -6,6 +6,9 @@ import { Book, FileText, Code, Zap, ArrowRight, ExternalLink } from 'lucide-reac
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
+import Callout from "@/components/ui/Callout";
+import CodeBlock from "@/components/ui/CodeBlock";
+import ComingSoon from "@/components/ui/ComingSoon";
 
 const docCategories = [
   {
@@ -69,167 +72,69 @@ const quickLinks = [
   { title: 'Support Center', href: '#', icon: ExternalLink },
 ];
 
-export default function DocsPage() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
-
+export default function DocsHome() {
   return (
-    <div className="min-h-screen bg-background text-text-primary">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
-        <div className="relative container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-main/20 rounded-2xl">
-                <Book className="w-8 h-8 text-primary-main" />
-              </div>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className={cn(typography.h1, "mb-6 text-balance")}
-            >
-              Documentation
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
-            >
-              Everything you need to build powerful workflow automations with FlowDrop. 
-              From quick start guides to advanced tutorials.
-            </motion.p>
+    <div>
+      <h1 className="text-3xl font-bold mb-2">Flowdrop Docs — Build AI-first workflows in minutes.</h1>
+      <p className="mb-6 text-neutral-300">Get started fast. More magic landing soon ✨</p>
+      
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">What is Flowdrop?</h2>
+        <p className="text-neutral-300 mb-6">
+          Flowdrop is a no-code platform that lets you build AI-powered workflows without writing a single line of code. 
+          Think of it as your personal AI assistant that can automate complex tasks across all your favorite apps.
+        </p>
+        
+        <div className="bg-neutral-800 rounded-xl p-6 mb-6">
+          <h3 className="font-semibold mb-3">🤖 What is an AI Workflow?</h3>
+          <p className="text-neutral-300 mb-4">
+            An AI workflow is like a recipe for your computer. Instead of manually doing the same tasks over and over, 
+            you create a "workflow" that tells AI exactly what to do, when to do it, and how to handle different situations.
+          </p>
+          <p className="text-neutral-300">
+            <strong>Example:</strong> "When I get an email from a customer, automatically analyze their message, 
+            create a response, and schedule a follow-up task in my calendar" — all without you lifting a finger.
+          </p>
+        </div>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
-              {quickLinks.map((link) => (
-                <Button
-                  key={link.title}
-                  variant="outline"
-                  size="sm"
-                  icon={<link.icon className="w-4 h-4" />}
-                  onClick={() => window.open(link.href, '_blank')}
-                >
-                  {link.title}
-                </Button>
-              ))}
-            </motion.div>
-          </motion.div>
+        <div className="bg-neutral-800 rounded-xl p-6 mb-6">
+          <h3 className="font-semibold mb-3">🎯 What Problem Are We Solving?</h3>
+          <p className="text-neutral-300 mb-4">
+            <strong>The Problem:</strong> You're drowning in repetitive tasks. Emails, data entry, scheduling, 
+            customer support — it's all eating up your time and energy. You know AI could help, but coding is hard 
+            and existing tools are either too complex or too limited.
+          </p>
+          <p className="text-neutral-300">
+            <strong>Our Solution:</strong> Flowdrop makes AI automation accessible to everyone. No coding required. 
+            Just drag, drop, and describe what you want. We handle the complex AI integration behind the scenes.
+          </p>
+        </div>
+
+        <div className="bg-neutral-800 rounded-xl p-6">
+          <h3 className="font-semibold mb-3">✨ Why Flowdrop?</h3>
+          <ul className="text-neutral-300 space-y-2">
+            <li>• <strong>No Code Required:</strong> Visual builder anyone can use</li>
+            <li>• <strong>AI-First:</strong> Built specifically for AI workflows, not retrofitted</li>
+            <li>• <strong>Connect Everything:</strong> Works with 100+ apps out of the box</li>
+            <li>• <strong>Smart & Adaptable:</strong> AI learns and improves over time</li>
+            <li>• <strong>Enterprise Ready:</strong> Security, compliance, and team collaboration</li>
+          </ul>
         </div>
       </section>
 
-      {/* Documentation Categories */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12 text-center")}>
-              Documentation Categories
-            </motion.h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {docCategories.map((category) => (
-                <motion.div key={category.title} variants={itemVariants}>
-                  <Card variant="glass" hover className="h-full">
-                    <CardHeader>
-                      <div className="flex items-center space-x-3 mb-4">
-                        <div className={cn("p-3 rounded-xl", category.bgColor)}>
-                          <category.icon className={cn("w-6 h-6", category.color)} />
-                        </div>
-                        <div>
-                          <CardTitle className="text-xl">{category.title}</CardTitle>
-                          <CardDescription>{category.description}</CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    
-                    <CardContent>
-                      <div className="space-y-3">
-                        {category.items.map((item) => (
-                          <div
-                            key={item.title}
-                            className="group flex items-center justify-between p-3 rounded-lg hover:bg-background-glass transition-colors cursor-pointer"
-                          >
-                            <div>
-                              <h4 className="font-medium text-text-primary group-hover:text-primary-main transition-colors">
-                                {item.title}
-                              </h4>
-                              <p className={cn(typography.bodySmall, "text-text-muted")}>
-                                {item.description}
-                              </p>
-                            </div>
-                            <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-primary-main transition-colors" />
-                          </div>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+      <Callout emoji="✅">Core concepts ready. More sections coming soon.</Callout>
+      
+      <section className="mb-12">
+        <h2 className="text-xl font-bold mb-2">What's in Alpha?</h2>
+        <ul className="list-disc pl-6 text-neutral-300 space-y-1">
+          <li>✅ Getting Started</li>
+          <li>✅ Workflow Builder Basics</li>
+          <li>🚧 AI Blocks & Nodes</li>
+          <li>🕒 Roadmap</li>
+        </ul>
       </section>
-
-      {/* Getting Started Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-6")}>
-              Ready to get started?
-            </motion.h2>
-            
-            <motion.p variants={itemVariants} className={cn(typography.bodyLarge, "mb-8 text-text-muted")}>
-              Follow our quick start guide to create your first workflow in minutes.
-            </motion.p>
-            
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                variant="primary"
-                size="lg"
-                icon={<Zap className="w-5 h-5" />}
-                onClick={() => window.location.href = '/signin'}
-              >
-                Start Building
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                icon={<Book className="w-5 h-5" />}
-                onClick={() => window.location.href = '#'}
-              >
-                Read Quick Start
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
+      
+      <ComingSoon />
     </div>
   );
 } 
