@@ -33,7 +33,7 @@ export async function POST(request) {
           html: `<div style="font-family: sans-serif; font-size: 1.1rem; color: #222;">
             <p>Thanks for subscribing to Flowdrop! We are looking forward to seeing what you build with &lt;3.</p>
             <p>-Webb, CEO founder</p>
-            <p style="margin-top:2em; font-size:0.95em; color:#888;">For any questions email anytime, <a href="mailto:webb@flowdrop.xyz">webb@flowdrop.xyz</a></p>
+            <p style="margin-top:2em; font-size:0.95em; color:#888;">For a question email anytime, <a href="mailto:webb@flowdrop.xyz">webb@flowdrop.xyz</a></p>
           </div>`
         })
       });
