@@ -111,13 +111,6 @@ export default function LandingPage() {
                 >
                   Start Free Trial
                 </Button>
-                <Button
-                  onClick={() => alert('Demo video coming soon!')}
-                  variant="secondary"
-                  size="lg"
-                >
-                  View Demo
-                </Button>
               </div>
             </motion.div>
 
