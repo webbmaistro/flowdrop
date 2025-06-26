@@ -10,7 +10,7 @@ export async function POST(request) {
           method: 'POST',
           headers: {
             'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1emRrb2R1anFtYnRvbm5odnFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxODk4NzQsImV4cCI6MjA2NTc2NTg3NH0.rQCx_cHa7oiJ9RU33bBnxmioZlz7loCf7rUUsEUWCrI',
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1emRrb2R1anFtYnRvbm5odnFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTAxODk4NzQsImV4cCI6MjA2NTc2NTg3NH0.rQCx_cHa7oiJ9RU33bBnxmioZlz7loCf7rUUsEUWCrI',
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR1emRrb2R1anFtYnRvbm5odnFlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MDE4OTg3NCwiZXhwIjoyMDY1NzY1ODc0fQ.eXqKY3iAD8NxyNAI9vmNyn0eusRiMPIGNANsffjqFys',
             'Content-Type': 'application/json',
             'Prefer': 'return=minimal'
           },
@@ -22,6 +22,21 @@ export async function POST(request) {
         const error = await response.text()
         throw new Error(error)
       }
+      
+      // Send confirmation email via Resend
+      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/send-email`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: email,
+          subject: 'Thanks for subscribing to Flowdrop!',
+          html: `<div style="font-family: sans-serif; font-size: 1.1rem; color: #222;">
+            <p>Thanks for subscribing to Flowdrop! We are looking forward to seeing what you build with &lt;3.</p>
+            <p>-Webb, CEO founder</p>
+            <p style="margin-top:2em; font-size:0.95em; color:#888;">For any questions email anytime, <a href="mailto:webb@flowdrop.xyz">webb@flowdrop.xyz</a></p>
+          </div>`
+        })
+      });
       
       return Response.json({ success: true })
       
