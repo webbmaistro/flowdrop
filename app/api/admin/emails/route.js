@@ -8,7 +8,7 @@ const supabase = createClient(
 export async function GET() {
   try {
     const { data: emails, error } = await supabase
-      .from('waitlist')
+      .from('subscriberList')
       .select('email, created_at')
       .order('created_at', { ascending: false })
     

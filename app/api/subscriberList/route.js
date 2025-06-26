@@ -1,11 +1,11 @@
-// app/api/waitlist/route.js
+// app/api/subscriberList/route.js
 export async function POST(request) {
     try {
       const { email } = await request.json()
       
       // Direct fetch to Supabase REST API
       const response = await fetch(
-        'https://zocqlxonwsvhkamywijo.supabase.co/rest/v1/waitlist',
+        'https://zocqlxonwsvhkamywijo.supabase.co/rest/v1/subscriberList',
         {
           method: 'POST',
           headers: {
@@ -26,7 +26,7 @@ export async function POST(request) {
       return Response.json({ success: true })
       
     } catch (error) {
-      console.error('Waitlist error:', error)
+      console.error('SubscriberList error:', error)
       
       // Check for duplicate email
       if (error.message.includes('duplicate')) {
@@ -36,7 +36,7 @@ export async function POST(request) {
       }
       
       return Response.json({ 
-        error: 'Failed to add to waitlist' 
+        error: 'Failed to add to subscriberList' 
       }, { status: 500 })
     }
   }

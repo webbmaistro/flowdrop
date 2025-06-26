@@ -22,7 +22,7 @@ export default function LandingPage() {
 
     setError('');
     try {
-      const response = await fetch(`${window.location.origin}/api/waitlist`, {
+      const response = await fetch(`${window.location.origin}/api/subscriberList`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
