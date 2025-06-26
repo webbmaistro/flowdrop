@@ -2,79 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star } from 'lucide-react';
+import { Check, Star, Zap, Users, Rocket, Crown } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
-
-const plans = [
-  {
-    name: 'Hobby',
-    price: '$0',
-    period: '/mo',
-    description: 'Perfect for getting started',
-    priceId: 'price_1RXx3jFzNR6a9wq2grkZXFY3',
-    highlight: false,
-    features: [
-      '1,000 workflow executions',
-      '1 n8n instance',
-      'Community support',
-      'Basic integrations',
-      'Email support'
-    ],
-  },
-  {
-    name: 'Pro',
-    price: '$29',
-    period: '/mo',
-    description: 'For power users and teams',
-    priceId: 'price_1RXx4EFzNR6a9wq2JQlwLFqm',
-    highlight: true,
-    features: [
-      'Unlimited executions',
-      'Multiple instances',
-      'Priority support',
-      'Advanced integrations',
-      'Team collaboration',
-      'Custom domains',
-      'API access'
-    ],
-  },
-  {
-    name: 'Business',
-    price: '$99',
-    period: '/mo',
-    description: 'Advanced features for growing teams',
-    priceId: 'price_1RXx4zFzNR6a9wq2WBJlo1sI',
-    highlight: false,
-    features: [
-      'Everything in Pro',
-      'Advanced analytics',
-      'Custom workflows',
-      'Dedicated support',
-      'SLA guarantees',
-      'Onboarding assistance',
-      'Custom integrations'
-    ],
-  },
-  {
-    name: 'Enterprise',
-    price: 'Custom',
-    period: '',
-    description: 'Tailored solutions for large organizations',
-    priceId: null,
-    contactOnly: true,
-    features: [
-      'Everything in Business',
-      'Custom pricing',
-      'Dedicated account manager',
-      'Custom SLA',
-      'On-premise options',
-      'Training & workshops',
-      '24/7 phone support'
-    ],
-  },
-];
 
 export default function PricingPage() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
@@ -95,6 +26,108 @@ export default function PricingPage() {
       setLoadingId(null);
     }
   };
+
+  const plans = [
+    {
+      name: 'Spark',
+      price: '$0',
+      period: '/mo',
+      description: 'Test-drive Flowdrop',
+      priceId: null,
+      highlight: false,
+      icon: Zap,
+      features: [
+        '1,000 credits',
+        '1 seat',
+        'Basic Webby AI Copilot',
+        'Community support',
+        'Core AI tools',
+        'Email support'
+      ],
+      cta: 'Start Free',
+      ctaAction: () => window.location.href = '/signin'
+    },
+    {
+      name: 'Solo',
+      price: '$19',
+      period: '/mo',
+      description: 'Side-hustle builders',
+      priceId: 'price_solo_monthly',
+      highlight: false,
+      icon: Users,
+      features: [
+        '10,000 credits',
+        '1 seat',
+        'Enhanced Webby AI Copilot',
+        'Core AI tools',
+        'Priority support',
+        'Advanced integrations',
+        'API access'
+      ],
+      cta: 'Get Started',
+      ctaAction: (priceId: string) => startCheckout(priceId)
+    },
+    {
+      name: 'Builder',
+      price: '$49',
+      period: '/mo',
+      description: 'Indie SaaS teams',
+      priceId: 'price_builder_monthly',
+      highlight: true,
+      icon: Rocket,
+      features: [
+        '25,000 credits',
+        '3 seats included',
+        'Unlimited Webby AI Copilot',
+        'Advanced AI tools',
+        'Team collaboration',
+        'Custom domains',
+        'Dedicated support',
+        '$9 per additional seat'
+      ],
+      cta: 'Get Started',
+      ctaAction: (priceId: string) => startCheckout(priceId)
+    },
+    {
+      name: 'Growth',
+      price: 'Custom',
+      period: '',
+      description: 'Agencies & high-volume ops',
+      priceId: null,
+      contactOnly: true,
+      icon: Crown,
+      features: [
+        'Unlimited credits',
+        'Unlimited seats',
+        'Unlimited Webby AI Copilot',
+        'White-glove onboarding',
+        'Rev-share option',
+        'Custom integrations',
+        'Dedicated account manager',
+        '24/7 priority support'
+      ],
+      cta: 'Contact Sales',
+      ctaAction: () => window.location.href = '/contact'
+    },
+  ];
+
+  // Additional usage credits
+  const additionalCredits = [
+    {
+      name: '10K Credits',
+      price: '$25',
+      description: 'One-time purchase',
+      credits: '10,000',
+      popular: false
+    },
+    {
+      name: '3K Credits',
+      price: '$10',
+      description: 'One-time purchase',
+      credits: '3,000',
+      popular: true
+    }
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -133,7 +166,7 @@ export default function PricingPage() {
               variants={itemVariants}
               className={cn(typography.h1, "mb-6 text-balance")}
             >
-              Simple, usage-based pricing
+              Simple, credit-based pricing
             </motion.h1>
             
             <motion.p 
@@ -141,7 +174,7 @@ export default function PricingPage() {
               className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
             >
               Choose the perfect plan for your workflow automation needs. 
-              Start free and scale as you grow.
+              Start free and scale as you grow with flexible credit-based pricing.
             </motion.p>
           </motion.div>
         </div>
@@ -156,80 +189,128 @@ export default function PricingPage() {
             animate="visible"
             variants={containerVariants}
           >
-            {plans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                variants={itemVariants}
-                className={cn(
-                  'relative',
-                  plan.highlight && 'lg:scale-105'
-                )}
-              >
-                {plan.highlight && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary-main text-white px-4 py-1 rounded-full text-sm font-medium">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                
-                <Card 
-                  variant={plan.highlight ? "glass" : "default"} 
-                  hover 
+            {plans.map((plan, index) => {
+              const IconComponent = plan.icon;
+              return (
+                <motion.div
+                  key={plan.name}
+                  variants={itemVariants}
                   className={cn(
-                    'h-full',
-                    plan.highlight && 'border-primary-main/30 bg-primary-main/5'
+                    'relative',
+                    plan.highlight && 'lg:scale-105'
                   )}
                 >
-                  <CardHeader>
-                    <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                    <CardDescription>{plan.description}</CardDescription>
-                  </CardHeader>
-                  
-                  <CardContent className="space-y-6">
-                    <div className="text-center">
-                      <div className="flex items-baseline justify-center">
-                        <span className="text-4xl font-bold">{plan.price}</span>
-                        <span className="text-text-muted ml-1">{plan.period}</span>
+                  <Card 
+                    variant={plan.highlight ? "glass" : "default"} 
+                    hover={true}
+                    className={cn(
+                      'h-full relative',
+                      plan.highlight && 'border-primary-main/30 bg-primary-main/5'
+                    )}
+                  >
+                    {plan.highlight && (
+                      <motion.span
+                        role="status"
+                        aria-label="Most popular plan"
+                        className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                      >
+                        <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
+                          <div className="flex items-center space-x-2">
+                            <Star className="w-3 h-3 text-purple-300" />
+                            <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
+                              Most Popular
+                            </span>
+                          </div>
+                        </div>
+                      </motion.span>
+                    )}
+                    
+                    <CardHeader>
+                      <div className="flex items-center space-x-3 mb-2">
+                        <IconComponent className="w-6 h-6 text-primary-main" />
+                        <CardTitle className="text-2xl">{plan.name}</CardTitle>
                       </div>
-                    </div>
+                      <CardDescription>{plan.description}</CardDescription>
+                    </CardHeader>
                     
-                    <ul className="space-y-3">
-                      {plan.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start space-x-3">
-                          <Check className="w-5 h-5 text-success-500 mt-0.5 flex-shrink-0" />
-                          <span className={typography.bodySmall}>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    
-                    <div className="pt-4">
-                      {plan.contactOnly ? (
+                    <CardContent className="space-y-6">
+                      <div className="text-center">
+                        <div className="flex items-baseline justify-center">
+                          <span className="text-4xl font-bold">{plan.price}</span>
+                          <span className="text-text-muted ml-1">{plan.period}</span>
+                        </div>
+                      </div>
+                      
+                      <ul className="space-y-3">
+                        {plan.features.map((feature, featureIndex) => (
+                          <li key={featureIndex} className="flex items-start space-x-3">
+                            <Check className="w-5 h-5 text-success-500 mt-0.5 flex-shrink-0" />
+                            <span className={typography.bodySmall}>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      
+                      <div className="pt-4">
                         <Button
-                          variant="outline"
+                          variant="primary"
                           size="lg"
                           className="w-full"
-                          onClick={() => window.location.href = '/contact'}
+                          onClick={() => plan.ctaAction(plan.priceId || '')}
+                          loading={plan.priceId ? loadingId === plan.priceId : false}
+                          disabled={plan.priceId ? loadingId === plan.priceId : false}
                         >
-                          Contact Sales
+                          {plan.priceId && loadingId === plan.priceId ? 'Redirecting...' : plan.cta}
                         </Button>
-                      ) : (
-                        <Button
-                          variant={plan.highlight ? "primary" : "secondary"}
-                          size="lg"
-                          className="w-full"
-                          onClick={() => startCheckout(plan.priceId!)}
-                          loading={loadingId === plan.priceId}
-                          disabled={!plan.priceId || loadingId === plan.priceId}
-                        >
-                          {loadingId === plan.priceId ? 'Redirecting...' : 'Get Started'}
-                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Additional Credits Section */}
+      <section className="py-20 bg-background-card/30">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-6")}>
+              Need more credits?
+            </motion.h2>
+            <motion.p variants={itemVariants} className={cn(typography.bodyLarge, "mb-12 text-text-muted")}>
+              Purchase additional credits anytime. Perfect for high-volume workflows or one-off projects.
+            </motion.p>
+            
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {additionalCredits.map((credit, index) => (
+                <Card key={credit.name} variant="glass" hover className="text-center">
+                  <CardContent className="pt-6">
+                    <div className="mb-4">
+                      {credit.popular && (
+                        <span className="bg-primary-main text-white px-3 py-1 rounded-full text-xs font-medium mb-3 inline-block">
+                          Best Value
+                        </span>
                       )}
                     </div>
+                    <h3 className="text-xl font-semibold mb-2">{credit.name}</h3>
+                    <div className="text-3xl font-bold mb-2">{credit.price}</div>
+                    <p className="text-text-muted text-sm mb-4">{credit.description}</p>
+                    <Button variant="outline" className="w-full">
+                      Purchase Credits
+                    </Button>
                   </CardContent>
                 </Card>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -250,6 +331,24 @@ export default function PricingPage() {
             <motion.div variants={itemVariants} className="grid gap-8 md:grid-cols-2">
               <Card variant="glass" hover>
                 <CardContent className="pt-6">
+                  <h3 className="text-lg font-semibold mb-3">How do credits work?</h3>
+                  <p className={typography.body}>
+                    Credits are consumed based on workflow complexity and execution frequency. Simple workflows use fewer credits than complex ones.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card variant="glass" hover>
+                <CardContent className="pt-6">
+                  <h3 className="text-lg font-semibold mb-3">What is Webby AI Copilot?</h3>
+                  <p className={typography.body}>
+                    Our AI assistant that helps you build, debug, and optimize workflows. Higher tiers get more advanced AI capabilities.
+                  </p>
+                </CardContent>
+              </Card>
+              
+              <Card variant="glass" hover>
+                <CardContent className="pt-6">
                   <h3 className="text-lg font-semibold mb-3">Can I change plans anytime?</h3>
                   <p className={typography.body}>
                     Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately.
@@ -259,27 +358,9 @@ export default function PricingPage() {
               
               <Card variant="glass" hover>
                 <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">What happens after my trial?</h3>
+                  <h3 className="text-lg font-semibold mb-3">Do unused credits roll over?</h3>
                   <p className={typography.body}>
-                    After your trial ends, you'll automatically be moved to the Hobby plan. No credit card required.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">Is there a setup fee?</h3>
-                  <p className={typography.body}>
-                    No setup fees! All plans include instant setup and deployment at no additional cost.
-                  </p>
-                </CardContent>
-              </Card>
-              
-              <Card variant="glass" hover>
-                <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">Do you offer refunds?</h3>
-                  <p className={typography.body}>
-                    We offer a 30-day money-back guarantee. If you're not satisfied, we'll refund your payment.
+                    Monthly plan credits reset each month. Additional purchased credits never expire and roll over indefinitely.
                   </p>
                 </CardContent>
               </Card>

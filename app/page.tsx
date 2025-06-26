@@ -3,7 +3,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Cloud, Cpu, ArrowRight, Check } from 'lucide-react';
+import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star } from 'lucide-react';
 import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
@@ -174,7 +174,7 @@ export default function LandingPage() {
           >
             <motion.div variants={itemVariants}>
               <Card variant="glass" hover className="text-center">
-                <CardContent className="pt-8">
+                <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
                       <Cloud className="w-8 h-8 text-primary-main" />
@@ -190,7 +190,7 @@ export default function LandingPage() {
             
             <motion.div variants={itemVariants}>
               <Card variant="glass" hover className="text-center">
-                <CardContent className="pt-8">
+                <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
                       <Zap className="w-8 h-8 text-primary-main" />
@@ -206,7 +206,7 @@ export default function LandingPage() {
             
             <motion.div variants={itemVariants}>
               <Card variant="glass" hover className="text-center">
-                <CardContent className="pt-8">
+                <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
                       <Cpu className="w-8 h-8 text-primary-main" />
@@ -227,45 +227,141 @@ export default function LandingPage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <motion.div
-            className="max-w-2xl mx-auto text-center"
+            className="max-w-4xl mx-auto text-center"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
             <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12")}>
-              Simple, usage-based pricing
+              Simple, credit-based pricing
             </motion.h2>
             
-            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6">
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <Card variant="glass" hover>
                 <CardHeader>
-                  <CardTitle>Hobby</CardTitle>
-                  <CardDescription>Perfect for getting started</CardDescription>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Zap className="w-5 h-5 text-primary-main" />
+                    <span>Spark</span>
+                  </CardTitle>
+                  <CardDescription>Test-drive Flowdrop</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold mb-4">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                  <ul className="text-left text-text-muted space-y-2">
-                    <li>• 1,000 workflow executions</li>
-                    <li>• 1 n8n instance</li>
+                  <p className="text-3xl font-bold mb-6">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                  <ul className="text-left text-text-muted space-y-3 mb-6">
+                    <li>• 1,000 credits</li>
+                    <li>• 1 seat</li>
+                    <li>• Basic Webby AI Copilot</li>
                     <li>• Community support</li>
                   </ul>
+                  <Button variant="primary" className="w-full">
+                    Start Free
+                  </Button>
                 </CardContent>
               </Card>
               
-              <Card variant="glass" hover className="border-primary-main/30 bg-primary-main/5">
+              <Card variant="glass" hover>
                 <CardHeader>
-                  <CardTitle>Pro</CardTitle>
-                  <CardDescription>For power users and teams</CardDescription>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Users className="w-5 h-5 text-primary-main" />
+                    <span>Solo</span>
+                  </CardTitle>
+                  <CardDescription>Side-hustle builders</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-3xl font-bold mb-4">$29<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                  <ul className="text-left text-text-muted space-y-2">
-                    <li>• Unlimited executions</li>
-                    <li>• Multiple instances</li>
+                  <p className="text-3xl font-bold mb-6">$19<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                  <ul className="text-left text-text-muted space-y-3 mb-6">
+                    <li>• 10,000 credits</li>
+                    <li>• 1 seat</li>
+                    <li>• Enhanced Webby AI Copilot</li>
                     <li>• Priority support</li>
                   </ul>
+                  <Button variant="primary" className="w-full">
+                    Get Started
+                  </Button>
                 </CardContent>
               </Card>
+
+              <Card variant="glass" hover className="border-primary-main/30 bg-primary-main/5 relative">
+                <CardHeader>
+                  <motion.span
+                    role="status"
+                    aria-label="Most popular plan"
+                    className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, ease: "easeOut" }}
+                  >
+                    <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
+                      <div className="flex items-center space-x-2">
+                        <Star className="w-3 h-3 text-purple-300" />
+                        <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
+                          Most Popular
+                        </span>
+                      </div>
+                    </div>
+                  </motion.span>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Rocket className="w-5 h-5 text-primary-main" />
+                    <span>Builder</span>
+                  </CardTitle>
+                  <CardDescription>Indie SaaS teams</CardDescription>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <p className="text-3xl font-bold mb-6">$49<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                  <ul className="text-left text-text-muted space-y-3 mb-6">
+                    <li>• 25,000 credits</li>
+                    <li>• 3 seats included</li>
+                    <li>• Unlimited Webby AI Copilot</li>
+                    <li>• Dedicated support</li>
+                  </ul>
+                  <Button variant="primary" className="w-full">
+                    Get Started
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card variant="glass" hover>
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <Crown className="w-5 h-5 text-primary-main" />
+                    <span>Growth</span>
+                  </CardTitle>
+                  <CardDescription>Agencies & high-volume ops</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-3xl font-bold mb-6">Custom</p>
+                  <ul className="text-left text-text-muted space-y-3 mb-6">
+                    <li>• Unlimited credits</li>
+                    <li>• Unlimited seats</li>
+                    <li>• Unlimited Webby AI Copilot</li>
+                    <li>• White-glove onboarding</li>
+                  </ul>
+                  <Button 
+                    variant="primary" 
+                    className="w-full"
+                    onClick={() => window.location.href = '/contact'}
+                  >
+                    Contact Sales
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={itemVariants} className="mt-12 p-6 bg-background-card/30 rounded-2xl border border-border-primary">
+              <h3 className="text-lg font-semibold mb-4">Need more credits?</h3>
+              <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
+                <div className="text-center p-4 bg-background-glass rounded-xl">
+                  <p className="text-2xl font-bold">$25</p>
+                  <p className="text-sm text-text-muted">10,000 credits</p>
+                  <p className="text-xs text-text-muted">One-time purchase</p>
+                </div>
+                <div className="text-center p-4 bg-primary-main/10 rounded-xl border border-primary-main/20">
+                  <span className="bg-primary-main text-white px-2 py-1 rounded text-xs font-medium mb-2 inline-block">Best Value</span>
+                  <p className="text-2xl font-bold">$10</p>
+                  <p className="text-sm text-text-muted">3,000 credits</p>
+                  <p className="text-xs text-text-muted">One-time purchase</p>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
         </div>
