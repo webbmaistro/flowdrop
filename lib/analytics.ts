@@ -1,12 +1,22 @@
 import { PostHog } from 'posthog-node'
 
-export const ph = new PostHog(process.env.POSTHOG_KEY!, {
-  host: 'https://app.posthog.com'
-})
+// Only initialize PostHog if the key is available
+const posthogKey = process.env.POSTHOG_KEY || process.env.NEXT_PUBLIC_POSTHOG_KEY
+
+let ph: PostHog | null = null
+
+if (posthogKey) {
+  ph = new PostHog(posthogKey, {
+    host: 'https://app.posthog.com'
+  })
+} else {
+  console.warn('PostHog server-side tracking disabled: POSTHOG_KEY not found')
+}
 
 // Helper functions for common events
 export const trackEvent = {
   userSignedUp: (userId: string, email?: string) => {
+    if (!ph) return
     ph.capture({
       distinctId: userId,
       event: 'User Signed Up',
@@ -18,6 +28,7 @@ export const trackEvent = {
   },
   
   userSignedIn: (userId: string, method: 'google' | 'email') => {
+    if (!ph) return
     ph.capture({
       distinctId: userId,
       event: 'User Signed In',
@@ -29,6 +40,7 @@ export const trackEvent = {
   },
   
   emailSubscribed: (email: string) => {
+    if (!ph) return
     ph.capture({
       distinctId: email,
       event: 'Email Subscribed',
@@ -40,6 +52,7 @@ export const trackEvent = {
   },
   
   contactFormSubmitted: (email: string, message: string) => {
+    if (!ph) return
     ph.capture({
       distinctId: email,
       event: 'Contact Form Submitted',
@@ -52,4 +65,7 @@ export const trackEvent = {
   }
 }
 
-// Usage: ph.capture({ distinctId, event: 'Webhook Fired', properties: { … } }) 
+// Export the PostHog instance for direct usage if needed
+export { ph }
+
+// Usage: ph?.capture({ distinctId, event: 'Webhook Fired', properties: { … } }) 

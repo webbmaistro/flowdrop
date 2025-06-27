@@ -4,9 +4,9 @@ import { useEffect, createContext, useContext } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 import posthog from 'posthog-js'
 
-// Debug environment variables
-if (typeof window !== 'undefined') {
-  console.log('PostHog Key:', process.env.NEXT_PUBLIC_POSTHOG_KEY)
+// Debug environment variables (only in development)
+if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+  console.log('PostHog Key:', process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'Found' : 'Missing')
   console.log('PostHog Host:', process.env.NEXT_PUBLIC_POSTHOG_HOST)
 }
 
@@ -27,7 +27,9 @@ if (typeof window !== 'undefined' && !posthog.__loaded) {
         if (process.env.NODE_ENV === 'development') posthog.debug()
       }
     })
-    console.log('PostHog initialized successfully')
+    if (process.env.NODE_ENV === 'development') {
+      console.log('PostHog initialized successfully')
+    }
   } else {
     console.error('PostHog key is missing or undefined')
   }
