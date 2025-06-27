@@ -99,7 +99,7 @@ export default function LandingPage() {
             <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
               <div className="flex flex-col gap-4">
                 {/* Google Sign In as Feature Card */}
-                <Card variant="glass" hover className="p-0">
+                <Card variant="glass" hover>
                   <CardContent className="p-0">
                     <GoogleSignIn />
                   </CardContent>

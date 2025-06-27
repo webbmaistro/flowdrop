@@ -64,7 +64,7 @@ export default function SignInPage() {
             </div>
 
             {/* Google Sign In as Feature Card */}
-            <Card variant="glass" hover className="mb-6 p-0">
+            <Card variant="glass" hover className="mb-6">
               <CardContent className="p-0">
                 <GoogleSignIn />
               </CardContent>

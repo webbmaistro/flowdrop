@@ -41,9 +41,9 @@ export default function GoogleSignIn() {
   return (
     <motion.button
       onClick={handleGoogleSignIn}
-      className="w-full px-6 py-4 bg-gray-800/40 backdrop-blur-sm border border-gray-600/40 rounded-lg hover:bg-gray-700/50 hover:border-gray-500/60 transition-all duration-300 flex items-center justify-center gap-3 text-white font-medium"
-      whileHover={{ scale: 1.01 }}
-      whileTap={{ scale: 0.99 }}
+      className="w-full px-6 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-600/30 rounded-xl hover:bg-gray-700/60 hover:border-gray-500/50 transition-all duration-300 flex items-center justify-center gap-3 text-white font-medium shadow-sm hover:shadow-md"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2 }}
     >
       <FcGoogle className="w-5 h-5" />
