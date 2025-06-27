@@ -8,4 +8,5 @@ export {
   CardTitle, 
   CardDescription, 
   CardContent 
-} from './card'; 
+} from './card';
+export { default as SocialLinks } from './SocialLinks'; 

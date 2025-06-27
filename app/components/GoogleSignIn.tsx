@@ -3,7 +3,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { FcGoogle } from 'react-icons/fc'
 import { useEffect } from 'react'
-import { Button } from '@/components/ui'
+import { motion } from 'framer-motion'
 
 const supabase = createClient(
   'https://zocqlxonwsvhkamywijo.supabase.co',
@@ -39,14 +39,15 @@ export default function GoogleSignIn() {
   }
 
   return (
-    <Button
+    <motion.button
       onClick={handleGoogleSignIn}
-      variant="secondary"
-      size="lg"
-      icon={<FcGoogle className="w-5 h-5" />}
-      className="w-full"
+      className="w-full px-6 py-4 bg-gray-800/40 backdrop-blur-sm border border-gray-600/40 rounded-lg hover:bg-gray-700/50 hover:border-gray-500/60 transition-all duration-300 flex items-center justify-center gap-3 text-white font-medium"
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.2 }}
     >
-      Continue with Google
-    </Button>
+      <FcGoogle className="w-5 h-5" />
+      <span>Continue with Google</span>
+    </motion.button>
   )
 } 

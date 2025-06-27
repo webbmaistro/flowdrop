@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star } from 'lucide-react';
-import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
@@ -99,7 +99,7 @@ export default function LandingPage() {
             <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
               <div className="flex flex-col gap-4">
                 {/* Google Sign In as Feature Card */}
-                <Card variant="glass" hover>
+                <Card variant="glass" hover className="p-0">
                   <CardContent className="p-0">
                     <GoogleSignIn />
                   </CardContent>
@@ -370,6 +370,29 @@ export default function LandingPage() {
                   <p className="text-xs text-text-muted">One-time purchase</p>
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Social Links Section */}
+      <section className="py-16 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-2xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants} className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-300 mb-2">Join Our Community</h3>
+              <p className="text-sm text-gray-400">
+                Connect with builders, get support, and stay updated on the latest features
+              </p>
+            </motion.div>
+            
+            <motion.div variants={itemVariants}>
+              <SocialLinks size="md" className="justify-center" />
             </motion.div>
           </motion.div>
         </div>
