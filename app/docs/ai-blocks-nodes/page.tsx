@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function AIBlocksNodes() {
   return (
@@ -10,16 +11,15 @@ export default function AIBlocksNodes() {
         This documentation is coming soon! We're building out our AI node library and integration guides.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• Text generation and analysis nodes</li>
-          <li>• Image processing and generation</li>
-          <li>• Data extraction and transformation</li>
-          <li>• Decision-making and logic flows</li>
-          <li>• Custom AI model integration</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "Text generation and analysis nodes",
+          "Image processing and generation",
+          "Data extraction and transformation",
+          "Decision-making and logic flows",
+          "Custom AI model integration",
+        ]}
+      />
     </div>
   );
 } 

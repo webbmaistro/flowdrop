@@ -8,17 +8,22 @@ import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardConten
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
+import { useAnalytics } from '@/lib/usePostHog';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const { track } = useAnalytics();
 
   const handleSubmit = async () => {
     if (!email || !email.includes('@')) {
       setError('Please enter a valid email address');
       return;
     }
+
+    // Track email subscription attempt
+    track.emailSubscribe('hero');
 
     setError('');
     try {
@@ -94,7 +99,12 @@ export default function LandingPage() {
 
             <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
               <div className="flex flex-col gap-4">
-                <GoogleSignIn />
+                {/* Google Sign In as Feature Card */}
+                <Card variant="glass" hover>
+                  <CardContent className="p-0">
+                    <GoogleSignIn />
+                  </CardContent>
+                </Card>
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-border-primary"></div>
@@ -104,7 +114,10 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <Button
-                  onClick={() => window.location.href = '/signin'}
+                  onClick={() => {
+                    track.buttonClick('Start Free Trial', 'hero');
+                    window.location.href = '/signin';
+                  }}
                   variant="primary"
                   size="lg"
                   icon={<ArrowRight className="w-5 h-5" />}
@@ -112,45 +125,36 @@ export default function LandingPage() {
                   Start Free Trial
                 </Button>
               </div>
-            </motion.div>
 
-            <motion.div variants={itemVariants} className="max-w-md mx-auto border-t border-border-primary pt-8">
-              <p className={cn(typography.bodySmall, "text-text-muted mb-4")}>
-                Get notified about new features and updates:
-              </p>
-              {!submitted ? (
-                <div className="flex flex-col gap-2">
-                  <div className="flex gap-2">
+              {/* Optimized Email Subscribe Section */}
+              <div className="bg-white/5 backdrop-blur rounded-xl p-4 mt-8 flex flex-col items-center gap-3 border border-white/10">
+                <span className="text-sm text-white/70 flex items-center gap-2">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z" fill="#a78bfa"/></svg>
+                  Stay in the loop! Get early access and updates.
+                </span>
+                {!submitted ? (
+                  <div className="flex w-full gap-2">
                     <Input
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Your email"
                       variant="glass"
+                      className="flex-1"
                     />
                     <Button
                       onClick={handleSubmit}
                       variant="primary"
                       icon={<ArrowRight className="w-4 h-4" />}
                     >
-                      Subscribe
+                      Notify Me
                     </Button>
                   </div>
-                  {error && (
-                    <p className="text-error-500 text-sm">{error}</p>
-                  )}
-                </div>
-              ) : (
-                <motion.div 
-                  className="p-4 bg-success-500/20 border border-success-500/30 rounded-xl text-success-500"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Check className="w-5 h-5 inline mr-2" />
-                  Thanks! We'll keep you updated.
-                </motion.div>
-              )}
+                ) : (
+                  <p className="text-success-500 text-xs">Thanks! We'll keep you updated.</p>
+                )}
+                {error && <p className="text-error-500 text-xs">{error}</p>}
+              </div>
             </motion.div>
           </motion.div>
         </div>

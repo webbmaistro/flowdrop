@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function WorkflowBuilderBasics() {
   return (
@@ -10,16 +11,15 @@ export default function WorkflowBuilderBasics() {
         This documentation is coming soon! We're working hard to bring you comprehensive guides on building AI workflows.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• Visual workflow builder walkthrough</li>
-          <li>• Understanding nodes and connections</li>
-          <li>• Setting up triggers and actions</li>
-          <li>• Testing and debugging workflows</li>
-          <li>• Best practices and tips</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "Visual workflow builder walkthrough",
+          "Understanding nodes and connections",
+          "Setting up triggers and actions",
+          "Testing and debugging workflows",
+          "Best practices and tips",
+        ]}
+      />
     </div>
   );
 } 

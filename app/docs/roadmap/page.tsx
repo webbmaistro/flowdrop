@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function Roadmap() {
   return (
@@ -10,16 +11,15 @@ export default function Roadmap() {
         Our roadmap is coming soon! We're planning exciting features and would love your input.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• Upcoming feature releases</li>
-          <li>• Integration partnerships</li>
-          <li>• Platform improvements</li>
-          <li>• Community feedback integration</li>
-          <li>• Long-term vision and goals</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "Upcoming feature releases",
+          "Integration partnerships",
+          "Platform improvements",
+          "Community feedback integration",
+          "Long-term vision and goals",
+        ]}
+      />
     </div>
   );
 } 

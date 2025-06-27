@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function Changelog() {
   return (
@@ -10,16 +11,15 @@ export default function Changelog() {
         This changelog is coming soon! We'll be tracking all updates and releases here.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• Version history and release notes</li>
-          <li>• New features and enhancements</li>
-          <li>• Bug fixes and improvements</li>
-          <li>• Breaking changes and migrations</li>
-          <li>• Deprecation notices</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "Version history and release notes",
+          "New features and enhancements",
+          "Bug fixes and improvements",
+          "Breaking changes and migrations",
+          "Deprecation notices",
+        ]}
+      />
     </div>
   );
 } 

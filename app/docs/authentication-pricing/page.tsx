@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function AuthenticationPricing() {
   return (
@@ -10,16 +11,15 @@ export default function AuthenticationPricing() {
         This documentation is coming soon! We're finalizing our authentication options and pricing details.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• OAuth integration setup</li>
-          <li>• API key management</li>
-          <li>• Team collaboration features</li>
-          <li>• Usage-based pricing breakdown</li>
-          <li>• Enterprise security features</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "OAuth integration setup",
+          "API key management",
+          "Team collaboration features",
+          "Usage-based pricing breakdown",
+          "Enterprise security features",
+        ]}
+      />
     </div>
   );
 } 

@@ -1,4 +1,6 @@
 // app/api/subscriberList/route.js
+import { trackEvent } from '@/lib/analytics'
+
 export async function POST(request) {
     try {
       const { email } = await request.json()
@@ -22,6 +24,9 @@ export async function POST(request) {
         const error = await response.text()
         throw new Error(error)
       }
+
+      // Track email subscription event
+      trackEvent.emailSubscribed(email)
       
       // Send confirmation email via Resend
       await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/send-email`, {

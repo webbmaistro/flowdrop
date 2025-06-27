@@ -1,4 +1,5 @@
 import Callout from "@/components/ui/Callout";
+import { ComingSoonCard } from "@/components/ui/ComingSoonCard";
 
 export default function CLIAPIReference() {
   return (
@@ -10,16 +11,15 @@ export default function CLIAPIReference() {
         This documentation is coming soon! We're developing our CLI tools and API endpoints.
       </Callout>
       
-      <div className="bg-neutral-800 rounded-xl p-8 text-center">
-        <h2 className="text-xl font-semibold mb-4">What's Coming?</h2>
-        <ul className="text-neutral-300 space-y-2 text-left max-w-2xl mx-auto">
-          <li>• Command-line interface reference</li>
-          <li>• REST API endpoints and authentication</li>
-          <li>• SDK libraries for popular languages</li>
-          <li>• Webhook integration guides</li>
-          <li>• Rate limiting and best practices</li>
-        </ul>
-      </div>
+      <ComingSoonCard
+        items={[
+          "Command-line interface reference",
+          "REST API endpoints and authentication",
+          "SDK libraries for popular languages",
+          "Webhook integration guides",
+          "Rate limiting and best practices",
+        ]}
+      />
     </div>
   );
 } 
