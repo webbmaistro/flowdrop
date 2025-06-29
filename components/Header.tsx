@@ -4,9 +4,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Zap, Menu, X } from 'lucide-react';
+import { Zap, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+  'https://zocqlxonwsvhkamywijo.supabase.co',
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvY3FseG9ud3N2aGthbXl3aWpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2NTE2NDUsImV4cCI6MjA2NDIyNzY0NX0.sHKkSxqVa8WFvyaPj4z9WStGdDcR0tbaE6Ri1oasC9E'
+);
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -22,6 +28,8 @@ interface HeaderProps {
 export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
   // Only show header on landing page after scroll
@@ -34,6 +42,27 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Check authentication state
+  useEffect(() => {
+    // Get initial user
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setUser(user);
+      setLoading(false);
+    });
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/';
+  };
 
   return (
     <>
@@ -91,15 +120,36 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
               })}
             </nav>
 
-            {/* CTA Button */}
-            <div className="hidden md:block">
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => window.location.href = '/signin'}
-              >
-                Get Started
-              </Button>
+            {/* CTA Button - Show Sign Out if authenticated, Get Started if not */}
+            <div className="hidden md:flex items-center space-x-4">
+              {!loading && (
+                <>
+                  {user ? (
+                    <>
+                      <span className="text-sm text-foreground-muted">
+                        Welcome, {user.email}
+                      </span>
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={handleSignOut}
+                        icon={<LogOut className="w-4 h-4" />}
+                        iconPosition="left"
+                      >
+                        Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => window.location.href = '/signin'}
+                    >
+                      Get Started
+                    </Button>
+                  )}
+                </>
+              )}
             </div>
 
             {/* Mobile Menu Button */}
@@ -148,17 +198,42 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                     );
                   })}
                   <div className="pt-4 border-t border-white/10">
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => {
-                        window.location.href = '/signin';
-                        setIsMobileMenuOpen(false);
-                      }}
-                    >
-                      Get Started
-                    </Button>
+                    {!loading && (
+                      <>
+                        {user ? (
+                          <div className="flex flex-col space-y-3">
+                            <span className="text-sm text-foreground-muted">
+                              Welcome, {user.email}
+                            </span>
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="w-full"
+                              onClick={() => {
+                                handleSignOut();
+                                setIsMobileMenuOpen(false);
+                              }}
+                              icon={<LogOut className="w-4 h-4" />}
+                              iconPosition="left"
+                            >
+                              Sign Out
+                            </Button>
+                          </div>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            size="sm"
+                            className="w-full"
+                            onClick={() => {
+                              window.location.href = '/signin';
+                              setIsMobileMenuOpen(false);
+                            }}
+                          >
+                            Get Started
+                          </Button>
+                        )}
+                      </>
+                    )}
                   </div>
                 </nav>
               </div>

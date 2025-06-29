@@ -2,8 +2,9 @@
 import { useEffect, useState } from 'react'
 import { createClient, User } from '@supabase/supabase-js'
 import { useRouter } from 'next/navigation'
-import { LogOut, Sparkles, Zap } from 'lucide-react'
-import { SocialLinks } from '@/components/ui'
+import { Sparkles, Zap } from 'lucide-react'
+import { SocialLinks, Card, CardContent, CardHeader, CardTitle, Button } from '@/components/ui'
+import { cn } from '@/lib/utils'
 
 const supabase = createClient(
   'https://zocqlxonwsvhkamywijo.supabase.co',
@@ -39,121 +40,101 @@ export default function Dashboard() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-neutral-900 text-white flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
-          <p className="text-neutral-300">Loading your workspace...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-foreground-muted">Loading your workspace...</p>
         </div>
       </div>
     )
   }
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.push('/')
-  }
-
   return (
-    <div className="min-h-screen bg-neutral-900 text-white">
-      {/* Header */}
-      <header className="border-b border-neutral-800 bg-neutral-950/50 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-3">
-              <div className="p-2 bg-purple-600/20 rounded-lg">
-                <Zap className="w-6 h-6 text-purple-400" />
-              </div>
-              <h1 className="text-xl font-bold">Flowdrop</h1>
-            </div>
-            
-            <div className="flex items-center space-x-4">
-              <span className="text-sm text-neutral-400">
-                Welcome, {user?.email}
-              </span>
-              <button 
-                onClick={handleSignOut}
-                className="flex items-center gap-2 px-4 py-2 bg-neutral-800 hover:bg-neutral-700 rounded-lg transition-colors"
-              >
-                <LogOut className="w-4 h-4" />
-                Sign Out
-              </button>
-            </div>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen bg-background text-foreground">
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
           {/* Coming Soon Badge */}
-          <div className="inline-flex items-center gap-2 bg-purple-600/20 border border-purple-500/30 rounded-full px-4 py-2 mb-8">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm font-medium text-purple-300">Coming Soon</span>
+          <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-8 glass">
+            <Sparkles className="w-4 h-4 text-primary" />
+            <span className="text-sm font-medium text-primary">Coming Soon</span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
             AI Building Magic Loading Soon ✨
           </h1>
           
-          <p className="text-xl text-neutral-300 mb-12 max-w-2xl mx-auto">
+          <p className="text-xl text-foreground-muted mb-12 max-w-2xl mx-auto text-balance">
             We're crafting something amazing for you. The Flowdrop app is being built with love and will be ready to help you create incredible AI workflows.
           </p>
 
           {/* Status Cards */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
-            <div className="bg-neutral-800/50 border border-neutral-700 rounded-xl p-6">
-              <div className="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              </div>
-              <h3 className="font-semibold mb-2">Account Ready</h3>
-              <p className="text-sm text-neutral-400">Your account is set up and ready to go</p>
-            </div>
+            <Card variant="glass" hover className="card-smooth">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-success/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <div className="w-3 h-3 bg-success rounded-full"></div>
+                </div>
+                <CardTitle className="text-lg mb-2">Account Ready</CardTitle>
+                <p className="text-sm text-foreground-muted">Your account is set up and ready to go</p>
+              </CardContent>
+            </Card>
             
-            <div className="bg-neutral-800/50 border border-neutral-700 rounded-xl p-6">
-              <div className="w-12 h-12 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <Sparkles className="w-6 h-6 text-yellow-400" />
-              </div>
-              <h3 className="font-semibold mb-2">Building Magic</h3>
-              <p className="text-sm text-neutral-400">Our team is crafting the perfect experience</p>
-            </div>
+            <Card variant="glass" hover className="card-smooth">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-warning/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <Sparkles className="w-6 h-6 text-warning" />
+                </div>
+                <CardTitle className="text-lg mb-2">Building Magic</CardTitle>
+                <p className="text-sm text-foreground-muted">Our team is crafting the perfect experience</p>
+              </CardContent>
+            </Card>
             
-            <div className="bg-neutral-800/50 border border-neutral-700 rounded-xl p-6">
-              <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                <Zap className="w-6 h-6 text-blue-400" />
-              </div>
-              <h3 className="font-semibold mb-2">AI Workflows</h3>
-              <p className="text-sm text-neutral-400">Powerful automation tools coming soon</p>
-            </div>
+            <Card variant="glass" hover className="card-smooth">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                  <Zap className="w-6 h-6 text-primary" />
+                </div>
+                <CardTitle className="text-lg mb-2">AI Workflows</CardTitle>
+                <p className="text-sm text-foreground-muted">Powerful automation tools coming soon</p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Call to Action */}
-          <div className="bg-neutral-800/30 border border-neutral-700 rounded-xl p-8">
-            <h2 className="text-2xl font-bold mb-4">Stay in the Loop</h2>
-            <p className="text-neutral-300 mb-6">
-              We'll notify you as soon as the app is ready. In the meantime, check out our docs to learn more about what's coming.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => window.location.href = '/docs'}
-                className="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg font-medium transition-colors"
-              >
-                Read the Docs
-              </button>
-              <button 
-                onClick={() => window.location.href = '/contact'}
-                className="px-6 py-3 bg-neutral-700 hover:bg-neutral-600 rounded-lg font-medium transition-colors"
-              >
-                Get in Touch
-              </button>
-            </div>
-            
-            {/* Social Links */}
-            <div className="mt-8 pt-6 border-t border-neutral-700">
-              <p className="text-sm text-neutral-400 mb-4">Join our community while you wait</p>
-              <SocialLinks size="sm" className="justify-center" />
-            </div>
-          </div>
+          <Card variant="glass" className="card-hover-glow">
+            <CardContent className="p-8">
+              <CardTitle className="text-2xl font-bold mb-4">Stay in the Loop</CardTitle>
+              <p className="text-foreground-muted mb-6 max-w-2xl mx-auto">
+                We'll notify you as soon as the app is ready. In the meantime, check out our docs to learn more about what's coming.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button 
+                  onClick={() => window.location.href = '/docs'}
+                  variant="primary"
+                  size="lg"
+                  className="card-smooth"
+                >
+                  Read the Docs
+                </Button>
+                <Button 
+                  onClick={() => window.location.href = '/contact'}
+                  variant="secondary"
+                  size="lg"
+                  className="card-smooth"
+                >
+                  Get in Touch
+                </Button>
+              </div>
+              
+              {/* Social Links */}
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="text-sm text-foreground-muted mb-4">Join our community while you wait</p>
+                <SocialLinks size="sm" className="justify-center" />
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
     </div>
