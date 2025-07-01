@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Zap, Menu, X, LogOut } from 'lucide-react';
+import { Zap, Menu, X, LogOut, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { createClient } from '@supabase/supabase-js';
@@ -15,10 +15,9 @@ const supabase = createClient(
 );
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Docs', href: '/docs' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Blog', href: '/docs/changelog' }, // Using changelog as blog for now
 ];
 
 interface HeaderProps {
@@ -27,21 +26,36 @@ interface HeaderProps {
 
 export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showFullHeader, setShowFullHeader] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
 
-  // Only show header on landing page after scroll
-  const shouldHideHeader = hideAtTopOnLanding && pathname === '/' && !isScrolled;
+  // Show header when scrolled > 50vh OR scrolling up
+  const shouldHideHeader = hideAtTopOnLanding && pathname === '/' && !showFullHeader;
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+      const vh50 = window.innerHeight * 0.5; // 50vh
+      
+      setIsScrolled(currentScrollY > 20);
+      
+      // Show full header if:
+      // 1. Scrolled more than 50vh, OR
+      // 2. Scrolling up (and past initial threshold)
+      const scrollingUp = currentScrollY < lastScrollY && currentScrollY > 100;
+      const pastHalfway = currentScrollY > vh50;
+      
+      setShowFullHeader(pastHalfway || scrollingUp);
+      setLastScrollY(currentScrollY);
     };
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Check authentication state
   useEffect(() => {
@@ -66,13 +80,89 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
 
   return (
     <>
+      {/* Persistent Elements for Landing Page */}
+      <AnimatePresence mode="wait">
+        {/* Persistent Logo - Only visible when header is hidden on landing */}
+        {pathname === '/' && shouldHideHeader && (
+          <motion.div
+            key="persistent-logo"
+            className="fixed top-4 left-6 z-[60]"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center space-x-2 group relative">
+              <motion.div
+                className="p-2 bg-primary-main/20 backdrop-blur-sm rounded-xl border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
+                whileHover={{ 
+                  scale: 1.05,
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                <Zap className="w-6 h-6 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-300" />
+              </motion.div>
+              <span className="text-lg font-bold text-text-primary group-hover:text-primary-light relative">
+                FlowDrop
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">FlowDrop</div>
+              </span>
+            </Link>
+          </motion.div>
+        )}
+
+        {/* Sticky Login Button - Only visible when header is hidden on landing */}
+        {pathname === '/' && !user && !loading && shouldHideHeader && (
+          <motion.div
+            key="sticky-login"
+            className="fixed top-4 right-6 z-[60]"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => window.location.href = '/signin'}
+              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
+            >
+              <div className="relative flex items-center justify-center">
+                <motion.div
+                  className="flex items-center gap-1.5 px-2"
+                  initial="default"
+                  whileHover="hover"
+                  animate="default"
+                  variants={{
+                    default: { x: 0 },
+                    hover: { x: 0 }
+                  }}
+                >
+                  <span>Login</span>
+                  <motion.div
+                    variants={{
+                      default: { width: 0, opacity: 0, marginLeft: -4 },
+                      hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                    }}
+                    transition={{ duration: 0.3 }}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </motion.div>
+              </div>
+            </Button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <motion.header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-30 transition-all duration-300',
           shouldHideHeader 
             ? 'opacity-0 pointer-events-none' 
             : isScrolled
-              ? 'bg-background-glass backdrop-blur-lg border-b border-white/10'
+              ? 'bg-transparent backdrop-blur-lg'
               : 'bg-transparent'
         )}
         initial={{ y: -100 }}
@@ -80,17 +170,23 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
         transition={{ duration: 0.5 }}
       >
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-16"> {/* 64px height */}
             {/* Logo */}
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2 group relative">
               <motion.div
-                className="p-2 bg-primary-main/20 rounded-xl"
-                whileHover={{ scale: 1.05 }}
+                className="p-2 bg-primary-main/20 backdrop-blur-sm rounded-xl border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
+                whileHover={{ 
+                  scale: 1.05,
+                }}
                 transition={{ duration: 0.2 }}
               >
-                <Zap className="w-6 h-6 text-primary-main" />
+                <Zap className="w-6 h-6 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                <div className="absolute inset-0 rounded-xl bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-300" />
               </motion.div>
-              <span className="text-xl font-bold text-text-primary">FlowDrop</span>
+              <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
+                FlowDrop
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">FlowDrop</div>
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
@@ -120,8 +216,8 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
               })}
             </nav>
 
-            {/* CTA Button - Show Sign Out if authenticated, Get Started if not */}
-            <div className="hidden md:flex items-center space-x-4">
+            {/* CTA Buttons */}
+            <div className="hidden md:flex items-center space-x-3">
               {!loading && (
                 <>
                   {user ? (
@@ -140,13 +236,72 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                       </Button>
                     </>
                   ) : (
-                    <Button
-                      variant="primary"
-                      size="sm"
-                      onClick={() => window.location.href = '/signin'}
-                    >
-                      Get Started
-                    </Button>
+                    <>
+                      {/* Highlighted Get Started Button */}
+                      <Button
+                        variant="primary"
+                        size="sm"
+                        onClick={() => window.location.href = '/signin'}
+                        className="bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main transition-all duration-300 shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden px-3"
+                      >
+                        <div className="relative flex items-center justify-center">
+                          <motion.div
+                            className="flex items-center gap-1.5 px-2"
+                            initial="default"
+                            whileHover="hover"
+                            animate="default"
+                            variants={{
+                              default: { x: 0 },
+                              hover: { x: 0 }
+                            }}
+                          >
+                            <span>Get Started</span>
+                            <motion.div
+                              variants={{
+                                default: { width: 0, opacity: 0, marginLeft: -4 },
+                                hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                              }}
+                              transition={{ duration: 0.3 }}
+                              style={{ overflow: "hidden" }}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </motion.div>
+                          </motion.div>
+                        </div>
+                      </Button>
+                      {/* Login Button */}
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => window.location.href = '/signin'}
+                        className="group relative overflow-hidden px-3"
+                      >
+                        <div className="relative flex items-center justify-center">
+                          <motion.div
+                            className="flex items-center gap-1.5 px-2"
+                            initial="default"
+                            whileHover="hover"
+                            animate="default"
+                            variants={{
+                              default: { x: 0 },
+                              hover: { x: 0 }
+                            }}
+                          >
+                            <span>Login</span>
+                            <motion.div
+                              variants={{
+                                default: { width: 0, opacity: 0, marginLeft: -4 },
+                                hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                              }}
+                              transition={{ duration: 0.3 }}
+                              style={{ overflow: "hidden" }}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </motion.div>
+                          </motion.div>
+                        </div>
+                      </Button>
+                    </>
                   )}
                 </>
               )}
@@ -220,17 +375,32 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                             </Button>
                           </div>
                         ) : (
-                          <Button
-                            variant="primary"
-                            size="sm"
-                            className="w-full"
-                            onClick={() => {
-                              window.location.href = '/signin';
-                              setIsMobileMenuOpen(false);
-                            }}
-                          >
-                            Get Started
-                          </Button>
+                          <div className="flex flex-col space-y-3">
+                            {/* Highlighted Get Started Button */}
+                            <Button
+                              variant="primary"
+                              size="sm"
+                              className="w-full bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main transition-all duration-300 shadow-lg shadow-primary-main/25"
+                              onClick={() => {
+                                window.location.href = '/signin';
+                                setIsMobileMenuOpen(false);
+                              }}
+                            >
+                              Get Started
+                            </Button>
+                            {/* Login Button */}
+                            <Button
+                              variant="secondary"
+                              size="sm"
+                              className="w-full"
+                              onClick={() => {
+                                window.location.href = '/signin';
+                                setIsMobileMenuOpen(false);
+                              }}
+                            >
+                              Login
+                            </Button>
+                          </div>
                         )}
                       </>
                     )}

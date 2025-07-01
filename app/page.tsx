@@ -66,66 +66,142 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background text-text-primary">
       {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
-        <div className="relative container mx-auto px-6">
+      <section className="flex flex-col items-center justify-center text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4">
+        {/* Background Layers */}
+        <div className="absolute inset-0 w-full h-full">
+          {/* Primary Gradient - z-0 */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-900 via-bg-900/90 to-transparent" />
+          
+          {/* Centered Radial Glow - z-10 */}
+          <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15)_0%,transparent_70%)]" />
+        </div>
+
+        {/* Main Content - z-20 */}
+        <div className="relative z-20 max-w-4xl mx-auto">
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="flex flex-col items-center gap-12 md:gap-16"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
-            <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-background-glass backdrop-blur-lg rounded-2xl border border-white/10">
-                <Zap className="w-8 h-8 text-primary-main" />
-              </div>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className={cn(typography.h1, "mb-6 text-balance")}
+            {/* Logo Animation */}
+            <motion.div 
+              variants={itemVariants} 
+              className="flex justify-center"
             >
-              Build and deploy workflows at lightning speed.
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
-            >
-              Launch production flows before your coffee brews.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
-              <div className="flex flex-col gap-4">
-                {/* Google Sign In as Feature Card */}
-                <Card variant="glass" hover>
-                  <CardContent className="p-0">
-                    <GoogleSignIn />
-                  </CardContent>
-                </Card>
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-border-primary"></div>
-                  </div>
-                  <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-background text-text-muted">or</span>
-                  </div>
-                </div>
-                <Button
-                  onClick={() => {
-                    track.buttonClick('Start Free Trial', 'hero');
-                    window.location.href = '/signin';
+              <motion.div 
+                className="p-4 bg-background-glass/50 backdrop-blur-lg rounded-2xl border border-white/10 cursor-pointer group relative overflow-hidden"
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2,
+                }}
+                whileTap={{ scale: 0.98 }}
+                animate={{ 
+                  y: [0, -4, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  },
+                  scale: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }
+                }}
+              >
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 3, -3, 0],
                   }}
-                  variant="primary"
-                  size="lg"
-                  icon={<ArrowRight className="w-5 h-5" />}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  whileHover={{
+                    rotate: [0, 5, -5, 0],
+                    transition: { duration: 0.5 }
+                  }}
+                  className="relative"
                 >
-                  Start Free Trial
-                </Button>
-              </div>
-
-
+                  {/* Glow Effect Layer */}
+                  <div className="absolute inset-0 scale-[2] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="absolute inset-0 bg-primary-main/20 blur-xl transform scale-y-[0.8]" />
+                    <div className="absolute inset-0 bg-primary-main/10 blur-2xl" />
+                  </div>
+                  
+                  {/* Icon */}
+                  <div className="relative">
+                    <Zap className="w-8 h-8 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                  </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
+            
+            {/* Main Content */}
+            <div className="flex flex-col gap-8">
+              <motion.h1 
+                variants={itemVariants}
+                className={cn(typography.h1, "text-balance")}
+              >
+                Build and deploy workflows at lightning speed.
+              </motion.h1>
+              
+              <motion.p 
+                variants={itemVariants}
+                className={cn(typography.bodyLarge, "text-balance text-text-secondary")}
+              >
+                Launch production flows before your coffee brews.
+              </motion.p>
+
+              <motion.div variants={itemVariants}>
+                <div className="flex flex-col items-center gap-4">
+                  <motion.div
+                    className="relative w-full max-w-[280px]"
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Button
+                      onClick={() => {
+                        track.buttonClick('Get Started', 'hero');
+                        window.location.href = '/signin';
+                      }}
+                      className="h-[52px] w-full px-8 bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main text-white text-lg font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden transition-all duration-300"
+                      whileHover="hover"
+                      initial="default"
+                      animate="default"
+                    >
+                      <div className="relative flex items-center justify-center w-full">
+                        <motion.div
+                          className="flex items-center gap-2"
+                          variants={{
+                            default: { x: 0 },
+                            hover: { x: -10 }
+                          }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                          <span>Get Started</span>
+                          <motion.div
+                            className="absolute flex items-center"
+                            variants={{
+                              default: { opacity: 0, x: -10 },
+                              hover: { opacity: 1, x: 0 }
+                            }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            style={{ left: "100%", marginLeft: "0.5rem" }}
+                          >
+                            <ArrowRight className="w-5 h-5" />
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                    </Button>
+                  </motion.div>
+                  <p className="text-text-secondary text-sm">Start for free. No credit card required.</p>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
