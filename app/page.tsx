@@ -85,15 +85,14 @@ export default function LandingPage() {
               variants={itemVariants}
               className={cn(typography.h1, "mb-6 text-balance")}
             >
-              Deploy n8n workflows in seconds
+              Build and deploy workflows at lightning speed.
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
               className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
             >
-              AI-powered workflow builder with instant cloud deployment. 
-              Build, deploy, and scale your n8n automations without the complexity.
+              Launch production flows before your coffee brews.
             </motion.p>
 
             <motion.div variants={itemVariants} className="max-w-md mx-auto mb-12">
