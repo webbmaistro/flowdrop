@@ -402,18 +402,18 @@ export default function LandingPage() {
               </Card>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="mt-12 p-6 bg-background-card/30 rounded-2xl border border-border-primary">
+            <motion.div variants={itemVariants} className="mt-12 p-6 bg-transparent rounded-2xl border-0 shadow-none">
               <h3 className="text-lg font-semibold mb-4">Need more credits?</h3>
               <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
-                <div className="text-center p-4 bg-background-glass rounded-xl">
-                  <p className="text-2xl font-bold">$25</p>
-                  <p className="text-sm text-text-muted">10,000 credits</p>
+                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-xl transition-all duration-500">
+                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-main via-purple-500 to-primary-main text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md mb-2 z-10 border border-primary-main/40">Best Value</span>
+                  <p className="text-2xl font-bold mb-2">$25</p>
+                  <p className="text-sm text-text-muted mb-1">10,000 credits</p>
                   <p className="text-xs text-text-muted">One-time purchase</p>
                 </div>
-                <div className="text-center p-4 bg-primary-main/10 rounded-xl border border-primary-main/20">
-                  <span className="bg-primary-main text-white px-2 py-1 rounded text-xs font-medium mb-2 inline-block">Best Value</span>
-                  <p className="text-2xl font-bold">$10</p>
-                  <p className="text-sm text-text-muted">3,000 credits</p>
+                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-xl transition-all duration-500">
+                  <p className="text-2xl font-bold mb-2">$10</p>
+                  <p className="text-sm text-text-muted mb-1">3,000 credits</p>
                   <p className="text-xs text-text-muted">One-time purchase</p>
                 </div>
               </div>
@@ -452,9 +452,25 @@ export default function LandingPage() {
                   <Button
                     onClick={handleSubmit}
                     variant="primary"
-                    icon={<ArrowRight className="w-4 h-4" />}
+                    className="relative group overflow-hidden"
+                    whileHover="hover"
+                    initial="default"
+                    animate="default"
                   >
-                    Subscribe
+                    <span className="relative flex items-center justify-center w-full gap-2 min-w-0">
+                      <span>Subscribe</span>
+                      <motion.span
+                        className="flex items-center min-w-0"
+                        variants={{
+                          default: { opacity: 0, width: 0 },
+                          hover: { opacity: 1, width: 'auto' }
+                        }}
+                        style={{ overflow: 'hidden', display: 'inline-flex' }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.span>
+                    </span>
                   </Button>
                 </div>
               ) : (

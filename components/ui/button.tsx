@@ -55,6 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'inline-flex items-center justify-center gap-3 font-medium transition-all duration-300',
           'disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none',
           'relative overflow-hidden',
+          variant === 'primary' && 'hover:shadow-[0_0_16px_4px_rgba(139,92,246,0.18)] hover:ring-2 hover:ring-primary-main/30',
           className
         )}
         ref={ref}
