@@ -124,35 +124,7 @@ export default function LandingPage() {
                 </Button>
               </div>
 
-              {/* Optimized Email Subscribe Section */}
-              <div className="bg-white/5 backdrop-blur rounded-xl p-4 mt-8 flex flex-col items-center gap-3 border border-white/10">
-                <span className="text-sm text-white/70 flex items-center gap-2">
-                  <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z" fill="#a78bfa"/></svg>
-                  Stay in the loop! Get early access and updates.
-                </span>
-                {!submitted ? (
-                  <div className="flex w-full gap-2">
-                    <Input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Your email"
-                      variant="glass"
-                      className="flex-1"
-                    />
-                    <Button
-                      onClick={handleSubmit}
-                      variant="primary"
-                      icon={<ArrowRight className="w-4 h-4" />}
-                    >
-                      Notify Me
-                    </Button>
-                  </div>
-                ) : (
-                  <p className="text-success-500 text-xs">Thanks! We'll keep you updated.</p>
-                )}
-                {error && <p className="text-error-500 text-xs">{error}</p>}
-              </div>
+
             </motion.div>
           </motion.div>
         </div>
@@ -369,6 +341,50 @@ export default function LandingPage() {
                   <p className="text-xs text-text-muted">One-time purchase</p>
                 </div>
               </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Email Capture Section */}
+      <section className="py-16 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-lg mx-auto"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants} className="bg-white/5 backdrop-blur rounded-xl p-6 flex flex-col items-center gap-4 border border-white/10">
+              <div className="text-center mb-2">
+                <h3 className="text-lg font-semibold text-gray-300 mb-2">Stay in the loop!</h3>
+                <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
+                  <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z" fill="#a78bfa"/></svg>
+                  Get early access and updates on new features
+                </p>
+              </div>
+              {!submitted ? (
+                <div className="flex w-full gap-3">
+                  <Input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    variant="glass"
+                    className="flex-1"
+                  />
+                  <Button
+                    onClick={handleSubmit}
+                    variant="primary"
+                    icon={<ArrowRight className="w-4 h-4" />}
+                  >
+                    Subscribe
+                  </Button>
+                </div>
+              ) : (
+                <p className="text-success-500 text-sm">Thanks! We'll keep you updated.</p>
+              )}
+              {error && <p className="text-error-500 text-sm">{error}</p>}
             </motion.div>
           </motion.div>
         </div>
