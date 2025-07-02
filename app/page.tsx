@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star } from 'lucide-react';
 import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
@@ -15,7 +15,20 @@ export default function LandingPage() {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const { track } = useAnalytics();
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const handleSubmit = async () => {
     if (!email || !email.includes('@')) {
@@ -289,17 +302,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Spark' && 'scale-[1.02] -translate-y-1'
+                  hoveredPlan === 'Spark' && 'md:scale-[1.02] md:-translate-y-1'
                 )}
-                onMouseEnter={() => setHoveredPlan('Spark')}
-                onMouseLeave={() => setHoveredPlan(null)}
+                onMouseEnter={() => !isMobile && setHoveredPlan('Spark')}
+                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
                     'h-full relative transition-all duration-500 ease-out overflow-hidden',
-                    hoveredPlan === 'Spark' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                    hoveredPlan === 'Spark' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -334,17 +347,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Solo' && 'scale-[1.02] -translate-y-1'
+                  hoveredPlan === 'Solo' && 'md:scale-[1.02] md:-translate-y-1'
                 )}
-                onMouseEnter={() => setHoveredPlan('Solo')}
-                onMouseLeave={() => setHoveredPlan(null)}
+                onMouseEnter={() => !isMobile && setHoveredPlan('Solo')}
+                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-visible',
-                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible',
+                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -380,17 +393,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out lg:scale-105',
-                  hoveredPlan === 'Builder' && 'scale-[1.02] -translate-y-1'
+                  hoveredPlan === 'Builder' && 'md:scale-[1.02] md:-translate-y-1'
                 )}
-                onMouseEnter={() => setHoveredPlan('Builder')}
-                onMouseLeave={() => setHoveredPlan(null)}
+                onMouseEnter={() => !isMobile && setHoveredPlan('Builder')}
+                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover 
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-visible border-primary-main/30 bg-primary-main/5',
-                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible border-primary-main/30 bg-primary-main/5',
+                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -402,7 +415,7 @@ export default function LandingPage() {
                       animate={{ 
                         opacity: 1, 
                         y: 0,
-                        scale: hoveredPlan === 'Builder' ? 1.05 : 1
+                        scale: hoveredPlan === 'Builder' ? 1.02 : 1
                       }}
                       transition={{ duration: 0.35, ease: "easeOut" }}
                     >
@@ -447,17 +460,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Growth' && 'scale-[1.02] -translate-y-1'
+                  hoveredPlan === 'Growth' && 'md:scale-[1.02] md:-translate-y-1'
                 )}
-                onMouseEnter={() => setHoveredPlan('Growth')}
-                onMouseLeave={() => setHoveredPlan(null)}
+                onMouseEnter={() => !isMobile && setHoveredPlan('Growth')}
+                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-visible',
-                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible',
+                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -494,13 +507,13 @@ export default function LandingPage() {
             <motion.div variants={itemVariants} className="mt-12 p-6 bg-transparent rounded-2xl border-0 shadow-none">
               <h3 className="text-lg font-semibold mb-4">Need more credits?</h3>
               <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
-                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-xl transition-all duration-500">
+                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-lg md:shadow-xl transition-all duration-500 overflow-hidden md:overflow-visible">
                   <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-main via-purple-500 to-primary-main text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md mb-2 z-10 border border-primary-main/40">Best Value</span>
                   <p className="text-2xl font-bold mb-2">$25</p>
                   <p className="text-sm text-text-muted mb-1">10,000 credits</p>
                   <p className="text-xs text-text-muted">One-time purchase</p>
                 </div>
-                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-xl transition-all duration-500">
+                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-lg md:shadow-xl transition-all duration-500 overflow-hidden md:overflow-visible">
                   <p className="text-2xl font-bold mb-2">$10</p>
                   <p className="text-sm text-text-muted mb-1">3,000 credits</p>
                   <p className="text-xs text-text-muted">One-time purchase</p>

@@ -143,47 +143,87 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
           </motion.div>
         )}
 
-        {/* Sticky Login Button - Only visible when header is hidden on landing */}
-        {pathname === '/' && !user && !loading && shouldHideHeader && (
+        {/* Sticky Login/Logout Button - Only visible when header is hidden on landing */}
+        {pathname === '/' && !loading && shouldHideHeader && (
           <motion.div
-            key="sticky-login"
+            key="sticky-auth"
             className="fixed top-4 right-6 z-[60]"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => window.location.href = '/signin'}
-              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
-            >
-              <div className="relative flex items-center justify-center">
-                <motion.div
-                  className="flex items-center gap-1.5 px-2"
-                  initial="default"
-                  whileHover="hover"
-                  animate="default"
-                  variants={{
-                    default: { x: 0 },
-                    hover: { x: 0 }
-                  }}
+            {user ? (
+              <div className="flex items-center gap-3">
+                <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+                  👋 {user.email?.split('@')[0]}
+                </span>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={handleSignOut}
+                  className="btn-liquid shadow-lg shadow-primary-main/25 backdrop-blur-sm group relative overflow-hidden px-3 text-white font-semibold"
                 >
-                  <span>Login</span>
-                  <motion.div
-                    variants={{
-                      default: { width: 0, opacity: 0, marginLeft: -4 },
-                      hover: { width: "auto", opacity: 1, marginLeft: 0 }
-                    }}
-                    transition={{ duration: 0.3 }}
-                    style={{ overflow: "hidden" }}
-                  >
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.div>
-                </motion.div>
+                  <div className="relative flex items-center justify-center">
+                    <motion.div
+                      className="flex items-center gap-1.5 px-2"
+                      initial="default"
+                      whileHover="hover"
+                      animate="default"
+                      variants={{
+                        default: { x: 0 },
+                        hover: { x: -2 }
+                      }}
+                    >
+                      <LogOut className="w-4 h-4" />
+                      <span>Sign Out</span>
+                      <motion.div
+                        variants={{
+                          default: { width: 0, opacity: 0, marginLeft: -4 },
+                          hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                        }}
+                        transition={{ duration: 0.3 }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </Button>
               </div>
-            </Button>
+            ) : (
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => window.location.href = '/signin'}
+                className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
+              >
+                <div className="relative flex items-center justify-center">
+                  <motion.div
+                    className="flex items-center gap-1.5 px-2"
+                    initial="default"
+                    whileHover="hover"
+                    animate="default"
+                    variants={{
+                      default: { x: 0 },
+                      hover: { x: 0 }
+                    }}
+                  >
+                    <span>Login</span>
+                    <motion.div
+                      variants={{
+                        default: { width: 0, opacity: 0, marginLeft: -4 },
+                        hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                      }}
+                      transition={{ duration: 0.3 }}
+                      style={{ overflow: "hidden" }}
+                    >
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </Button>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
@@ -267,8 +307,8 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                 <>
                   {user ? (
                     <>
-                      <span className="text-sm text-foreground-muted">
-                        Welcome, {user.email}
+                      <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
+                        👋 Hey, {user.email?.split('@')[0]}!
                       </span>
                       <Button
                         variant="primary"
@@ -276,8 +316,35 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         onClick={handleSignOut}
                         icon={<LogOut className="w-4 h-4" />}
                         iconPosition="left"
+                        className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
                       >
-                        Sign Out
+                        <div className="relative flex items-center justify-center">
+                          <motion.div
+                            className="flex items-center gap-1.5"
+                            initial="default"
+                            whileHover="hover"
+                            animate="default"
+                            variants={{
+                              default: { x: 0 },
+                              hover: { x: -2 }
+                            }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                          >
+                            <LogOut className="w-4 h-4" />
+                            <span>Sign Out</span>
+                            <motion.div
+                              className="absolute flex items-center"
+                              variants={{
+                                default: { opacity: 0, x: -10 },
+                                hover: { opacity: 1, x: 0 }
+                              }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                              style={{ left: "100%", marginLeft: "0.5rem" }}
+                            >
+                              <ArrowRight className="w-4 h-4" />
+                            </motion.div>
+                          </motion.div>
+                        </div>
                       </Button>
                     </>
                   ) : (
@@ -403,13 +470,13 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                       <>
                         {user ? (
                           <div className="flex flex-col space-y-3">
-                            <span className="text-sm text-foreground-muted">
-                              Welcome, {user.email}
+                            <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10 text-center">
+                              👋 Hey, {user.email?.split('@')[0]}!
                             </span>
                             <Button
                               variant="primary"
                               size="sm"
-                              className="w-full"
+                              className="w-full btn-liquid shadow-lg shadow-primary-main/25 text-white font-semibold"
                               onClick={() => {
                                 handleSignOut();
                                 setIsMobileMenuOpen(false);

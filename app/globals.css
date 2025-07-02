@@ -152,11 +152,24 @@ html {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-smooth:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 40px -15px rgba(139, 92, 246, 0.3),
-    0 10px 20px -10px rgba(0, 0, 0, 0.3);
+/* Apply hover transform only on larger screens to prevent mobile touch issues */
+@media (min-width: 768px) {
+  .card-smooth:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+      0 20px 40px -15px rgba(139, 92, 246, 0.3),
+      0 10px 20px -10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Mobile-friendly hover effect (just subtle glow) */
+@media (max-width: 767px) {
+  .card-smooth:hover,
+  .card-smooth:active {
+    box-shadow: 
+      0 8px 20px -10px rgba(139, 92, 246, 0.2),
+      0 4px 10px -5px rgba(0, 0, 0, 0.2);
+  }
 }
 
 /* Animation utilities */
