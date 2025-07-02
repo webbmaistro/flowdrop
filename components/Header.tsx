@@ -14,10 +14,10 @@ const supabase = createClient(
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvY3FseG9ud3N2aGthbXl3aWpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2NTE2NDUsImV4cCI6MjA2NDIyNzY0NX0.sHKkSxqVa8WFvyaPj4z9WStGdDcR0tbaE6Ri1oasC9E'
 );
 
-const navigation = [
+const navigation: Array<{name: string; href: string; external?: boolean}> = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'Docs', href: '/docs' },
-  { name: 'Blog', href: '/docs/changelog' }, // Using changelog as blog for now
+  { name: 'Blog', href: 'https://www.reddit.com/r/Flowdrop/', external: true },
 ];
 
 interface HeaderProps {
@@ -192,7 +192,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               {navigation.map((item) => {
-                const isActive = pathname === item.href;
+                const isActive = pathname === item.href && !item.external;
                 return (
                   <Link
                     key={item.name}
@@ -202,6 +202,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                       'not-button-link',
                       isActive && 'text-text-primary'
                     )}
+                    {...(item.external && { target: "_blank", rel: "noopener noreferrer" })}
                   >
                     {item.name}
                     {isActive && (
@@ -336,7 +337,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
               <div className="container mx-auto px-6 py-4">
                 <nav className="flex flex-col space-y-4">
                   {navigation.map((item) => {
-                    const isActive = pathname === item.href;
+                    const isActive = pathname === item.href && !item.external;
                     return (
                       <Link
                         key={item.name}
@@ -346,6 +347,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                           'not-button-link',
                           isActive && 'text-text-primary'
                         )}
+                        {...(item.external && { target: "_blank", rel: "noopener noreferrer" })}
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {item.name}
