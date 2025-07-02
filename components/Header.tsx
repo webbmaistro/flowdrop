@@ -242,7 +242,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                         variant="primary"
                         size="sm"
                         onClick={() => window.location.href = '/signin'}
-                        className="bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main transition-all duration-300 shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden px-3"
+                        className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden px-3 text-white font-semibold"
                       >
                         <div className="relative flex items-center justify-center">
                           <motion.div
@@ -380,7 +380,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                             <Button
                               variant="primary"
                               size="sm"
-                              className="w-full bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main transition-all duration-300 shadow-lg shadow-primary-main/25"
+                              className="w-full btn-liquid shadow-lg shadow-primary-main/25 text-white font-semibold"
                               onClick={() => {
                                 window.location.href = '/signin';
                                 setIsMobileMenuOpen(false);

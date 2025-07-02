@@ -168,7 +168,7 @@ export default function LandingPage() {
                         track.buttonClick('Get Started', 'hero');
                         window.location.href = '/signin';
                       }}
-                      className="h-[52px] w-full px-8 bg-gradient-to-r from-primary-main to-primary-dark hover:from-primary-dark hover:to-primary-main text-white text-lg font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden transition-all duration-300"
+                      className="h-[52px] w-full px-8 btn-liquid text-white text-lg font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
                       whileHover="hover"
                       initial="default"
                       animate="default"
