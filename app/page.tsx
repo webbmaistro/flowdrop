@@ -13,6 +13,7 @@ export default function LandingPage() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
   const { track } = useAnalytics();
 
   const handleSubmit = async () => {
@@ -280,126 +281,206 @@ export default function LandingPage() {
             </motion.h2>
             
             <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card variant="glass" hover>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Zap className="w-5 h-5 text-primary-main" />
-                    <span>Spark</span>
-                  </CardTitle>
-                  <CardDescription>Test-drive Flowdrop</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold mb-6">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                  <ul className="text-left text-text-muted space-y-3 mb-6">
-                    <li>• 1,000 credits</li>
-                    <li>• 1 seat</li>
-                    <li>• Basic Webby AI Copilot</li>
-                    <li>• Community support</li>
-                  </ul>
-                  <Button 
-                    variant="primary" 
-                    className="w-full"
-                    onClick={() => window.location.href = '/signin'}
-                  >
-                    Start Free
-                  </Button>
-                </CardContent>
-              </Card>
+              <motion.div
+                className={cn(
+                  'relative transition-all duration-500 ease-out',
+                  hoveredPlan === 'Spark' && 'scale-[1.02] -translate-y-1'
+                )}
+                onMouseEnter={() => setHoveredPlan('Spark')}
+                onMouseLeave={() => setHoveredPlan(null)}
+              >
+                <Card 
+                  variant="glass" 
+                  hover
+                  className={cn(
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
+                    hoveredPlan === 'Spark' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                  )}
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Zap className="w-5 h-5 text-primary-main" />
+                      <span>Spark</span>
+                    </CardTitle>
+                    <CardDescription>Test-drive Flowdrop</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold mb-6">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                    <ul className="text-left text-text-muted space-y-3 mb-6">
+                      <li>• 1,000 credits</li>
+                      <li>• 1 seat</li>
+                      <li>• Basic Webby AI Copilot</li>
+                      <li>• Community support</li>
+                    </ul>
+                    <Button 
+                      variant="primary" 
+                      className={cn(
+                        "w-full text-white font-semibold btn-hover-ready rounded-full",
+                        hoveredPlan === 'Spark' && "btn-liquid ring-white-glow"
+                      )}
+                      onClick={() => window.location.href = '/signin'}
+                    >
+                      Start Free
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
               
-              <Card variant="glass" hover>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Users className="w-5 h-5 text-primary-main" />
-                    <span>Solo</span>
-                  </CardTitle>
-                  <CardDescription>Side-hustle builders</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold mb-6">$19<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                  <ul className="text-left text-text-muted space-y-3 mb-6">
-                    <li>• 10,000 credits</li>
-                    <li>• 1 seat</li>
-                    <li>• Enhanced Webby AI Copilot</li>
-                    <li>• Priority support</li>
-                  </ul>
-                  <Button 
-                    variant="primary" 
-                    className="w-full"
-                    onClick={() => window.location.href = '/signin'}
-                  >
-                    Get Started
-                  </Button>
-                </CardContent>
-              </Card>
+              <motion.div
+                className={cn(
+                  'relative transition-all duration-500 ease-out',
+                  hoveredPlan === 'Solo' && 'scale-[1.02] -translate-y-1'
+                )}
+                onMouseEnter={() => setHoveredPlan('Solo')}
+                onMouseLeave={() => setHoveredPlan(null)}
+              >
+                <Card 
+                  variant="glass" 
+                  hover
+                  className={cn(
+                    'h-full relative transition-all duration-500 ease-out overflow-visible',
+                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                  )}
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Users className="w-5 h-5 text-primary-main" />
+                      <span>Solo</span>
+                    </CardTitle>
+                    <CardDescription>Side-hustle builders</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold mb-6">$19<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                    <ul className="text-left text-text-muted space-y-3 mb-6">
+                      <li>• 10,000 credits</li>
+                      <li>• 1 seat</li>
+                      <li>• Enhanced Webby AI Copilot</li>
+                      <li>• Priority support</li>
+                    </ul>
+                    <Button 
+                      variant="primary" 
+                      className={cn(
+                        "w-full text-white font-semibold btn-hover-ready rounded-full",
+                        hoveredPlan === 'Solo' && "btn-liquid ring-white-glow"
+                      )}
+                      onClick={() => window.location.href = '/signin'}
+                    >
+                      Get Started
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card variant="glass" hover className="border-primary-main/30 bg-primary-main/5 relative">
-                <CardHeader>
-                  <motion.span
-                    role="status"
-                    aria-label="Most popular plan"
-                    className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, ease: "easeOut" }}
-                  >
-                    <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
-                      <div className="flex items-center space-x-2">
-                        <Star className="w-3 h-3 text-purple-300" />
-                        <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
-                          Most Popular
-                        </span>
+              <motion.div
+                className={cn(
+                  'relative transition-all duration-500 ease-out lg:scale-105',
+                  hoveredPlan === 'Builder' && 'scale-[1.02] -translate-y-1'
+                )}
+                onMouseEnter={() => setHoveredPlan('Builder')}
+                onMouseLeave={() => setHoveredPlan(null)}
+              >
+                <Card 
+                  variant="glass" 
+                  hover 
+                  className={cn(
+                    'h-full relative transition-all duration-500 ease-out overflow-visible border-primary-main/30 bg-primary-main/5',
+                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                  )}
+                >
+                  <CardHeader>
+                    <motion.span
+                      role="status"
+                      aria-label="Most popular plan"
+                      className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ 
+                        opacity: 1, 
+                        y: 0,
+                        scale: hoveredPlan === 'Builder' ? 1.05 : 1
+                      }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                    >
+                      <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
+                        <div className="flex items-center space-x-2">
+                          <Star className="w-3 h-3 text-purple-300" />
+                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
+                            Most Popular
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  </motion.span>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Rocket className="w-5 h-5 text-primary-main" />
-                    <span>Builder</span>
-                  </CardTitle>
-                  <CardDescription>Indie SaaS teams</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-6">
-                  <p className="text-3xl font-bold mb-6">$49<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                  <ul className="text-left text-text-muted space-y-3 mb-6">
-                    <li>• 25,000 credits</li>
-                    <li>• 3 seats included</li>
-                    <li>• Unlimited Webby AI Copilot</li>
-                    <li>• Dedicated support</li>
-                  </ul>
-                  <Button 
-                    variant="primary" 
-                    className="w-full"
-                    onClick={() => window.location.href = '/signin'}
-                  >
-                    Get Started
-                  </Button>
-                </CardContent>
-              </Card>
+                    </motion.span>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Rocket className="w-5 h-5 text-primary-main" />
+                      <span>Builder</span>
+                    </CardTitle>
+                    <CardDescription>Indie SaaS teams</CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-6">
+                    <p className="text-3xl font-bold mb-6">$49<span className="text-lg font-normal text-text-muted">/mo</span></p>
+                    <ul className="text-left text-text-muted space-y-3 mb-6">
+                      <li>• 25,000 credits</li>
+                      <li>• 3 seats included</li>
+                      <li>• Unlimited Webby AI Copilot</li>
+                      <li>• Dedicated support</li>
+                    </ul>
+                    <Button 
+                      variant="primary" 
+                      className={cn(
+                        "w-full text-white font-semibold btn-hover-ready rounded-full",
+                        hoveredPlan === 'Builder' && "btn-liquid ring-white-glow"
+                      )}
+                      onClick={() => window.location.href = '/signin'}
+                    >
+                      Get Started
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card variant="glass" hover>
-                <CardHeader>
-                  <CardTitle className="flex items-center space-x-2">
-                    <Crown className="w-5 h-5 text-primary-main" />
-                    <span>Growth</span>
-                  </CardTitle>
-                  <CardDescription>Agencies & high-volume ops</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-3xl font-bold mb-6">Custom</p>
-                  <ul className="text-left text-text-muted space-y-3 mb-6">
-                    <li>• Unlimited credits</li>
-                    <li>• Unlimited seats</li>
-                    <li>• Unlimited Webby AI Copilot</li>
-                    <li>• White-glove onboarding</li>
-                  </ul>
-                  <Button 
-                    variant="primary" 
-                    className="w-full"
-                    onClick={() => window.location.href = '/signin'}
-                  >
-                    Contact Sales
-                  </Button>
-                </CardContent>
-              </Card>
+              <motion.div
+                className={cn(
+                  'relative transition-all duration-500 ease-out',
+                  hoveredPlan === 'Growth' && 'scale-[1.02] -translate-y-1'
+                )}
+                onMouseEnter={() => setHoveredPlan('Growth')}
+                onMouseLeave={() => setHoveredPlan(null)}
+              >
+                <Card 
+                  variant="glass" 
+                  hover
+                  className={cn(
+                    'h-full relative transition-all duration-500 ease-out overflow-visible',
+                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                  )}
+                >
+                  <CardHeader>
+                    <CardTitle className="flex items-center space-x-2">
+                      <Crown className="w-5 h-5 text-primary-main" />
+                      <span>Growth</span>
+                    </CardTitle>
+                    <CardDescription>Agencies & high-volume ops</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-3xl font-bold mb-6">Custom</p>
+                    <ul className="text-left text-text-muted space-y-3 mb-6">
+                      <li>• Unlimited credits</li>
+                      <li>• Unlimited seats</li>
+                      <li>• Unlimited Webby AI Copilot</li>
+                      <li>• White-glove onboarding</li>
+                    </ul>
+                    <Button 
+                      variant="primary" 
+                      className={cn(
+                        "w-full text-white font-semibold btn-hover-ready rounded-full",
+                        hoveredPlan === 'Growth' && "btn-liquid ring-white-glow"
+                      )}
+                      onClick={() => window.location.href = '/signin'}
+                    >
+                      Contact Sales
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
 
             <motion.div variants={itemVariants} className="mt-12 p-6 bg-transparent rounded-2xl border-0 shadow-none">
@@ -457,20 +538,29 @@ export default function LandingPage() {
                     initial="default"
                     animate="default"
                   >
-                    <span className="relative flex items-center justify-center w-full gap-2 min-w-0">
-                      <span>Subscribe</span>
-                      <motion.span
-                        className="flex items-center min-w-0"
+                    <div className="relative flex items-center justify-center w-full">
+                      <motion.div
+                        className="flex items-center gap-2"
                         variants={{
-                          default: { opacity: 0, width: 0 },
-                          hover: { opacity: 1, width: 'auto' }
+                          default: { x: 0 },
+                          hover: { x: -10 }
                         }}
-                        style={{ overflow: 'hidden', display: 'inline-flex' }}
-                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <ArrowRight className="w-4 h-4" />
-                      </motion.span>
-                    </span>
+                        <span>Subscribe</span>
+                        <motion.div
+                          className="absolute flex items-center"
+                          variants={{
+                            default: { opacity: 0, x: -10 },
+                            hover: { opacity: 1, x: 0 }
+                          }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          style={{ left: "100%", marginLeft: "0.5rem" }}
+                        >
+                          <ArrowRight className="w-4 h-4" />
+                        </motion.div>
+                      </motion.div>
+                    </div>
                   </Button>
                 </div>
               ) : (

@@ -9,6 +9,8 @@ import { cn } from '@/lib/utils';
 
 export default function PricingPage() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
+  const [firstHover, setFirstHover] = useState<string | null>(null);
 
   const startCheckout = async (priceId: string) => {
     setLoadingId(priceId);
@@ -196,28 +198,36 @@ export default function PricingPage() {
                   key={plan.name}
                   variants={itemVariants}
                   className={cn(
-                    'relative',
-                    plan.highlight && 'lg:scale-105'
+                    'relative transition-all duration-500 ease-out',
+                    plan.highlight && 'lg:scale-105',
+                    hoveredPlan === plan.name && 'scale-[1.02] -translate-y-1'
                   )}
-                  animate={plan.highlight ? {
-                    boxShadow: [
-                      '0 0 20px rgba(139, 92, 246, 0.3)',
-                      '0 0 40px rgba(139, 92, 246, 0.5)',
-                      '0 0 20px rgba(139, 92, 246, 0.3)'
-                    ]
+                  animate={firstHover === plan.name ? {
+                    scale: [1, 1.03, 1],
                   } : {}}
-                  transition={plan.highlight ? {
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
+                  transition={firstHover === plan.name ? {
+                    duration: 0.6,
+                    ease: [0.4, 0, 0.2, 1],
+                    times: [0, 0.3, 1]
                   } : {}}
+                  onAnimationComplete={() => {
+                    if (firstHover === plan.name) {
+                      setFirstHover(null);
+                    }
+                  }}
+                  onMouseEnter={() => {
+                    setHoveredPlan(plan.name);
+                    if (!firstHover) setFirstHover(plan.name);
+                  }}
+                  onMouseLeave={() => setHoveredPlan(null)}
                 >
                   <Card 
                     variant={plan.highlight ? "glass" : "default"} 
                     hover={true}
                     className={cn(
-                      'h-full relative',
-                      plan.highlight && 'border-primary-main/30 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 shadow-2xl shadow-primary-main/20'
+                      'h-full relative transition-all duration-500 ease-out overflow-visible',
+                      plan.highlight && 'border-primary-main/30 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 shadow-2xl shadow-primary-main/20',
+                      hoveredPlan === plan.name && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
                     )}
                   >
                     {plan.highlight && (
@@ -226,7 +236,11 @@ export default function PricingPage() {
                         aria-label="Most popular plan"
                         className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
                         initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        animate={{ 
+                          opacity: 1, 
+                          y: 0,
+                          scale: hoveredPlan === plan.name ? 1.05 : 1
+                        }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
                       >
                         <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
@@ -275,8 +289,8 @@ export default function PricingPage() {
                             variant="primary"
                             size="lg"
                             className={cn(
-                              "w-full",
-                              plan.highlight && "btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
+                              "w-full text-white font-semibold btn-hover-ready rounded-full",
+                              hoveredPlan === plan.name && "btn-liquid ring-white-glow"
                             )}
                             onClick={() => plan.ctaAction()}
                             loading={plan.priceId ? loadingId === plan.priceId : false}
@@ -316,11 +330,12 @@ export default function PricingPage() {
                 <motion.div
                   key={credit.name}
                   className="relative"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ duration: 0.2 }}
                 >
-                  <button 
-                    className="w-full p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/20 hover:border-primary-main/40 shadow-xl hover:shadow-2xl hover:shadow-primary-main/10 transition-all duration-300 text-left group relative overflow-hidden"
+                  <motion.button 
+                    className="w-full px-6 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-600/30 rounded-xl hover:bg-gray-700/60 hover:border-gray-500/50 transition-all duration-300 flex items-center justify-center gap-3 text-white font-medium shadow-sm hover:shadow-md relative"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ duration: 0.2 }}
                     onClick={() => {
                       // Add your credit purchase logic here
                       console.log(`Purchasing ${credit.name} for ${credit.price}`);
@@ -333,22 +348,15 @@ export default function PricingPage() {
                       </span>
                     )}
                     
-                    {/* Hover gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-primary-main/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                    
-                    <div className="relative z-10 text-center">
-                      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-primary-light transition-colors duration-300">{credit.name}</h3>
+                    <div className="text-center">
+                      <h3 className="text-xl font-semibold mb-2 text-white">{credit.name}</h3>
                       <div className="text-3xl font-bold mb-2 text-white">{credit.price}</div>
-                      <p className="text-text-muted text-sm mb-4 group-hover:text-text-secondary transition-colors duration-300">{credit.description}</p>
-                      
-                      {/* Call to action indicator */}
-                      <div className="mt-4 px-4 py-2 bg-primary-main/20 rounded-lg border border-primary-main/30 group-hover:bg-primary-main/30 group-hover:border-primary-main/50 transition-all duration-300">
-                        <span className="text-sm font-medium text-primary-light group-hover:text-white transition-colors duration-300">
-                          Click to Purchase
-                        </span>
-                      </div>
+                      <p className="text-text-muted text-sm mb-2">{credit.description}</p>
+                      <span className="text-sm font-medium text-primary-light">
+                        Click to Purchase
+                      </span>
                     </div>
-                  </button>
+                  </motion.button>
                 </motion.div>
               ))}
             </motion.div>

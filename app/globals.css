@@ -229,7 +229,20 @@ html {
   }
 }
 
-/* Premium Button Styles */
+/* Base button style for smooth transitions */
+.btn-hover-ready {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Button text glow effect on hover */
+.btn-liquid span, .btn-liquid {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Premium Button Styles - Smooth fade-in liquid animation */
 .btn-liquid {
   background: linear-gradient(
     135deg,
@@ -245,9 +258,8 @@ html {
   );
   background-size: 200% 200%;
   animation: liquid 20s linear infinite;
-  position: relative;
-  overflow: hidden;
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Perfect ring border with bright white glow that blends with brand color */
@@ -256,8 +268,19 @@ html {
   box-shadow: 
     0 0 20px rgba(139, 92, 246, 0.4), 
     0 4px 15px rgba(0, 0, 0, 0.2),
-    0 0 0 2px rgba(255, 255, 255, 0.9),
-    0 0 8px rgba(255, 255, 255, 0.3) !important;
+    0 0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Enhanced white ring specifically for hover states */
+.ring-white-glow {
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.4), 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(255, 255, 255, 0.95),
+    0 0 12px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.15) !important;
 }
 
 .btn-liquid::before {
