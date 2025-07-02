@@ -233,20 +233,31 @@ html {
 .btn-liquid {
   background: linear-gradient(
     135deg,
-    #3b2a78 0%,
-    #4c1d95 12.5%,
-    #5b2c87 25%,
-    #6d28d9 37.5%,
-    #3b2a78 50%,
-    #4c1d95 62.5%,
-    #5b2c87 75%,
-    #6d28d9 87.5%,
-    #3b2a78 100%
+    #7c3aed 0%,
+    #8b5cf6 12.5%,
+    #a855f7 25%,
+    #c084fc 37.5%,
+    #7c3aed 50%,
+    #8b5cf6 62.5%,
+    #a855f7 75%,
+    #c084fc 87.5%,
+    #7c3aed 100%
   );
   background-size: 200% 200%;
   animation: liquid 20s linear infinite;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Perfect ring border with bright white glow that blends with brand color */
+.btn-liquid.ring-2,
+.btn-liquid.ring-2:hover {
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.4), 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(255, 255, 255, 0.9),
+    0 0 8px rgba(255, 255, 255, 0.3) !important;
 }
 
 .btn-liquid::before {
