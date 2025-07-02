@@ -452,7 +452,7 @@ export default function LandingPage() {
                   <Button
                     onClick={handleSubmit}
                     variant="primary"
-                    className="relative group overflow-hidden"
+                    className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25"
                     whileHover="hover"
                     initial="default"
                     animate="default"
