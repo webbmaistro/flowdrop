@@ -529,7 +529,7 @@ export default function LandingPage() {
                 </p>
               </div>
               {!submitted ? (
-                <div className="flex w-full gap-3">
+                <div className="flex flex-col sm:flex-row w-full gap-3">
                   <Input
                     type="email"
                     value={email}
@@ -541,7 +541,7 @@ export default function LandingPage() {
                   <Button
                     onClick={handleSubmit}
                     variant="primary"
-                    className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25"
+                    className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25 sm:w-auto w-full"
                     whileHover="hover"
                     initial="default"
                     animate="default"
