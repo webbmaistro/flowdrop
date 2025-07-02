@@ -192,37 +192,37 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                 </Button>
               </div>
             ) : (
-              <Button
-                variant="primary"
-                size="sm"
-                onClick={() => window.location.href = '/signin'}
-                className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
-              >
-                <div className="relative flex items-center justify-center">
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => window.location.href = '/signin'}
+              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
+            >
+              <div className="relative flex items-center justify-center">
+                <motion.div
+                  className="flex items-center gap-1.5 px-2"
+                  initial="default"
+                  whileHover="hover"
+                  animate="default"
+                  variants={{
+                    default: { x: 0 },
+                    hover: { x: 0 }
+                  }}
+                >
+                  <span>Login</span>
                   <motion.div
-                    className="flex items-center gap-1.5 px-2"
-                    initial="default"
-                    whileHover="hover"
-                    animate="default"
                     variants={{
-                      default: { x: 0 },
-                      hover: { x: 0 }
+                      default: { width: 0, opacity: 0, marginLeft: -4 },
+                      hover: { width: "auto", opacity: 1, marginLeft: 0 }
                     }}
+                    transition={{ duration: 0.3 }}
+                    style={{ overflow: "hidden" }}
                   >
-                    <span>Login</span>
-                    <motion.div
-                      variants={{
-                        default: { width: 0, opacity: 0, marginLeft: -4 },
-                        hover: { width: "auto", opacity: 1, marginLeft: 0 }
-                      }}
-                      transition={{ duration: 0.3 }}
-                      style={{ overflow: "hidden" }}
-                    >
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.div>
+                    <ArrowRight className="w-4 h-4" />
                   </motion.div>
-                </div>
-              </Button>
+                </motion.div>
+              </div>
+            </Button>
             )}
           </motion.div>
         )}

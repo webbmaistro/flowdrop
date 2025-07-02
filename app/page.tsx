@@ -302,17 +302,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Spark' && 'md:scale-[1.02] md:-translate-y-1'
+                  hoveredPlan === 'Spark' && !isMobile && 'scale-[1.02] -translate-y-1'
                 )}
-                onMouseEnter={() => !isMobile && setHoveredPlan('Spark')}
-                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
+                onMouseEnter={() => setHoveredPlan('Spark')}
+                onMouseLeave={() => setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
                     'h-full relative transition-all duration-500 ease-out overflow-hidden',
-                    hoveredPlan === 'Spark' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
+                    hoveredPlan === 'Spark' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl md:shadow-2xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -347,17 +347,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Solo' && 'md:scale-[1.02] md:-translate-y-1'
+                  hoveredPlan === 'Solo' && !isMobile && 'scale-[1.02] -translate-y-1'
                 )}
-                onMouseEnter={() => !isMobile && setHoveredPlan('Solo')}
-                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
+                onMouseEnter={() => setHoveredPlan('Solo')}
+                onMouseLeave={() => setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible',
-                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
+                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -393,45 +393,47 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out lg:scale-105',
-                  hoveredPlan === 'Builder' && 'md:scale-[1.02] md:-translate-y-1'
+                  hoveredPlan === 'Builder' && !isMobile && 'scale-[1.02] -translate-y-1'
                 )}
-                onMouseEnter={() => !isMobile && setHoveredPlan('Builder')}
-                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
+                onMouseEnter={() => setHoveredPlan('Builder')}
+                onMouseLeave={() => setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover 
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible border-primary-main/30 bg-primary-main/5',
-                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden border-primary-main/30 bg-primary-main/5',
+                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
-                    <motion.span
-                      role="status"
-                      aria-label="Most popular plan"
-                      className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        scale: hoveredPlan === 'Builder' ? 1.02 : 1
-                      }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                    >
-                      <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
-                        <div className="flex items-center space-x-2">
-                          <Star className="w-3 h-3 text-purple-300" />
-                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
-                            Most Popular
-                          </span>
+                    <div className="relative h-0">
+                      <motion.div
+                        role="status"
+                        aria-label="Most popular plan"
+                        className="absolute left-1/2 -translate-x-1/2 -top-[1px] z-10"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ 
+                          opacity: 1, 
+                          y: 0,
+                          scale: hoveredPlan === 'Builder' && !isMobile ? 1.02 : 1
+                        }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                      >
+                        <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-1.5 shadow-sm shadow-purple-500/10 -translate-y-1/2">
+                          <div className="flex items-center space-x-2">
+                            <Star className="w-3 h-3 text-purple-300" />
+                            <span className="text-xs font-semibold uppercase tracking-wide text-purple-300 whitespace-nowrap">
+                              Most Popular
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </motion.span>
-                    <CardTitle className="flex items-center space-x-2">
+                      </motion.div>
+                    </div>
+                    <div className="flex items-center space-x-2 pt-3">
                       <Rocket className="w-5 h-5 text-primary-main" />
-                      <span>Builder</span>
-                    </CardTitle>
+                      <CardTitle>Builder</CardTitle>
+                    </div>
                     <CardDescription>Indie SaaS teams</CardDescription>
                     <p className="text-xs text-text-muted mt-1">Includes all features from Solo</p>
                   </CardHeader>
@@ -460,17 +462,17 @@ export default function LandingPage() {
               <motion.div
                 className={cn(
                   'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Growth' && 'md:scale-[1.02] md:-translate-y-1'
+                  hoveredPlan === 'Growth' && !isMobile && 'scale-[1.02] -translate-y-1'
                 )}
-                onMouseEnter={() => !isMobile && setHoveredPlan('Growth')}
-                onMouseLeave={() => !isMobile && setHoveredPlan(null)}
+                onMouseEnter={() => setHoveredPlan('Growth')}
+                onMouseLeave={() => setHoveredPlan(null)}
               >
                 <Card 
                   variant="glass" 
                   hover
                   className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden md:overflow-visible',
-                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-lg md:shadow-2xl shadow-primary-main/30'
+                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
+                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
                   )}
                 >
                   <CardHeader>
@@ -507,16 +509,36 @@ export default function LandingPage() {
             <motion.div variants={itemVariants} className="mt-12 p-6 bg-transparent rounded-2xl border-0 shadow-none">
               <h3 className="text-lg font-semibold mb-4">Need more credits?</h3>
               <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
-                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-lg md:shadow-xl transition-all duration-500 overflow-hidden md:overflow-visible">
-                  <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-main via-purple-500 to-primary-main text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md mb-2 z-10 border border-primary-main/40">Best Value</span>
-                  <p className="text-2xl font-bold mb-2">$25</p>
-                  <p className="text-sm text-text-muted mb-1">10,000 credits</p>
-                  <p className="text-xs text-text-muted">One-time purchase</p>
+                <div className="relative card-hover-glow card-smooth p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-xl transition-all duration-500 overflow-hidden">
+                  <div className="relative h-0">
+                    <motion.div
+                      className="absolute left-1/2 -translate-x-1/2 -top-[1px] z-10"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                    >
+                      <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-1.5 shadow-sm shadow-purple-500/10 -translate-y-1/2">
+                        <div className="flex items-center space-x-2">
+                          <Star className="w-3 h-3 text-purple-300" />
+                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-300 whitespace-nowrap">
+                            Best Value
+                          </span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                  <div className="pt-3">
+                    <p className="text-2xl font-bold mb-2">$25</p>
+                    <p className="text-sm text-text-muted mb-1">10,000 credits</p>
+                    <p className="text-xs text-text-muted">One-time purchase</p>
+                  </div>
                 </div>
-                <div className="relative card-hover-glow card-smooth text-center p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-lg md:shadow-xl transition-all duration-500 overflow-hidden md:overflow-visible">
-                  <p className="text-2xl font-bold mb-2">$10</p>
-                  <p className="text-sm text-text-muted mb-1">3,000 credits</p>
-                  <p className="text-xs text-text-muted">One-time purchase</p>
+                <div className="relative card-hover-glow card-smooth p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-xl transition-all duration-500 overflow-hidden">
+                  <div>
+                    <p className="text-2xl font-bold mb-2">$10</p>
+                    <p className="text-sm text-text-muted mb-1">3,000 credits</p>
+                    <p className="text-xs text-text-muted">One-time purchase</p>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -32,11 +32,23 @@ export default function SubtleRain() {
     let animationFrame: number;
     const raindrops: Raindrop[] = [];
     const mouse = { x: -1000, y: -1000 }; // Start off-screen
-    const RAINDROP_COUNT = 120; // Dense, atmospheric rain effect
+    
+    // Responsive raindrop count - more for desktop screens
+    const getDropCount = () => {
+      const screenWidth = window.innerWidth;
+      const isDesktop = screenWidth >= 1024; // lg breakpoint
+      const isTablet = screenWidth >= 768; // md breakpoint
+      
+      if (isDesktop) return 240; // Double for desktop
+      if (isTablet) return 180;  // 1.5x for tablet
+      return 120; // Base count for mobile
+    };
+    
+    let RAINDROP_COUNT = getDropCount();
     const MOUSE_INFLUENCE_RADIUS = 104; // 30% bigger for enhanced interaction
     const DEFLECTION_STRENGTH = 60;
 
-    // Resize canvas to match container
+    // Resize canvas to match container and adjust raindrop count
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
       canvas.width = rect.width * devicePixelRatio;
@@ -44,6 +56,45 @@ export default function SubtleRain() {
       ctx.scale(devicePixelRatio, devicePixelRatio);
       canvas.style.width = rect.width + "px";
       canvas.style.height = rect.height + "px";
+      
+      // Update raindrop count based on new screen size
+      const newDropCount = getDropCount();
+      if (newDropCount !== RAINDROP_COUNT) {
+        RAINDROP_COUNT = newDropCount;
+        
+        // Adjust raindrop array
+        if (raindrops.length < RAINDROP_COUNT) {
+          // Add more raindrops for larger screens
+          while (raindrops.length < RAINDROP_COUNT) {
+            const densityWeight = Math.pow(Math.random(), 2);
+            const x = densityWeight * (canvas.clientWidth + 200);
+            const positionRatio = x / canvas.clientWidth;
+            const baseOpacity = 0.25 - (positionRatio * 0.15);
+            const baseAngle = 12 + Math.random() * 8;
+            
+            raindrops.push({
+              x,
+              y: Math.random() * -canvas.clientHeight,
+              originalX: x,
+              speed: (1 + Math.random() * 2) * 0.8,
+              opacity: Math.max(0.04, baseOpacity + Math.random() * 0.08),
+              length: 6 + Math.random() * 78,
+              angle: baseAngle,
+              baseAngle: baseAngle,
+              deflectionVariance: -0.5 + Math.random(),
+              wobbleOffset: Math.random() * Math.PI * 2,
+              speedVariation: 0.8 + Math.random() * 0.4,
+              prevX: x,
+              prevY: Math.random() * -canvas.clientHeight,
+              trailType: Math.random(),
+              taperness: 0.3 + Math.random() * 0.7,
+            });
+          }
+        } else if (raindrops.length > RAINDROP_COUNT) {
+          // Remove raindrops for smaller screens
+          raindrops.splice(RAINDROP_COUNT);
+        }
+      }
     };
 
     // Initialize raindrops with density gradient (more on left, fewer on right)
