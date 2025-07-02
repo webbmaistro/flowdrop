@@ -8,6 +8,7 @@ import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import { useAnalytics } from '@/lib/usePostHog';
+import SubtleRain from '@/components/SubtleRain';
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -66,15 +67,19 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
+      {/* Subtle Interactive Rain Background - Full Page */}
+      <SubtleRain />
+      
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4">
+      <section className="relative isolate flex flex-col items-center justify-center text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 z-10">
+        
         {/* Background Layers */}
         <div className="absolute inset-0 w-full h-full">
-          {/* Primary Gradient - z-0 */}
-          <div className="absolute inset-0 z-0 bg-gradient-to-b from-bg-900 via-bg-900/90 to-transparent" />
+          {/* Subtle backdrop for content readability */}
+          <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/10 to-transparent" />
           
-          {/* Centered Radial Glow - z-10 */}
-          <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.15)_0%,transparent_70%)]" />
+          {/* Centered focus glow */}
+          <div className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.08)_0%,transparent_70%)]" />
         </div>
 
         {/* Main Content - z-20 */}
@@ -208,7 +213,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto"
@@ -217,7 +222,7 @@ export default function LandingPage() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants}>
-              <Card variant="glass" hover className="text-center">
+              <Card variant="glass" hover className="text-center relative z-20">
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
@@ -233,7 +238,7 @@ export default function LandingPage() {
             </motion.div>
             
             <motion.div variants={itemVariants}>
-              <Card variant="glass" hover className="text-center">
+              <Card variant="glass" hover className="text-center relative z-20">
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
@@ -249,7 +254,7 @@ export default function LandingPage() {
             </motion.div>
             
             <motion.div variants={itemVariants}>
-              <Card variant="glass" hover className="text-center">
+              <Card variant="glass" hover className="text-center relative z-20">
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
@@ -268,7 +273,7 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20">
+      <section className="py-20 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -348,6 +353,7 @@ export default function LandingPage() {
                       <span>Solo</span>
                     </CardTitle>
                     <CardDescription>Side-hustle builders</CardDescription>
+                    <p className="text-xs text-text-muted mt-1">Includes all features from Spark</p>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold mb-6">$19<span className="text-lg font-normal text-text-muted">/mo</span></p>
@@ -414,6 +420,7 @@ export default function LandingPage() {
                       <span>Builder</span>
                     </CardTitle>
                     <CardDescription>Indie SaaS teams</CardDescription>
+                    <p className="text-xs text-text-muted mt-1">Includes all features from Solo</p>
                   </CardHeader>
                   <CardContent className="pt-6">
                     <p className="text-3xl font-bold mb-6">$49<span className="text-lg font-normal text-text-muted">/mo</span></p>
@@ -459,6 +466,7 @@ export default function LandingPage() {
                       <span>Growth</span>
                     </CardTitle>
                     <CardDescription>Agencies & high-volume ops</CardDescription>
+                    <p className="text-xs text-text-muted mt-1">Includes all features from Builder</p>
                   </CardHeader>
                   <CardContent>
                     <p className="text-3xl font-bold mb-6">Custom</p>
@@ -474,7 +482,7 @@ export default function LandingPage() {
                         "w-full text-white font-semibold btn-hover-ready rounded-full",
                         hoveredPlan === 'Growth' && "btn-liquid ring-white-glow"
                       )}
-                      onClick={() => window.location.href = '/signin'}
+                      onClick={() => window.location.href = '/contact'}
                     >
                       Contact Sales
                     </Button>
@@ -504,7 +512,7 @@ export default function LandingPage() {
       </section>
 
       {/* Email Capture Section */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-white/5 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-lg mx-auto"
@@ -573,7 +581,7 @@ export default function LandingPage() {
       </section>
 
       {/* Social Links Section */}
-      <section className="py-16 border-t border-white/5">
+      <section className="py-16 border-t border-white/5 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-2xl mx-auto text-center"

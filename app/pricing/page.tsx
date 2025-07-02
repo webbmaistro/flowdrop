@@ -11,6 +11,7 @@ export default function PricingPage() {
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
   const [firstHover, setFirstHover] = useState<string | null>(null);
+  const [hoveredCredit, setHoveredCredit] = useState<string | null>(null);
 
   const startCheckout = async (priceId: string) => {
     setLoadingId(priceId);
@@ -109,7 +110,7 @@ export default function PricingPage() {
         '24/7 priority support'
       ],
       cta: 'Contact Sales',
-      ctaAction: () => window.location.href = '/signin'
+      ctaAction: () => window.location.href = '/contact'
     },
   ];
 
@@ -260,6 +261,9 @@ export default function PricingPage() {
                         <CardTitle className="text-2xl">{plan.name}</CardTitle>
                       </div>
                       <CardDescription>{plan.description}</CardDescription>
+                      {index > 0 && (
+                        <p className="text-sm text-text-muted mt-1">Includes all features from {plans[index-1].name}</p>
+                      )}
                     </CardHeader>
                     
                     <CardContent className="space-y-6">
@@ -329,34 +333,81 @@ export default function PricingPage() {
               {additionalCredits.map((credit, index) => (
                 <motion.div
                   key={credit.name}
-                  className="relative"
+                  className={cn(
+                    'relative transition-all duration-500 ease-out',
+                    hoveredCredit === credit.name && 'scale-[1.02] -translate-y-1'
+                  )}
+                  onMouseEnter={() => setHoveredCredit(credit.name)}
+                  onMouseLeave={() => setHoveredCredit(null)}
                 >
-                  <motion.button 
-                    className="w-full px-6 py-4 bg-gray-800/50 backdrop-blur-sm border border-gray-600/30 rounded-xl hover:bg-gray-700/60 hover:border-gray-500/50 transition-all duration-300 flex items-center justify-center gap-3 text-white font-medium shadow-sm hover:shadow-md relative"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ duration: 0.2 }}
-                    onClick={() => {
-                      // Add your credit purchase logic here
-                      console.log(`Purchasing ${credit.name} for ${credit.price}`);
-                      // Example: startCreditCheckout(credit.priceId);
-                    }}
+                  <Card 
+                    variant="glass" 
+                    hover={true}
+                    className={cn(
+                      'h-full relative transition-all duration-500 ease-out overflow-visible',
+                      hoveredCredit === credit.name && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
+                    )}
                   >
                     {credit.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-main via-purple-500 to-primary-main text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md z-10 border border-primary-main/40">
-                        Best Value
-                      </span>
+                      <motion.span
+                        role="status"
+                        aria-label="Best value credit package"
+                        className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ 
+                          opacity: 1, 
+                          y: 0,
+                          scale: hoveredCredit === credit.name ? 1.05 : 1
+                        }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                      >
+                        <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
+                          <div className="flex items-center space-x-2">
+                            <Star className="w-3 h-3 text-purple-300" />
+                            <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
+                              Best Value
+                            </span>
+                          </div>
+                        </div>
+                      </motion.span>
                     )}
                     
-                    <div className="text-center">
-                      <h3 className="text-xl font-semibold mb-2 text-white">{credit.name}</h3>
-                      <div className="text-3xl font-bold mb-2 text-white">{credit.price}</div>
-                      <p className="text-text-muted text-sm mb-2">{credit.description}</p>
-                      <span className="text-sm font-medium text-primary-light">
-                        Click to Purchase
-                      </span>
-                    </div>
-                  </motion.button>
+                    <CardHeader>
+                      <CardTitle className="text-center text-2xl">{credit.name}</CardTitle>
+                      <CardDescription className="text-center">{credit.description}</CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent className="space-y-6">
+                      <div className="text-center">
+                        <div className="text-4xl font-bold text-white mb-2">{credit.price}</div>
+                        <p className="text-text-muted text-lg">{credit.credits} credits</p>
+                      </div>
+                      
+                      <div className="pt-4">
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
+                        >
+                          <Button
+                            variant="primary"
+                            size="lg"
+                            className={cn(
+                              "w-full text-white font-semibold btn-hover-ready rounded-full",
+                              hoveredCredit === credit.name && "btn-liquid ring-white-glow"
+                            )}
+                            onClick={() => {
+                              // Add your credit purchase logic here
+                              console.log(`Purchasing ${credit.name} for ${credit.price}`);
+                              // Example: startCreditCheckout(credit.priceId);
+                            }}
+                          >
+                            Purchase Credits
+                          </Button>
+                        </motion.div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </motion.div>
               ))}
             </motion.div>

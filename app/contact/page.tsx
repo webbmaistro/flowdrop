@@ -66,48 +66,8 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
-        <div className="relative container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-main/20 rounded-2xl">
-                <Mail className="w-8 h-8 text-primary-main" />
-              </div>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className={cn(typography.h1, "mb-6 text-balance")}
-            >
-              Get in Touch
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className={cn(typography.bodyLarge, "mb-8 max-w-2xl mx-auto text-balance")}
-            >
-              Have questions about FlowDrop? We're here to help.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="mb-12">
-              <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-2xl px-6 py-4">
-                <Mail className="w-5 h-5 text-primary-main" />
-                <span className="text-lg font-medium text-text-primary">webb@flowdrop.xyz</span>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Contact Form */}
-      <section className="py-20">
+      <section className="py-20 pt-32">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-2xl mx-auto"
@@ -189,7 +149,7 @@ export default function ContactPage() {
                         type="submit"
                         variant="primary"
                         size="lg"
-                        className="w-full"
+                        className="w-full btn-liquid rounded-full text-white font-semibold shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20"
                         loading={isSubmitting}
                         icon={<Send className="w-5 h-5" />}
                         disabled={isSubmitting}
@@ -200,6 +160,46 @@ export default function ContactPage() {
                   )}
                 </CardContent>
               </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Hero Section */}
+      <section className="relative py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
+        <div className="relative container mx-auto px-6">
+          <motion.div
+            className="max-w-4xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants} className="flex justify-center mb-6">
+              <div className="p-4 bg-primary-main/20 rounded-2xl">
+                <Mail className="w-8 h-8 text-primary-main" />
+              </div>
+            </motion.div>
+            
+            <motion.h1 
+              variants={itemVariants}
+              className={cn(typography.h1, "mb-6 text-balance")}
+            >
+              Get in Touch
+            </motion.h1>
+            
+            <motion.p 
+              variants={itemVariants}
+              className={cn(typography.bodyLarge, "mb-8 max-w-2xl mx-auto text-balance")}
+            >
+              Have questions about FlowDrop? We're here to help.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="mb-12">
+              <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-2xl px-6 py-4">
+                <Mail className="w-5 h-5 text-primary-main" />
+                <span className="text-lg font-medium text-text-primary">webb@flowdrop.xyz</span>
+              </div>
             </motion.div>
           </motion.div>
         </div>

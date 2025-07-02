@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from 'react'
-import { Zap } from 'lucide-react'
 import GoogleSignIn from '../components/GoogleSignIn'
 import { createClient } from '@supabase/supabase-js'
 import { Card, CardContent } from '@/components/ui/card'
@@ -46,18 +45,13 @@ export default function SignInPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background-main/80 via-background-card/80 to-primary-dark/40 text-white flex items-center justify-center p-6">
+    <div className="min-h-screen bg-background text-white flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <Card variant="glass" className="shadow-xl">
           <CardContent className="p-8">
-            {/* Logo */}
+            {/* Welcome Section */}
             <div className="text-center mb-8">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 bg-purple-600/20 rounded-xl">
-                  <Zap className="w-8 h-8 text-primary-main" />
-                </div>
-              </div>
-              <h1 className="text-3xl font-bold mb-2">Welcome to Flowdrop</h1>
+              <h1 className="text-3xl font-bold mb-2">Welcome to FlowDrop</h1>
               <p className="text-gray-400">
                 {isSignUp ? 'Create your account' : 'Sign in to your account'}
               </p>
@@ -98,7 +92,7 @@ export default function SignInPage() {
               <button
                 onClick={handleEmailAuth}
                 disabled={loading}
-                className="w-full px-6 py-3 bg-primary-main hover:bg-primary-hover rounded-xl font-medium transition-colors disabled:opacity-50"
+                className="w-full px-6 py-3 btn-liquid rounded-full text-white font-semibold shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {loading ? 'Loading...' : (isSignUp ? 'Create Account' : 'Sign In')}
               </button>

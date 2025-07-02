@@ -17,14 +17,16 @@ const supabase = createClient(
 const navigation: Array<{name: string; href: string; external?: boolean}> = [
   { name: 'Pricing', href: '/pricing' },
   { name: 'Docs', href: '/docs' },
+  { name: 'Contact', href: '/contact' },
   { name: 'Blog', href: 'https://www.reddit.com/r/Flowdrop/', external: true },
 ];
 
 interface HeaderProps {
   hideAtTopOnLanding?: boolean;
+  isAuthPage?: boolean;
 }
 
-export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
+export default function Header({ hideAtTopOnLanding = false, isAuthPage = false }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showFullHeader, setShowFullHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -105,7 +107,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
             >
               <Link href="/" className="group relative">
                 <motion.div
-                  className="flex items-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
+                  className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
                   whileHover={{ 
                     scale: 1.05,
                   }}
@@ -130,7 +132,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
                   >
                     <Zap className="w-5 h-5 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
                   </motion.div>
-                  <span className="text-lg font-bold text-text-primary group-hover:text-primary-light relative">
+                  <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
                     FlowDrop
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-400" aria-hidden="true">FlowDrop</div>
                   </span>
@@ -192,8 +194,8 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
           shouldHideHeader 
             ? 'opacity-0 pointer-events-none' 
             : isScrolled
-              ? 'bg-transparent backdrop-blur-lg'
-              : 'bg-transparent'
+              ? 'bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm'
+              : 'bg-gradient-to-b from-black/40 via-black/20 to-transparent'
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -215,7 +217,7 @@ export default function Header({ hideAtTopOnLanding = false }: HeaderProps) {
             >
               <Link href="/" className="group relative">
                 <motion.div
-                  className="flex items-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
+                  className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
                   whileHover={{ 
                     scale: 1.05,
                   }}
