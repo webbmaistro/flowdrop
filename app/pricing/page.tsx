@@ -199,13 +199,25 @@ export default function PricingPage() {
                     'relative',
                     plan.highlight && 'lg:scale-105'
                   )}
+                  animate={plan.highlight ? {
+                    boxShadow: [
+                      '0 0 20px rgba(139, 92, 246, 0.3)',
+                      '0 0 40px rgba(139, 92, 246, 0.5)',
+                      '0 0 20px rgba(139, 92, 246, 0.3)'
+                    ]
+                  } : {}}
+                  transition={plan.highlight ? {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  } : {}}
                 >
                   <Card 
                     variant={plan.highlight ? "glass" : "default"} 
                     hover={true}
                     className={cn(
                       'h-full relative',
-                      plan.highlight && 'border-primary-main/30 bg-primary-main/5'
+                      plan.highlight && 'border-primary-main/30 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 shadow-2xl shadow-primary-main/20'
                     )}
                   >
                     {plan.highlight && (
@@ -254,16 +266,25 @@ export default function PricingPage() {
                       </ul>
                       
                       <div className="pt-4">
-                        <Button
-                          variant="primary"
-                          size="lg"
-                          className="w-full"
-                          onClick={() => plan.ctaAction()}
-                          loading={plan.priceId ? loadingId === plan.priceId : false}
-                          disabled={plan.priceId ? loadingId === plan.priceId : false}
+                        <motion.div
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: 0.3 }}
                         >
-                          {plan.priceId && loadingId === plan.priceId ? 'Redirecting...' : plan.cta}
-                        </Button>
+                          <Button
+                            variant="primary"
+                            size="lg"
+                            className={cn(
+                              "w-full",
+                              plan.highlight && "btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
+                            )}
+                            onClick={() => plan.ctaAction()}
+                            loading={plan.priceId ? loadingId === plan.priceId : false}
+                            disabled={plan.priceId ? loadingId === plan.priceId : false}
+                          >
+                            {plan.priceId && loadingId === plan.priceId ? 'Redirecting...' : plan.cta}
+                          </Button>
+                        </motion.div>
                       </div>
                     </CardContent>
                   </Card>
@@ -292,23 +313,43 @@ export default function PricingPage() {
             
             <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
               {additionalCredits.map((credit, index) => (
-                <Card key={credit.name} variant="glass" hover className="text-center">
-                  <CardContent className="pt-6">
-                    <div className="mb-4">
-                      {credit.popular && (
-                        <span className="bg-primary-main text-white px-3 py-1 rounded-full text-xs font-medium mb-3 inline-block">
-                          Best Value
+                <motion.div
+                  key={credit.name}
+                  className="relative"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <button 
+                    className="w-full p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/20 hover:border-primary-main/40 shadow-xl hover:shadow-2xl hover:shadow-primary-main/10 transition-all duration-300 text-left group relative overflow-hidden"
+                    onClick={() => {
+                      // Add your credit purchase logic here
+                      console.log(`Purchasing ${credit.name} for ${credit.price}`);
+                      // Example: startCreditCheckout(credit.priceId);
+                    }}
+                  >
+                    {credit.popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-main via-purple-500 to-primary-main text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md z-10 border border-primary-main/40">
+                        Best Value
+                      </span>
+                    )}
+                    
+                    {/* Hover gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-primary-main/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                    
+                    <div className="relative z-10 text-center">
+                      <h3 className="text-xl font-semibold mb-2 text-white group-hover:text-primary-light transition-colors duration-300">{credit.name}</h3>
+                      <div className="text-3xl font-bold mb-2 text-white">{credit.price}</div>
+                      <p className="text-text-muted text-sm mb-4 group-hover:text-text-secondary transition-colors duration-300">{credit.description}</p>
+                      
+                      {/* Call to action indicator */}
+                      <div className="mt-4 px-4 py-2 bg-primary-main/20 rounded-lg border border-primary-main/30 group-hover:bg-primary-main/30 group-hover:border-primary-main/50 transition-all duration-300">
+                        <span className="text-sm font-medium text-primary-light group-hover:text-white transition-colors duration-300">
+                          Click to Purchase
                         </span>
-                      )}
+                      </div>
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{credit.name}</h3>
-                    <div className="text-3xl font-bold mb-2">{credit.price}</div>
-                    <p className="text-text-muted text-sm mb-4">{credit.description}</p>
-                    <Button variant="outline" className="w-full">
-                      Purchase Credits
-                    </Button>
-                  </CardContent>
-                </Card>
+                  </button>
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
