@@ -162,11 +162,11 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                   variant="primary"
                   size="sm"
                   onClick={handleSignOut}
-                  className="btn-liquid shadow-lg shadow-primary-main/25 backdrop-blur-sm group relative overflow-hidden px-3 text-white font-semibold"
+                  className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
                 >
                   <div className="relative flex items-center justify-center">
                     <motion.div
-                      className="flex items-center gap-1.5 px-2"
+                      className="flex items-center gap-1.5"
                       initial="default"
                       whileHover="hover"
                       animate="default"
@@ -174,19 +174,20 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         default: { x: 0 },
                         hover: { x: -2 }
                       }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <LogOut className="w-4 h-4" />
                       <span>Sign Out</span>
-                      <motion.div
+                      <motion.span
+                        className="flex items-center overflow-hidden"
                         variants={{
-                          default: { width: 0, opacity: 0, marginLeft: -4 },
-                          hover: { width: "auto", opacity: 1, marginLeft: 0 }
+                          default: { width: 0, opacity: 0, marginLeft: 0 },
+                          hover: { width: 20, opacity: 1, marginLeft: 6 }
                         }}
-                        transition={{ duration: 0.3 }}
-                        style={{ overflow: "hidden" }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        style={{ display: 'inline-flex' }}
                       >
                         <ArrowRight className="w-4 h-4" />
-                      </motion.div>
+                      </motion.span>
                     </motion.div>
                   </div>
                 </Button>
@@ -330,19 +331,18 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                             }}
                             transition={{ duration: 0.3, ease: "easeInOut" }}
                           >
-                            <LogOut className="w-4 h-4" />
                             <span>Sign Out</span>
-                            <motion.div
-                              className="absolute flex items-center"
+                            <motion.span
+                              className="flex items-center overflow-hidden"
                               variants={{
-                                default: { opacity: 0, x: -10 },
-                                hover: { opacity: 1, x: 0 }
+                                default: { width: 0, opacity: 0, marginLeft: 0 },
+                                hover: { width: 20, opacity: 1, marginLeft: 6 }
                               }}
                               transition={{ duration: 0.3, ease: "easeInOut" }}
-                              style={{ left: "100%", marginLeft: "0.5rem" }}
+                              style={{ display: 'inline-flex' }}
                             >
                               <ArrowRight className="w-4 h-4" />
-                            </motion.div>
+                            </motion.span>
                           </motion.div>
                         </div>
                       </Button>

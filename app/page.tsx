@@ -177,49 +177,63 @@ export default function LandingPage() {
                 Launch production flows before your coffee brews.
               </motion.p>
 
+              {/* Email Capture Form as Main CTA */}
               <motion.div variants={itemVariants}>
                 <div className="flex flex-col items-center gap-4">
                   <motion.div
-                    className="relative w-full max-w-[280px]"
+                    className="relative w-full max-w-[400px]"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Button
-                      onClick={() => {
-                        track.buttonClick('Get Started', 'hero');
-                        window.location.href = '/signin';
-                      }}
-                      className="h-[52px] w-full px-8 btn-liquid text-white text-lg font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
-                      whileHover="hover"
-                      initial="default"
-                      animate="default"
-                    >
-                      <div className="relative flex items-center justify-center w-full">
-                        <motion.div
-                          className="flex items-center gap-2"
-                          variants={{
-                            default: { x: 0 },
-                            hover: { x: -10 }
-                          }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                    {!submitted ? (
+                      <div className="flex flex-col w-full gap-3">
+                        <Input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="Enter your email"
+                          variant="glass"
+                          className="flex-1"
+                        />
+                        <Button
+                          onClick={handleSubmit}
+                          variant="primary"
+                          className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25 w-full"
+                          whileHover="hover"
+                          initial="default"
+                          animate="default"
                         >
-                          <span>Get Started</span>
-                          <motion.div
-                            className="absolute flex items-center"
-                            variants={{
-                              default: { opacity: 0, x: -10 },
-                              hover: { opacity: 1, x: 0 }
-                            }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            style={{ left: "100%", marginLeft: "0.5rem" }}
-                          >
-                            <ArrowRight className="w-5 h-5" />
-                          </motion.div>
-                        </motion.div>
+                          <div className="relative flex items-center justify-center w-full">
+                            <motion.div
+                              className="flex items-center gap-2"
+                              variants={{
+                                default: { x: 0 },
+                                hover: { x: -10 }
+                              }}
+                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                            >
+                              <span>Subscribe</span>
+                              <motion.div
+                                className="absolute flex items-center"
+                                variants={{
+                                  default: { opacity: 0, x: -10 },
+                                  hover: { opacity: 1, x: 0 }
+                                }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                                style={{ left: "100%", marginLeft: "0.5rem" }}
+                              >
+                                <ArrowRight className="w-4 h-4" />
+                              </motion.div>
+                            </motion.div>
+                          </div>
+                        </Button>
                       </div>
-                    </Button>
+                    ) : (
+                      <p className="text-success-500 text-sm">Thanks! We'll keep you updated.</p>
+                    )}
+                    {error && <p className="text-error-500 text-sm mt-2">{error}</p>}
                   </motion.div>
-                  <p className="text-text-secondary text-sm">Start for free. No credit card required.</p>
+                  <p className="text-text-secondary text-sm">Drop your email to get early access and launch updates—don’t miss out!</p>
                 </div>
               </motion.div>
             </div>
@@ -548,7 +562,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Email Capture Section */}
+      {/* Email Capture Section (now Get Started button) */}
       <section className="py-16 border-t border-white/5 relative z-10">
         <div className="container mx-auto px-6">
           <motion.div
@@ -559,59 +573,48 @@ export default function LandingPage() {
           >
             <motion.div variants={itemVariants} className="bg-white/5 backdrop-blur rounded-xl p-6 flex flex-col items-center gap-4 border border-white/10">
               <div className="text-center mb-2">
-                <h3 className="text-lg font-semibold text-gray-300 mb-2">Stay in the loop!</h3>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2">Ready to get started?</h3>
                 <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
                   <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z" fill="#a78bfa"/></svg>
-                  Get early access and updates on new features
+                  Create your account now so you’re ready when we go live—app’s still cooking, but you’ll be first in line!
                 </p>
               </div>
-              {!submitted ? (
-                <div className="flex flex-col sm:flex-row w-full gap-3">
-                  <Input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    variant="glass"
-                    className="flex-1"
-                  />
-                  <Button
-                    onClick={handleSubmit}
-                    variant="primary"
-                    className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25 sm:w-auto w-full"
-                    whileHover="hover"
-                    initial="default"
-                    animate="default"
+              <Button
+                onClick={() => {
+                  track.buttonClick('Get Started', 'email-section');
+                  window.location.href = '/signin';
+                }}
+                className="h-[52px] w-full px-8 btn-liquid text-white text-lg font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
+                whileHover="hover"
+                initial="default"
+                animate="default"
+              >
+                <div className="relative flex items-center justify-center w-full">
+                  <motion.div
+                    className="flex items-center gap-2"
+                    variants={{
+                      default: { x: 0 },
+                      hover: { x: -10 }
+                    }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div className="relative flex items-center justify-center w-full">
-                      <motion.div
-                        className="flex items-center gap-2"
-                        variants={{
-                          default: { x: 0 },
-                          hover: { x: -10 }
-                        }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                      >
-                        <span>Subscribe</span>
-                        <motion.div
-                          className="absolute flex items-center"
-                          variants={{
-                            default: { opacity: 0, x: -10 },
-                            hover: { opacity: 1, x: 0 }
-                          }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          style={{ left: "100%", marginLeft: "0.5rem" }}
-                        >
-                          <ArrowRight className="w-4 h-4" />
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </Button>
+                    <span>Get Started</span>
+                    <motion.div
+                      className="absolute flex items-center"
+                      variants={{
+                        default: { opacity: 0, x: -10 },
+                        hover: { opacity: 1, x: 0 }
+                      }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      style={{ left: "100%", marginLeft: "0.5rem" }}
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </motion.div>
                 </div>
-              ) : (
-                <p className="text-success-500 text-sm">Thanks! We'll keep you updated.</p>
-              )}
-              {error && <p className="text-error-500 text-sm">{error}</p>}
+              </Button>
+              {/* Start for free message moved here */}
+              <p className="text-gray-400 text-sm mt-3">Start for free. No credit card required.</p>
             </motion.div>
           </motion.div>
         </div>
