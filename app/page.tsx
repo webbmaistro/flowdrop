@@ -79,9 +79,11 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-text-primary">
+    <div className="relative min-h-screen overflow-hidden bg-background text-text-primary">
       {/* Subtle Interactive Rain Background - Full Page */}
-      <SubtleRain />
+      <div className="fixed inset-0 z-0">
+        <SubtleRain />
+      </div>
       
       {/* Hero Section */}
       <section className="relative isolate flex flex-col items-center justify-center text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 z-10">

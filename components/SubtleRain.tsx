@@ -51,11 +51,19 @@ export default function SubtleRain() {
     // Resize canvas to match container and adjust raindrop count
     const resizeCanvas = () => {
       const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * devicePixelRatio;
-      canvas.height = rect.height * devicePixelRatio;
+      const width = rect.width;
+      const height = rect.height;
+      
+      // Set display size (css pixels)
+      canvas.style.width = width + "px";
+      canvas.style.height = height + "px";
+      
+      // Set actual size in memory (scaled for device DPI)
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      
+      // Normalize coordinate system to use css pixels
       ctx.scale(devicePixelRatio, devicePixelRatio);
-      canvas.style.width = rect.width + "px";
-      canvas.style.height = rect.height + "px";
       
       // Update raindrop count based on new screen size
       const newDropCount = getDropCount();
@@ -358,7 +366,7 @@ export default function SubtleRain() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-0
+      className="w-full h-full pointer-events-none
                  [@media(prefers-reduced-motion:reduce)]:hidden"
       style={{ opacity: 0.7 }} // Tuned for denser rain effect
     />
