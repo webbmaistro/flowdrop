@@ -17,6 +17,10 @@ interface Raindrop {
   baseAngle: number; // Original angle for reference
   trailType: number; // Trail shape variation (0-1)
   taperness: number; // How much the trail tapers (0-1)
+  history: { x: number; y: number }[]; // Recent positions for smooth tail
+  swirlSpeed: number; // Individual speed for vortex swirl
+  swirlDirection: number; // 1 or -1 for CW / CCW
+  targetRadius: number; // Preferred orbit radius around cursor
 }
 
 export default function SubtleRain() {
@@ -32,6 +36,7 @@ export default function SubtleRain() {
     let animationFrame: number;
     const raindrops: Raindrop[] = [];
     const mouse = { x: -1000, y: -1000 }; // Start off-screen
+    const vortexActive = { current: false };
     
     // Responsive raindrop count - more for desktop screens
     const getDropCount = () => {
@@ -47,6 +52,8 @@ export default function SubtleRain() {
     let RAINDROP_COUNT = getDropCount();
     const MOUSE_INFLUENCE_RADIUS = 104; // 30% bigger for enhanced interaction
     const DEFLECTION_STRENGTH = 60;
+    const RADIAL_PULL_FACTOR = 0.2; // Stronger pull toward orbit radius
+    const WIND_STRENGTH = 1.2; // Stronger horizontal push from left
 
     // Resize canvas to match container and adjust raindrop count
     const resizeCanvas = () => {
@@ -96,6 +103,10 @@ export default function SubtleRain() {
               prevY: Math.random() * -canvas.clientHeight,
               trailType: Math.random(),
               taperness: 0.3 + Math.random() * 0.7,
+              history: [],
+              swirlSpeed: 1 + Math.random() * 2,
+              swirlDirection: Math.random() < 0.5 ? -1 : 1,
+              targetRadius: 12 + Math.random() * 18, // 12-30px tight orbit
             });
           }
         } else if (raindrops.length > RAINDROP_COUNT) {
@@ -133,11 +144,15 @@ export default function SubtleRain() {
            prevY: Math.random() * -canvas.clientHeight, // Initialize previous position
            trailType: Math.random(), // Random trail shape variation
            taperness: 0.3 + Math.random() * 0.7, // How much the trail tapers (0.3-1.0)
+           history: [],
+           swirlSpeed: 1 + Math.random() * 2,
+           swirlDirection: Math.random() < 0.5 ? -1 : 1,
+           targetRadius: 12 + Math.random() * 18,
          });
       }
     };
 
-    // Mouse tracking - global to work across entire page
+    // Mouse tracking & click toggle
     const handleMouseMove = (e: MouseEvent) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -146,6 +161,10 @@ export default function SubtleRain() {
     const handleMouseLeave = () => {
       mouse.x = -1000;
       mouse.y = -1000;
+    };
+
+    const handleClick = () => {
+      vortexActive.current = !vortexActive.current;
     };
 
     // Animation loop
@@ -160,24 +179,48 @@ export default function SubtleRain() {
         const dy = drop.y - mouse.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Mouse influence on raindrop with natural variance
+        // Mouse influence: vortex or gentle deflection
         if (distance < MOUSE_INFLUENCE_RADIUS && mouse.x > -500) {
-          // Calculate deflection force with individual variance
-          const force = (MOUSE_INFLUENCE_RADIUS - distance) / MOUSE_INFLUENCE_RADIUS;
-          const naturalVariance = 1 + (drop.deflectionVariance * 0.3); // ±30% variance
-          const deflectionX = (dx / distance) * DEFLECTION_STRENGTH * force * 0.03 * naturalVariance;
-          const deflectionY = (dy / distance) * DEFLECTION_STRENGTH * force * 0.02 * naturalVariance;
-          
-          // Add some organic turbulence to the deflection
-          const turbulenceX = (Math.sin(Date.now() * 0.001 + drop.x * 0.01) * 0.2) * drop.deflectionVariance;
-          const turbulenceY = (Math.cos(Date.now() * 0.0015 + drop.y * 0.008) * 0.15) * drop.deflectionVariance;
-          
-          // Smoothly deflect the raindrop with natural variance
-          drop.x += deflectionX + turbulenceX;
-          drop.y += deflectionY + turbulenceY;
+          if (vortexActive.current) {
+            // ---- VORTEX MODE ---- // pull inward then swirl tangentially
+            // ----- Vortex ring behaviour -----
+            // Radial pull toward the drop's targetRadius band
+            const radialDiff = distance - drop.targetRadius;
+            const pullMag = radialDiff * RADIAL_PULL_FACTOR;
+            const pullX = (-dx / distance) * pullMag;
+            const pullY = (-dy / distance) * pullMag;
+
+            // Tangential swirl (perpendicular vector) with direction
+            const tangentX = (-dy / distance) * drop.swirlSpeed * drop.swirlDirection;
+            const tangentY = (dx / distance) * drop.swirlSpeed * drop.swirlDirection;
+
+            drop.x += pullX + tangentX;
+            drop.y += pullY + tangentY;
+
+            // Occasionally respawn to keep fresh flow if stuck too close
+            if (distance < 15) {
+              drop.y = -drop.length;
+              drop.x = Math.random() * canvas.clientWidth;
+              drop.originalX = drop.x;
+              drop.history = [];
+              drop.targetRadius = 30 + Math.random() * 50;
+            }
+          } else {
+            // ---- NORMAL DEFLECTION ----
+            const force = (MOUSE_INFLUENCE_RADIUS - distance) / MOUSE_INFLUENCE_RADIUS;
+            const naturalVariance = 1 + (drop.deflectionVariance * 0.3);
+            const deflectionX = (dx / distance) * DEFLECTION_STRENGTH * force * 0.03 * naturalVariance;
+            const deflectionY = (dy / distance) * DEFLECTION_STRENGTH * force * 0.02 * naturalVariance;
+
+            const turbulenceX = (Math.sin(Date.now() * 0.001 + drop.x * 0.01) * 0.2) * drop.deflectionVariance;
+            const turbulenceY = (Math.cos(Date.now() * 0.0015 + drop.y * 0.008) * 0.15) * drop.deflectionVariance;
+
+            drop.x += deflectionX + turbulenceX;
+            drop.y += deflectionY + turbulenceY;
+          }
         } else {
           // Gradually return to original path when not influenced
-          const returnForce = (drop.originalX - drop.x) * 0.01; // Gentler return
+          const returnForce = (drop.originalX - drop.x) * 0.0015; // even weaker so wind dominates
           drop.x += returnForce;
         }
 
@@ -193,7 +236,8 @@ export default function SubtleRain() {
         // Move raindrop diagonally with natural wobble
         const angleRad = (drop.baseAngle * Math.PI) / 180;
         drop.y += drop.speed * speedMultiplier;
-        drop.x += Math.sin(angleRad) * drop.speed * 0.3 + wobble; // Natural horizontal drift + wobble
+        // Apply wind: multiply by wind strength to emphasise slanted rain
+        drop.x += Math.sin(angleRad) * drop.speed * WIND_STRENGTH + wobble;
         
         // Calculate natural trail angle based on actual movement
         const actualDx = drop.x - drop.prevX;
@@ -229,97 +273,71 @@ export default function SubtleRain() {
           drop.prevY = -drop.length;
           drop.trailType = Math.random(); // New trail shape variation
           drop.taperness = 0.3 + Math.random() * 0.7; // New taperness
+          drop.history = []; // Reset history
+          drop.swirlSpeed = 1 + Math.random() * 2; // New swirl speed
+          drop.swirlDirection = Math.random() < 0.5 ? -1 : 1;
+          drop.targetRadius = 12 + Math.random() * 18;
         }
 
-        // Draw organic, naturally-angled raindrop trail with unique shape
-        const drawAngleRad = (drop.angle * Math.PI) / 180;
-        
-        // Dynamic trail length based on speed and movement
-        const speedFactor = speedMultiplier || 1;
-        const dynamicLength = drop.length * (0.8 + speedFactor * 0.2);
-        
-        const trailDx = Math.sin(drawAngleRad) * dynamicLength;
-        const trailDy = Math.cos(drawAngleRad) * dynamicLength;
-        
-        // Natural gradient with slight shimmer variation
-        const shimmer = Math.sin(time * 3 + drop.wobbleOffset) * 0.1 + 0.9;
-        
-        // Different trail shapes based on trailType
-        if (drop.trailType < 0.3) {
-          // Sharp, linear trails (30% of drops)
-          const gradient = ctx.createLinearGradient(
-            drop.x - trailDx, drop.y - trailDy,
-            drop.x, drop.y
-          );
-          gradient.addColorStop(0, `rgba(139, 92, 246, ${drop.opacity * 0.02 * shimmer})`);
-          gradient.addColorStop(0.8, `rgba(139, 92, 246, ${drop.opacity * 0.7 * shimmer})`);
-          gradient.addColorStop(1, `rgba(255, 255, 255, ${drop.opacity * shimmer})`);
-          
-          ctx.strokeStyle = gradient;
-          ctx.lineWidth = 0.4 + (dynamicLength / 80);
-          ctx.lineCap = "round";
-          
-          ctx.beginPath();
-          ctx.moveTo(drop.x - trailDx, drop.y - trailDy);
-          ctx.lineTo(drop.x, drop.y);
-          ctx.stroke();
-          
-        } else if (drop.trailType < 0.7) {
-          // Tapered trails with variable width (40% of drops)
-          const segments = 8;
-          ctx.lineCap = "round";
-          ctx.lineJoin = "round";
-          
-          for (let i = 0; i < segments; i++) {
-            const t = i / segments;
-            const nextT = (i + 1) / segments;
-            
-            // Calculate taper - starts thin, gets thicker toward tip
-            const startTaper = Math.pow(1 - t, drop.taperness);
-            const endTaper = Math.pow(1 - nextT, drop.taperness);
-            
-            const startX = drop.x - trailDx * t;
-            const startY = drop.y - trailDy * t;
-            const endX = drop.x - trailDx * nextT;
-            const endY = drop.y - trailDy * nextT;
-            
-            const opacity = drop.opacity * (0.1 + t * 0.9) * shimmer;
-            ctx.strokeStyle = `rgba(${139 + t * 20}, ${92 + t * 50}, ${246 + t * 9}, ${opacity})`;
-            ctx.lineWidth = (0.3 + (dynamicLength / 70) * startTaper) * (1 + Math.sin(time * 5 + drop.wobbleOffset) * 0.15);
-            
+        // ----- Smooth history-based tail drawing -----
+        // Update history with current position
+        const MAX_HISTORY = 12;
+        drop.history.push({ x: drop.x, y: drop.y });
+        if (drop.history.length > MAX_HISTORY) drop.history.shift();
+
+        // Only draw if we have at least 2 points
+        const historyLen = drop.history.length;
+        if (historyLen > 1) {
+          // Pre-calculate shimmer & dynamic length for width scaling
+          const shimmer = Math.sin(time * 3 + drop.wobbleOffset) * 0.1 + 0.9;
+          const speedFactor = speedMultiplier || 1;
+          const LENGTH_MULT = 1.5; // 50% longer tails
+          const dynamicLength = drop.length * (0.8 + speedFactor * 0.2) * LENGTH_MULT;
+
+          const INTENSITY = 2; // Multiplier for width and brightness
+
+          for (let i = 1; i < historyLen; i++) {
+            const p1 = drop.history[i - 1];
+            const p2 = drop.history[i];
+            const t = i / historyLen; // 0 = tail, 1 = near head
+
+            let lineWidth;
+            let color;
+
+            if (drop.trailType < 0.3) {
+              // Sharp trail
+              lineWidth = (0.4 + dynamicLength / 80) * t * INTENSITY;
+              const alpha = Math.min(1, drop.opacity * t * shimmer * INTENSITY);
+              color = `rgba(255, 255, 255, ${alpha})`;
+            } else if (drop.trailType < 0.7) {
+              // Tapered trail
+              const taper = Math.pow(1 - t, drop.taperness);
+              lineWidth = (0.6 + dynamicLength / 70) * taper * INTENSITY;
+              const alpha = Math.min(1, drop.opacity * (0.1 + t * 0.9) * shimmer * INTENSITY);
+              color = `rgba(168, 85, 247, ${alpha})`;
+            } else {
+              // Diffuse trail
+              lineWidth = (0.8 + dynamicLength / 50) * t * INTENSITY;
+              const alpha = Math.min(1, drop.opacity * (0.08 + 0.6 * t) * shimmer * INTENSITY);
+              color = `rgba(139, 92, 246, ${alpha})`;
+            }
+
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.lineCap = "round";
+
             ctx.beginPath();
-            ctx.moveTo(startX, startY);
-            ctx.lineTo(endX, endY);
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
-          
-        } else {
-          // Soft, diffuse trails (30% of drops)
-          const gradient = ctx.createLinearGradient(
-            drop.x - trailDx, drop.y - trailDy,
-            drop.x, drop.y
-          );
-          gradient.addColorStop(0, `rgba(139, 92, 246, ${drop.opacity * 0.08 * shimmer})`);
-          gradient.addColorStop(0.3, `rgba(139, 92, 246, ${drop.opacity * 0.4 * shimmer})`);
-          gradient.addColorStop(0.7, `rgba(168, 85, 247, ${drop.opacity * 0.6 * shimmer})`);
-          gradient.addColorStop(1, `rgba(255, 255, 255, ${drop.opacity * 0.9 * shimmer})`);
 
-          ctx.strokeStyle = gradient;
-          ctx.lineWidth = 0.8 + (dynamicLength / 50) + Math.sin(time * 3 + drop.wobbleOffset) * 0.2;
-          ctx.lineCap = "round";
-
+          // Draw bright droplet head highlight for extra pop
+          const headAlpha = Math.min(1, drop.opacity * 1.5 * INTENSITY);
+          ctx.fillStyle = `rgba(255,255,255,${headAlpha})`;
           ctx.beginPath();
-          ctx.moveTo(drop.x - trailDx, drop.y - trailDy);
-          ctx.lineTo(drop.x, drop.y);
-          ctx.stroke();
-          
-          // Add soft glow effect for diffuse trails
-          ctx.strokeStyle = `rgba(168, 85, 247, ${drop.opacity * 0.15 * shimmer})`;
-          ctx.lineWidth = 1.5 + (dynamicLength / 40);
-          ctx.beginPath();
-          ctx.moveTo(drop.x - trailDx * 0.8, drop.y - trailDy * 0.8);
-          ctx.lineTo(drop.x, drop.y);
-          ctx.stroke();
+          ctx.arc(drop.x, drop.y, 1.5 + dynamicLength / 60, 0, Math.PI * 2);
+          ctx.fill();
         }
       });
 
@@ -350,6 +368,7 @@ export default function SubtleRain() {
     window.addEventListener("resize", resizeCanvas);
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("click", handleClick);
 
     // Start animation
     animate();
@@ -360,6 +379,7 @@ export default function SubtleRain() {
       window.removeEventListener("resize", resizeCanvas);
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("click", handleClick);
     };
   }, []);
 
