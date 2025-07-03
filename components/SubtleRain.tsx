@@ -37,6 +37,8 @@ export default function SubtleRain() {
     const raindrops: Raindrop[] = [];
     const mouse = { x: -1000, y: -1000 }; // Start off-screen
     const vortexActive = { current: false };
+    const vortexFactorRef = { current: 0 }; // 0→1 eased strength
+    const releaseFactorRef = { current: 0 }; // burst repulsion strength after vortex off
     
     // Responsive raindrop count - more for desktop screens
     const getDropCount = () => {
@@ -164,11 +166,26 @@ export default function SubtleRain() {
     };
 
     const handleClick = () => {
+      // Toggle vortex state
+      if (vortexActive.current) {
+        // Turning OFF: initialise repulsion burst
+        releaseFactorRef.current = 1;
+      }
       vortexActive.current = !vortexActive.current;
     };
 
     // Animation loop
     const animate = () => {
+      // Smoothly interpolate vortex factor toward target (0 or 1)
+      const targetFactor = vortexActive.current ? 1 : 0;
+      vortexFactorRef.current += (targetFactor - vortexFactorRef.current) * 0.05; // ease 5%
+
+      const vortexFactor = vortexFactorRef.current;
+
+      // Decay repulsion burst factor
+      releaseFactorRef.current *= 0.9;
+      if (releaseFactorRef.current < 0.01) releaseFactorRef.current = 0;
+
       // Clear canvas with minimal trail effect
       ctx.fillStyle = "rgba(0, 0, 0, 0.15)"; // Reduced trail effect
       ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
@@ -181,24 +198,24 @@ export default function SubtleRain() {
 
         // Mouse influence: vortex or gentle deflection
         if (distance < MOUSE_INFLUENCE_RADIUS && mouse.x > -500) {
-          if (vortexActive.current) {
+          if (vortexFactor > 0.01) {
             // ---- VORTEX MODE ---- // pull inward then swirl tangentially
             // ----- Vortex ring behaviour -----
             // Radial pull toward the drop's targetRadius band
             const radialDiff = distance - drop.targetRadius;
-            const pullMag = radialDiff * RADIAL_PULL_FACTOR;
+            const pullMag = radialDiff * RADIAL_PULL_FACTOR * vortexFactor;
             const pullX = (-dx / distance) * pullMag;
             const pullY = (-dy / distance) * pullMag;
 
             // Tangential swirl (perpendicular vector) with direction
-            const tangentX = (-dy / distance) * drop.swirlSpeed * drop.swirlDirection;
-            const tangentY = (dx / distance) * drop.swirlSpeed * drop.swirlDirection;
+            const tangentX = (-dy / distance) * drop.swirlSpeed * drop.swirlDirection * vortexFactor;
+            const tangentY = (dx / distance) * drop.swirlSpeed * drop.swirlDirection * vortexFactor;
 
             drop.x += pullX + tangentX;
             drop.y += pullY + tangentY;
 
             // Occasionally respawn to keep fresh flow if stuck too close
-            if (distance < 15) {
+            if (distance < 15 && vortexFactor > 0.8) {
               drop.y = -drop.length;
               drop.x = Math.random() * canvas.clientWidth;
               drop.originalX = drop.x;
@@ -215,8 +232,13 @@ export default function SubtleRain() {
             const turbulenceX = (Math.sin(Date.now() * 0.001 + drop.x * 0.01) * 0.2) * drop.deflectionVariance;
             const turbulenceY = (Math.cos(Date.now() * 0.0015 + drop.y * 0.008) * 0.15) * drop.deflectionVariance;
 
-            drop.x += deflectionX + turbulenceX;
-            drop.y += deflectionY + turbulenceY;
+            // Extra outward burst right after vortex deactivates
+            const burstMag = DEFLECTION_STRENGTH * 0.5 * releaseFactorRef.current;
+            const burstX = (dx / distance) * burstMag;
+            const burstY = (dy / distance) * burstMag;
+
+            drop.x += deflectionX + turbulenceX + burstX;
+            drop.y += deflectionY + turbulenceY + burstY;
           }
         } else {
           // Gradually return to original path when not influenced
