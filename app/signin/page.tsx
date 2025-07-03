@@ -92,7 +92,7 @@ export default function SignInPage() {
               <button
                 onClick={handleEmailAuth}
                 disabled={loading}
-                className="w-full px-6 py-3 btn-liquid rounded-full text-white font-semibold shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 btn-liquid rounded-full text-white font-semibold shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden"
               >
                 {loading ? 'Loading...' : (isSignUp ? 'Create Account' : 'Sign In')}
               </button>
