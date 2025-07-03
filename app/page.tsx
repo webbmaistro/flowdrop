@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star } from 'lucide-react';
 import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
+import AnimatedHeadline from '@/components/AnimatedHeadline';
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
@@ -167,7 +168,7 @@ export default function LandingPage() {
                 variants={itemVariants}
                 className={cn(typography.h1, "text-balance")}
               >
-                Build and deploy workflows at lightning speed.
+                <AnimatedHeadline text="Build and deploy workflows at lightning speed." />
               </motion.h1>
               
               <motion.p 
