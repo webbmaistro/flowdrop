@@ -86,7 +86,7 @@ export default function LandingPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="relative isolate flex flex-col items-center justify-center text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 z-10">
+      <section className="relative isolate flex flex-col items-center justify-start text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 pt-20 md:pt-24 pb-8 z-10">
         
         {/* Background Layers */}
         <div className="absolute inset-0 w-full h-full">
@@ -198,7 +198,7 @@ export default function LandingPage() {
                         <Button
                           onClick={handleSubmit}
                           variant="primary"
-                          className="btn-liquid relative group overflow-hidden text-white font-semibold shadow-lg shadow-primary-main/25 w-full"
+                          className="h-[52px] w-full px-8 btn-liquid text-white font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
                           whileHover="hover"
                           initial="default"
                           animate="default"

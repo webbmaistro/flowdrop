@@ -236,6 +236,26 @@ html {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* On hover, upgrade btn-hover-ready to the premium liquid style */
+.btn-hover-ready:hover {
+  background: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    #8b5cf6 12.5%,
+    #a855f7 25%,
+    #c084fc 37.5%,
+    #7c3aed 50%,
+    #8b5cf6 62.5%,
+    #a855f7 75%,
+    #c084fc 87.5%,
+    #7c3aed 100%
+  );
+  background-size: 200% 200%;
+  animation: liquid 20s linear infinite;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: #ffffff !important;
+}
+
 /* Button text glow effect on hover */
 .btn-liquid span, .btn-liquid {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);

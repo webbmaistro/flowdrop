@@ -194,10 +194,10 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
               </div>
             ) : (
             <Button
-              variant="primary"
+              variant="secondary"
               size="sm"
               onClick={() => window.location.href = '/signin'}
-              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3"
+              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3 btn-hover-ready hover:btn-liquid hover:text-white transition-all duration-300"
             >
               <div className="relative flex items-center justify-center">
                 <motion.div
@@ -315,8 +315,6 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         variant="primary"
                         size="sm"
                         onClick={handleSignOut}
-                        icon={<LogOut className="w-4 h-4" />}
-                        iconPosition="left"
                         className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
                       >
                         <div className="relative flex items-center justify-center">
@@ -386,7 +384,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         variant="secondary"
                         size="sm"
                         onClick={() => window.location.href = '/signin'}
-                        className="group relative overflow-hidden px-3"
+                        className="group relative overflow-hidden px-3 btn-hover-ready hover:btn-liquid hover:text-white transition-all duration-300"
                       >
                         <div className="relative flex items-center justify-center">
                           <motion.div
@@ -481,8 +479,6 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                                 handleSignOut();
                                 setIsMobileMenuOpen(false);
                               }}
-                              icon={<LogOut className="w-4 h-4" />}
-                              iconPosition="left"
                             >
                               Sign Out
                             </Button>
@@ -505,7 +501,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                             <Button
                               variant="secondary"
                               size="sm"
-                              className="w-full"
+                              className="w-full btn-hover-ready hover:btn-liquid hover:text-white shadow-lg shadow-primary-main/25 transition-all duration-300"
                               onClick={() => {
                                 window.location.href = '/signin';
                                 setIsMobileMenuOpen(false);
