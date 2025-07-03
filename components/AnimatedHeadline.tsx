@@ -28,62 +28,67 @@ export default function AnimatedHeadline({ text, className = '' }: AnimatedHeadl
         // lines inside the word. Inside that wrapper we still animate individual letters.
         return (
           <span key={`word-${tokenIdx}`} className="inline-block">
-            {Array.from(token).map((char, charIdx) => {
-              const controls = useAnimation();
-
-              const handleHoverStart = () => {
-                controls.start('hover');
-              };
-
-              const handleHoverEnd = () => {
-                // Ensure the hover animation finishes, then transition back to rest
-                controls.start('hover').then(() => {
-                  controls.start('rest');
-                });
-              };
-
-              return (
-                <motion.span
-                  key={`char-${tokenIdx}-${charIdx}`}
-                  className="inline-block cursor-default"
-                  variants={{
-                    rest: {
-                      color: 'var(--foreground)',
-                      textShadow: '0 0 0 rgba(0,0,0,0)',
-                      scale: 1,
-                      y: 0,
-                      transition: {
-                        color: { duration: 1.2 },
-                        textShadow: { duration: 1.2 },
-                        scale: { type: 'spring', stiffness: 500, damping: 18 },
-                        y: { duration: 0.3, ease: 'easeInOut' },
-                      },
-                    },
-                    hover: {
-                      color: 'var(--color-primary)',
-                      textShadow: '0 0 8px rgba(139, 92, 246, 0.75)',
-                      scale: 1.15,
-                      y: [-2, 2, 0],
-                      transition: {
-                        color: { duration: 0.2 },
-                        textShadow: { duration: 0.2 },
-                        scale: { type: 'spring', stiffness: 500, damping: 18 },
-                        y: { duration: 0.3, ease: 'easeInOut' },
-                      },
-                    },
-                  }}
-                  initial="rest"
-                  animate={controls}
-                  onHoverStart={handleHoverStart}
-                  onHoverEnd={handleHoverEnd}
-                >
-                  {char}
-                </motion.span>
-              );
-            })}
+            {Array.from(token).map((char, charIdx) => (
+              <AnimatedLetter key={`char-${tokenIdx}-${charIdx}`} char={char} />
+            ))}
           </span>
         );
       })}
     </span>
+  );
+}
+
+// ----- Internal letter component -----
+interface AnimatedLetterProps {
+  char: string;
+}
+
+function AnimatedLetter({ char }: AnimatedLetterProps) {
+  const controls = useAnimation();
+
+  const handleHoverStart = () => {
+    controls.start('hover');
+  };
+
+  const handleHoverEnd = () => {
+    controls.start('hover').then(() => controls.start('rest'));
+  };
+
+  return (
+    <motion.span
+      className="inline-block cursor-default"
+      variants={{
+        rest: {
+          color: 'var(--foreground)',
+          textShadow: '0 0 0 rgba(0,0,0,0)',
+          scale: 1,
+          y: 0,
+          transition: {
+            color: { duration: 1.2 },
+            textShadow: { duration: 1.2 },
+            scale: { type: 'spring', stiffness: 500, damping: 18 },
+            y: { duration: 0.3, ease: 'easeInOut' },
+          },
+        },
+        hover: {
+          color: 'var(--color-primary)',
+          textShadow: '0 0 8px rgba(139, 92, 246, 0.75)',
+          scale: 1.15,
+          y: [-2, 2, 0],
+          transition: {
+            color: { duration: 0.2 },
+            textShadow: { duration: 0.2 },
+            scale: { type: 'spring', stiffness: 500, damping: 18 },
+            y: { duration: 0.3, ease: 'easeInOut' },
+          },
+        },
+      }}
+      initial="rest"
+      animate={controls}
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+    >
+      {char}
+    </motion.span>
   );
 } 
