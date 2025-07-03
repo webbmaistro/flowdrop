@@ -21,6 +21,7 @@ interface Raindrop {
   swirlSpeed: number; // Individual speed for vortex swirl
   swirlDirection: number; // 1 or -1 for CW / CCW
   targetRadius: number; // Preferred orbit radius around cursor
+  speedScale: number; // 0.5 → 1 gradual acceleration factor
 }
 
 export default function SubtleRain() {
@@ -56,6 +57,7 @@ export default function SubtleRain() {
     const DEFLECTION_STRENGTH = 60;
     const RADIAL_PULL_FACTOR = 0.2; // Stronger pull toward orbit radius
     const WIND_STRENGTH = 1.2; // Stronger horizontal push from left
+    const GLOBAL_SPEED_FACTOR = 0.7; // Cut overall speed by ~30%
 
     // Resize canvas to match container and adjust raindrop count
     const resizeCanvas = () => {
@@ -109,6 +111,7 @@ export default function SubtleRain() {
               swirlSpeed: 1 + Math.random() * 2,
               swirlDirection: Math.random() < 0.5 ? -1 : 1,
               targetRadius: 12 + Math.random() * 18, // 12-30px tight orbit
+              speedScale: 0.5,
             });
           }
         } else if (raindrops.length > RAINDROP_COUNT) {
@@ -123,7 +126,8 @@ export default function SubtleRain() {
       for (let i = 0; i < RAINDROP_COUNT; i++) {
         // Weighted positioning - more drops on left side
         const densityWeight = Math.pow(Math.random(), 2); // Skews toward 0 (left side)
-        const x = densityWeight * (canvas.clientWidth + 200); // Extra width for angled rain
+        const x = densityWeight * (canvas.clientWidth + 200);
+        const ySpawn = Math.random() * -canvas.clientHeight; // start above screen for graceful entry
         
                  // Opacity based on position - more visible on left, tuned for density
          const positionRatio = x / canvas.clientWidth;
@@ -132,7 +136,7 @@ export default function SubtleRain() {
          const baseAngle = 12 + Math.random() * 8; // 12-20 degree base angle
          raindrops.push({
            x,
-           y: Math.random() * -canvas.clientHeight, // Start above screen
+           y: ySpawn,
            originalX: x,
            speed: (1 + Math.random() * 2) * 0.8, // 20% slower for more graceful fall
            opacity: Math.max(0.04, baseOpacity + Math.random() * 0.08), // Tuned for denser effect
@@ -143,13 +147,14 @@ export default function SubtleRain() {
            wobbleOffset: Math.random() * Math.PI * 2, // Unique wobble phase
            speedVariation: 0.8 + Math.random() * 0.4, // Natural speed variation
            prevX: x, // Initialize previous position
-           prevY: Math.random() * -canvas.clientHeight, // Initialize previous position
+           prevY: ySpawn, // Initialize previous position
            trailType: Math.random(), // Random trail shape variation
            taperness: 0.3 + Math.random() * 0.7, // How much the trail tapers (0.3-1.0)
            history: [],
            swirlSpeed: 1 + Math.random() * 2,
            swirlDirection: Math.random() < 0.5 ? -1 : 1,
            targetRadius: 12 + Math.random() * 18,
+           speedScale: 0.5,
          });
       }
     };
@@ -174,6 +179,8 @@ export default function SubtleRain() {
       vortexActive.current = !vortexActive.current;
     };
 
+    let currentRainFront = 0; // deepest y reached by any drop during animation
+
     // Animation loop
     const animate = () => {
       // Smoothly interpolate vortex factor toward target (0 or 1)
@@ -185,6 +192,9 @@ export default function SubtleRain() {
       // Decay repulsion burst factor
       releaseFactorRef.current *= 0.9;
       if (releaseFactorRef.current < 0.01) releaseFactorRef.current = 0;
+
+      // Reset rain front tracking each frame
+      currentRainFront = 0;
 
       // Clear canvas with minimal trail effect
       ctx.fillStyle = "rgba(0, 0, 0, 0.15)"; // Reduced trail effect
@@ -250,6 +260,12 @@ export default function SubtleRain() {
         drop.prevX = drop.x;
         drop.prevY = drop.y;
         
+        // Update rain front depth
+        if (drop.y > currentRainFront) currentRainFront = Math.min(drop.y, canvas.clientHeight);
+
+        // Gradually accelerate newly spawned drops toward full speed
+        drop.speedScale += (1 - drop.speedScale) * 0.02; // ease-up 2% each frame
+
         // Natural raindrop movement with subtle wobble and speed variation
         const time = Date.now() * 0.001;
         const wobble = Math.sin(time * 2 + drop.wobbleOffset) * 0.3 * drop.deflectionVariance;
@@ -257,9 +273,10 @@ export default function SubtleRain() {
         
         // Move raindrop diagonally with natural wobble
         const angleRad = (drop.baseAngle * Math.PI) / 180;
-        drop.y += drop.speed * speedMultiplier;
-        // Apply wind: multiply by wind strength to emphasise slanted rain
-        drop.x += Math.sin(angleRad) * drop.speed * WIND_STRENGTH + wobble;
+        const effectiveSpeed = drop.speed * speedMultiplier * drop.speedScale * GLOBAL_SPEED_FACTOR;
+        drop.y += effectiveSpeed;
+        // Apply wind with same effectiveSpeed proportion
+        drop.x += Math.sin(angleRad) * drop.speed * WIND_STRENGTH * drop.speedScale * GLOBAL_SPEED_FACTOR + wobble;
         
         // Calculate natural trail angle based on actual movement
         const actualDx = drop.x - drop.prevX;
@@ -272,7 +289,12 @@ export default function SubtleRain() {
 
         // Reset raindrop when it falls off screen
         if (drop.y > canvas.clientHeight + drop.length || drop.x > canvas.clientWidth + 100) {
-          drop.y = -drop.length;
+          // Progressive in-screen spawning: allow inside spawn up to current rain front depth
+          if (Math.random() < 0.5 && currentRainFront > 10) {
+            drop.y = Math.random() * currentRainFront;
+          } else {
+            drop.y = -drop.length;
+          }
           
           // Maintain density gradient on respawn - weighted toward left side
           const densityWeight = Math.pow(Math.random(), 2);
@@ -299,6 +321,7 @@ export default function SubtleRain() {
           drop.swirlSpeed = 1 + Math.random() * 2; // New swirl speed
           drop.swirlDirection = Math.random() < 0.5 ? -1 : 1;
           drop.targetRadius = 12 + Math.random() * 18;
+          drop.speedScale = 0.5;
         }
 
         // ----- Smooth history-based tail drawing -----
