@@ -197,7 +197,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
               variant="secondary"
               size="sm"
               onClick={() => window.location.href = '/signin'}
-              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3 btn-hover-ready hover:btn-liquid hover:text-white transition-all duration-300"
+              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid hover:text-white transition-all duration-300"
             >
               <div className="relative flex items-center justify-center">
                 <motion.div
@@ -384,7 +384,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         variant="secondary"
                         size="sm"
                         onClick={() => window.location.href = '/signin'}
-                        className="group relative overflow-hidden px-3 btn-hover-ready hover:btn-liquid hover:text-white transition-all duration-300"
+                        className="group relative overflow-hidden px-3 btn-liquid hover:text-white transition-all duration-300"
                       >
                         <div className="relative flex items-center justify-center">
                           <motion.div
@@ -501,7 +501,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                             <Button
                               variant="secondary"
                               size="sm"
-                              className="w-full btn-hover-ready hover:btn-liquid hover:text-white shadow-lg shadow-primary-main/25 transition-all duration-300"
+                              className="w-full btn-liquid hover:text-white shadow-lg shadow-primary-main/25 transition-all duration-300"
                               onClick={() => {
                                 window.location.href = '/signin';
                                 setIsMobileMenuOpen(false);
