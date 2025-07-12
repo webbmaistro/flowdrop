@@ -86,11 +86,33 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Glassmorphism Utility */
+/* Glassmorphism Utility with Performance Optimization */
 .glass {
   background: var(--background-glass);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Reduced blur for performance mode */
+@media (prefers-reduced-motion: reduce) {
+  .glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Performance-aware glass variants */
+.glass-minimal {
+  background: var(--background-glass);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  /* No blur for minimal performance */
+}
+
+.glass-reduced {
+  background: var(--background-glass);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -213,6 +235,16 @@ html {
   }
 }
 
+/* Reduced liquid animation for performance */
+@keyframes liquid-reduced {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 /* Subtle shimmer twinkle animation */
 @keyframes shimmer-twinkle {
   0% {
@@ -280,6 +312,34 @@ html {
   animation: liquid 20s linear infinite;
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Performance-aware button variants */
+.btn-liquid-reduced {
+  background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #7c3aed 100%);
+  background-size: 200% 200%;
+  animation: liquid-reduced 10s linear infinite;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-liquid-minimal {
+  background: #8b5cf6;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+  transition: all 0.2s ease;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .btn-liquid {
+    animation: none;
+    background: #8b5cf6;
+  }
+  
+  .btn-liquid-reduced {
+    animation: none;
+    background: #8b5cf6;
+  }
 }
 
 /* Perfect ring border with bright white glow that blends with brand color */
