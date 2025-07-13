@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useRef, useCallback } from "react";
-import { usePerformanceSettings } from "@/lib/performance";
+import { useEffect, useRef } from "react";
 
 interface Raindrop {
   x: number;
@@ -23,7 +22,6 @@ interface Raindrop {
 
 export default function SubtleRain() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const performanceSettings = usePerformanceSettings();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -36,15 +34,25 @@ export default function SubtleRain() {
     const raindrops: Raindrop[] = [];
     const mouse = { x: -1000, y: -1000 }; // Start off-screen
     
-    // Use performance-aware raindrop count
-    let RAINDROP_COUNT = performanceSettings.raindropCount;
+    // Responsive raindrop count - more for desktop screens (reduced by 50%)
+    const getDropCount = () => {
+      const screenWidth = window.innerWidth;
+      const isDesktop = screenWidth >= 1024; // lg breakpoint
+      const isTablet = screenWidth >= 768; // md breakpoint
+      
+      if (isDesktop) return 120; // Reduced from 240 to 120
+      if (isTablet) return 90;   // Reduced from 180 to 90
+      return 60; // Reduced from 120 to 60
+    };
     
-    // Early exit if animations are disabled
-    if (performanceSettings.animationLevel === 'minimal' || !performanceSettings.enableParticles) {
-      return;
-    }
+    let RAINDROP_COUNT = getDropCount();
     const MOUSE_INFLUENCE_RADIUS = 104; // 30% bigger for enhanced interaction
     const DEFLECTION_STRENGTH = 60;
+    
+    // FPS limiting variables
+    const TARGET_FPS = 30;
+    const FRAME_INTERVAL = 1000 / TARGET_FPS; // 33.33ms between frames
+    let lastFrameTime = 0;
 
     // Resize canvas to match container and adjust raindrop count
     const resizeCanvas = () => {
@@ -63,8 +71,8 @@ export default function SubtleRain() {
       // Normalize coordinate system to use css pixels
       ctx.scale(devicePixelRatio, devicePixelRatio);
       
-      // Update raindrop count based on performance settings
-      const newDropCount = performanceSettings.raindropCount;
+      // Update raindrop count based on new screen size
+      const newDropCount = getDropCount();
       if (newDropCount !== RAINDROP_COUNT) {
         RAINDROP_COUNT = newDropCount;
         
@@ -148,25 +156,17 @@ export default function SubtleRain() {
       mouse.y = -1000;
     };
 
-    // Performance tracking
-    let lastFrameTime = 0;
-    let frameCount = 0;
-    const targetFrameTime = 1000 / performanceSettings.frameRate;
-    
-    // Animation loop with performance throttling
-    const animate = (currentTime: number = performance.now()) => {
-      // Throttle frame rate for low-end devices
-      if (currentTime - lastFrameTime < targetFrameTime) {
+    // Animation loop with FPS limiting
+    const animate = (currentTime = 0) => {
+      // FPS limiting - only render if enough time has passed
+      if (currentTime - lastFrameTime < FRAME_INTERVAL) {
         animationFrame = requestAnimationFrame(animate);
         return;
       }
-      
       lastFrameTime = currentTime;
-      frameCount++;
       
       // Clear canvas with minimal trail effect
-      const clearAlpha = performanceSettings.animationLevel === 'reduced' ? 0.25 : 0.15;
-      ctx.fillStyle = `rgba(0, 0, 0, ${clearAlpha})`;
+      ctx.fillStyle = "rgba(0, 0, 0, 0.15)"; // Reduced trail effect
       ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
       raindrops.forEach((drop) => {
@@ -247,25 +247,20 @@ export default function SubtleRain() {
           drop.history = []; // Reset history
         }
 
-        // ----- Performance-optimized tail drawing -----
-        // Reduce history length for better performance
-        const MAX_HISTORY = performanceSettings.animationLevel === 'full' ? 12 : 6;
+        // ----- Smooth history-based tail drawing -----
+        // Update history with current position
+        const MAX_HISTORY = 12;
         drop.history.push({ x: drop.x, y: drop.y });
         if (drop.history.length > MAX_HISTORY) drop.history.shift();
 
         // Only draw if we have at least 2 points
         const historyLen = drop.history.length;
         if (historyLen > 1) {
-          // Simplified calculations for better performance
-          const shimmer = performanceSettings.animationLevel === 'full' 
-            ? Math.sin(time * 3 + drop.wobbleOffset) * 0.1 + 0.9 
-            : 1;
+          // Pre-calculate shimmer & dynamic length for width scaling
+          const shimmer = Math.sin(time * 3 + drop.wobbleOffset) * 0.1 + 0.9;
           const speedFactor = speedMultiplier || 1;
           const dynamicLength = drop.length * (0.8 + speedFactor * 0.2);
 
-          // Batch drawing operations
-          ctx.lineCap = "round";
-          
           for (let i = 1; i < historyLen; i++) {
             const p1 = drop.history[i - 1];
             const p2 = drop.history[i];
@@ -274,11 +269,7 @@ export default function SubtleRain() {
             let lineWidth;
             let color;
 
-            if (performanceSettings.animationLevel === 'minimal') {
-              // Simplified rendering for minimal mode
-              lineWidth = 0.5 + dynamicLength / 100;
-              color = `rgba(255, 255, 255, ${drop.opacity * t * 0.6})`;
-            } else if (drop.trailType < 0.3) {
+            if (drop.trailType < 0.3) {
               // Sharp trail
               lineWidth = (0.4 + dynamicLength / 80) * t;
               color = `rgba(255, 255, 255, ${drop.opacity * t * shimmer})`;
@@ -295,6 +286,7 @@ export default function SubtleRain() {
 
             ctx.strokeStyle = color;
             ctx.lineWidth = lineWidth;
+            ctx.lineCap = "round";
 
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -304,9 +296,8 @@ export default function SubtleRain() {
         }
       });
 
-      // Draw subtle mouse halo (only for full animation mode)
-      if (performanceSettings.animationLevel === 'full' && 
-          mouse.x > -500 && mouse.x < canvas.clientWidth && mouse.y > 0 && mouse.y < canvas.clientHeight) {
+      // Draw subtle mouse halo to indicate interaction zone
+      if (mouse.x > -500 && mouse.x < canvas.clientWidth && mouse.y > 0 && mouse.y < canvas.clientHeight) {
         const haloGradient = ctx.createRadialGradient(
           mouse.x, mouse.y, 0,
           mouse.x, mouse.y, MOUSE_INFLUENCE_RADIUS
@@ -333,52 +324,8 @@ export default function SubtleRain() {
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseleave", handleMouseLeave);
 
-    // Handle performance settings changes
-    const handlePerformanceChange = (event: CustomEvent) => {
-      const newSettings = event.detail;
-      RAINDROP_COUNT = newSettings.raindropCount;
-      
-      // Adjust raindrop array
-      if (raindrops.length > RAINDROP_COUNT) {
-        raindrops.splice(RAINDROP_COUNT);
-      } else if (raindrops.length < RAINDROP_COUNT) {
-        while (raindrops.length < RAINDROP_COUNT) {
-          const densityWeight = Math.pow(Math.random(), 2);
-          const x = densityWeight * (canvas.clientWidth + 200);
-          const positionRatio = x / canvas.clientWidth;
-          const baseOpacity = 0.25 - (positionRatio * 0.15);
-          const baseAngle = 12 + Math.random() * 8;
-          
-          raindrops.push({
-            x,
-            y: Math.random() * -canvas.clientHeight,
-            originalX: x,
-            speed: (1 + Math.random() * 2) * 0.8,
-            opacity: Math.max(0.04, baseOpacity + Math.random() * 0.08),
-            length: 6 + Math.random() * 78,
-            angle: baseAngle,
-            baseAngle: baseAngle,
-            deflectionVariance: -0.5 + Math.random(),
-            wobbleOffset: Math.random() * Math.PI * 2,
-            speedVariation: 0.8 + Math.random() * 0.4,
-            prevX: x,
-            prevY: Math.random() * -canvas.clientHeight,
-            trailType: Math.random(),
-            taperness: 0.3 + Math.random() * 0.7,
-            history: [],
-          });
-        }
-      }
-    };
-
     // Start animation
     animate();
-
-    // Event listeners
-    window.addEventListener("resize", resizeCanvas);
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseleave", handleMouseLeave);
-    window.addEventListener("performance-settings-changed", handlePerformanceChange as EventListener);
 
     // Cleanup
     return () => {
@@ -386,24 +333,15 @@ export default function SubtleRain() {
       window.removeEventListener("resize", resizeCanvas);
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseleave", handleMouseLeave);
-      window.removeEventListener("performance-settings-changed", handlePerformanceChange as EventListener);
     };
-  }, [performanceSettings]);
-
-  // Don't render if animations are disabled
-  if (performanceSettings.animationLevel === 'minimal' || !performanceSettings.enableParticles) {
-    return null;
-  }
+  }, []);
 
   return (
     <canvas
       ref={canvasRef}
       className="w-full h-full pointer-events-none
                  [@media(prefers-reduced-motion:reduce)]:hidden"
-      style={{ 
-        opacity: performanceSettings.animationLevel === 'reduced' ? 0.5 : 0.7,
-        willChange: 'auto' // Optimize for performance
-      }}
+      style={{ opacity: 0.7 }} // Tuned for denser rain effect
     />
   );
 } 

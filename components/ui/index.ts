@@ -9,6 +9,4 @@ export {
   CardDescription, 
   CardContent 
 } from './card';
-export { default as SocialLinks } from './SocialLinks';
-export { default as PerformanceWrapper } from './PerformanceWrapper';
-export { default as PerformanceSettings } from './PerformanceSettings'; 
+export { default as SocialLinks } from './SocialLinks'; 

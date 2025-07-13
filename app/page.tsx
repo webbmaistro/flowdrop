@@ -3,14 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star } from 'lucide-react';
-import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks, PerformanceSettings } from '@/components/ui';
+import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import { useAnalytics } from '@/lib/usePostHog';
-import SubtleRain from '@/components/SubtleRain';
-import { containerVariants, itemVariants, logoVariants, getHoverProps, getTapProps } from '@/lib/animations';
+import dynamic from 'next/dynamic';
+
+// Lazy load the heavy rain component
+const SubtleRain = dynamic(() => import('@/components/SubtleRain'), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 z-0 bg-background" />
+});
 
 export default function LandingPage() {
   const [email, setEmail] = useState('');
@@ -65,7 +70,20 @@ export default function LandingPage() {
     }
   };
 
-  // Animation variants are now imported from the performance-aware animations module
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background text-text-primary">
@@ -101,11 +119,25 @@ export default function LandingPage() {
             >
               <motion.div 
                 className="p-4 bg-background-glass/50 backdrop-blur-lg rounded-2xl border border-white/10 cursor-pointer group relative overflow-hidden"
-                variants={logoVariants}
-                initial="initial"
-                animate="animate"
-                {...getHoverProps(logoVariants.hover)}
-                {...getTapProps()}
+                whileHover={{ 
+                  scale: 1.05,
+                  y: -2,
+                }}
+                whileTap={{ scale: 0.98 }}
+                animate={{ 
+                  y: [0, -4, 0],
+                }}
+                transition={{
+                  y: {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  },
+                  scale: {
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }
+                }}
               >
                 <motion.div
                   animate={{ 
@@ -617,9 +649,6 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-      
-      {/* Performance Settings */}
-      <PerformanceSettings />
     </div>
   );
 }

@@ -9,16 +9,21 @@ import "./globals.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "FlowDrop - Deploy n8n workflows in seconds",
   description: "AI-powered workflow builder with instant cloud deployment. Build, deploy, and scale your n8n automations without the complexity.",
+  other: {
+    "viewport": "width=device-width, initial-scale=1",
+  },
 };
 
 export default function RootLayout({
@@ -34,7 +39,8 @@ export default function RootLayout({
         <PHProvider>
           <HeaderWrapper>{children}</HeaderWrapper>
         </PHProvider>
-        <Analytics />
+        {/* Defer analytics for better performance */}
+        <Analytics mode="production" />
         <SpeedInsights />
       </body>
     </html>
