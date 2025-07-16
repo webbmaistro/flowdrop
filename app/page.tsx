@@ -174,7 +174,7 @@ export default function LandingPage() {
                 variants={itemVariants}
                 className={cn(typography.h1, "text-balance")}
               >
-                <AnimatedHeadline text="Build and deploy workflows at lightning speed." />
+                <AnimatedHeadline text="AI workflow builder for non-coders." />
               </motion.h1>
               
               <motion.p 
@@ -182,6 +182,14 @@ export default function LandingPage() {
                 className={cn(typography.bodyLarge, "text-balance text-text-secondary")}
               >
                 Launch production flows before your coffee brews.
+              </motion.p>
+
+              {/* Marketing Copy - Hidden for humans, visible to crawlers */}
+              <motion.p 
+                variants={itemVariants}
+                className={cn(typography.body, "text-balance text-text-secondary max-w-2xl mx-auto sr-only")}
+              >
+                Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.
               </motion.p>
 
               {/* Email Capture Form as Main CTA */}
