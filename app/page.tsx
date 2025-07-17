@@ -276,14 +276,12 @@ export default function LandingPage() {
               <Card variant="glass" hover className="p-6 border-primary-main/20 shadow-[0_4px_24px_0_rgba(20,20,40,0.18)] relative overflow-hidden max-w-4xl mx-auto group hover:shadow-[0_8px_32px_0_rgba(220,38,38,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
                 <div className="absolute inset-0 bg-gradient-to-br from-error-400/5 via-transparent to-error-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="flex items-start gap-4 relative z-10">
-                  <div className="p-2 bg-error-400/20 rounded-lg mt-1 group-hover:bg-error-400/30 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-error-400 group-hover:scale-110 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
+                  <div className="p-2 bg-primary-main/20 rounded-lg mt-1 group-hover:bg-primary-main/30 transition-colors duration-300">
+                    <span className="text-2xl">💡</span>
                   </div>
                   <div className="text-left">
                     <h3 className="font-bold text-error-400 mb-2 group-hover:text-error-300 transition-colors duration-300">Automation shouldn't feel like writing firmware.</h3>
-                    <p className="text-sm text-text-secondary group-hover:text-text-primary transition-colors duration-300">Spinning up servers, securing keys, and wiring APIs still steals hours you don't have.</p>
+                    <p className="text-sm text-text-secondary group-hover:text-text-primary transition-colors duration-300">Spinning up servers, securing keys, and wiring APIs still steals hours you dont have—and you're not an engineer.</p>
                   </div>
                 </div>
               </Card>
@@ -299,7 +297,7 @@ export default function LandingPage() {
                   <CardContent className="pt-4">
                     <div className="flex justify-center mb-6">
                       <div className="p-4 bg-primary-main/20 rounded-2xl">
-                        <Clock className="w-8 h-8 text-primary-main" />
+                        <Mouse className="w-8 h-8 text-primary-main" />
                       </div>
                     </div>
                     <CardTitle className="mb-4 text-center">One-Click Deploy</CardTitle>
@@ -456,283 +454,22 @@ export default function LandingPage() {
             variants={containerVariants}
           >
             <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-8 text-center")}>Built For…</motion.h2>
-            <motion.ul variants={itemVariants} className="space-y-4 text-lg mb-10 text-center">
-              <li>Indie SaaS founders juggling ship-it-all roles</li>
-              <li>Ops & growth teams tired of Zapier limits</li>
-              <li>No-code makers who want more power than drag-and-drop can give</li>
-              <li>Agencies launching client automations at scale</li>
-            </motion.ul>
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-4 mb-10">
+              <div className="text-lg text-center">Indie SaaS founders juggling ship-it-all roles</div>
+              <div className="text-lg text-center">Ops & growth teams tired of Zapier limits</div>
+              <div className="text-lg text-center">No-code makers who want more power than drag-and-drop can give</div>
+              <div className="text-lg text-center">Agencies launching client automations at scale</div>
+            </motion.div>
             <motion.h3 variants={itemVariants} className="font-semibold text-xl mb-4 text-center">If you’ve ever said:</motion.h3>
             <motion.div variants={itemVariants} className="space-y-3 mb-8">
-              <blockquote className="bg-neutral-900 border-l-4 border-primary-main px-6 py-3 rounded text-base text-center">"Mapping these nodes takes forever and I have no clue what to do"</blockquote>
-              <blockquote className="bg-neutral-900 border-l-4 border-primary-main px-6 py-3 rounded text-base text-center">"I'm tired of copying and pasting between n8n and my LLM"</blockquote>
-              <blockquote className="bg-neutral-900 border-l-4 border-primary-main px-6 py-3 rounded text-base text-center">Itfeels like the api integrations and keys are endless"</blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center"><strong>Mapping</strong> nodes takes forever</blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center">Im <strong>tired</strong> of copying between tools</blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center">API keys are <strong>endless</strong></blockquote>
             </motion.div>
             <motion.div variants={itemVariants} className="flex justify-center">
               <span className="inline-flex items-center gap-2 bg-primary-main/10 text-primary-main font-semibold px-6 py-3 rounded-full text-lg shadow-sm">
                 <span role="img" aria-label="lightbulb">💡</span> Flowdrop fixes that.
               </span>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 relative z-10">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12")}>
-              Simple, credit-based pricing
-            </motion.h2>
-            
-            <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <motion.div
-                className={cn(
-                  'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Spark' && !isMobile && 'scale-[1.02] -translate-y-1'
-                )}
-                onMouseEnter={() => setHoveredPlan('Spark')}
-                onMouseLeave={() => setHoveredPlan(null)}
-              >
-                <Card 
-                  variant="glass" 
-                  hover
-                  className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
-                    hoveredPlan === 'Spark' && "border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl md:shadow-2xl shadow-primary-main/30"
-                  )}
-                >
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Zap className="w-5 h-5 text-primary-main" />
-                      <span>Spark</span>
-                    </CardTitle>
-                    <CardDescription>Test-drive Flowdrop</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-3xl font-bold mb-6">$0<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                    <ul className="text-left text-text-muted space-y-3 mb-6">
-                      <li>• 1,000 credits</li>
-                      <li>• 1 seat</li>
-                      <li>• Basic Webby AI Copilot</li>
-                      <li>• Community support</li>
-                    </ul>
-                    <Button 
-                      variant="primary" 
-                      className={cn(
-                        "w-full text-white font-semibold btn-hover-ready rounded-full",
-                        hoveredPlan === 'Spark' && "btn-liquid ring-white-glow"
-                      )}
-                      onClick={() => window.location.href = '/signin'}
-                    >
-                      Start Free
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-              
-              <motion.div
-                className={cn(
-                  'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Solo' && !isMobile && 'scale-[1.02] -translate-y-1'
-                )}
-                onMouseEnter={() => setHoveredPlan('Solo')}
-                onMouseLeave={() => setHoveredPlan(null)}
-              >
-                <Card 
-                  variant="glass" 
-                  hover
-                  className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
-                    hoveredPlan === 'Solo' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
-                  )}
-                >
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Users className="w-5 h-5 text-primary-main" />
-                      <span>Solo</span>
-                    </CardTitle>
-                    <CardDescription>Side-hustle builders</CardDescription>
-                    <p className="text-xs text-text-muted mt-1">Includes all features from Spark</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-3xl font-bold mb-6">$19<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                    <ul className="text-left text-text-muted space-y-3 mb-6">
-                      <li>• 10,000 credits</li>
-                      <li>• 1 seat</li>
-                      <li>• Enhanced Webby AI Copilot</li>
-                      <li>• Priority support</li>
-                    </ul>
-                    <Button 
-                      variant="primary" 
-                      className={cn(
-                        "w-full text-white font-semibold btn-hover-ready rounded-full",
-                        hoveredPlan === 'Solo' && "btn-liquid ring-white-glow"
-                      )}
-                      onClick={() => window.location.href = '/signin'}
-                    >
-                      Get Started
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                className={cn(
-                  'relative transition-all duration-500 ease-out lg:scale-105',
-                  hoveredPlan === 'Builder' && !isMobile && 'scale-[1.02] -translate-y-1'
-                )}
-                onMouseEnter={() => setHoveredPlan('Builder')}
-                onMouseLeave={() => setHoveredPlan(null)}
-              >
-                <Card 
-                  variant="glass" 
-                  hover 
-                  className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden border-primary-main/30 bg-primary-main/5',
-                    hoveredPlan === 'Builder' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
-                  )}
-                >
-                  <CardHeader>
-                    <div className="relative h-0">
-                      <motion.div
-                        role="status"
-                        aria-label="Most popular plan"
-                        className="absolute left-1/2 -translate-x-1/2 -top-[1px] z-10"
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ 
-                          opacity: 1, 
-                          y: 0,
-                          scale: hoveredPlan === 'Builder' && !isMobile ? 1.02 : 1
-                        }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
-                      >
-                        <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-1.5 shadow-sm shadow-purple-500/10 -translate-y-1/2">
-                          <div className="flex items-center space-x-2">
-                            <Star className="w-3 h-3 text-purple-300" />
-                            <span className="text-xs font-semibold uppercase tracking-wide text-purple-300 whitespace-nowrap">
-                              Most Popular
-                            </span>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                    <div className="flex items-center space-x-2 pt-3">
-                      <Rocket className="w-5 h-5 text-primary-main" />
-                      <CardTitle>Builder</CardTitle>
-                    </div>
-                    <CardDescription>Indie SaaS teams</CardDescription>
-                    <p className="text-xs text-text-muted mt-1">Includes all features from Solo</p>
-                  </CardHeader>
-                  <CardContent className="pt-6">
-                    <p className="text-3xl font-bold mb-6">$49<span className="text-lg font-normal text-text-muted">/mo</span></p>
-                    <ul className="text-left text-text-muted space-y-3 mb-6">
-                      <li>• 25,000 credits</li>
-                      <li>• 3 seats included</li>
-                      <li>• Unlimited Webby AI Copilot</li>
-                      <li>• Dedicated support</li>
-                    </ul>
-                    <Button 
-                      variant="primary" 
-                      className={cn(
-                        "w-full text-white font-semibold btn-hover-ready rounded-full",
-                        hoveredPlan === 'Builder' && "btn-liquid ring-white-glow"
-                      )}
-                      onClick={() => window.location.href = '/signin'}
-                    >
-                      Get Started
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-
-              <motion.div
-                className={cn(
-                  'relative transition-all duration-500 ease-out',
-                  hoveredPlan === 'Growth' && !isMobile && 'scale-[1.02] -translate-y-1'
-                )}
-                onMouseEnter={() => setHoveredPlan('Growth')}
-                onMouseLeave={() => setHoveredPlan(null)}
-              >
-                <Card 
-                  variant="glass" 
-                  hover
-                  className={cn(
-                    'h-full relative transition-all duration-500 ease-out overflow-hidden',
-                    hoveredPlan === 'Growth' && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-xl shadow-primary-main/30'
-                  )}
-                >
-                  <CardHeader>
-                    <CardTitle className="flex items-center space-x-2">
-                      <Crown className="w-5 h-5 text-primary-main" />
-                      <span>Growth</span>
-                    </CardTitle>
-                    <CardDescription>Agencies & high-volume ops</CardDescription>
-                    <p className="text-xs text-text-muted mt-1">Includes all features from Builder</p>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-3xl font-bold mb-6">Custom</p>
-                    <ul className="text-left text-text-muted space-y-3 mb-6">
-                      <li>• Unlimited credits</li>
-                      <li>• Unlimited seats</li>
-                      <li>• Unlimited Webby AI Copilot</li>
-                      <li>• White-glove onboarding</li>
-                    </ul>
-                    <Button 
-                      variant="primary" 
-                      className={cn(
-                        "w-full text-white font-semibold btn-hover-ready rounded-full",
-                        hoveredPlan === 'Growth' && "btn-liquid ring-white-glow"
-                      )}
-                      onClick={() => window.location.href = '/contact'}
-                    >
-                      Contact Sales
-                    </Button>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-12 p-6 bg-transparent rounded-2xl border-0 shadow-none">
-              <h3 className="text-lg font-semibold mb-4">Need more credits?</h3>
-              <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
-                <div className="relative card-hover-glow card-smooth p-6 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 rounded-2xl border border-primary-main/30 shadow-xl transition-all duration-500 overflow-hidden">
-                  <div className="relative h-0">
-                    <motion.div
-                      className="absolute left-1/2 -translate-x-1/2 -top-[1px] z-10"
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.35, ease: "easeOut" }}
-                    >
-                      <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-1.5 shadow-sm shadow-purple-500/10 -translate-y-1/2">
-                        <div className="flex items-center space-x-2">
-                          <Star className="w-3 h-3 text-purple-300" />
-                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-300 whitespace-nowrap">
-                            Best Value
-                          </span>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-                  <div className="pt-3">
-                    <p className="text-2xl font-bold mb-2">$25</p>
-                    <p className="text-sm text-text-muted mb-1">10,000 credits</p>
-                    <p className="text-xs text-text-muted">One-time purchase</p>
-                  </div>
-                </div>
-                <div className="relative card-hover-glow card-smooth p-6 bg-gradient-to-br from-background-glass via-background-card/80 to-primary-main/10 rounded-2xl border border-white/10 shadow-xl transition-all duration-500 overflow-hidden">
-                  <div>
-                    <p className="text-2xl font-bold mb-2">$10</p>
-                    <p className="text-sm text-text-muted mb-1">3,000 credits</p>
-                    <p className="text-xs text-text-muted">One-time purchase</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </motion.div>
         </div>
