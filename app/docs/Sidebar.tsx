@@ -5,6 +5,7 @@ import SidebarLink from "@/components/ui/SidebarLink";
 const nav = [
   { href: "/docs", label: "Getting Started" },
   { href: "/docs/workflow-builder-basics", label: "Workflow Builder Basics" },
+  { href: "/docs/workflow-editor-comparison", label: "Workflow Editor Comparison" },
   { href: "/docs/ai-blocks-nodes", label: "AI Blocks & Nodes", wip: true },
   { href: "/docs/roadmap", label: "Roadmap" },
 ];
