@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaDiscord, FaTwitter, FaReddit, FaMedium } from 'react-icons/fa';

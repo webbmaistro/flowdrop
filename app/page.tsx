@@ -376,9 +376,9 @@ export default function LandingPage() {
           variant="primary"
           className="h-[52px] w-full max-w-[400px] px-8 btn-liquid text-white font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
           onClick={() => window.location.href = '/docs/workflow-editor-comparison'}
-          whileHover="hover"
-          initial="default"
-          animate="default"
+          whileHover={{ scale: 1.06 }}
+          animate={{ scale: [1, 1.04, 1] }}
+          transition={{ duration: 1.8, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
         >
           Compare Workflow Editors
         </Button>
@@ -453,23 +453,23 @@ export default function LandingPage() {
             animate="visible"
             variants={containerVariants}
           >
-            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-8 text-center")}>Built For…</motion.h2>
+            <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-8 text-center")}>Who Loves Flowdrop</motion.h2>
             <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-4 mb-10">
-              <div className="text-lg text-center">Indie SaaS founders juggling ship-it-all roles</div>
-              <div className="text-lg text-center">Ops & growth teams tired of Zapier limits</div>
-              <div className="text-lg text-center">No-code makers who want more power than drag-and-drop can give</div>
-              <div className="text-lg text-center">Agencies launching client automations at scale</div>
-            </motion.div>
+              <div className="text-lg text-center">Indie SaaS founders juggling everything</div>
+              <div className="text-lg text-center">Ops teams tired of Zapier limits</div>
+              <div className="text-lg text-center">No-code makers wanting more power</div>
+              <div className="text-lg text-center">Agencies launching automations at scale</div>
+              </motion.div>
             <motion.h3 variants={itemVariants} className="font-semibold text-xl mb-4 text-center">If you’ve ever said:</motion.h3>
             <motion.div variants={itemVariants} className="space-y-3 mb-8">
-              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center"><strong>Mapping</strong> nodes takes forever</blockquote>
-              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center">Im <strong>tired</strong> of copying between tools</blockquote>
-              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center">API keys are <strong>endless</strong></blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center"><strong className="text-primary-main">Mapping</strong> nodes takes forever</blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center">Im <strong className="text-primary-main">tired</strong> of <span className="text-primary-main">copying</span> between tools</blockquote>
+              <blockquote className="bg-neutral-900/50 backdrop-blur-sm border border-white/10 shadow-inset_0_0_0_1px_rgba(255,255,255,0.1) px-6 py-3 rounded text-base text-center"><span className="text-primary-main">API keys</span> are <strong>endless</strong></blockquote>
             </motion.div>
             <motion.div variants={itemVariants} className="flex justify-center">
               <span className="inline-flex items-center gap-2 bg-primary-main/10 text-primary-main font-semibold px-6 py-3 rounded-full text-lg shadow-sm">
                 <span role="img" aria-label="lightbulb">💡</span> Flowdrop fixes that.
-              </span>
+                          </span>
             </motion.div>
           </motion.div>
         </div>
