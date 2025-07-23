@@ -267,9 +267,6 @@ export default function LandingPage() {
           >
             <motion.div variants={itemVariants} className="text-center mb-16">
               <h2 className={cn(typography.h2, "mb-6")}>Why Flowdrop?</h2>
-              <p className={cn(typography.bodyLarge, "text-text-secondary max-w-3xl mx-auto")}>
-                Automation shouldn't feel like writing firmware.
-              </p>
             </motion.div>
 
             <motion.div variants={itemVariants} className="mb-12">
@@ -280,7 +277,7 @@ export default function LandingPage() {
                     <span className="text-2xl">💡</span>
                   </div>
                   <div className="text-left">
-                    <h3 className="font-bold text-error-400 mb-2 group-hover:text-error-300 transition-colors duration-300">Automation shouldn't feel like writing firmware.</h3>
+                    <h3 className="font-bold text-error-400 mb-2 group-hover:text-error-300 transition-colors duration-300">Automation shouldn't feel like writing software.</h3>
                     <p className="text-sm text-text-secondary group-hover:text-text-primary transition-colors duration-300">Spinning up servers, securing keys, and wiring APIs still steals hours you dont have—and you're not an engineer.</p>
                   </div>
                 </div>
@@ -555,6 +552,27 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="py-8 border-t border-white/5 relative z-10">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-2xl mx-auto text-center"
+            initial="hidden"
+            animate="visible"
+            variants={containerVariants}
+          >
+            <motion.div variants={itemVariants}>
+              <a 
+                href="/privacy" 
+                className="text-sm text-gray-400 hover:text-gray-300 transition-colors duration-200"
+              >
+                Privacy Policy
+              </a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </footer>
     </div>
   );
 }
