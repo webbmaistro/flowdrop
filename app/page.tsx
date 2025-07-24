@@ -19,16 +19,35 @@ const SubtleRain = dynamic(() => import('@/components/SubtleRain'), {
 });
 
 // Scroll-triggered animation component
-function AnimatedSection({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) {
+type AnimatedSectionProps = {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  direction?: 'left' | 'right';
+};
+
+function AnimatedSection({ children, className = "", delay = 0, direction }: AnimatedSectionProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-300px" });
-  
+
+  let initial, animate;
+  if (direction === 'left') {
+    initial = { opacity: 0, x: -60 };
+    animate = isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -60 };
+  } else if (direction === 'right') {
+    initial = { opacity: 0, x: 60 };
+    animate = isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 60 };
+  } else {
+    initial = { opacity: 0, y: 40 };
+    animate = isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 };
+  }
+
   return (
     <motion.div
       ref={ref}
       className={className}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+      initial={initial}
+      animate={animate}
       transition={{ 
         duration: 0.7, 
         delay: delay,
@@ -421,7 +440,7 @@ export default function LandingPage() {
       {/* Your Edge With Flowdrop - Clean Real Screenshots Section */}
       <section 
         ref={galleryRef} 
-        className="py-20 relative z-10 overflow-hidden" 
+        className="py-12 lg:py-20 relative z-10 overflow-hidden" 
       >
         <div className="container mx-auto px-6">
           {/* Header */}
@@ -434,8 +453,8 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* Main Screenshots Gallery */}
-          <div className="max-w-7xl mx-auto relative">
+          {/* Desktop Layout */}
+          <div className="hidden lg:block max-w-7xl mx-auto relative">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               
               {/* Left Column - Main Workflow Editor */}
@@ -546,7 +565,7 @@ export default function LandingPage() {
               opacity: scrollProgress > 0.6 ? 1 : 0 
             }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute bottom-32 left-1/2 transform -translate-x-1/2 translate-y-[100px] translate-x-[50px] z-30"
+            className="absolute bottom-32 left-1/2 transform -translate-x-1/2 translate-y-[100px] translate-x-[50px] z-30 hidden lg:block"
           >
             <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-xl p-4 shadow-2xl">
               <div className="flex items-center gap-3 mb-3">
@@ -581,7 +600,7 @@ export default function LandingPage() {
               opacity: scrollProgress > 0.7 ? 1 : 0 
             }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute bottom-32 right-8 z-30"
+            className="absolute bottom-32 right-8 z-30 hidden lg:block"
           >
             <div className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-2xl overflow-hidden">
               <div className="bg-neutral-800/50 border-b border-white/10 px-4 py-3 flex items-center gap-3">
@@ -619,7 +638,7 @@ export default function LandingPage() {
               opacity: scrollProgress > 0.8 ? 1 : 0 
             }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute top-1/2 left-8 transform -translate-y-1/2 translate-y-[-200px] z-30"
+            className="absolute top-1/2 left-8 transform -translate-y-1/2 translate-y-[-200px] z-30 hidden lg:block"
           >
             <div className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-2xl overflow-hidden">
               <div className="bg-neutral-800/50 border-b border-white/10 px-3 py-2 flex items-center gap-2">
@@ -659,7 +678,7 @@ export default function LandingPage() {
               opacity: scrollProgress > 0.5 ? 1 : 0 
             }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute top-16 right-16 z-30"
+            className="absolute top-16 right-16 z-30 hidden lg:block"
           >
             <div className="bg-gradient-to-br from-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-blue-500/30 rounded-xl p-4 shadow-2xl overflow-hidden">
               <div className="flex items-center gap-3 mb-3">
@@ -686,9 +705,197 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Mobile Layout - Story-Driven Experience */}
+      <section className="lg:hidden py-20 relative z-10">
+        <div className="container mx-auto px-6">
+          <div className="space-y-16">
+            
+            {/* Mobile Story 1: Visual Builder */}
+            <AnimatedSection className="text-center" direction="left">
+              <div className="mb-8">
+                <h3 className={cn(typography.h3, "mb-4")}>Visual Workflow Builder</h3>
+                <p className={cn(typography.body, "text-text-secondary")}>
+                  Drag, drop, and connect. Build complex workflows with intuitive visual tools.
+                </p>
+              </div>
+              <motion.div 
+                initial={{ x: -100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-xl shadow-2xl overflow-hidden max-w-md mx-auto"
+              >
+                <div className="bg-neutral-800/50 border-b border-white/10 px-4 py-3 flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-neutral-700/50 rounded-lg px-3 py-1 text-sm text-gray-400 text-center">
+                    flowdrop.xyz/builder
+                  </div>
+                </div>
+                <div className="relative">
+                  <Image 
+                    src="/screenshots/webfloweditor.png" 
+                    alt="FlowDrop Visual Workflow Builder"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto rounded-b-xl"
+                    priority
+                  />
+                  <div className="absolute top-4 left-4 bg-primary-main/20 backdrop-blur-sm border border-primary-main/30 rounded-lg px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-primary-main rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-primary-main">Visual Builder</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatedSection>
 
+            {/* Mobile Story 2: AI Workflow Generation */}
+            <AnimatedSection className="text-center" direction="right">
+              <div className="mb-8">
+                <h3 className={cn(typography.h3, "mb-4")}>AI-Powered Generation</h3>
+                <p className={cn(typography.body, "text-text-secondary")}>
+                  Describe your workflow in plain English. Watch AI create it instantly.
+                </p>
+              </div>
+              <div className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-xl shadow-2xl overflow-hidden max-w-md mx-auto">
+                <div className="bg-neutral-800/50 border-b border-white/10 px-4 py-3 flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-neutral-700/50 rounded-lg px-3 py-1 text-sm text-gray-400 text-center">
+                    flowdrop.xyz/ai-generator
+                  </div>
+                </div>
+                <div className="relative">
+                  <Image 
+                    src="/screenshots/generatewebflowscreen.png" 
+                    alt="FlowDrop AI Workflow Generation"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto rounded-b-xl"
+                    priority
+                  />
+                  <div className="absolute top-6 left-6 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-lg px-3 py-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-purple-400">AI Workflow Generation</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
 
-            {/* Features Section */}
+            {/* Mobile Story 3: Build with Chat */}
+            <AnimatedSection className="text-center" direction="left">
+              <div className="mb-8">
+                <h3 className={cn(typography.h3, "mb-4")}>Build with Chat</h3>
+                <p className={cn(typography.body, "text-text-secondary")}>
+                  Natural conversations that create powerful workflows. Like Cursor, but for automation.
+                </p>
+              </div>
+              <div className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-2xl overflow-hidden max-w-md mx-auto">
+                <div className="bg-neutral-800/50 border-b border-white/10 px-3 py-2 flex items-center gap-2">
+                  <div className="flex gap-1">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-neutral-700/50 rounded px-2 py-1 text-xs text-gray-400 text-center">
+                    flowdrop.xyz/build-with-chat
+                  </div>
+                </div>
+                <div className="relative">
+                  <Image 
+                    src="/screenshots/buildwithchatfeature.png" 
+                    alt="FlowDrop Build with Chat"
+                    width={250}
+                    height={300}
+                    className="w-full h-auto"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-purple-500/20 backdrop-blur-sm border border-purple-500/30 rounded-lg px-2 py-1">
+                    <span className="text-xs font-semibold text-purple-400">build with chat</span>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Mobile Story 4: Node Editor */}
+            <AnimatedSection className="text-center" direction="right">
+              <div className="mb-8">
+                <h3 className={cn(typography.h3, "mb-4")}>Advanced AI Node Editing</h3>
+                <p className={cn(typography.body, "text-text-secondary")}>
+                  Fine-tune AI nodes with precision. Custom logic for complex workflows.
+                </p>
+              </div>
+              <div className="bg-neutral-900/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-2xl overflow-hidden max-w-md mx-auto">
+                <div className="bg-neutral-800/50 border-b border-white/10 px-4 py-3 flex items-center gap-3">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                  </div>
+                  <div className="flex-1 bg-neutral-700/50 rounded-lg px-3 py-1 text-sm text-gray-400 text-center">
+                    flowdrop.xyz/node-editor
+                  </div>
+                </div>
+                <div className="relative">
+                  <Image 
+                    src="/screenshots/nodeeditor.png" 
+                    alt="FlowDrop Node Editor"
+                    width={400}
+                    height={300}
+                    className="w-full h-auto rounded-b-lg"
+                  />
+                  <div className="absolute bottom-2 left-2 bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 rounded-lg px-2 py-1">
+                    <span className="text-xs font-semibold text-orange-400">AI node editing</span>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* Mobile Story 5: Live Dashboard */}
+            <AnimatedSection className="text-center" direction="left">
+              <div className="mb-8">
+                <h3 className={cn(typography.h3, "mb-4")}>Real-Time Execution Monitoring</h3>
+                <p className={cn(typography.body, "text-text-secondary")}>
+                  Track performance, monitor workflows, and scale with confidence.
+                </p>
+              </div>
+              <div className="bg-gradient-to-br from-green-500/20 to-emerald-500/20 backdrop-blur-sm border border-green-500/30 rounded-xl p-6 shadow-2xl max-w-md mx-auto">
+                <div className="flex items-center gap-3 mb-4 justify-center">
+                  <div className="w-10 h-10 bg-green-500/20 rounded-full flex items-center justify-center">
+                    <Activity className="w-5 h-5 text-green-400" />
+                  </div>
+                  <div>
+                    <div className="text-lg font-semibold text-green-400">Live Dashboard</div>
+                    <div className="text-sm text-gray-400">Monitor Execution Numbers</div>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center p-3 bg-green-500/10 rounded-lg">
+                    <span className="text-sm text-gray-300">Total Executions</span>
+                    <span className="text-lg font-semibold text-green-400">1.2M</span>
+                  </div>
+                  <div className="flex justify-between items-center p-3 bg-green-500/10 rounded-lg">
+                    <span className="text-sm text-gray-300">Active Workflows</span>
+                    <span className="text-lg font-semibold text-green-400">847</span>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
       <section className="py-20 relative z-10 snap-start">
         <div className="container mx-auto px-6">
           <AnimatedSection className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
