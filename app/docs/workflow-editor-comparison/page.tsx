@@ -45,8 +45,8 @@ export default function WorkflowEditorComparison() {
                 "address": {
                   "@type": "PostalAddress",
                   "addressCountry": "US",
-                  "addressRegion": "CA",
-                  "addressLocality": "San Francisco"
+                  "addressRegion": "MD",
+                  "addressLocality": "Washington, DC"
                 },
                 "sameAs": [
                   "https://twitter.com/flowdrop_app",

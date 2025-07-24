@@ -9,4 +9,6 @@ export {
   CardDescription, 
   CardContent 
 } from './card';
-export { default as SocialLinks } from './SocialLinks'; 
+export { default as SocialLinks } from './SocialLinks';
+export { default as Screenshot } from './Screenshot';
+export { default as ScreenshotGallery } from './ScreenshotGallery'; 
