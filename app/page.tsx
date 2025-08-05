@@ -1198,6 +1198,100 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Premium Company Background Section */}
+      <section className="py-20 border-t border-white/5 relative z-10">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className={cn(typography.h2, "mb-6")}>Built by Industry Veterans</h2>
+              <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+                Our team brings decades of experience from the world's most respected companies
+              </p>
+            </div>
+            
+            {/* Company Logos Grid */}
+            <div className="grid grid-cols-3 gap-10 mb-12 max-w-3xl mx-auto">
+              {/* Apple */}
+              <motion.div
+                className="flex flex-col items-center group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.1,
+                  ease: "easeOut"
+                }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                  <Image 
+                    src="/logos/apple.svg" 
+                    alt="Apple" 
+                    width={40} 
+                    height={40}
+                    className="text-white group-hover:text-gray-200 transition-colors duration-300"
+                  />
+                </div>
+                <span className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Apple</span>
+              </motion.div>
+
+              {/* Meta */}
+              <motion.div
+                className="flex flex-col items-center group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.2,
+                  ease: "easeOut"
+                }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                  <Image 
+                    src="/logos/meta.svg" 
+                    alt="Meta" 
+                    width={40} 
+                    height={40}
+                    className="text-blue-400 group-hover:text-blue-300 transition-colors duration-300"
+                  />
+                </div>
+                <span className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Meta</span>
+              </motion.div>
+
+              {/* Capital One */}
+              <motion.div
+                className="flex flex-col items-center group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -4 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.3,
+                  ease: "easeOut"
+                }}
+              >
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                  <Image 
+                    src="/logos/capital-one.svg" 
+                    alt="Capital One" 
+                    width={40} 
+                    height={40}
+                    className="text-red-400 group-hover:text-red-300 transition-colors duration-300"
+                  />
+                </div>
+                <span className="text-sm font-medium text-gray-400 group-hover:text-gray-300 transition-colors duration-300">Capital One</span>
+              </motion.div>
+            </div>
+
+
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* Email Capture Section (now Get Started button) */}
       <section className="py-16 border-t border-white/5 relative z-10">
         <div className="container mx-auto px-6">
