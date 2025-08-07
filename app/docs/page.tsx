@@ -76,7 +76,7 @@ export default function DocsHome() {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-2">FlowDrop Docs — Build AI-first workflows in minutes.</h1>
-      <p className="mb-6 text-neutral-300">Get started fast. More magic landing soon ✨</p>
+      <p className="mb-6 text-neutral-300">Get started fast.</p>
       
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">What is FlowDrop?</h2>
@@ -122,19 +122,7 @@ export default function DocsHome() {
         </div>
       </section>
 
-      <Callout emoji="✅">Core concepts ready. More sections coming soon.</Callout>
-      
-      <section className="mb-12">
-        <h2 className="text-xl font-bold mb-2">What's in Alpha?</h2>
-        <ul className="list-disc pl-6 text-neutral-300 space-y-1">
-          <li>✅ Getting Started</li>
-          <li>✅ Workflow Builder Basics</li>
-          <li>🚧 AI Blocks & Nodes</li>
-          <li>🕒 Roadmap</li>
-        </ul>
-      </section>
-      
-      <ComingSoon />
+
     </div>
   );
 } 
