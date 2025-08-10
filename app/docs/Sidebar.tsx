@@ -62,7 +62,6 @@ export default function Sidebar() {
             key={item.href}
             href={item.href}
             active={pathname === item.href}
-            wip={item.wip}
           >
             {item.label}
           </SidebarLink>
@@ -73,16 +72,16 @@ export default function Sidebar() {
           <CollapsibleSection title="Node Library" defaultOpen={false}>
             {/* Workflow Triggers */}
             <CollapsibleSection title="Workflow Triggers" defaultOpen={false}>
-            {nodeLibrary["Workflow Triggers"].map((node) => (
-              <SidebarLink
-                key={node.href}
-                href={node.href}
-                active={pathname === node.href}
-              >
-                {node.label}
-              </SidebarLink>
-            ))}
-          </CollapsibleSection>
+              {nodeLibrary["Workflow Triggers"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
 
           {/* Action Nodes */}
           <CollapsibleSection title="Action Nodes" defaultOpen={false}>
