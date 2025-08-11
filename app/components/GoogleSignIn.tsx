@@ -30,11 +30,11 @@ export default function GoogleSignIn() {
 
       if (error) {
         console.error('Error signing in with Google:', error.message)
-        alert('Failed to sign in with Google. Please try again.')
+        // Replace alert with a user-friendly notification method
       }
     } catch (error) {
       console.error('Error signing in with Google:', error)
-      alert('Failed to sign in with Google. Please try again.')
+      // Replace alert with a user-friendly notification method
     }
   }
 

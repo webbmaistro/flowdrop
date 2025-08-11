@@ -6,8 +6,8 @@ import posthog from 'posthog-js'
 
 // Debug environment variables (only in development)
 if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
-  console.log('PostHog Key:', process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'Found' : 'Missing')
-  console.log('PostHog Host:', process.env.NEXT_PUBLIC_POSTHOG_HOST)
+  console.warn('PostHog Key:', process.env.NEXT_PUBLIC_POSTHOG_KEY ? 'Found' : 'Missing')
+  console.warn('PostHog Host:', process.env.NEXT_PUBLIC_POSTHOG_HOST)
 }
 
 // Initialize PostHog with delay for better performance
@@ -30,7 +30,7 @@ if (typeof window !== 'undefined' && !posthog.__loaded) {
         }
       })
       if (process.env.NODE_ENV === 'development') {
-        console.log('PostHog initialized successfully')
+        console.warn('PostHog initialized successfully')
       }
     } else {
       console.error('PostHog key is missing or undefined')

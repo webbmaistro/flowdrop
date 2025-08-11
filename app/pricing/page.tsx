@@ -398,7 +398,7 @@ export default function PricingPage() {
                             )}
                             onClick={() => {
                               // Add your credit purchase logic here
-                              console.log(`Purchasing ${credit.name} for ${credit.price}`);
+                              console.warn(`Purchasing ${credit.name} for ${credit.price}`);
                               // Example: startCreditCheckout(credit.priceId);
                             }}
                           >

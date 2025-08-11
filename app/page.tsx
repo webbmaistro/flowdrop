@@ -1357,7 +1357,7 @@ export default function LandingPage() {
             </div>
             
             <div>
-              <SocialLinks size="md" className="justify-center" exclude={['reddit']} />
+              <SocialLinks size="md" className="justify-center" />
             </div>
           </div>
         </div>

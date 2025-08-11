@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import Screenshot from './Screenshot';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface ScreenshotItem {
   src: string;
@@ -125,10 +126,11 @@ export default function ScreenshotGallery({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
+              <Image
                 src={screenshot.src}
                 alt={screenshot.alt}
-                className="w-full h-full object-cover"
+                layout="fill"
+                objectFit="cover"
               />
               {currentIndex === index && (
                 <motion.div
@@ -212,10 +214,11 @@ export default function ScreenshotGallery({
                           : "border-transparent hover:border-white/30"
                       )}
                     >
-                      <img
+                      <Image
                         src={screenshot.src}
                         alt={screenshot.alt}
-                        className="w-full h-full object-cover"
+                        layout="fill"
+                        objectFit="cover"
                       />
                     </button>
                   ))}

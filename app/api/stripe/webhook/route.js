@@ -58,7 +58,7 @@ export async function POST(req) {
 
       break
     default:
-      console.log(`Unhandled event type: ${event.type}`)
+      console.warn(`Unhandled event type: ${event.type}`)
   }
 
   return new NextResponse('Success', { status: 200 })

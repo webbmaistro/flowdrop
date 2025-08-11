@@ -41,6 +41,7 @@ export default function ContactPage() {
         });
       }, 3000);
     } else {
+      // Replace alert with a user-friendly notification method
       alert('There was a problem sending your message.');
     }
   };
