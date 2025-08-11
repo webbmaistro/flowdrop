@@ -1357,7 +1357,7 @@ export default function LandingPage() {
             </div>
             
             <div>
-              <SocialLinks size="md" className="justify-center" />
+              <SocialLinks size="md" className="justify-center" exclude={['reddit']} />
             </div>
           </div>
         </div>
@@ -1371,12 +1371,20 @@ export default function LandingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 0.5 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             >
               <a 
                 href="/privacy" 
-                className="text-sm text-gray-600 hover:text-gray-500 transition-colors duration-200 underline"
+                className="text-sm text-gray-600 hover:text-gray-500 transition-colors duration-200 underline hover:no-underline"
               >
                 Privacy Policy
+              </a>
+              <div className="hidden sm:block text-gray-400">•</div>
+              <a 
+                href="/terms" 
+                className="text-sm text-gray-600 hover:text-gray-500 transition-colors duration-200 underline hover:no-underline"
+              >
+                Terms of Service
               </a>
             </motion.div>
           </div>

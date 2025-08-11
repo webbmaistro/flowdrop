@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
           <motion.div variants={itemVariants} className="mb-12">
             <h1 className={cn(typography.h1, "mb-4")}>Flowdrop Privacy Policy</h1>
             <p className={cn(typography.bodyLarge, "text-text-secondary")}>
-              Effective Date: July 22, 2025
+              Effective Date: December 19, 2024
             </p>
           </motion.div>
 
@@ -82,7 +82,7 @@ export default function PrivacyPolicy() {
                 <li>Profile picture URL</li>
               </ul>
               <p className={cn(typography.body, "mb-4")}>
-                Scopes requested: "email" and "profile" only.
+                Scopes requested: baseline <strong>"email"</strong> and <strong>"profile"</strong> for sign‑in. Optional Google Workspace scopes are requested <strong>only</strong> when you connect an integration or enable a node that needs them (see §3.4).
               </p>
 
               <h3 className={cn(typography.h3, "mb-3")}>3.2 Other Information You Provide</h3>
@@ -93,10 +93,79 @@ export default function PrivacyPolicy() {
               </ul>
 
               <h3 className={cn(typography.h3, "mb-3")}>3.3 Automatically Collected Information</h3>
-              <ul className={cn(typography.body, "list-disc list-inside space-y-1")}>
+              <ul className={cn(typography.body, "list-disc list-inside mb-4 space-y-1")}>
                 <li>Usage data (pages visited, nodes created, interactions)</li>
                 <li>Device and log data (IP address, browser type, date/time)</li>
               </ul>
+
+              <h3 className={cn(typography.h3, "mb-3")}>3.4 Google Workspace Scopes (Optional Integrations)</h3>
+              <p className={cn(typography.body, "mb-3")}>
+                If you connect Google integrations or enable nodes that operate on your Google content, Flowdrop may request additional scopes. We request the <strong>minimum</strong> scope needed and prefer per‑file access whenever possible.
+              </p>
+              
+              <div className="mb-4">
+                <h4 className={cn(typography.h4, "mb-2 font-semibold")}>Gmail (Restricted)</h4>
+                <ul className={cn(typography.body, "list-disc list-inside mb-2 space-y-1")}>
+                  <li>Scopes: <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/gmail.readonly</code>, <code className="bg-gray-100 px-1 rounded">.../gmail.modify</code>, <code className="bg-gray-100 px-1 rounded">.../gmail.compose</code>, <code className="bg-gray-100 px-1 rounded">.../gmail.send</code>, and related label/settings scopes (no IMAP/SMTP unless explicitly configured).</li>
+                  <li>Use: Read message metadata/bodies as required by a node you create; draft and send messages; manage labels; process replies.</li>
+                  <li>Storage: By default we <strong>do not store email bodies</strong>. We may store message IDs, thread IDs, label names, timestamps, and delivery status for workflow logs. If you configure a node to persist content (e.g., save an email to a database), we store only what your node instructs.</li>
+                </ul>
+              </div>
+
+              <div className="mb-4">
+                <h4 className={cn(typography.h4, "mb-2 font-semibold")}>Drive (Sensitive)</h4>
+                <ul className={cn(typography.body, "list-disc list-inside mb-2 space-y-1")}>
+                  <li>Scopes: Prefer <code className="bg-gray-100 px-1 rounded">drive.file</code> (per‑file access to files created/opened with Flowdrop). We may request <code className="bg-gray-100 px-1 rounded">drive.readonly</code> or broader access <strong>only</strong> if your workflow requires cross‑Drive operations you explicitly enable.</li>
+                  <li>Use: Read/write files referenced by your workflows; manage file metadata necessary for automation (e.g., IDs, revisions).</li>
+                </ul>
+              </div>
+
+              <div className="mb-4">
+                <h4 className={cn(typography.h4, "mb-2 font-semibold")}>Docs (Sensitive)</h4>
+                <ul className={cn(typography.body, "list-disc list-inside mb-2 space-y-1")}>
+                  <li>Scopes: <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/documents.readonly</code>, <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/documents</code>.</li>
+                  <li>Use: Read and update Google Docs specified by your workflows (e.g., generate a report, replace placeholders).</li>
+                </ul>
+              </div>
+
+              <div className="mb-4">
+                <h4 className={cn(typography.h4, "mb-2 font-semibold")}>Sheets (Sensitive)</h4>
+                <ul className={cn(typography.body, "list-disc list-inside mb-2 space-y-1")}>
+                  <li>Scopes: <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/spreadsheets.readonly</code>, <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/spreadsheets</code>.</li>
+                  <li>Use: Read ranges and write updates in spreadsheets selected in your nodes (e.g., append a row, update cells).</li>
+                </ul>
+              </div>
+
+              <div className="mb-4">
+                <h4 className={cn(typography.h4, "mb-2 font-semibold")}>Calendar (Sensitive)</h4>
+                <ul className={cn(typography.body, "list-disc list-inside mb-2 space-y-1")}>
+                  <li>Scopes: <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/calendar.events.readonly</code>, <code className="bg-gray-100 px-1 rounded">https://www.googleapis.com/auth/calendar.events</code>.</li>
+                  <li>Use: Read, create, update, and delete events in calendars you select in a node.</li>
+                </ul>
+              </div>
+
+              <h3 className={cn(typography.h3, "mb-3")}>3.5 Offline Access & Tokens</h3>
+              <p className={cn(typography.body, "mb-4")}>
+                Some automations need to run when you are offline. If you opt in, we request offline access (refresh tokens) and store tokens <strong>encrypted at rest</strong>. You can revoke access at any time from in‑app settings or at{' '}
+                <a href="https://myaccount.google.com/permissions" className="text-primary-main hover:text-primary-light transition-colors">
+                  https://myaccount.google.com/permissions
+                </a>.
+              </p>
+
+              <h3 className={cn(typography.h3, "mb-3")}>3.6 Data Minimization & Retention for Google Data</h3>
+              <p className={cn(typography.body, "mb-4")}>
+                We minimize collection and storage: we process content <strong>in memory</strong> where feasible; we store IDs, file paths, ranges, and metadata needed for reliability and auditing. We retain logs for the shortest period necessary and purge or anonymize them per §8.
+              </p>
+
+              <h3 className={cn(typography.h3, "mb-3")}>3.7 Human Access</h3>
+              <p className={cn(typography.body, "mb-4")}>
+                Humans do <strong>not</strong> read your Google content except (i) with your explicit consent for support, (ii) for security/abuse review, or (iii) where required by law. Access is limited to authorized personnel under confidentiality and logging.
+              </p>
+
+              <h3 className={cn(typography.h3, "mb-3")}>3.8 Third‑Party Transfers</h3>
+              <p className={cn(typography.body)}>
+                We <strong>do not</strong> sell Google user data. We do not transfer Google user data except to sub‑processors necessary to provide the Service (e.g., hosting) under data‑processing agreements, or as required by law.
+              </p>
             </section>
 
             <section>
@@ -152,8 +221,7 @@ export default function PrivacyPolicy() {
                 You may revoke Flowdrop's access to your Google account at{' '}
                 <a href="https://myaccount.google.com/permissions" className="text-primary-main hover:text-primary-light transition-colors">
                   https://myaccount.google.com/permissions
-                </a>
-                .
+                </a>.
               </p>
             </section>
 
