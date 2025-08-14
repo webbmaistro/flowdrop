@@ -11,4 +11,5 @@ export {
 } from './card';
 export { default as SocialLinks } from './SocialLinks';
 export { default as Screenshot } from './Screenshot';
-export { default as ScreenshotGallery } from './ScreenshotGallery'; 
+export { default as ScreenshotGallery } from './ScreenshotGallery';
+export { default as Footer } from './Footer'; 

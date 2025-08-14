@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import HeaderWrapper from "@/components/HeaderWrapper";
 import PHProvider from "@/components/PostHogProvider";
+import { Footer } from "@/components/ui";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -119,7 +120,10 @@ export default function RootLayout({
           }}
         />
         <PHProvider>
-          <HeaderWrapper>{children}</HeaderWrapper>
+          <HeaderWrapper>
+            {children}
+            <Footer />
+          </HeaderWrapper>
         </PHProvider>
         {/* Defer analytics for better performance */}
         <Analytics mode="production" />

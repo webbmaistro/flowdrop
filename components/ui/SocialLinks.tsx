@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaDiscord, FaTwitter, FaReddit, FaMedium, FaYoutube } from 'react-icons/fa';
+import { FaDiscord, FaTwitter, FaMedium, FaYoutube } from 'react-icons/fa';
 
 interface SocialLinksProps {
   variant?: 'horizontal' | 'vertical';
@@ -23,15 +23,9 @@ const SocialLinks: React.FC<SocialLinksProps> = ({
     },
     {
       name: 'Twitter',
-      url: 'https://x.com/Flowdrop_App',
+      url: 'https://x.com/Flowdrop_AI',
       icon: FaTwitter,
       color: 'hover:text-[#1DA1F2]'
-    },
-    {
-      name: 'Reddit',
-      url: 'https://www.reddit.com/r/Flowdrop/',
-      icon: FaReddit,
-      color: 'hover:text-[#FF4500]'
     },
     {
       name: 'Medium',

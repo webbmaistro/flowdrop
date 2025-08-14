@@ -15,10 +15,10 @@ const supabase = createClient(
 );
 
 const navigation: Array<{name: string; href: string; external?: boolean}> = [
+  { name: 'Home', href: '/' },
   { name: 'Pricing', href: '/pricing' },
   { name: 'Docs', href: '/docs' },
   { name: 'Contact', href: '/contact' },
-  { name: 'Blog', href: 'https://www.reddit.com/r/Flowdrop/', external: true },
 ];
 
 interface HeaderProps {

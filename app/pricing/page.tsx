@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Star, Zap, Users, Rocket, Crown } from 'lucide-react';
+import { Check, Star, Zap, Users, Rocket, Crown, Building2 } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
@@ -35,37 +35,30 @@ export default function PricingPage() {
       name: 'Spark',
       price: '$0',
       period: '/mo',
-      description: 'Test-drive Flowdrop',
+      description: 'Perfect for getting started',
       priceId: null,
       highlight: false,
       icon: Zap,
       features: [
-        '1,000 credits',
-        '1 seat',
-        'Basic Webby AI Copilot',
-        'Community support',
-        'Core AI tools',
-        'Email support'
+        '100 credits/month',
+        'Basic AI tools',
+        'Community support'
       ],
       cta: 'Start Free',
       ctaAction: () => window.location.href = '/signin'
     },
     {
       name: 'Solo',
-      price: '$19',
+      price: '$9',
       period: '/mo',
-      description: 'Side-hustle builders',
+      description: 'For individual creators',
       priceId: 'price_solo_monthly',
-      highlight: false,
+      highlight: true,
       icon: Users,
       features: [
-        '10,000 credits',
-        '1 seat',
-        'Enhanced Webby AI Copilot',
-        'Core AI tools',
-        'Priority support',
-        'Advanced integrations',
-        'API access'
+        '1,000 credits/month',
+        'Premium model access',
+        'Enables model selectors'
       ],
       cta: 'Get Started',
       ctaAction: () => window.location.href = '/signin'
@@ -74,42 +67,50 @@ export default function PricingPage() {
       name: 'Builder',
       price: '$49',
       period: '/mo',
-      description: 'Indie SaaS teams',
+      description: 'For growing teams',
       priceId: 'price_builder_monthly',
-      highlight: true,
+      highlight: false,
       icon: Rocket,
       features: [
-        '25,000 credits',
-        '3 seats included',
-        'Unlimited Webby AI Copilot',
-        'Advanced AI tools',
-        'Team collaboration',
-        'Custom domains',
-        'Dedicated support',
-        '$9 per additional seat'
+        '5,000 credits/month',
+        'Premium model access',
+        'Enables model selectors'
       ],
       cta: 'Get Started',
       ctaAction: () => window.location.href = '/signin'
     },
     {
       name: 'Growth',
-      price: 'Custom',
-      period: '',
-      description: 'Agencies & high-volume ops',
-      priceId: null,
-      contactOnly: true,
+      price: '$99',
+      period: '/mo',
+      description: 'For high-volume operations',
+      priceId: 'price_growth_monthly',
+      highlight: false,
       icon: Crown,
       features: [
-        'Unlimited credits',
-        'Unlimited seats',
-        'Unlimited Webby AI Copilot',
-        'White-glove onboarding',
-        'Rev-share option',
-        'Custom integrations',
-        'Dedicated account manager',
-        '24/7 priority support'
+        '10,000 credits/month',
+        'Premium model access',
+        'Enables model selectors'
       ],
-      cta: 'Contact Sales',
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = '/signin'
+    },
+    {
+      name: 'Enterprise',
+      price: 'Custom',
+      period: '',
+      description: 'Custom limits and rates',
+      priceId: null,
+      contactOnly: true,
+      icon: Building2,
+      features: [
+        'Custom credit limits',
+        'Custom pricing',
+        'Dedicated support',
+        'Custom integrations',
+        'SLA guarantees'
+      ],
+      cta: 'Contact Us',
       ctaAction: () => window.location.href = '/contact'
     },
   ];
@@ -117,17 +118,17 @@ export default function PricingPage() {
   // Additional usage credits
   const additionalCredits = [
     {
-      name: '10K Credits',
+      name: '3K Credits',
       price: '$25',
       description: 'One-time purchase',
-      credits: '10,000',
+      credits: '3,000',
       popular: false
     },
     {
-      name: '3K Credits',
+      name: '1K Credits',
       price: '$10',
       description: 'One-time purchase',
-      credits: '3,000',
+      credits: '1,000',
       popular: true
     }
   ];
@@ -169,14 +170,14 @@ export default function PricingPage() {
               variants={itemVariants}
               className={cn(typography.h1, "mb-6 text-balance")}
             >
-              Simple, credit-based pricing
+              Simple, transparent pricing
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
               className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
             >
-              Choose the perfect plan for your workflow automation needs. 
+              Choose the perfect plan for your AI workflow needs. 
               Start free and scale as you grow with flexible credit-based pricing.
             </motion.p>
           </motion.div>
@@ -187,7 +188,7 @@ export default function PricingPage() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
@@ -234,7 +235,7 @@ export default function PricingPage() {
                     {plan.highlight && (
                       <motion.span
                         role="status"
-                        aria-label="Most popular plan"
+                        aria-label="Recommended plan"
                         className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ 
@@ -248,7 +249,7 @@ export default function PricingPage() {
                           <div className="flex items-center space-x-2">
                             <Star className="w-3 h-3 text-purple-300" />
                             <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
-                              Most Popular
+                              Recommended
                             </span>
                           </div>
                         </div>
@@ -326,7 +327,7 @@ export default function PricingPage() {
               Need more credits?
             </motion.h2>
             <motion.p variants={itemVariants} className={cn(typography.bodyLarge, "mb-12 text-text-muted")}>
-              Purchase additional credits anytime. Perfect for high-volume workflows or one-off projects.
+              Purchase additional credits anytime. Perfect for high-volume AI operations or one-off projects.
             </motion.p>
             
             <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
@@ -433,16 +434,16 @@ export default function PricingPage() {
                 <CardContent className="pt-6">
                   <h3 className="text-lg font-semibold mb-3">How do credits work?</h3>
                   <p className={typography.body}>
-                    Credits are consumed based on workflow complexity and execution frequency. Simple workflows use fewer credits than complex ones.
+                    Credits are consumed based on AI model usage and workflow complexity. Each AI operation consumes a certain number of credits.
                   </p>
                 </CardContent>
               </Card>
               
               <Card variant="glass" hover>
                 <CardContent className="pt-6">
-                  <h3 className="text-lg font-semibold mb-3">What is Webby AI Copilot?</h3>
+                  <h3 className="text-lg font-semibold mb-3">What are premium models?</h3>
                   <p className={typography.body}>
-                    Our AI assistant that helps you build, debug, and optimize workflows. Higher tiers get more advanced AI capabilities.
+                    Premium models include the latest and most advanced AI models like GPT-4, Claude 3, and other cutting-edge AI capabilities.
                   </p>
                 </CardContent>
               </Card>
