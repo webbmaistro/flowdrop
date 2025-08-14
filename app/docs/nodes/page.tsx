@@ -21,9 +21,8 @@ const nodeCategories = [
     description: "Nodes that perform actions in your workflows",
     nodes: [
       { name: "LLM Prompt", href: "/docs/nodes/llm-prompt", description: "Generate AI-powered content", icon: Brain, color: "text-purple-500" },
-      { name: "Send Email", href: "/docs/nodes/send-email", description: "Send automated emails", icon: Send, color: "text-green-500" },
       { name: "Gmail Read Emails", href: "/docs/nodes/gmail-read-emails", description: "Read Gmail messages", icon: Mail, color: "text-blue-500" },
-      { name: "Gmail Write Labels", href: "/docs/nodes/gmail-write-labels", description: "Manage Gmail labels", icon: FileText, color: "text-red-500" },
+      { name: "Gmail Write Labels", href: "/docs/nodes/gmail-write-labels", description: "Manage Gmail labels", icon: Mail, color: "text-red-500" },
     ]
   },
   {

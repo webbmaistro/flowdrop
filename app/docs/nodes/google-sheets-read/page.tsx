@@ -1,25 +1,25 @@
 "use client"
 
 import React from 'react';
-import { Mail, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
+import { FileSpreadsheet, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 import Link from 'next/link';
 
-export default function GmailReadEmailsNode() {
+export default function GoogleSheetsReadNode() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <Mail className="w-6 h-6 text-blue-500" />
+          <div className="p-2 bg-green-500/20 rounded-lg">
+            <FileSpreadsheet className="w-6 h-6 text-green-500" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Gmail Read Emails</h1>
-            <p className="text-neutral-400">Read and analyze Gmail messages programmatically</p>
+            <h1 className="text-3xl font-bold">Google Sheets Read</h1>
+            <p className="text-neutral-400">Read and analyze data from Google Sheets programmatically</p>
           </div>
         </div>
         
@@ -31,11 +31,11 @@ export default function GmailReadEmailsNode() {
             </div>
             <div>
               <h3 className="font-semibold text-neutral-200 mb-2">Category</h3>
-              <p className="text-neutral-400">Gmail Integration</p>
+              <p className="text-neutral-400">Google Sheets Integration</p>
             </div>
             <div>
               <h3 className="font-semibold text-neutral-200 mb-2">Icon</h3>
-              <p className="text-neutral-400">Gmail</p>
+              <p className="text-neutral-400">Google Sheets</p>
             </div>
           </div>
         </div>
@@ -45,9 +45,9 @@ export default function GmailReadEmailsNode() {
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Overview</h2>
         <p className="text-neutral-300 mb-6">
-          The <strong>Gmail Read Emails</strong> node allows you to read, search, and analyze emails from your Gmail account 
-          programmatically. This powerful automation tool integrates with Gmail's API to provide intelligent 
-          email processing capabilities for your workflows.
+          The <strong>Google Sheets Read</strong> node allows you to read, search, and analyze data from Google Sheets 
+          programmatically. This powerful automation tool integrates with Google Sheets API to provide intelligent 
+          data processing capabilities for your workflows.
         </p>
         
         <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
@@ -55,12 +55,12 @@ export default function GmailReadEmailsNode() {
             <Zap className="w-5 h-5 text-yellow-500" />
             Key Features
           </h3>
-        <ul className="text-neutral-300 space-y-2">
-            <li>• <strong>Flexible Email Reading:</strong> Read emails from specific labels or search queries</li>
-            <li>• <strong>Advanced Search:</strong> Use Gmail's powerful search operators</li>
-            <li>• <strong>Metadata Extraction:</strong> Access sender, subject, date, and content</li>
-            <li>• <strong>Batch Processing:</strong> Handle multiple emails efficiently</li>
-            <li>• <strong>Real-time Access:</strong> Always get the latest emails</li>
+          <ul className="text-neutral-300 space-y-2">
+            <li>• <strong>Flexible Data Reading:</strong> Read entire sheets, specific ranges, or filtered data</li>
+            <li>• <strong>Advanced Filtering:</strong> Filter data by criteria, formulas, or conditions</li>
+            <li>• <strong>Batch Processing:</strong> Handle large datasets efficiently</li>
+            <li>• <strong>Real-time Updates:</strong> Always get the latest data from your sheets</li>
+            <li>• <strong>Error Handling:</strong> Built-in success/failure tracking</li>
           </ul>
         </div>
       </section>
@@ -77,7 +77,7 @@ export default function GmailReadEmailsNode() {
                 Google Integration
               </CardTitle>
               <CardDescription>
-                Must be connected to access Gmail API
+                Must be connected to access Google Sheets API
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -88,11 +88,11 @@ export default function GmailReadEmailsNode() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Gmail read scope granted</span>
+                  <span className="text-sm">Google Sheets scope granted</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Access to target Gmail account</span>
+                  <span className="text-sm">Access to target Google Sheets</span>
                 </div>
               </div>
             </CardContent>
@@ -108,11 +108,11 @@ export default function GmailReadEmailsNode() {
             <CardContent>
               <div className="space-y-2">
                 <CodeBlock
-                  code="https://www.googleapis.com/auth/gmail.readonly"
+                  code="https://www.googleapis.com/auth/spreadsheets.readonly"
                   lang="text"
                 />
                 <CodeBlock
-                  code="https://www.googleapis.com/auth/gmail.metadata"
+                  code="https://www.googleapis.com/auth/drive.readonly"
                   lang="text"
                 />
               </div>
@@ -134,7 +134,7 @@ export default function GmailReadEmailsNode() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">query</h4>
+                    <h4 className="font-semibold mb-2">spreadsheetId</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-neutral-400">Type:</span>
@@ -146,20 +146,20 @@ export default function GmailReadEmailsNode() {
                       </div>
                       <div>
                         <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">"from:example@gmail.com"</span>
+                        <span className="ml-2 text-neutral-200">"1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
-                      Gmail search query to filter emails. Use Gmail's search operators for advanced filtering.
+                      The unique identifier of the Google Spreadsheet (found in the URL).
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold mb-2">maxResults</h4>
+                    <h4 className="font-semibold mb-2">range</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">number</span>
+                        <span className="ml-2 text-neutral-200">text</span>
                       </div>
                       <div>
                         <span className="text-neutral-400">Required:</span>
@@ -167,11 +167,11 @@ export default function GmailReadEmailsNode() {
                       </div>
                       <div>
                         <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">100</span>
+                        <span className="ml-2 text-neutral-200">"Sheet1!A1:D100"</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
-                      Maximum number of emails to return (1-500).
+                      The range to read (e.g., "Sheet1!A1:D100" or just "Sheet1" for entire sheet).
                     </p>
                   </div>
                 </div>
@@ -185,44 +185,44 @@ export default function GmailReadEmailsNode() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">labelIds</h4>
+                    <h4 className="font-semibold mb-2">majorDimension</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">array</span>
+                        <span className="ml-2 text-neutral-200">dropdown</span>
                       </div>
                       <div>
                         <span className="text-neutral-400">Required:</span>
                         <span className="ml-2 text-red-500">No</span>
                       </div>
                       <div>
-                        <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">["INBOX", "IMPORTANT"]</span>
+                        <span className="text-neutral-400">Options:</span>
+                        <span className="ml-2 text-neutral-200">"ROWS", "COLUMNS"</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
-                      Specific label IDs to search within. Leave empty to search all labels.
+                      Whether to return data as rows or columns. Defaults to "ROWS".
                     </p>
                   </div>
                   
                   <div>
-                    <h4 className="font-semibold mb-2">includeSpamTrash</h4>
+                    <h4 className="font-semibold mb-2">valueRenderOption</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">boolean</span>
+                        <span className="ml-2 text-neutral-200">dropdown</span>
                       </div>
                       <div>
                         <span className="text-neutral-400">Required:</span>
                         <span className="ml-2 text-red-500">No</span>
                       </div>
                       <div>
-                        <span className="text-neutral-400">Default:</span>
-                        <span className="ml-2 text-neutral-200">false</span>
+                        <span className="text-neutral-400">Options:</span>
+                        <span className="ml-2 text-neutral-200">"FORMATTED_VALUE", "UNFORMATTED_VALUE", "FORMULA"</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
-                      Whether to include emails from spam and trash folders.
+                      How to render values. "FORMATTED_VALUE" includes formatting, "UNFORMATTED_VALUE" is raw data.
                     </p>
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function GmailReadEmailsNode() {
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">emails</h4>
+                  <h4 className="font-semibold mb-2">data</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-neutral-400">Type:</span>
@@ -244,27 +244,13 @@ export default function GmailReadEmailsNode() {
                     </div>
                     <div>
                       <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Array of email objects with metadata and content</span>
+                      <span className="ml-2 text-neutral-200">The actual data from the spreadsheet</span>
                     </div>
                   </div>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">totalResults</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-neutral-400">Type:</span>
-                      <span className="ml-2 text-neutral-200">number</span>
-                    </div>
-                    <div>
-                      <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Total number of emails matching the query</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">nextPageToken</h4>
+                  <h4 className="font-semibold mb-2">range</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-neutral-400">Type:</span>
@@ -272,7 +258,21 @@ export default function GmailReadEmailsNode() {
                     </div>
                     <div>
                       <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Token for pagination to get more results</span>
+                      <span className="ml-2 text-neutral-200">The range that was read</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">majorDimension</h4>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <span className="text-neutral-400">Type:</span>
+                      <span className="ml-2 text-neutral-200">string</span>
+                    </div>
+                    <div>
+                      <span className="text-neutral-400">Description:</span>
+                      <span className="ml-2 text-neutral-200">Whether data is returned as rows or columns</span>
                     </div>
                   </div>
                 </div>
@@ -317,67 +317,68 @@ export default function GmailReadEmailsNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Basic Email Reading</CardTitle>
+              <CardTitle>Basic Data Reading</CardTitle>
               <CardDescription>
-                Read recent emails from a specific sender
+                Read a simple range of data from a spreadsheet
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "from:example@gmail.com",
-  "maxResults": 50,
-  "includeSpamTrash": false
+  "spreadsheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+  "range": "Sheet1!A1:D100",
+  "majorDimension": "ROWS",
+  "valueRenderOption": "FORMATTED_VALUE"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Reads the 50 most recent emails from example@gmail.com, excluding spam and trash.
+                Reads the first 100 rows and 4 columns from Sheet1, returning formatted values as rows.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Advanced Search Query</CardTitle>
+              <CardTitle>Entire Sheet Reading</CardTitle>
               <CardDescription>
-                Use Gmail search operators for complex filtering
+                Read all data from a specific sheet
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "subject:meeting has:attachment after:2024/01/01",
-  "maxResults": 100,
-  "labelIds": ["INBOX", "WORK"]
+  "spreadsheetId": "{{workflowData.sheetId}}",
+  "range": "DataSheet",
+  "majorDimension": "ROWS"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Searches for emails with "meeting" in subject, containing attachments, after Jan 1, 2024, in INBOX and WORK labels.
+                Reads the entire "DataSheet" tab, using a dynamic spreadsheet ID from workflow data.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Label-Specific Search</CardTitle>
+              <CardTitle>Column-based Data</CardTitle>
               <CardDescription>
-                Search within specific Gmail labels
+                Read data organized by columns instead of rows
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "is:unread",
-  "maxResults": 25,
-  "labelIds": ["IMPORTANT"],
-  "includeSpamTrash": false
+  "spreadsheetId": "{{config.sheetId}}",
+  "range": "Config!A1:Z1",
+  "majorDimension": "COLUMNS",
+  "valueRenderOption": "UNFORMATTED_VALUE"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Finds unread emails in the IMPORTANT label, returning up to 25 results.
+                Reads the first row as columns, useful for configuration data or headers.
               </p>
             </CardContent>
           </Card>
@@ -391,9 +392,9 @@ export default function GmailReadEmailsNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Email Monitoring Pipeline</CardTitle>
+              <CardTitle>Data Analysis Pipeline</CardTitle>
               <CardDescription>
-                Complete workflow for monitoring and processing emails
+                Complete workflow for analyzing spreadsheet data
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -401,17 +402,17 @@ export default function GmailReadEmailsNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>📧 Gmail Read Emails → 🤖 AI Analysis → 📊 Data Processing → 📱 Alert Generation</div>
+                    <div>📊 Google Sheets Read → 🤖 AI Analysis → 📈 Data Processing → 📱 Report Generation</div>
                   </div>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Step-by-Step Configuration</h4>
                   <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300">
-                    <li><strong>Gmail Read Emails:</strong> Monitor specific email criteria</li>
-                    <li><strong>AI Analysis:</strong> Analyze email content for insights</li>
-                    <li><strong>Data Processing:</strong> Extract and structure relevant information</li>
-                    <li><strong>Alert Generation:</strong> Send notifications based on findings</li>
+                    <li><strong>Google Sheets Read:</strong> Read data from your spreadsheet</li>
+                    <li><strong>AI Analysis:</strong> Analyze the data for insights and patterns</li>
+                    <li><strong>Data Processing:</strong> Transform and aggregate the data</li>
+                    <li><strong>Report Generation:</strong> Create automated reports or dashboards</li>
                   </ol>
                 </div>
               </div>
@@ -420,9 +421,9 @@ export default function GmailReadEmailsNode() {
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Customer Support Automation</CardTitle>
+              <CardTitle>Customer Data Processing</CardTitle>
               <CardDescription>
-                Automate customer support email processing
+                Process customer information from spreadsheets
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -430,20 +431,20 @@ export default function GmailReadEmailsNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Use Case</h4>
                   <p className="text-sm text-neutral-400">
-                    Automatically read support emails, categorize them by urgency, and route them to appropriate 
-                    support teams or generate automated responses.
+                    Automatically read customer data from Google Sheets, validate information, 
+                    and process it for CRM systems or marketing campaigns.
                   </p>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Implementation</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm text-neutral-300">
-                    <li>Monitor support email addresses and labels</li>
-                    <li>Analyze email content for urgency indicators</li>
-                    <li>Categorize emails by type and priority</li>
-                    <li>Route to appropriate support channels</li>
-        </ul>
-      </div>
+                    <li>Read customer data from designated sheets</li>
+                    <li>Validate email addresses and phone numbers</li>
+                    <li>Filter out duplicate or invalid entries</li>
+                    <li>Process data for different business systems</li>
+                  </ul>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -464,12 +465,12 @@ export default function GmailReadEmailsNode() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-neutral-300">
-                <li>• Use specific search queries to limit results</li>
-                <li>• Implement pagination for large result sets</li>
-                <li>• Cache results when appropriate</li>
-                <li>• Handle rate limits gracefully</li>
+                <li>• Use specific ranges instead of entire sheets when possible</li>
+                <li>• Implement error handling for missing or invalid data</li>
+                <li>• Consider data size and API rate limits</li>
+                <li>• Use meaningful sheet and range names</li>
                 <li>• Always check the success output field</li>
-                <li>• Use label IDs for targeted searches</li>
+                <li>• Cache data when appropriate to reduce API calls</li>
               </ul>
             </CardContent>
           </Card>
@@ -483,12 +484,12 @@ export default function GmailReadEmailsNode() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-neutral-300">
-                <li>• Don't request too many results at once</li>
-                <li>• Avoid searching all emails without filters</li>
+                <li>• Don't read entire large sheets unnecessarily</li>
+                <li>• Avoid hardcoding spreadsheet IDs</li>
                 <li>• Don't ignore API rate limits</li>
-                <li>• Avoid processing sensitive content without encryption</li>
-                <li>• Don't assume all emails have the same structure</li>
-                <li>• Avoid hardcoding email addresses</li>
+                <li>• Avoid reading data too frequently</li>
+                <li>• Don't assume data structure remains constant</li>
+                <li>• Avoid processing sensitive data without encryption</li>
               </ul>
             </CardContent>
           </Card>
@@ -496,8 +497,8 @@ export default function GmailReadEmailsNode() {
 
         <div className="mt-6">
           <Callout emoji="💡" color="border-blue-500">
-            <strong>Pro Tip:</strong> Use Gmail's powerful search operators like "from:", "subject:", "has:attachment", 
-            "after:", "before:", and "label:" to create precise queries that return only the emails you need.
+            <strong>Pro Tip:</strong> Use named ranges in your Google Sheets to make your workflows more maintainable. 
+            Instead of "Sheet1!A1:D100", use a named range like "CustomerData" that you can adjust without changing your workflow.
           </Callout>
         </div>
       </section>
@@ -522,29 +523,29 @@ export default function GmailReadEmailsNode() {
                     <strong>Symptoms:</strong> Node fails with access denied errors
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Ensure Google integration is properly connected and Gmail read scope is granted
+                    <strong>Solution:</strong> Ensure Google integration is properly connected and has access to the target spreadsheet
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Invalid Query</h4>
+                  <h4 className="font-semibold mb-2">Invalid Range</h4>
                   <p className="text-neutral-400 text-sm mb-2">
-                    <strong>Symptoms:</strong> Node fails with query syntax errors
+                    <strong>Symptoms:</strong> Node fails with range not found errors
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Verify Gmail search query syntax and use valid search operators
+                    <strong>Solution:</strong> Verify the sheet name and range format (e.g., "Sheet1!A1:D100")
                   </p>
-      </div>
-
+                </div>
+                
                 <div>
-                  <h4 className="font-semibold mb-2">Rate Limiting</h4>
+                  <h4 className="font-semibold mb-2">Large Data Sets</h4>
                   <p className="text-neutral-400 text-sm mb-2">
-                    <strong>Symptoms:</strong> Node fails intermittently with quota exceeded errors
+                    <strong>Symptoms:</strong> Node times out or fails with large ranges
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Implement delays between requests and monitor API usage
+                    <strong>Solution:</strong> Break large reads into smaller chunks or use more specific ranges
                   </p>
-      </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -556,11 +557,11 @@ export default function GmailReadEmailsNode() {
         <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href="/docs/nodes/gmail-write-labels">
+          <Link href="/docs/nodes/google-sheets-write">
             <Button variant="outline" className="justify-start h-auto p-4 w-full">
               <div className="text-left">
-                <div className="font-semibold">Gmail Write Labels Node</div>
-                <div className="text-sm text-neutral-400">Create and manage Gmail labels</div>
+                <div className="font-semibold">Google Sheets Write Node</div>
+                <div className="text-sm text-neutral-400">Write data back to Google Sheets</div>
               </div>
               <ExternalLink className="w-4 h-4 ml-auto" />
             </Button>
@@ -570,7 +571,7 @@ export default function GmailReadEmailsNode() {
             <Button variant="outline" className="justify-start h-auto p-4 w-full">
               <div className="text-left">
                 <div className="font-semibold">LLM Prompt Node</div>
-                <div className="text-sm text-neutral-400">Analyze email content with AI</div>
+                <div className="text-sm text-neutral-400">Analyze spreadsheet data with AI</div>
               </div>
               <ExternalLink className="w-4 h-4 ml-auto" />
             </Button>

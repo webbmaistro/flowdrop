@@ -1,13 +1,14 @@
 "use client"
 
 import React from 'react';
-import { FileText, Mail, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
+import { Mail, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import Link from 'next/link';
 
 export default function GmailWriteLabelsNode() {
   return (
@@ -16,7 +17,7 @@ export default function GmailWriteLabelsNode() {
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-red-500/20 rounded-lg">
-            <FileText className="w-6 h-6 text-red-500" />
+            <Mail className="w-6 h-6 text-red-500" />
           </div>
           <div>
             <h1 className="text-3xl font-bold">Gmail Write Labels</h1>
@@ -36,7 +37,7 @@ export default function GmailWriteLabelsNode() {
             </div>
             <div>
               <h3 className="font-semibold text-neutral-200 mb-2">Icon</h3>
-              <p className="text-neutral-400">FileText</p>
+              <p className="text-neutral-400">Gmail</p>
             </div>
           </div>
         </div>
@@ -589,37 +590,45 @@ export default function GmailWriteLabelsNode() {
         <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Button variant="outline" className="justify-start h-auto p-4">
-            <div className="text-left">
-              <div className="font-semibold">Gmail Read Emails Node</div>
-              <div className="text-sm text-neutral-400">Read and analyze email content</div>
-            </div>
-            <ExternalLink className="w-4 h-4 ml-auto" />
-          </Button>
+          <Link href="/docs/nodes/gmail-read-emails">
+            <Button variant="outline" className="justify-start h-auto p-4 w-full">
+              <div className="text-left">
+                <div className="font-semibold">Gmail Read Emails Node</div>
+                <div className="text-sm text-neutral-400">Read and analyze email content</div>
+              </div>
+              <ExternalLink className="w-4 h-4 ml-auto" />
+            </Button>
+          </Link>
           
-          <Button variant="outline" className="justify-start h-auto p-4">
-            <div className="text-left">
-              <div className="font-semibold">Send Email Node</div>
-              <div className="text-sm text-neutral-400">Send automated email responses</div>
-            </div>
-            <ExternalLink className="w-4 h-4 ml-auto" />
-          </Button>
+          <Link href="/docs/ai-workflows-explained">
+            <Button variant="outline" className="justify-start h-auto p-4 w-full">
+              <div className="text-left">
+                <div className="font-semibold">AI Workflows Guide</div>
+                <div className="text-sm text-neutral-400">Learn about AI-powered automation</div>
+              </div>
+              <ExternalLink className="w-4 h-4 ml-auto" />
+            </Button>
+          </Link>
           
-          <Button variant="outline" className="justify-start h-auto p-4">
-            <div className="text-left">
-              <div className="font-semibold">AI Workflows Guide</div>
-              <div className="text-sm text-neutral-400">Learn about AI-powered automation</div>
-            </div>
-            <ExternalLink className="w-4 h-4 ml-auto" />
-          </Button>
+          <Link href="/docs/workflow-builder-basics">
+            <Button variant="outline" className="justify-start h-auto p-4 w-full">
+              <div className="text-left">
+                <div className="font-semibold">Workflow Builder Basics</div>
+                <div className="text-sm text-neutral-400">Learn how to build workflows</div>
+              </div>
+              <ExternalLink className="w-4 h-4 ml-auto" />
+            </Button>
+          </Link>
           
-          <Button variant="outline" className="justify-start h-auto p-4">
-            <div className="text-left">
-              <div className="font-semibold">Google Integration Setup</div>
-              <div className="text-sm text-neutral-400">Configure Google services</div>
-            </div>
-            <ExternalLink className="w-4 h-4 ml-auto" />
-          </Button>
+          <Link href="/docs/nodes">
+            <Button variant="outline" className="justify-start h-auto p-4 w-full">
+              <div className="text-left">
+                <div className="font-semibold">Node Library</div>
+                <div className="text-sm text-neutral-400">Explore all available nodes</div>
+              </div>
+              <ExternalLink className="w-4 h-4 ml-auto" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

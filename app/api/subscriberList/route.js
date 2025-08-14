@@ -28,22 +28,14 @@ export async function POST(request) {
       // Track email subscription event
       trackEvent.emailSubscribed(email)
       
-      // Send confirmation email via Resend
-      await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/send-email`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          to: email,
-          subject: 'Thanks for subscribing to Flowdrop!',
-          html: `<div style="font-family: sans-serif; font-size: 1.1rem; color: #222;">
-            <p>Thanks for subscribing to Flowdrop! We are looking forward to seeing what you build with &lt;3.</p>
-            <p>-Webb, CEO founder</p>
-            <p style="margin-top:2em; font-size:0.95em; color:#888;">For a question email anytime, <a href="mailto:webb@flowdrop.xyz">webb@flowdrop.xyz</a></p>
-          </div>`
-        })
-      });
+      // TODO: Email functionality has been disabled
+      // Previously sent confirmation email via Resend
+      // Subscriptions are still being recorded
       
-      return Response.json({ success: true })
+      return Response.json({ 
+        success: true, 
+        message: 'Subscription successful. Email functionality is currently disabled.' 
+      })
       
     } catch (error) {
       console.error('SubscriberList error:', error)

@@ -22,7 +22,6 @@ const nodeLibrary = {
       { href: "/docs/nodes/llm-prompt", label: "LLM Prompt" },
       { href: "/docs/nodes/http-request", label: "HTTP Request" },
       { href: "/docs/nodes/fetch-webpage", label: "Fetch Webpage" },
-      { href: "/docs/nodes/send-email", label: "Send Email" },
       { href: "/docs/nodes/image-generation", label: "Image Generation" },
     ],
     "Gmail Integration": [
@@ -53,6 +52,16 @@ const nodeLibrary = {
 export default function Sidebar() {
   const pathname = usePathname();
   
+  // Helper function to check if a section should be open based on current pathname
+  const shouldSectionBeOpen = (sectionNodes: any[]) => {
+    return sectionNodes.some(node => pathname === node.href);
+  };
+  
+  // Helper function to check if a subsection should be open
+  const shouldSubsectionBeOpen = (subsectionNodes: any[]) => {
+    return subsectionNodes.some(node => pathname === node.href);
+  };
+  
   return (
     <aside className="hidden md:flex flex-col w-64 border-r border-neutral-800 bg-neutral-950/80">
       <nav className="flex-1 py-8 space-y-2">
@@ -69,9 +78,24 @@ export default function Sidebar() {
         
         {/* Node Library Section */}
         <div className="pt-6 border-t border-neutral-800">
-          <CollapsibleSection title="Node Library" defaultOpen={false}>
+          <CollapsibleSection 
+            title="Node Library" 
+            defaultOpen={shouldSectionBeOpen([
+              ...nodeLibrary["Workflow Triggers"],
+              ...nodeLibrary["Action Nodes"]["General Actions"],
+              ...nodeLibrary["Action Nodes"]["Gmail Integration"],
+              ...nodeLibrary["Action Nodes"]["Google Sheets Integration"],
+              ...nodeLibrary["Action Nodes"]["Discord Integration"],
+              ...nodeLibrary["Data Processing"],
+              ...nodeLibrary["Flow Control"],
+              ...nodeLibrary["Special Nodes"]
+            ])}
+          >
             {/* Workflow Triggers */}
-            <CollapsibleSection title="Workflow Triggers" defaultOpen={false}>
+            <CollapsibleSection 
+              title="Workflow Triggers" 
+              defaultOpen={shouldSectionBeOpen(nodeLibrary["Workflow Triggers"])}
+            >
               {nodeLibrary["Workflow Triggers"].map((node) => (
                 <SidebarLink
                   key={node.href}
@@ -84,9 +108,20 @@ export default function Sidebar() {
             </CollapsibleSection>
 
           {/* Action Nodes */}
-          <CollapsibleSection title="Action Nodes" defaultOpen={false}>
+          <CollapsibleSection 
+            title="Action Nodes" 
+            defaultOpen={shouldSectionBeOpen([
+              ...nodeLibrary["Action Nodes"]["General Actions"],
+              ...nodeLibrary["Action Nodes"]["Gmail Integration"],
+              ...nodeLibrary["Action Nodes"]["Google Sheets Integration"],
+              ...nodeLibrary["Action Nodes"]["Discord Integration"]
+            ])}
+          >
             {/* General Actions */}
-            <CollapsibleSection title="General Actions" defaultOpen={false}>
+            <CollapsibleSection 
+              title="General Actions" 
+              defaultOpen={shouldSubsectionBeOpen(nodeLibrary["Action Nodes"]["General Actions"])}
+            >
               {nodeLibrary["Action Nodes"]["General Actions"].map((node) => (
                 <SidebarLink
                   key={node.href}
@@ -99,7 +134,10 @@ export default function Sidebar() {
             </CollapsibleSection>
             
             {/* Gmail Integration */}
-            <CollapsibleSection title="Gmail Integration" defaultOpen={false}>
+            <CollapsibleSection 
+              title="Gmail Integration" 
+              defaultOpen={shouldSubsectionBeOpen(nodeLibrary["Action Nodes"]["Gmail Integration"])}
+            >
               {nodeLibrary["Action Nodes"]["Gmail Integration"].map((node) => (
                 <SidebarLink
                   key={node.href}
@@ -112,7 +150,10 @@ export default function Sidebar() {
             </CollapsibleSection>
             
             {/* Google Sheets Integration */}
-            <CollapsibleSection title="Google Sheets Integration" defaultOpen={false}>
+            <CollapsibleSection 
+              title="Google Sheets Integration" 
+              defaultOpen={shouldSubsectionBeOpen(nodeLibrary["Action Nodes"]["Google Sheets Integration"])}
+            >
               {nodeLibrary["Action Nodes"]["Google Sheets Integration"].map((node) => (
                 <SidebarLink
                   key={node.href}
@@ -125,7 +166,10 @@ export default function Sidebar() {
             </CollapsibleSection>
             
             {/* Discord Integration */}
-            <CollapsibleSection title="Discord Integration" defaultOpen={false}>
+            <CollapsibleSection 
+              title="Discord Integration" 
+              defaultOpen={shouldSubsectionBeOpen(nodeLibrary["Action Nodes"]["Discord Integration"])}
+            >
               {nodeLibrary["Action Nodes"]["Discord Integration"].map((node) => (
                 <SidebarLink
                   key={node.href}
@@ -139,7 +183,10 @@ export default function Sidebar() {
           </CollapsibleSection>
 
           {/* Data Processing */}
-          <CollapsibleSection title="Data Processing" defaultOpen={false}>
+          <CollapsibleSection 
+            title="Data Processing" 
+            defaultOpen={shouldSectionBeOpen(nodeLibrary["Data Processing"])}
+          >
             {nodeLibrary["Data Processing"].map((node) => (
               <SidebarLink
                 key={node.href}
@@ -152,7 +199,10 @@ export default function Sidebar() {
           </CollapsibleSection>
 
           {/* Flow Control */}
-          <CollapsibleSection title="Flow Control" defaultOpen={false}>
+          <CollapsibleSection 
+            title="Flow Control" 
+            defaultOpen={shouldSectionBeOpen(nodeLibrary["Flow Control"])}
+          >
             {nodeLibrary["Flow Control"].map((node) => (
               <SidebarLink
                 key={node.href}
@@ -165,7 +215,10 @@ export default function Sidebar() {
           </CollapsibleSection>
 
           {/* Special Nodes */}
-          <CollapsibleSection title="Special Nodes" defaultOpen={false}>
+          <CollapsibleSection 
+            title="Special Nodes" 
+            defaultOpen={shouldSectionBeOpen(nodeLibrary["Special Nodes"])}
+          >
             {nodeLibrary["Special Nodes"].map((node) => (
               <SidebarLink
                 key={node.href}
@@ -175,8 +228,8 @@ export default function Sidebar() {
                 {node.label}
               </SidebarLink>
             ))}
-                      </CollapsibleSection>
           </CollapsibleSection>
+        </CollapsibleSection>
         </div>
       </nav>
     </aside>

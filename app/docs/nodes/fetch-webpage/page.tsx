@@ -1,25 +1,25 @@
 "use client"
 
 import React from 'react';
-import { Mail, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
+import { Globe, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 import Link from 'next/link';
 
-export default function GmailReadEmailsNode() {
+export default function FetchWebpageNode() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-2 bg-blue-500/20 rounded-lg">
-            <Mail className="w-6 h-6 text-blue-500" />
+            <Globe className="w-6 h-6 text-blue-500" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Gmail Read Emails</h1>
-            <p className="text-neutral-400">Read and analyze Gmail messages programmatically</p>
+            <h1 className="text-3xl font-bold">Fetch Webpage</h1>
+            <p className="text-neutral-400">Extract content from any webpage with automatic HTML cleaning</p>
           </div>
         </div>
         
@@ -31,11 +31,11 @@ export default function GmailReadEmailsNode() {
             </div>
             <div>
               <h3 className="font-semibold text-neutral-200 mb-2">Category</h3>
-              <p className="text-neutral-400">Gmail Integration</p>
+              <p className="text-neutral-400">Web Integration</p>
             </div>
             <div>
               <h3 className="font-semibold text-neutral-200 mb-2">Icon</h3>
-              <p className="text-neutral-400">Gmail</p>
+              <p className="text-neutral-400">Web</p>
             </div>
           </div>
         </div>
@@ -45,9 +45,9 @@ export default function GmailReadEmailsNode() {
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Overview</h2>
         <p className="text-neutral-300 mb-6">
-          The <strong>Gmail Read Emails</strong> node allows you to read, search, and analyze emails from your Gmail account 
-          programmatically. This powerful automation tool integrates with Gmail's API to provide intelligent 
-          email processing capabilities for your workflows.
+          The <strong>Fetch Webpage</strong> node allows you to extract content from any webpage by making HTTP requests 
+          to specified URLs. This powerful automation tool automatically cleans the HTML by removing scripts and styles 
+          to provide clean, readable content for further processing in your workflows.
         </p>
         
         <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
@@ -55,12 +55,12 @@ export default function GmailReadEmailsNode() {
             <Zap className="w-5 h-5 text-yellow-500" />
             Key Features
           </h3>
-        <ul className="text-neutral-300 space-y-2">
-            <li>• <strong>Flexible Email Reading:</strong> Read emails from specific labels or search queries</li>
-            <li>• <strong>Advanced Search:</strong> Use Gmail's powerful search operators</li>
-            <li>• <strong>Metadata Extraction:</strong> Access sender, subject, date, and content</li>
-            <li>• <strong>Batch Processing:</strong> Handle multiple emails efficiently</li>
-            <li>• <strong>Real-time Access:</strong> Always get the latest emails</li>
+          <ul className="text-neutral-300 space-y-2">
+            <li>• <strong>Universal Web Access:</strong> Fetch content from any publicly accessible webpage</li>
+            <li>• <strong>Automatic HTML Cleaning:</strong> Remove scripts, styles, and unnecessary markup</li>
+            <li>• <strong>Clean Content Output:</strong> Get readable text content for processing</li>
+            <li>• <strong>Simple Configuration:</strong> Just provide a URL to get started</li>
+            <li>• <strong>Error Handling:</strong> Built-in success/failure tracking</li>
           </ul>
         </div>
       </section>
@@ -73,26 +73,26 @@ export default function GmailReadEmailsNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Database className="w-5 h-5 text-blue-500" />
-                Google Integration
+                <Globe className="w-5 h-5 text-blue-500" />
+                Web Access
               </CardTitle>
               <CardDescription>
-                Must be connected to access Gmail API
+                Must have access to the target webpages
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Google account connected</span>
+                  <span className="text-sm">Internet connectivity</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Gmail read scope granted</span>
+                  <span className="text-sm">Target webpage is publicly accessible</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Access to target Gmail account</span>
+                  <span className="text-sm">No authentication required for target page</span>
                 </div>
               </div>
             </CardContent>
@@ -102,19 +102,20 @@ export default function GmailReadEmailsNode() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Settings className="w-5 h-5 text-purple-500" />
-                Required Scopes
+                Technical Requirements
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-2">
-                <CodeBlock
-                  code="https://www.googleapis.com/auth/gmail.readonly"
-                  lang="text"
-                />
-                <CodeBlock
-                  code="https://www.googleapis.com/auth/gmail.metadata"
-                  lang="text"
-                />
+                <div className="text-sm text-neutral-300">
+                  <strong>HTTP Support:</strong> The node uses the fetch API to make HTTP requests
+                </div>
+                <div className="text-sm text-neutral-300">
+                  <strong>HTML Processing:</strong> Automatically strips script and style tags
+                </div>
+                <div className="text-sm text-neutral-300">
+                  <strong>Content Extraction:</strong> Returns clean, readable text content
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -134,7 +135,7 @@ export default function GmailReadEmailsNode() {
               <CardContent>
                 <div className="space-y-4">
                   <div>
-                    <h4 className="font-semibold mb-2">query</h4>
+                    <h4 className="font-semibold mb-2">URL</h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                       <div>
                         <span className="text-neutral-400">Type:</span>
@@ -146,83 +147,11 @@ export default function GmailReadEmailsNode() {
                       </div>
                       <div>
                         <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">"from:example@gmail.com"</span>
+                        <span className="ml-2 text-neutral-200">"https://example.com"</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
-                      Gmail search query to filter emails. Use Gmail's search operators for advanced filtering.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2">maxResults</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">number</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Required:</span>
-                        <span className="ml-2 text-green-500">Yes</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">100</span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 mt-2">
-                      Maximum number of emails to return (1-500).
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="border-neutral-700">
-              <CardHeader>
-                <CardTitle>Optional Fields</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">labelIds</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">array</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Required:</span>
-                        <span className="ml-2 text-red-500">No</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">["INBOX", "IMPORTANT"]</span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 mt-2">
-                      Specific label IDs to search within. Leave empty to search all labels.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2">includeSpamTrash</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">boolean</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Required:</span>
-                        <span className="ml-2 text-red-500">No</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Default:</span>
-                        <span className="ml-2 text-neutral-200">false</span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 mt-2">
-                      Whether to include emails from spam and trash folders.
+                      The complete URL of the webpage to fetch. Must include the protocol (http:// or https://).
                     </p>
                   </div>
                 </div>
@@ -236,35 +165,7 @@ export default function GmailReadEmailsNode() {
             <CardContent className="pt-6">
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">emails</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-neutral-400">Type:</span>
-                      <span className="ml-2 text-neutral-200">array</span>
-                    </div>
-                    <div>
-                      <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Array of email objects with metadata and content</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">totalResults</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-neutral-400">Type:</span>
-                      <span className="ml-2 text-neutral-200">number</span>
-                    </div>
-                    <div>
-                      <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Total number of emails matching the query</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">nextPageToken</h4>
+                  <h4 className="font-semibold mb-2">Content</h4>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                     <div>
                       <span className="text-neutral-400">Type:</span>
@@ -272,35 +173,7 @@ export default function GmailReadEmailsNode() {
                     </div>
                     <div>
                       <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Token for pagination to get more results</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">success</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-neutral-400">Type:</span>
-                      <span className="ml-2 text-neutral-200">boolean</span>
-                    </div>
-                    <div>
-                      <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Whether the operation was successful</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div>
-                  <h4 className="font-semibold mb-2">error</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                    <div>
-                      <span className="text-neutral-400">Type:</span>
-                      <span className="ml-2 text-neutral-200">string</span>
-                    </div>
-                    <div>
-                      <span className="text-neutral-400">Description:</span>
-                      <span className="ml-2 text-neutral-200">Error message if operation failed</span>
+                      <span className="ml-2 text-neutral-200">The cleaned HTML content of the webpage</span>
                     </div>
                   </div>
                 </div>
@@ -310,6 +183,73 @@ export default function GmailReadEmailsNode() {
         </CollapsibleSection>
       </section>
 
+      {/* Technical Details */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold mb-4">Technical Details</h2>
+        
+        <div className="space-y-6">
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>HTML Cleaning Process</CardTitle>
+              <CardDescription>
+                How the node processes and cleans webpage content
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Automatic Removal</h4>
+                  <p className="text-neutral-400 text-sm mb-3">
+                    The node automatically strips out the following HTML elements to provide clean content:
+                  </p>
+                  <ul className="text-sm text-neutral-300 space-y-1">
+                    <li>• <code className="bg-neutral-700 px-1 rounded">&lt;script&gt;</code> tags and their content</li>
+                    <li>• <code className="bg-neutral-700 px-1 rounded">&lt;style&gt;</code> tags and their content</li>
+                    <li>• All JavaScript code and CSS styles</li>
+                  </ul>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Content Processing</h4>
+                  <p className="text-neutral-400 text-sm">
+                    The remaining HTML content is preserved, maintaining the structure and readability of the webpage 
+                    while removing unnecessary technical elements that could interfere with content analysis.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>HTTP Request Handling</CardTitle>
+              <CardDescription>
+                How the node makes requests to webpages
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold mb-2">Request Method</h4>
+                  <p className="text-neutral-400 text-sm">
+                    Uses HTTP GET requests to fetch webpage content. The node respects standard HTTP status codes 
+                    and will handle errors appropriately.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold mb-2">Response Processing</h4>
+                  <p className="text-neutral-400 text-sm">
+                    Converts the HTTP response to text format, then applies HTML cleaning before returning the 
+                    processed content to your workflow.
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Examples */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Examples & Use Cases</h2>
@@ -317,67 +257,60 @@ export default function GmailReadEmailsNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Basic Email Reading</CardTitle>
+              <CardTitle>Basic Webpage Fetching</CardTitle>
               <CardDescription>
-                Read recent emails from a specific sender
+                Fetch content from a simple webpage
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "from:example@gmail.com",
-  "maxResults": 50,
-  "includeSpamTrash": false
+  "url": "https://example.com"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Reads the 50 most recent emails from example@gmail.com, excluding spam and trash.
+                Fetches the content from example.com and returns cleaned HTML without scripts or styles.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Advanced Search Query</CardTitle>
+              <CardTitle>News Article Extraction</CardTitle>
               <CardDescription>
-                Use Gmail search operators for complex filtering
+                Extract article content from news websites
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "subject:meeting has:attachment after:2024/01/01",
-  "maxResults": 100,
-  "labelIds": ["INBOX", "WORK"]
+  "url": "https://news-site.com/article/123"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Searches for emails with "meeting" in subject, containing attachments, after Jan 1, 2024, in INBOX and WORK labels.
+                Fetches a specific news article and returns clean content for further processing or analysis.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Label-Specific Search</CardTitle>
+              <CardTitle>Dynamic URL with Workflow Data</CardTitle>
               <CardDescription>
-                Search within specific Gmail labels
+                Use workflow variables for dynamic webpage fetching
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "query": "is:unread",
-  "maxResults": 25,
-  "labelIds": ["IMPORTANT"],
-  "includeSpamTrash": false
+  "url": "{{workflowData.targetUrl}}"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3">
-                Finds unread emails in the IMPORTANT label, returning up to 25 results.
+                Uses a URL from workflow data to dynamically fetch different webpages based on your workflow logic.
               </p>
             </CardContent>
           </Card>
@@ -391,9 +324,9 @@ export default function GmailReadEmailsNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Email Monitoring Pipeline</CardTitle>
+              <CardTitle>Content Monitoring Pipeline</CardTitle>
               <CardDescription>
-                Complete workflow for monitoring and processing emails
+                Monitor webpage content for changes
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -401,17 +334,18 @@ export default function GmailReadEmailsNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>📧 Gmail Read Emails → 🤖 AI Analysis → 📊 Data Processing → 📱 Alert Generation</div>
+                    <div>⏰ Schedule Trigger → 🌐 Fetch Webpage → 🤖 AI Analysis → 📊 Content Comparison → 📱 Alert</div>
                   </div>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Step-by-Step Configuration</h4>
                   <ol className="list-decimal list-inside space-y-2 text-sm text-neutral-300">
-                    <li><strong>Gmail Read Emails:</strong> Monitor specific email criteria</li>
-                    <li><strong>AI Analysis:</strong> Analyze email content for insights</li>
-                    <li><strong>Data Processing:</strong> Extract and structure relevant information</li>
-                    <li><strong>Alert Generation:</strong> Send notifications based on findings</li>
+                    <li><strong>Schedule Trigger:</strong> Run the workflow at regular intervals</li>
+                    <li><strong>Fetch Webpage:</strong> Get current content from the monitored page</li>
+                    <li><strong>AI Analysis:</strong> Analyze the content for important changes</li>
+                    <li><strong>Content Comparison:</strong> Compare with previous versions</li>
+                    <li><strong>Alert:</strong> Send notifications about significant changes</li>
                   </ol>
                 </div>
               </div>
@@ -420,9 +354,9 @@ export default function GmailReadEmailsNode() {
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Customer Support Automation</CardTitle>
+              <CardTitle>Data Collection from Multiple Sources</CardTitle>
               <CardDescription>
-                Automate customer support email processing
+                Collect data from various websites for analysis
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -430,20 +364,20 @@ export default function GmailReadEmailsNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Use Case</h4>
                   <p className="text-sm text-neutral-400">
-                    Automatically read support emails, categorize them by urgency, and route them to appropriate 
-                    support teams or generate automated responses.
+                    Automatically fetch content from multiple websites, extract relevant information, 
+                    and compile it into a comprehensive report or database.
                   </p>
                 </div>
                 
                 <div>
                   <h4 className="font-semibold mb-2">Implementation</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm text-neutral-300">
-                    <li>Monitor support email addresses and labels</li>
-                    <li>Analyze email content for urgency indicators</li>
-                    <li>Categorize emails by type and priority</li>
-                    <li>Route to appropriate support channels</li>
-        </ul>
-      </div>
+                    <li>Use multiple Fetch Webpage nodes for different sources</li>
+                    <li>Process each webpage's content with AI analysis</li>
+                    <li>Extract structured data from the cleaned content</li>
+                    <li>Combine and format the collected information</li>
+                  </ul>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -464,12 +398,12 @@ export default function GmailReadEmailsNode() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-neutral-300">
-                <li>• Use specific search queries to limit results</li>
-                <li>• Implement pagination for large result sets</li>
+                <li>• Use HTTPS URLs when possible for security</li>
+                <li>• Implement rate limiting between requests</li>
+                <li>• Handle errors gracefully in your workflows</li>
+                <li>• Respect robots.txt and website terms of service</li>
                 <li>• Cache results when appropriate</li>
-                <li>• Handle rate limits gracefully</li>
-                <li>• Always check the success output field</li>
-                <li>• Use label IDs for targeted searches</li>
+                <li>• Use specific URLs rather than homepage URLs</li>
               </ul>
             </CardContent>
           </Card>
@@ -483,12 +417,12 @@ export default function GmailReadEmailsNode() {
             </CardHeader>
             <CardContent>
               <ul className="space-y-2 text-sm text-neutral-300">
-                <li>• Don't request too many results at once</li>
-                <li>• Avoid searching all emails without filters</li>
-                <li>• Don't ignore API rate limits</li>
-                <li>• Avoid processing sensitive content without encryption</li>
-                <li>• Don't assume all emails have the same structure</li>
-                <li>• Avoid hardcoding email addresses</li>
+                <li>• Don't make requests too frequently</li>
+                <li>• Avoid scraping private or password-protected pages</li>
+                <li>• Don't ignore HTTP error responses</li>
+                <li>• Avoid making requests to the same page repeatedly</li>
+                <li>• Don't assume all websites allow scraping</li>
+                <li>• Avoid processing sensitive content without verification</li>
               </ul>
             </CardContent>
           </Card>
@@ -496,8 +430,8 @@ export default function GmailReadEmailsNode() {
 
         <div className="mt-6">
           <Callout emoji="💡" color="border-blue-500">
-            <strong>Pro Tip:</strong> Use Gmail's powerful search operators like "from:", "subject:", "has:attachment", 
-            "after:", "before:", and "label:" to create precise queries that return only the emails you need.
+            <strong>Pro Tip:</strong> When building workflows that fetch multiple webpages, implement delays between 
+            requests to be respectful to the target websites and avoid being blocked for excessive requests.
           </Callout>
         </div>
       </section>
@@ -517,34 +451,34 @@ export default function GmailReadEmailsNode() {
             <CardContent>
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Permission Denied</h4>
+                  <h4 className="font-semibold mb-2">Access Denied (403 Forbidden)</h4>
                   <p className="text-neutral-400 text-sm mb-2">
                     <strong>Symptoms:</strong> Node fails with access denied errors
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Ensure Google integration is properly connected and Gmail read scope is granted
+                    <strong>Solution:</strong> The website may be blocking automated requests. Check if the page requires authentication or has anti-bot measures.
                   </p>
                 </div>
                 
                 <div>
-                  <h4 className="font-semibold mb-2">Invalid Query</h4>
+                  <h4 className="font-semibold mb-2">Page Not Found (404 Error)</h4>
                   <p className="text-neutral-400 text-sm mb-2">
-                    <strong>Symptoms:</strong> Node fails with query syntax errors
+                    <strong>Symptoms:</strong> Node fails with page not found errors
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Verify Gmail search query syntax and use valid search operators
+                    <strong>Solution:</strong> Verify the URL is correct and the webpage still exists. URLs can change or pages can be removed.
                   </p>
-      </div>
-
+                </div>
+                
                 <div>
-                  <h4 className="font-semibold mb-2">Rate Limiting</h4>
+                  <h4 className="font-semibold mb-2">Timeout Errors</h4>
                   <p className="text-neutral-400 text-sm mb-2">
-                    <strong>Symptoms:</strong> Node fails intermittently with quota exceeded errors
+                    <strong>Symptoms:</strong> Node fails with timeout errors
                   </p>
                   <p className="text-neutral-400 text-sm">
-                    <strong>Solution:</strong> Implement delays between requests and monitor API usage
+                    <strong>Solution:</strong> The target website may be slow or experiencing issues. Try again later or check the website's status.
                   </p>
-      </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -556,21 +490,21 @@ export default function GmailReadEmailsNode() {
         <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href="/docs/nodes/gmail-write-labels">
+          <Link href="/docs/nodes/llm-prompt">
             <Button variant="outline" className="justify-start h-auto p-4 w-full">
               <div className="text-left">
-                <div className="font-semibold">Gmail Write Labels Node</div>
-                <div className="text-sm text-neutral-400">Create and manage Gmail labels</div>
+                <div className="font-semibold">LLM Prompt Node</div>
+                <div className="text-sm text-neutral-400">Analyze webpage content with AI</div>
               </div>
               <ExternalLink className="w-4 h-4 ml-auto" />
             </Button>
           </Link>
           
-          <Link href="/docs/nodes/llm-prompt">
+          <Link href="/docs/nodes/google-sheets-write">
             <Button variant="outline" className="justify-start h-auto p-4 w-full">
               <div className="text-left">
-                <div className="font-semibold">LLM Prompt Node</div>
-                <div className="text-sm text-neutral-400">Analyze email content with AI</div>
+                <div className="font-semibold">Google Sheets Write Node</div>
+                <div className="text-sm text-neutral-400">Store extracted data in spreadsheets</div>
               </div>
               <ExternalLink className="w-4 h-4 ml-auto" />
             </Button>
