@@ -134,7 +134,7 @@ export default function DiscordSendMessageNode() {
                   <strong>Discord Service:</strong> Access to Discord service for message operations
                 </div>
                 <div className="text-sm text-neutral-300">
-                  <strong>User Authentication:</strong> Valid user ID for Discord operations</strong>
+                  <strong>User Authentication:</strong> Valid user ID for Discord operations
                 </div>
                 <div className="text-sm text-neutral-300">
                   <strong>Network Access:</strong> Ability to connect to Discord's API endpoints
