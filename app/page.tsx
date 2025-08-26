@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Zap, Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star, Play, MessageSquare, Shield, Mouse, Clock, Activity, Code, Bell } from 'lucide-react';
+import { Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star, Play, MessageSquare, Shield, Mouse, Clock, Activity, Code, Bell } from 'lucide-react';
 import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
 import GoogleSignIn from './components/GoogleSignIn';
@@ -180,9 +180,9 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background text-text-primary" style={{ scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
+    <div className="relative min-h-screen h-full overflow-hidden bg-background text-text-primary" style={{ scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
       {/* Subtle Interactive Rain Background - Full Page */}
-      <div className="fixed inset-0 z-0">
+      <div className="fixed inset-0 z-0 w-full h-full">
         <SubtleRain />
       </div>
       
@@ -256,7 +256,13 @@ export default function LandingPage() {
                   
                   {/* Icon */}
                   <div className="relative">
-                    <Zap className="w-8 h-8 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                    <Image 
+                      src="/flowdrop-logo-3.png" 
+                      alt="FlowDrop Logo" 
+                      width={32} 
+                      height={32} 
+                      className="w-8 h-8 group-hover:brightness-110 transition-all duration-300"
+                    />
                   </div>
                 </motion.div>
               </motion.div>
@@ -917,7 +923,13 @@ export default function LandingPage() {
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
-                      <Zap className="w-8 h-8 text-primary-main" />
+                      <Image 
+                        src="/flowdrop-logo-3.png" 
+                        alt="FlowDrop Logo" 
+                        width={32} 
+                        height={32} 
+                        className="w-8 h-8"
+                      />
                     </div>
                   </div>
                 <CardTitle className="mb-4">Chat-to-Flow</CardTitle>

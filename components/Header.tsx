@@ -4,10 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Zap, Menu, X, LogOut, ArrowRight } from 'lucide-react';
+import { Menu, X, LogOut, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { createClient } from '@supabase/supabase-js';
+import Image from 'next/image';
 
 const supabase = createClient(
   'https://zocqlxonwsvhkamywijo.supabase.co',
@@ -33,6 +34,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const pathname = usePathname();
 
   // Show header when scrolled > 50vh OR scrolling up
@@ -108,13 +110,19 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
               <Link href="/" className="group relative">
                 <motion.div
                   className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
-                  whileHover={{ 
-                    scale: 1.05,
+                  variants={{
+                    default: { scale: 1 },
+                    hover: { scale: 1.05 }
                   }}
+                  initial="default"
+                  whileHover="hover"
+                  animate="default"
                   transition={{ duration: 0.2 }}
+                  onHoverStart={() => setIsLogoHovered(true)}
+                  onHoverEnd={() => setIsLogoHovered(false)}
                 >
                   <motion.div
-                    whileHover={{
+                    animate={isLogoHovered ? {
                       scale: [1, 1.2, 0.9, 1.1, 1],
                       rotate: [0, -5, 5, -2, 0],
                       filter: [
@@ -124,13 +132,23 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         "brightness(1.2) drop-shadow(0 0 6px rgba(139, 92, 246, 0.7))",
                         "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
                       ]
+                    } : {
+                      scale: 1,
+                      rotate: 0,
+                      filter: "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
                     }}
                     transition={{
                       duration: 0.6,
                       ease: "easeInOut"
                     }}
                   >
-                    <Zap className="w-5 h-5 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                    <Image 
+                      src="/flowdrop-logo-3.png" 
+                      alt="FlowDrop Logo" 
+                      width={20} 
+                      height={20} 
+                      className="w-5 h-5 group-hover:brightness-110 group-hover:scale-110 transition-all duration-300"
+                    />
                   </motion.div>
                   <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
                     FlowDrop
@@ -264,7 +282,13 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                   }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Zap className="w-5 h-5 text-primary-main group-hover:text-primary-light transition-colors duration-300" />
+                  <Image 
+                    src="/flowdrop-logo-3.png" 
+                    alt="FlowDrop Logo" 
+                    width={20} 
+                    height={20} 
+                    className="w-5 h-5 group-hover:brightness-110 transition-all duration-300"
+                  />
                   <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
                     FlowDrop
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">FlowDrop</div>

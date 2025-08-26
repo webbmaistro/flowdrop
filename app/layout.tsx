@@ -22,6 +22,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "FlowDrop - AI Workflow Builder for Non-Coders",
   description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
   keywords: [
     "AI workflow builder",
     "no-code automation", 
