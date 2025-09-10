@@ -51,7 +51,7 @@ export default function WorkflowEditorComparison() {
                 "sameAs": [
                   "https://twitter.com/flowdrop_app",
                   "https://www.reddit.com/r/Flowdrop/",
-                  "https://medium.com/@flowdrop"
+                  "https://www.linkedin.com/company/flowdrop-labs/"
                 ]
               },
               "mainEntity": [

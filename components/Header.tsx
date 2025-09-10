@@ -122,7 +122,23 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                   onHoverEnd={() => setIsLogoHovered(false)}
                 >
                   <motion.div
-                    animate={isLogoHovered ? {
+                    animate={{ 
+                      y: [0, -2, 0],
+                      rotate: [0, 2, -2, 0],
+                    }}
+                    transition={{
+                      y: {
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      },
+                      rotate: {
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }
+                    }}
+                    whileHover={{
                       scale: [1, 1.2, 0.9, 1.1, 1],
                       rotate: [0, -5, 5, -2, 0],
                       filter: [
@@ -132,23 +148,28 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         "brightness(1.2) drop-shadow(0 0 6px rgba(139, 92, 246, 0.7))",
                         "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
                       ]
-                    } : {
-                      scale: 1,
-                      rotate: 0,
-                      filter: "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
                     }}
                     transition={{
                       duration: 0.6,
                       ease: "easeInOut"
                     }}
                   >
-                    <Image 
-                      src="/flowdrop-logo-3.png" 
-                      alt="FlowDrop Logo" 
-                      width={20} 
-                      height={20} 
-                      className="w-5 h-5 group-hover:brightness-110 group-hover:scale-110 transition-all duration-300"
-                    />
+                    {/* Glow Effect Layer */}
+                    <div className="absolute inset-0 scale-[2] opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <div className="absolute inset-0 bg-primary-main/20 blur-xl transform scale-y-[0.8]" />
+                      <div className="absolute inset-0 bg-primary-main/10 blur-2xl" />
+                    </div>
+                    
+                    {/* Icon */}
+                    <div className="relative">
+                      <Image 
+                        src="/flowdrop-logo-3.png" 
+                        alt="FlowDrop Logo" 
+                        width={20} 
+                        height={20} 
+                        className="w-5 h-5 group-hover:brightness-110 transition-all duration-300"
+                      />
+                    </div>
                   </motion.div>
                   <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
                     FlowDrop
