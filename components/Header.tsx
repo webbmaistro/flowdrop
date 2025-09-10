@@ -136,6 +136,10 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         duration: 4,
                         repeat: Infinity,
                         ease: "easeInOut"
+                      },
+                      default: {
+                        duration: 0.6,
+                        ease: "easeInOut"
                       }
                     }}
                     whileHover={{
@@ -148,10 +152,6 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                         "brightness(1.2) drop-shadow(0 0 6px rgba(139, 92, 246, 0.7))",
                         "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
                       ]
-                    }}
-                    transition={{
-                      duration: 0.6,
-                      ease: "easeInOut"
                     }}
                   >
                     {/* Glow Effect Layer */}
