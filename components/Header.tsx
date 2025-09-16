@@ -172,8 +172,8 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                     </div>
                   </motion.div>
                   <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
-                    FlowDrop
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-400" aria-hidden="true">FlowDrop</div>
+                    Flowdrop
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-400" aria-hidden="true">Flowdrop</div>
                   </span>
                   <div className="absolute inset-0 rounded-full bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-400" />
                 </motion.div>
@@ -281,8 +281,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between h-16"> {/* 64px height */}
+        <div className="flex items-center justify-between px-6 py-4"> {/* Same as persistent: top-0 + py-4 = 16px */}
             {/* Logo */}
             <motion.div
               className="group relative"
@@ -311,8 +310,8 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                     className="w-5 h-5 group-hover:brightness-110 transition-all duration-300"
                   />
                   <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
-                    FlowDrop
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">FlowDrop</div>
+                    Flowdrop
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">Flowdrop</div>
                   </span>
                   <div className="absolute inset-0 rounded-full bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-300" />
                 </motion.div>
@@ -473,7 +472,6 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                 <Menu className="w-6 h-6" />
               )}
             </button>
-          </div>
         </div>
       </motion.header>
 

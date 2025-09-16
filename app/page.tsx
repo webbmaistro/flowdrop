@@ -258,7 +258,7 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/flowdrop-logo-3.png" 
-                      alt="FlowDrop Logo" 
+                      alt="Flowdrop Logo" 
                       width={32} 
                       height={32} 
                       className="w-8 h-8 group-hover:brightness-110 transition-all duration-300"
@@ -491,7 +491,7 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/screenshots/webfloweditor.png" 
-                      alt="FlowDrop Visual Workflow Builder"
+                      alt="Flowdrop Visual Workflow Builder"
                       width={800}
                       height={600}
                       className="w-full h-auto rounded-b-xl"
@@ -538,7 +538,7 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/screenshots/generatewebflowscreen.png" 
-                      alt="FlowDrop AI Workflow Generation"
+                      alt="Flowdrop AI Workflow Generation"
                       width={800}
                       height={600}
                       className="w-full h-auto rounded-b-xl"
@@ -622,7 +622,7 @@ export default function LandingPage() {
               <div className="relative">
                 <Image 
                   src="/screenshots/nodeeditor.png" 
-                  alt="FlowDrop Node Editor"
+                  alt="Flowdrop Node Editor"
                   width={300}
                   height={128}
                   className="w-full h-32 object-cover rounded-b-lg"
@@ -660,7 +660,7 @@ export default function LandingPage() {
               <div className="relative">
                 <Image 
                   src="/screenshots/buildwithchatfeature.png" 
-                  alt="FlowDrop Build with Chat"
+                  alt="Flowdrop Build with Chat"
                   width={250}
                   height={300}
                   className="w-full h-auto object-contain"
@@ -698,7 +698,7 @@ export default function LandingPage() {
               <div className="relative">
                 <Image 
                   src="/screenshots/webfloweditor2.png" 
-                  alt="FlowDrop Advanced Editor"
+                  alt="Flowdrop Advanced Editor"
                   width={200}
                   height={80}
                   className="w-full h-20 object-cover rounded-lg"
@@ -820,7 +820,7 @@ export default function LandingPage() {
                 <div className="relative">
                   <Image 
                     src="/screenshots/buildwithchatfeature.png" 
-                    alt="FlowDrop Build with Chat"
+                    alt="Flowdrop Build with Chat"
                     width={250}
                     height={300}
                     className="w-full h-auto"
@@ -854,7 +854,7 @@ export default function LandingPage() {
                 <div className="relative">
                   <Image 
                     src="/screenshots/nodeeditor.png" 
-                    alt="FlowDrop Node Editor"
+                    alt="Flowdrop Node Editor"
                     width={400}
                     height={300}
                     className="w-full h-auto rounded-b-lg"
@@ -925,7 +925,7 @@ export default function LandingPage() {
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
                       <Image 
                         src="/flowdrop-logo-3.png" 
-                        alt="FlowDrop Logo" 
+                        alt="Flowdrop Logo" 
                         width={32} 
                         height={32} 
                         className="w-8 h-8"

@@ -21,28 +21,34 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
+      const data = await res.json();
 
-    if (res.ok) {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({
-          name: '',
-          email: '',
-          subject: '',
-          message: '',
-        });
-      }, 3000);
-    } else {
-      // Replace alert with a user-friendly notification method
-      alert('There was a problem sending your message.');
+      if (res.ok && data.success) {
+        setIsSubmitted(true);
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            name: '',
+            email: '',
+            subject: '',
+            message: '',
+          });
+        }, 3000);
+      } else {
+        alert(data.error || 'There was a problem sending your message.');
+      }
+    } catch (error) {
+      console.error('Contact form error:', error);
+      alert('There was a problem sending your message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 

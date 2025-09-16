@@ -75,13 +75,13 @@ const quickLinks = [
 export default function DocsHome() {
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-2">FlowDrop Docs — Build AI-first workflows in minutes.</h1>
+      <h1 className="text-3xl font-bold mb-2">Flowdrop Docs — Build AI-first workflows in minutes.</h1>
       <p className="mb-6 text-neutral-300">Get started fast.</p>
       
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">What is FlowDrop?</h2>
+        <h2 className="text-2xl font-bold mb-4">What is Flowdrop?</h2>
         <p className="text-neutral-300 mb-6">
-          FlowDrop is a no-code platform that lets you build AI-powered workflows without writing a single line of code. 
+          Flowdrop is a no-code platform that lets you build AI-powered workflows without writing a single line of code. 
           Think of it as your personal AI assistant that can automate complex tasks across all your favorite apps.
         </p>
         
@@ -105,13 +105,13 @@ export default function DocsHome() {
             and existing tools are either too complex or too limited.
           </p>
           <p className="text-neutral-300">
-            <strong>Our Solution:</strong> FlowDrop makes AI automation accessible to everyone. No coding required. 
+            <strong>Our Solution:</strong> Flowdrop makes AI automation accessible to everyone. No coding required. 
             Just drag, drop, and describe what you want. We handle the complex AI integration behind the scenes.
           </p>
         </div>
 
         <div className="bg-neutral-800 rounded-xl p-6">
-          <h3 className="font-semibold mb-3">✨ Why FlowDrop?</h3>
+          <h3 className="font-semibold mb-3">✨ Why Flowdrop?</h3>
           <ul className="text-neutral-300 space-y-2">
             <li>• <strong>No Code Required:</strong> Visual builder anyone can use</li>
             <li>• <strong>AI-First:</strong> Built specifically for AI workflows, not retrofitted</li>
