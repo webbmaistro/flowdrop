@@ -44,8 +44,8 @@ export default function PricingPage() {
         'Basic AI tools',
         'Community support'
       ],
-      cta: 'Start Free',
-      ctaAction: () => window.location.href = '/signin'
+      cta: 'Contact Us',
+      ctaAction: () => window.location.href = '/contact'
     },
     {
       name: 'Solo',
@@ -60,8 +60,8 @@ export default function PricingPage() {
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Get Started',
-      ctaAction: () => window.location.href = '/signin'
+      cta: 'Contact Us',
+      ctaAction: () => window.location.href = '/contact'
     },
     {
       name: 'Builder',
@@ -73,11 +73,12 @@ export default function PricingPage() {
       icon: Rocket,
       features: [
         '5,000 credits/month',
+        '3 seats included',
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Get Started',
-      ctaAction: () => window.location.href = '/signin'
+      cta: 'Contact Us',
+      ctaAction: () => window.location.href = '/contact'
     },
     {
       name: 'Growth',
@@ -89,11 +90,12 @@ export default function PricingPage() {
       icon: Crown,
       features: [
         '10,000 credits/month',
+        '5 seats included',
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Get Started',
-      ctaAction: () => window.location.href = '/signin'
+      cta: 'Contact Us',
+      ctaAction: () => window.location.href = '/contact'
     },
     {
       name: 'Enterprise',
@@ -105,10 +107,10 @@ export default function PricingPage() {
       icon: Building2,
       features: [
         'Custom credit limits',
+        'Unlimited seats',
         'Custom pricing',
         'Dedicated support',
-        'Custom integrations',
-        'SLA guarantees'
+        'Custom integrations'
       ],
       cta: 'Contact Us',
       ctaAction: () => window.location.href = '/contact'
@@ -150,36 +152,26 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-main/20 via-transparent to-primary-dark/20" />
-        <div className="relative container mx-auto px-6">
+      {/* Early Access Message */}
+      <section className="py-12 bg-primary-main/10 border-b border-primary-main/20">
+        <div className="container mx-auto px-6">
           <motion.div
             className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-main/20 rounded-2xl">
-                <Star className="w-8 h-8 text-primary-main" />
-              </div>
-            </motion.div>
-            
-            <motion.h1 
-              variants={itemVariants}
-              className={cn(typography.h1, "mb-6 text-balance")}
-            >
-              Simple, transparent pricing
-            </motion.h1>
-            
-            <motion.p 
-              variants={itemVariants}
-              className={cn(typography.bodyLarge, "mb-12 max-w-2xl mx-auto text-balance")}
-            >
-              Choose the perfect plan for your AI workflow needs. 
-              Start free and scale as you grow with flexible credit-based pricing.
-            </motion.p>
+            <div className="inline-flex items-center gap-2 bg-primary-main/20 text-primary-main px-4 py-2 rounded-full text-sm font-semibold mb-4">
+              <Star className="w-4 h-4" />
+              Early Access
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-3">
+              Flowdrop is currently in early access
+            </h2>
+            <p className="text-text-muted text-lg max-w-2xl mx-auto">
+              We're building something amazing and would love to hear about your AI workflow needs. 
+              Contact us to discuss pricing and get early access to our platform.
+            </p>
           </motion.div>
         </div>
       </section>
@@ -314,7 +306,8 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Additional Credits Section */}
+      {/* Additional Credits Section - TEMPORARILY DISABLED */}
+      {/* 
       <section className="py-20 bg-background-card/30">
         <div className="container mx-auto px-6">
           <motion.div
@@ -415,6 +408,7 @@ export default function PricingPage() {
           </motion.div>
         </div>
       </section>
+      */}
 
       {/* FAQ Section */}
       <section className="py-20">
