@@ -2,25 +2,21 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, LogOut, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui';
 import { cn } from '@/lib/utils';
 import { createClient } from '@supabase/supabase-js';
-import Image from 'next/image';
+import { Button } from '@/components/ui';
+import { ArrowRight } from 'lucide-react';
+import LogoButton from './header/LogoButton';
+import Navigation from './header/Navigation';
+import AuthButtons from './header/AuthButtons';
+import MobileMenu from './header/MobileMenu';
 
 const supabase = createClient(
   'https://zocqlxonwsvhkamywijo.supabase.co',
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpvY3FseG9ud3N2aGthbXl3aWpvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg2NTE2NDUsImV4cCI6MjA2NDIyNzY0NX0.sHKkSxqVa8WFvyaPj4z9WStGdDcR0tbaE6Ri1oasC9E'
 );
 
-const navigation: Array<{name: string; href: string; external?: boolean}> = [
-  { name: 'Home', href: '/' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Docs', href: '/docs' },
-  { name: 'Contact', href: '/contact' },
-];
 
 interface HeaderProps {
   hideAtTopOnLanding?: boolean;
@@ -34,7 +30,6 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const pathname = usePathname();
 
   // Show header when scrolled > 50vh OR scrolling up
@@ -82,6 +77,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
     window.location.href = '/';
   };
 
+
   return (
     <>
       {/* Persistent Elements for Landing Page */}
@@ -96,89 +92,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <motion.div
-              className="group relative"
-              whileHover={{
-                x: [0, -0.5, 0.5, -0.3, 0.3, 0],
-                y: [0, -0.3, 0.3, -0.2, 0.2, 0]
-              }}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut"
-              }}
-            >
-              <Link href="/" className="group relative">
-                <motion.div
-                  className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
-                  variants={{
-                    default: { scale: 1 },
-                    hover: { scale: 1.05 }
-                  }}
-                  initial="default"
-                  whileHover="hover"
-                  animate="default"
-                  transition={{ duration: 0.2 }}
-                  onHoverStart={() => setIsLogoHovered(true)}
-                  onHoverEnd={() => setIsLogoHovered(false)}
-                >
-                  <motion.div
-                    animate={{ 
-                      y: [0, -2, 0],
-                      rotate: [0, 2, -2, 0],
-                    }}
-                    transition={{
-                      y: {
-                        duration: 3,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      },
-                      rotate: {
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      },
-                      default: {
-                        duration: 0.6,
-                        ease: "easeInOut"
-                      }
-                    }}
-                    whileHover={{
-                      scale: [1, 1.2, 0.9, 1.1, 1],
-                      rotate: [0, -5, 5, -2, 0],
-                      filter: [
-                        "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))",
-                        "brightness(1.3) drop-shadow(0 0 8px rgba(139, 92, 246, 0.8))",
-                        "brightness(1.1) drop-shadow(0 0 4px rgba(139, 92, 246, 0.6))",
-                        "brightness(1.2) drop-shadow(0 0 6px rgba(139, 92, 246, 0.7))",
-                        "brightness(1) drop-shadow(0 0 0px rgba(139, 92, 246, 0))"
-                      ]
-                    }}
-                  >
-                    {/* Glow Effect Layer */}
-                    <div className="absolute inset-0 scale-[2] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                      <div className="absolute inset-0 bg-primary-main/20 blur-xl transform scale-y-[0.8]" />
-                      <div className="absolute inset-0 bg-primary-main/10 blur-2xl" />
-                    </div>
-                    
-                    {/* Icon */}
-                    <div className="relative">
-                      <Image 
-                        src="/flowdrop-logo-3.png" 
-                        alt="FlowDrop Logo" 
-                        width={20} 
-                        height={20} 
-                        className="w-5 h-5 group-hover:brightness-110 transition-all duration-300"
-                      />
-                    </div>
-                  </motion.div>
-                  <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
-                    Flowdrop
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-400" aria-hidden="true">Flowdrop</div>
-                  </span>
-                  <div className="absolute inset-0 rounded-full bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-400" />
-                </motion.div>
-              </Link>
-            </motion.div>
+            <LogoButton isHeroVersion={true} />
           </motion.div>
         )}
 
@@ -195,7 +109,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
             {user ? (
               <div className="flex items-center gap-3">
                 <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-                  👋 {user.email?.split('@')[0]}
+                  👋 Hey, {user.email?.split('@')[0]?.charAt(0).toUpperCase() + user.email?.split('@')[0]?.slice(1)}!
                 </span>
                 <Button
                   variant="primary"
@@ -283,286 +197,31 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
       >
         <div className="flex items-center justify-between px-6 py-4"> {/* Same as persistent: top-0 + py-4 = 16px */}
             {/* Logo */}
-            <motion.div
-              className="group relative"
-              whileHover={{
-                x: [0, -0.5, 0.5, -0.3, 0.3, 0],
-                y: [0, -0.3, 0.3, -0.2, 0.2, 0]
-              }}
-              transition={{
-                duration: 0.6,
-                ease: "easeInOut"
-              }}
-            >
-              <Link href="/" className="group relative">
-                <motion.div
-                  className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
-                  whileHover={{ 
-                    scale: 1.05,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Image 
-                    src="/flowdrop-logo-3.png" 
-                    alt="FlowDrop Logo" 
-                    width={20} 
-                    height={20} 
-                    className="w-5 h-5 group-hover:brightness-110 transition-all duration-300"
-                  />
-                  <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
-                    Flowdrop
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">Flowdrop</div>
-                  </span>
-                  <div className="absolute inset-0 rounded-full bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-300" />
-                </motion.div>
-              </Link>
-            </motion.div>
+            <LogoButton />
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              {navigation.map((item) => {
-                const isActive = pathname === item.href && !item.external;
-                return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={cn(
-                      'text-text-secondary transition-all duration-200 relative',
-                      'not-button-link',
-                      isActive && 'text-text-primary'
-                    )}
-                    {...(item.external && { target: "_blank", rel: "noopener noreferrer" })}
-                  >
-                    {item.name}
-                    {isActive && (
-                      <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary-main"
-                        layoutId="activeTab"
-                        transition={{ duration: 0.3 }}
-                      />
-                    )}
-                  </Link>
-                );
-              })}
-            </nav>
+            <Navigation pathname={pathname} />
 
             {/* CTA Buttons */}
-            <div className="hidden md:flex items-center space-x-3">
-              {!loading && (
-                <>
-                  {user ? (
-                    <>
-                      <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-                        👋 Hey, {user.email?.split('@')[0]}!
-                      </span>
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={handleSignOut}
-                        className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 text-white font-semibold"
-                      >
-                        <div className="relative flex items-center justify-center">
-                          <motion.div
-                            className="flex items-center gap-1.5"
-                            initial="default"
-                            whileHover="hover"
-                            animate="default"
-                            variants={{
-                              default: { x: 0 },
-                              hover: { x: -2 }
-                            }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                          >
-                            <span>Sign Out</span>
-                            <motion.span
-                              className="flex items-center overflow-hidden"
-                              variants={{
-                                default: { width: 0, opacity: 0, marginLeft: 0 },
-                                hover: { width: 20, opacity: 1, marginLeft: 6 }
-                              }}
-                              transition={{ duration: 0.3, ease: "easeInOut" }}
-                              style={{ display: 'inline-flex' }}
-                            >
-                              <ArrowRight className="w-4 h-4" />
-                            </motion.span>
-                          </motion.div>
-                        </div>
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      {/* Highlighted Get Started Button */}
-                      <Button
-                        variant="primary"
-                        size="sm"
-                        onClick={() => window.location.href = '/signin'}
-                        className="btn-liquid shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden px-3 text-white font-semibold"
-                      >
-                        <div className="relative flex items-center justify-center">
-                          <motion.div
-                            className="flex items-center gap-1.5 px-2"
-                            initial="default"
-                            whileHover="hover"
-                            animate="default"
-                            variants={{
-                              default: { x: 0 },
-                              hover: { x: 0 }
-                            }}
-                          >
-                            <span>Get Started</span>
-                            <motion.div
-                              variants={{
-                                default: { width: 0, opacity: 0, marginLeft: -4 },
-                                hover: { width: "auto", opacity: 1, marginLeft: 0 }
-                              }}
-                              transition={{ duration: 0.3 }}
-                              style={{ overflow: "hidden" }}
-                            >
-                              <ArrowRight className="w-4 h-4" />
-                            </motion.div>
-                          </motion.div>
-                        </div>
-                      </Button>
-                      {/* Login Button */}
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => window.location.href = '/signin'}
-                        className="group relative overflow-hidden px-3 btn-liquid hover:text-white transition-all duration-300"
-                      >
-                        <div className="relative flex items-center justify-center">
-                          <motion.div
-                            className="flex items-center gap-1.5 px-2"
-                            initial="default"
-                            whileHover="hover"
-                            animate="default"
-                            variants={{
-                              default: { x: 0 },
-                              hover: { x: 0 }
-                            }}
-                          >
-                            <span>Login</span>
-                            <motion.div
-                              variants={{
-                                default: { width: 0, opacity: 0, marginLeft: -4 },
-                                hover: { width: "auto", opacity: 1, marginLeft: 0 }
-                              }}
-                              transition={{ duration: 0.3 }}
-                              style={{ overflow: "hidden" }}
-                            >
-                              <ArrowRight className="w-4 h-4" />
-                            </motion.div>
-                          </motion.div>
-                        </div>
-                      </Button>
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+            <AuthButtons 
+              user={user} 
+              loading={loading} 
+              onSignOut={handleSignOut}
+              className="hidden md:flex"
+            />
 
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
+            {/* Mobile Menu */}
+            <MobileMenu 
+              isOpen={isMobileMenuOpen}
+              onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              pathname={pathname}
+              user={user}
+              loading={loading}
+              onSignOut={handleSignOut}
+            />
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="fixed inset-0 top-16 z-40 md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="bg-background-glass backdrop-blur-lg border-b border-white/10">
-              <div className="container mx-auto px-6 py-4">
-                <nav className="flex flex-col space-y-4">
-                  {navigation.map((item) => {
-                    const isActive = pathname === item.href && !item.external;
-                    return (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className={cn(
-                          'text-text-secondary transition-all duration-200 py-2',
-                          'not-button-link',
-                          isActive && 'text-text-primary'
-                        )}
-                        {...(item.external && { target: "_blank", rel: "noopener noreferrer" })}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                  <div className="pt-4 border-t border-white/10">
-                    {!loading && (
-                      <>
-                        {user ? (
-                          <div className="flex flex-col space-y-3">
-                            <span className="text-sm text-text-secondary bg-background-glass/50 backdrop-blur-sm px-3 py-2 rounded-full border border-white/10 text-center">
-                              👋 Hey, {user.email?.split('@')[0]}!
-                            </span>
-                            <Button
-                              variant="primary"
-                              size="sm"
-                              className="w-full btn-liquid shadow-lg shadow-primary-main/25 text-white font-semibold"
-                              onClick={() => {
-                                handleSignOut();
-                                setIsMobileMenuOpen(false);
-                              }}
-                            >
-                              Sign Out
-                            </Button>
-                          </div>
-                        ) : (
-                          <div className="flex flex-col space-y-3">
-                            {/* Highlighted Get Started Button */}
-                            <Button
-                              variant="primary"
-                              size="sm"
-                              className="w-full btn-liquid shadow-lg shadow-primary-main/25 text-white font-semibold"
-                              onClick={() => {
-                                window.location.href = '/signin';
-                                setIsMobileMenuOpen(false);
-                              }}
-                            >
-                              Get Started
-                            </Button>
-                            {/* Login Button */}
-                            <Button
-                              variant="secondary"
-                              size="sm"
-                              className="w-full btn-liquid hover:text-white shadow-lg shadow-primary-main/25 transition-all duration-300"
-                              onClick={() => {
-                                window.location.href = '/signin';
-                                setIsMobileMenuOpen(false);
-                              }}
-                            >
-                              Login
-                            </Button>
-                          </div>
-                        )}
-                      </>
-                    )}
-                  </div>
-                </nav>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 } 
