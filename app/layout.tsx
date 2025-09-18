@@ -60,10 +60,11 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/website-preview.png',
+        url: 'https://flowdrop.xyz/website-preview.png',
         width: 1200,
         height: 630,
         alt: 'FlowDrop - AI Workflow Builder',
+        type: 'image/png',
       },
     ],
   },
@@ -71,7 +72,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "FlowDrop - AI Workflow Builder for Non-Coders",
     description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
-    images: ['/website-preview.png'],
+    images: ['https://flowdrop.xyz/website-preview.png'],
   },
   robots: {
     index: true,
@@ -92,7 +93,11 @@ export const metadata: Metadata = {
     "geo.region": "US-CA",
     "geo.placename": "San Francisco",
     "geo.position": "37.7749;-122.4194",
-    "ICBM": "37.7749, -122.4194"
+    "ICBM": "37.7749, -122.4194",
+    "og:image:width": "1200",
+    "og:image:height": "630",
+    "og:image:type": "image/png",
+    "twitter:image:alt": "FlowDrop - AI Workflow Builder"
   },
 };
 
