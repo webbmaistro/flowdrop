@@ -9,6 +9,13 @@ import { cn } from '@/lib/utils';
 // Real product screenshots data using actual app images
 const productScreenshots = [
   {
+    src: '/website-preview.png',
+    alt: 'FlowDrop Website Preview - Complete platform overview',
+    caption: 'Experience the full FlowDrop platform with our comprehensive website preview showcasing all features',
+    width: 1200,
+    height: 800
+  },
+  {
     src: '/screenshots/webfloweditor.png',
     alt: 'FlowDrop Webflow Editor - Visual workflow builder interface',
     caption: 'Intuitive visual editor for building AI-powered workflows with drag-and-drop simplicity',

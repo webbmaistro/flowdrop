@@ -62,7 +62,8 @@ Edit `components/ProductScreenshots.tsx` to change:
 
 | Filename | Description | Usage |
 |----------|-------------|-------|
-| `webfloweditor.png` | Main workflow editor interface | Main animated gallery (left) |
+| `website-preview.png` | Complete platform overview | Main animated gallery (left) & ProductScreenshots component |
+| `webfloweditor.png` | Main workflow editor interface | ProductScreenshots component |
 | `webfloweditor2.png` | Advanced editor features | Floating feature card (top-right) |
 | `nodeeditor.png` | Node configuration interface | Floating feature card (bottom-right) |
 | `generatewebflowscreen.png` | AI workflow generation | Main animated gallery (right) |
@@ -72,6 +73,8 @@ Edit `components/ProductScreenshots.tsx` to change:
 The "Your Edge With Flowdrop" section now includes:
 
 1. **Main Screenshots**: Two large browser-window screenshots that slide in from left and right
+   - **Left**: Complete platform overview (website-preview.png)
+   - **Right**: AI workflow generation interface
 2. **Performance Monitor**: Floating stats card (bottom-left)
 3. **Node Editor**: Floating screenshot card (bottom-right) 
 4. **Team Collaboration**: Floating team indicator (center-right)
