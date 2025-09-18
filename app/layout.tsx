@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/icon.png',
+        url: '/website-preview.png',
         width: 1200,
         height: 630,
         alt: 'FlowDrop - AI Workflow Builder',
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "FlowDrop - AI Workflow Builder for Non-Coders",
     description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
-    images: ['/icon.png'],
+    images: ['/website-preview.png'],
   },
   robots: {
     index: true,

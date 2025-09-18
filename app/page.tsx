@@ -463,7 +463,7 @@ export default function LandingPage() {
           <div className="hidden lg:block max-w-7xl mx-auto relative">
             <div className="grid lg:grid-cols-2 gap-8 items-start">
               
-              {/* Left Column - Website Preview */}
+              {/* Left Column - Main Workflow Editor */}
               <motion.div
                 initial={{ x: -400, rotateY: -15 }}
                 animate={{ 
@@ -483,15 +483,15 @@ export default function LandingPage() {
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
                     <div className="flex-1 bg-neutral-700/50 rounded-lg px-3 py-1 text-sm text-gray-400 text-center">
-                      flowdrop.xyz
+                      flowdrop.xyz/builder
                     </div>
                   </div>
                   
-                  {/* Website Preview */}
+                  {/* Screenshot */}
                   <div className="relative">
                     <Image 
-                      src="/website-preview.png" 
-                      alt="Flowdrop Complete Platform Preview"
+                      src="/screenshots/webfloweditor.png" 
+                      alt="Flowdrop Visual Workflow Builder"
                       width={800}
                       height={600}
                       className="w-full h-auto rounded-b-xl"
@@ -501,7 +501,7 @@ export default function LandingPage() {
                     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary-main/20 backdrop-blur-sm border border-primary-main/30 rounded-lg px-3 py-2">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 bg-primary-main rounded-full animate-pulse"></div>
-                        <span className="text-sm font-semibold text-primary-main">Complete Platform</span>
+                        <span className="text-sm font-semibold text-primary-main">Visual Builder</span>
                       </div>
                     </div>
                   </div>
@@ -716,12 +716,12 @@ export default function LandingPage() {
         <div className="container mx-auto px-6">
           <div className="space-y-16">
             
-            {/* Mobile Story 1: Complete Platform Preview */}
+            {/* Mobile Story 1: Visual Builder */}
             <AnimatedSection className="text-center" direction="left">
               <div className="mb-8">
-                <h3 className={cn(typography.h3, "mb-4")}>Complete Platform Overview</h3>
+                <h3 className={cn(typography.h3, "mb-4")}>Visual Workflow Builder</h3>
                 <p className={cn(typography.body, "text-text-secondary")}>
-                  Experience the full FlowDrop platform with our comprehensive website preview showcasing all features.
+                  Drag, drop, and connect. Build complex workflows with intuitive visual tools.
                 </p>
               </div>
               <motion.div 
@@ -738,13 +738,13 @@ export default function LandingPage() {
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
                   <div className="flex-1 bg-neutral-700/50 rounded-lg px-3 py-1 text-sm text-gray-400 text-center">
-                    flowdrop.xyz
+                    flowdrop.xyz/builder
                   </div>
                 </div>
                 <div className="relative">
                   <Image 
-                    src="/website-preview.png" 
-                    alt="FlowDrop Complete Platform Preview"
+                    src="/screenshots/webfloweditor.png" 
+                    alt="FlowDrop Visual Workflow Builder"
                     width={400}
                     height={300}
                     className="w-full h-auto rounded-b-xl"
@@ -753,7 +753,7 @@ export default function LandingPage() {
                   <div className="absolute top-4 left-4 bg-primary-main/20 backdrop-blur-sm border border-primary-main/30 rounded-lg px-3 py-2">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-primary-main rounded-full animate-pulse"></div>
-                      <span className="text-sm font-semibold text-primary-main">Complete Platform</span>
+                      <span className="text-sm font-semibold text-primary-main">Visual Builder</span>
                     </div>
                   </div>
                 </div>
