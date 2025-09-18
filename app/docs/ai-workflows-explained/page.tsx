@@ -16,7 +16,7 @@ export default function AIWorkflowsExplained() {
     "@type": "Article",
     "headline": "What is a Workflow Builder? The Complete Guide to AI Automation in 2024",
     "description": "Discover how workflow builders are revolutionizing business automation, why AI-powered tools are dominating, and which use cases are driving the biggest ROI today.",
-    "image": "https://flowdrop.xyz/icon.png",
+    "image": "https://flowdrop.xyz/website-preview.png",
     "author": {
       "@type": "Organization",
       "name": "FlowDrop",
@@ -27,7 +27,7 @@ export default function AIWorkflowsExplained() {
       "name": "FlowDrop",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://flowdrop.xyz/icon.png"
+        "url": "https://flowdrop.xyz/website-preview.png"
       }
     },
     "datePublished": "2024-12-01",

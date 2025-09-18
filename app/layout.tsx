@@ -92,7 +92,7 @@ export const metadata: Metadata = {
     "geo.region": "US-CA",
     "geo.placename": "San Francisco",
     "geo.position": "37.7749;-122.4194",
-    "ICBM": "37.7749, -122.4194",
+    "ICBM": "37.7749, -122.4194"
   },
 };
 
@@ -118,7 +118,7 @@ export default function RootLayout({
               "name": "FlowDrop",
               "alternateName": "Flowdrop",
               "url": "https://flowdrop.xyz",
-              "logo": "https://flowdrop.xyz/icon.png",
+              "logo": "https://flowdrop.xyz/website-preview.png",
               "description": "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
               "foundingDate": "2024"
             })

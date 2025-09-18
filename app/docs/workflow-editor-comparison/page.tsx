@@ -34,7 +34,7 @@ export default function WorkflowEditorComparison() {
                 "url": "https://flowdrop.xyz",
                 "logo": {
                   "@type": "ImageObject",
-                  "url": "https://flowdrop.xyz/icon.png"
+                  "url": "https://flowdrop.xyz/website-preview.png"
                 },
                 "contactPoint": {
                   "@type": "ContactPoint",
