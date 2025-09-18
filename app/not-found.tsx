@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui';
-import { ArrowLeft, Home, Search, FileText } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Home, FileText } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function NotFound() {
