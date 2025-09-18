@@ -1,32 +1,14 @@
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Home, FileText } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="opacity-0 animate-fade-in">
           {/* 404 Animation */}
-          <motion.div
-            className="text-8xl md:text-9xl font-bold text-primary-main mb-4"
-            animate={{ 
-              scale: [1, 1.05, 1],
-              rotate: [0, 1, -1, 0]
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity, 
-              ease: "easeInOut" 
-            }}
-          >
+          <div className="text-8xl md:text-9xl font-bold text-primary-main mb-4 animate-pulse">
             404
-          </motion.div>
+          </div>
           
           <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
             Page Not Found
@@ -39,24 +21,24 @@ export default function NotFound() {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Link href="/">
-              <Button
-                variant="primary"
-                className="h-12 px-6"
-              >
-                <Home className="w-4 h-4 mr-2" />
-                Go Home
-              </Button>
+            <Link 
+              href="/"
+              className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-gradient-to-r from-primary-main via-primary-500 to-primary-main text-white font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              Go Home
             </Link>
             
-            <Link href="/docs">
-              <Button
-                variant="secondary"
-                className="h-12 px-6"
-              >
-                <FileText className="w-4 h-4 mr-2" />
-                Browse Docs
-              </Button>
+            <Link 
+              href="/docs"
+              className="inline-flex items-center justify-center gap-2 h-12 px-6 bg-gradient-to-r from-primary-main/20 via-primary-500/20 to-primary-main/20 text-primary-main font-semibold rounded-lg hover:bg-primary-main/30 hover:scale-105 transition-all duration-300"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Browse Docs
             </Link>
           </div>
           
@@ -107,7 +89,7 @@ export default function NotFound() {
               Contact our support team
             </Link>
           </p>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
