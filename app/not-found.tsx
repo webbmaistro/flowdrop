@@ -51,7 +51,7 @@ export default function NotFound() {
             
             <Link href="/docs">
               <Button
-                variant="glass"
+                variant="secondary"
                 className="h-12 px-6"
               >
                 <FileText className="w-4 h-4 mr-2" />
