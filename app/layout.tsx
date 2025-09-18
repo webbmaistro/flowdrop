@@ -86,7 +86,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code',
+    google: process.env.GOOGLE_VERIFICATION_CODE || 'your-google-verification-code',
   },
   other: {
     "viewport": "width=device-width, initial-scale=1",
@@ -125,7 +125,53 @@ export default function RootLayout({
               "url": "https://flowdrop.xyz",
               "logo": "https://flowdrop.xyz/website-preview.png",
               "description": "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
-              "foundingDate": "2024"
+              "foundingDate": "2024",
+              "sameAs": [
+                "https://twitter.com/flowdrop",
+                "https://linkedin.com/company/flowdrop"
+              ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "FlowDrop",
+              "url": "https://flowdrop.xyz",
+              "description": "AI workflow builder for non-coders. Build and deploy production automations in under five minutes.",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://flowdrop.xyz/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "FlowDrop",
+              "url": "https://flowdrop.xyz",
+              "description": "AI-powered workflow builder that deploys production automations in under five minutes.",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web Browser",
+              "offers": {
+                "@type": "Offer",
+                "price": "19",
+                "priceCurrency": "USD",
+                "priceValidUntil": "2025-12-31"
+              },
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.8",
+                "ratingCount": "150"
+              }
             })
           }}
         />

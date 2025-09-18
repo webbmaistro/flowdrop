@@ -258,10 +258,11 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/flowdrop-logo-3.png" 
-                      alt="Flowdrop Logo" 
+                      alt="FlowDrop - AI Workflow Builder Logo" 
                       width={32} 
                       height={32} 
                       className="w-8 h-8 group-hover:brightness-110 transition-all duration-300"
+                      priority
                     />
                   </div>
                 </motion.div>
@@ -491,7 +492,7 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/screenshots/webfloweditor.png" 
-                      alt="Flowdrop Visual Workflow Builder"
+                      alt="FlowDrop Visual Workflow Builder - Drag and drop interface for creating AI-powered automation workflows"
                       width={800}
                       height={600}
                       className="w-full h-auto rounded-b-xl"
@@ -538,7 +539,7 @@ export default function LandingPage() {
                   <div className="relative">
                     <Image 
                       src="/screenshots/generatewebflowscreen.png" 
-                      alt="Flowdrop AI Workflow Generation"
+                      alt="FlowDrop AI Workflow Generation - AI-powered interface for creating workflows through natural language descriptions"
                       width={800}
                       height={600}
                       className="w-full h-auto rounded-b-xl"

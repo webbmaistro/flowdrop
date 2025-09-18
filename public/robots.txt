@@ -7,12 +7,26 @@ Sitemap: https://flowdrop.xyz/sitemap.xml
 # Disallow admin and API routes
 Disallow: /admin/
 Disallow: /api/
+Disallow: /auth/
+Disallow: /dashboard/
+Disallow: /signin/
 
 # Allow important pages
 Allow: /
 Allow: /docs/
 Allow: /pricing/
 Allow: /contact/
+Allow: /privacy/
+Allow: /terms/
 
 # Crawl delay (optional - helps with server load)
+Crawl-delay: 1
+
+# Additional directives for better SEO
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
 Crawl-delay: 1 
