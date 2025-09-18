@@ -39,27 +39,25 @@ export default function NotFound() {
           
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <Button
-              asChild
-              variant="primary"
-              className="h-12 px-6"
-            >
-              <Link href="/">
+            <Link href="/">
+              <Button
+                variant="primary"
+                className="h-12 px-6"
+              >
                 <Home className="w-4 h-4 mr-2" />
                 Go Home
-              </Link>
-            </Button>
+              </Button>
+            </Link>
             
-            <Button
-              asChild
-              variant="glass"
-              className="h-12 px-6"
-            >
-              <Link href="/docs">
+            <Link href="/docs">
+              <Button
+                variant="glass"
+                className="h-12 px-6"
+              >
                 <FileText className="w-4 h-4 mr-2" />
                 Browse Docs
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
           
           {/* Popular Pages */}
