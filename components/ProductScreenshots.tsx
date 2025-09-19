@@ -10,28 +10,28 @@ import { cn } from '@/lib/utils';
 const productScreenshots = [
   {
     src: '/screenshots/webfloweditor.png',
-    alt: 'FlowDrop Webflow Editor - Visual workflow builder interface',
+    alt: 'Flowdrop Webflow Editor - Visual workflow builder interface',
     caption: 'Intuitive visual editor for building AI-powered workflows with drag-and-drop simplicity',
     width: 1200,
     height: 800
   },
   {
     src: '/screenshots/webfloweditor2.png',
-    alt: 'FlowDrop Advanced Editor - Enhanced workflow creation tools',
+    alt: 'Flowdrop Advanced Editor - Enhanced workflow creation tools',
     caption: 'Advanced workflow editor with AI assistance and real-time preview capabilities',
     width: 1200,
     height: 800
   },
   {
     src: '/screenshots/nodeeditor.png',
-    alt: 'FlowDrop Node Editor - Custom node configuration and logic',
+    alt: 'Flowdrop Node Editor - Custom node configuration and logic',
     caption: 'Powerful node editor for customizing workflow logic and data transformations',
     width: 1200,
     height: 800
   },
   {
     src: '/screenshots/generatewebflowscreen.png',
-    alt: 'FlowDrop AI Generation - AI-powered workflow creation',
+    alt: 'Flowdrop AI Generation - AI-powered workflow creation',
     caption: 'AI-driven workflow generation that converts your descriptions into working automations',
     width: 1200,
     height: 800
@@ -68,7 +68,7 @@ export default function ProductScreenshots() {
           className="mb-16"
         >
           <div className="text-center mb-12">
-            <h2 className={cn(typography.h2, "mb-6")}>See FlowDrop in Action</h2>
+            <h2 className={cn(typography.h2, "mb-6")}>See Flowdrop in Action</h2>
             <p className="text-lg text-gray-400 max-w-2xl mx-auto">
               Experience the power of AI-driven workflow automation with our intuitive interface
             </p>
@@ -139,7 +139,7 @@ export default function ProductScreenshots() {
           <div className="flex justify-center">
             <Screenshot
               src="/screenshots/generatewebflowscreen.png"
-              alt="FlowDrop AI Generation - Natural language to workflow conversion"
+              alt="Flowdrop AI Generation - Natural language to workflow conversion"
               caption="AI converts your descriptions into fully functional workflows"
               width={800}
               height={600}

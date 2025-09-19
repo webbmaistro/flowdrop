@@ -51,7 +51,7 @@ export default function SignInPage() {
           <CardContent className="p-8">
             {/* Welcome Section */}
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold mb-2">Welcome to FlowDrop</h1>
+              <h1 className="text-3xl font-bold mb-2">Welcome to Flowdrop</h1>
               <p className="text-gray-400">
                 {isSignUp ? 'Create your account' : 'Sign in to your account'}
               </p>

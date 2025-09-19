@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-console.log('🖼️  FlowDrop Screenshot Manager\n');
+console.log('🖼️  Flowdrop Screenshot Manager\n');
 
 // Check if screenshots folder exists
 const screenshotsDir = path.join(process.cwd(), 'screenshots');

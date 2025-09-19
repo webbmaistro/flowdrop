@@ -1,6 +1,6 @@
 # Screenshots Management
 
-This document explains how to manage product screenshots in FlowDrop.
+This document explains how to manage product screenshots in Flowdrop.
 
 ## Quick Start
 

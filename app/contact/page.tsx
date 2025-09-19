@@ -199,7 +199,7 @@ export default function ContactPage() {
               variants={itemVariants}
               className={cn(typography.bodyLarge, "mb-8 max-w-2xl mx-auto text-balance")}
             >
-              Have questions about FlowDrop? We're here to help.
+              Have questions about Flowdrop? We're here to help.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mb-12">

@@ -19,7 +19,7 @@ const docCategories = [
     bgColor: 'bg-primary-main/20',
     items: [
       { title: 'Quick Start Guide', href: '#', description: 'Get up and running in 5 minutes' },
-      { title: 'Installation', href: '#', description: 'Install and configure FlowDrop' },
+      { title: 'Installation', href: '#', description: 'Install and configure Flowdrop' },
       { title: 'First Workflow', href: '#', description: 'Create your first automation' },
       { title: 'Best Practices', href: '#', description: 'Learn the recommended patterns' },
     ]

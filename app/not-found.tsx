@@ -16,7 +16,7 @@ export default function NotFound() {
           
           <p className="text-lg text-text-secondary mb-8 max-w-lg mx-auto">
             The page you're looking for doesn't exist or has been moved. 
-            Let's get you back on track with FlowDrop.
+            Let's get you back on track with Flowdrop.
           </p>
           
           {/* Action Buttons */}

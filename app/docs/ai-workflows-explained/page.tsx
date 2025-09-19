@@ -19,12 +19,12 @@ export default function AIWorkflowsExplained() {
     "image": "https://flowdrop.xyz/website-preview.png",
     "author": {
       "@type": "Organization",
-      "name": "FlowDrop",
+      "name": "Flowdrop",
       "url": "https://flowdrop.xyz"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "FlowDrop",
+      "name": "Flowdrop",
       "logo": {
         "@type": "ImageObject",
         "url": "https://flowdrop.xyz/website-preview.png"
@@ -85,7 +85,7 @@ export default function AIWorkflowsExplained() {
       },
       {
         "@type": "Thing",
-        "name": "FlowDrop",
+        "name": "Flowdrop",
         "description": "AI-first workflow builder for intelligent automation"
       }
     ],
@@ -121,7 +121,7 @@ export default function AIWorkflowsExplained() {
           "name": "How do I choose the right workflow builder?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Consider your team size, complexity needs, and budget. For simple automation, choose traditional tools like Zapier. For AI-powered workflows with context awareness, choose AI-first platforms like FlowDrop. Evaluate based on collaboration features, learning curve, and expected ROI."
+            "text": "Consider your team size, complexity needs, and budget. For simple automation, choose traditional tools like Zapier. For AI-powered workflows with context awareness, choose AI-first platforms like Flowdrop. Evaluate based on collaboration features, learning curve, and expected ROI."
           }
         },
         {
@@ -251,7 +251,7 @@ export default function AIWorkflowsExplained() {
                   <div className="w-8 h-8 bg-primary-main/20 rounded-full flex items-center justify-center text-primary-main font-bold text-sm">3</div>
                   <div>
                     <h4 className="font-semibold mb-2">AI-Powered Workflows (2024+)</h4>
-                    <p className="text-neutral-300 mb-2">Context-aware, self-learning automation. FlowDrop, emerging AI tools.</p>
+                    <p className="text-neutral-300 mb-2">Context-aware, self-learning automation. Flowdrop, emerging AI tools.</p>
                     <p className="text-sm text-neutral-400">Example: "When customer inquiry arrives, analyze sentiment, generate personalized response, and route to appropriate team"</p>
                   </div>
                 </div>
@@ -442,7 +442,7 @@ export default function AIWorkflowsExplained() {
                     Choose AI workflow builders when you need context awareness and intelligent decision-making.
                   </p>
                   <ul className="text-sm text-neutral-400 space-y-2">
-                    <li>✅ FlowDrop - AI-first, no-code workflows</li>
+                    <li>✅ Flowdrop - AI-first, no-code workflows</li>
                     <li>✅ Make - Visual builder with AI nodes</li>
                     <li>✅ n8n - Open-source with AI capabilities</li>
                   </ul>
@@ -599,10 +599,10 @@ export default function AIWorkflowsExplained() {
                 <div>
                   <h3 className="font-semibold mb-3 text-primary-main">For AI-Powered Workflows</h3>
                   <p className="text-sm text-neutral-300 mb-4">
-                    Try FlowDrop for context-aware, intelligent automation that learns and adapts to your business needs.
+                    Try Flowdrop for context-aware, intelligent automation that learns and adapts to your business needs.
                   </p>
                   <Button className="w-full">
-                    Start with FlowDrop
+                    Start with Flowdrop
                   </Button>
                 </div>
               </div>
@@ -617,7 +617,7 @@ export default function AIWorkflowsExplained() {
             <Card className="bg-neutral-800/30 border-white/10 hover:bg-neutral-800/50 transition-colors">
               <CardHeader>
                 <CardTitle className="text-lg">Workflow Builder Comparison</CardTitle>
-                <CardDescription>See how FlowDrop stacks up against Zapier, Make, and others</CardDescription>
+                <CardDescription>See how Flowdrop stacks up against Zapier, Make, and others</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button variant="outline" size="sm" className="w-full">

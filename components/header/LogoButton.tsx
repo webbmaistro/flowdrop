@@ -97,7 +97,7 @@ export default function LogoButton({ className = "", isHeroVersion = false }: Lo
             <div className="relative">
               <Image 
                 src="/flowdrop-logo-3.png" 
-                alt="FlowDrop Logo" 
+                alt="Flowdrop Logo" 
                 width={20} 
                 height={20} 
                 className="w-5 h-5"

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FlowDrop - AI Workflow Builder for Non-Coders",
+  title: "Flowdrop - AI Workflow Builder for Non-Coders",
   description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
   icons: {
     icon: '/favicon.ico',
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
     "no-code platform",
     "business process automation"
   ],
-  authors: [{ name: "FlowDrop Team" }],
-  creator: "FlowDrop",
-  publisher: "FlowDrop",
+  authors: [{ name: "Flowdrop Team" }],
+  creator: "Flowdrop",
+  publisher: "Flowdrop",
   formatDetection: {
     email: false,
     address: false,
@@ -52,10 +52,10 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: "FlowDrop - AI Workflow Builder for Non-Coders",
+    title: "Flowdrop - AI Workflow Builder for Non-Coders",
     description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
     url: 'https://flowdrop.xyz',
-    siteName: 'FlowDrop',
+    siteName: 'Flowdrop',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -63,14 +63,14 @@ export const metadata: Metadata = {
         url: 'https://flowdrop.xyz/website-preview.png',
         width: 1200,
         height: 630,
-        alt: 'FlowDrop - AI Workflow Builder',
+        alt: 'Flowdrop - AI Workflow Builder',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "FlowDrop - AI Workflow Builder for Non-Coders",
+    title: "Flowdrop - AI Workflow Builder for Non-Coders",
     description: "Flowdrop is a no-code, AI-powered workflow builder that deploys production automations in under five minutes.",
     images: ['https://flowdrop.xyz/website-preview.png'],
   },
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     "og:image:width": "1200",
     "og:image:height": "630",
     "og:image:type": "image/png",
-    "twitter:image:alt": "FlowDrop - AI Workflow Builder"
+    "twitter:image:alt": "Flowdrop - AI Workflow Builder"
   },
 };
 
@@ -120,7 +120,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "FlowDrop",
+              "name": "Flowdrop",
               "alternateName": "Flowdrop",
               "url": "https://flowdrop.xyz",
               "logo": "https://flowdrop.xyz/website-preview.png",
@@ -139,7 +139,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "FlowDrop",
+              "name": "Flowdrop",
               "url": "https://flowdrop.xyz",
               "description": "AI workflow builder for non-coders. Build and deploy production automations in under five minutes.",
               "potentialAction": {
@@ -156,7 +156,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "FlowDrop",
+              "name": "Flowdrop"
               "url": "https://flowdrop.xyz",
               "description": "AI-powered workflow builder that deploys production automations in under five minutes.",
               "applicationCategory": "BusinessApplication",
