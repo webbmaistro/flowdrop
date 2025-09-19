@@ -96,7 +96,6 @@ export const metadata: Metadata = {
     "ICBM": "37.7749, -122.4194",
     "og:image:width": "1200",
     "og:image:height": "630",
-    "og:image:type": "image/png",
     "twitter:image:alt": "Flowdrop - AI Workflow Builder"
   },
 };
@@ -156,7 +155,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SoftwareApplication",
-              "name": "Flowdrop"
+              "name": "Flowdrop",
               "url": "https://flowdrop.xyz",
               "description": "AI-powered workflow builder that deploys production automations in under five minutes.",
               "applicationCategory": "BusinessApplication",
