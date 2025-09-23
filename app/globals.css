@@ -70,7 +70,7 @@
   --radius-xl: var(--radius-xl);
   
   /* Fonts */
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-geist-mono);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -83,7 +83,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-feature-settings: "rlig" 1, "calt" 1;
-  font-family: var(--font-sans);
+  font-family: var(--font-mono);
 }
 
 /* Glassmorphism Utility */
@@ -305,6 +305,56 @@ html {
     0 0 0 2px rgba(255, 255, 255, 0.95),
     0 0 12px rgba(255, 255, 255, 0.4),
     0 0 20px rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Hover-only liquid effect for login buttons */
+.btn-liquid-hover {
+  background: transparent;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-liquid-hover:hover {
+  background: linear-gradient(
+    135deg,
+    #7c3aed 0%,
+    #8b5cf6 12.5%,
+    #a855f7 25%,
+    #c084fc 37.5%,
+    #7c3aed 50%,
+    #8b5cf6 62.5%,
+    #a855f7 75%,
+    #c084fc 87.5%,
+    #7c3aed 100%
+  );
+  background-size: 200% 200%;
+  background-clip: padding-box;
+  animation: liquid 20s linear infinite;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 0 20px rgba(139, 92, 246, 0.4), 
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    0 0 12px rgba(255, 255, 255, 0.4),
+    0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+.btn-liquid-hover:hover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    transparent 70%
+  );
+  transform: translateX(-120%) skewX(-15deg);
+  animation: shimmer-twinkle 1.2s ease-out;
+  pointer-events: none;
 }
 
 .btn-liquid::before {

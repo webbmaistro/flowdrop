@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star, Play, MessageSquare, Shield, Mouse, Clock, Activity, Code, Bell } from 'lucide-react';
-import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks } from '@/components/ui';
+import { Cloud, Cpu, ArrowRight, Check, Users, Rocket, Crown, Star, Play, MessageSquare, Shield, Mouse, Clock, Activity, Code, Bell, FileText, Zap } from 'lucide-react';
+import { Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, SocialLinks, SlidingBanner } from '@/components/ui';
 import AnimatedHeadline from '@/components/AnimatedHeadline';
 import GoogleSignIn from './components/GoogleSignIn';
 import { typography } from '@/lib/styles';
@@ -187,7 +187,7 @@ export default function LandingPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="relative isolate flex flex-col items-center justify-start text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 pt-20 md:pt-24 pb-8 z-10 snap-start">
+      <section className="relative isolate flex flex-col items-center justify-start text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 pt-32 md:pt-40 pb-8 z-10 snap-start">
         
         {/* Background Layers */}
         <div className="absolute inset-0 w-full h-full">
@@ -206,68 +206,6 @@ export default function LandingPage() {
             animate="visible"
             variants={containerVariants}
           >
-            {/* Logo Animation */}
-            <motion.div 
-              variants={itemVariants} 
-              className="flex justify-center"
-            >
-              <motion.div 
-                className="p-4 bg-background-glass/50 backdrop-blur-lg rounded-2xl border border-white/10 cursor-pointer group relative overflow-hidden"
-                whileHover={{ 
-                  scale: 1.05,
-                  y: -2,
-                }}
-                whileTap={{ scale: 0.98 }}
-                animate={{ 
-                  y: [0, -4, 0],
-                }}
-                transition={{
-                  y: {
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  },
-                  scale: {
-                    duration: 0.3,
-                    ease: "easeOut"
-                  }
-                }}
-              >
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 3, -3, 0],
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  whileHover={{
-                    rotate: [0, 5, -5, 0],
-                    transition: { duration: 0.5 }
-                  }}
-                  className="relative"
-                >
-                  {/* Glow Effect Layer */}
-                  <div className="absolute inset-0 scale-[2] opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="absolute inset-0 bg-primary-main/20 blur-xl transform scale-y-[0.8]" />
-                    <div className="absolute inset-0 bg-primary-main/10 blur-2xl" />
-                  </div>
-                  
-                  {/* Icon */}
-                  <div className="relative">
-                    <Image 
-                      src="/flowdrop-logo-3.png" 
-                      alt="Flowdrop - AI Workflow Builder Logo" 
-                      width={32} 
-                      height={32} 
-                      className="w-8 h-8 group-hover:brightness-110 transition-all duration-300"
-                      priority
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
-            </motion.div>
             
             {/* Main Content */}
             <div className="flex flex-col gap-8">
@@ -275,14 +213,14 @@ export default function LandingPage() {
                 variants={itemVariants}
                 className={cn(typography.h1, "text-balance")}
               >
-                <AnimatedHeadline text="AI workflow builder for non-coders." />
+                <AnimatedHeadline text="Automation shouldn't feel like another job." />
               </motion.h1>
               
-                            <motion.p 
+              <motion.p 
                 variants={itemVariants}
-                className={cn(typography.bodyLarge, "text-balance text-text-secondary")}
+                className="text-xl md:text-2xl text-text-secondary text-balance"
               >
-                Lovable for workflows • Launch production flows before your coffee brews.
+                What if it felt... <em className="text-primary-main font-medium">effortless?</em>
               </motion.p>
 
               {/* Marketing Copy - Hidden for humans, visible to crawlers */}
@@ -328,7 +266,7 @@ export default function LandingPage() {
                               }}
                               transition={{ duration: 0.3, ease: "easeInOut" }}
                             >
-                              <span>Subscribe</span>
+                              <span>Gain Early Access</span>
                               <motion.div
                                 className="absolute flex items-center"
                                 variants={{
@@ -349,8 +287,21 @@ export default function LandingPage() {
                     )}
                     {error && <p className="text-error-500 text-sm mt-2">{error}</p>}
                   </motion.div>
-                  <p className="text-text-secondary text-sm">Drop your email to get early access and launch updates—don’t miss out!</p>
+                  <p className="text-text-secondary text-sm">Drop your email to get early access and launch updates—don't miss out!</p>
                 </div>
+              </motion.div>
+
+              {/* Sliding Banner */}
+              <motion.div 
+                variants={itemVariants}
+                className="w-full mt-8 -mx-4"
+              >
+                <SlidingBanner 
+                  speed={30}
+                  direction="left"
+                  pauseOnHover={true}
+                  className="py-4"
+                />
               </motion.div>
             </div>
           </motion.div>
@@ -366,16 +317,10 @@ export default function LandingPage() {
             </div>
 
             <div className="mb-12">
-              <Card variant="glass" hover className="p-6 border-primary-main/20 shadow-[0_4px_24px_0_rgba(20,20,40,0.18)] relative overflow-hidden max-w-4xl mx-auto group hover:shadow-[0_8px_32px_0_rgba(220,38,38,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-error-400/5 via-transparent to-error-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="flex items-start gap-4 relative z-10">
-                  <div className="p-2 bg-primary-main/20 rounded-lg mt-1 group-hover:bg-primary-main/30 transition-colors duration-300">
-                    <span className="text-2xl">💡</span>
-                  </div>
-                  <div className="text-left">
-                    <h3 className="font-bold text-error-400 mb-2 group-hover:text-error-300 transition-colors duration-300">Automation shouldn't feel like writing software.</h3>
-                    <p className="text-sm text-text-secondary group-hover:text-text-primary transition-colors duration-300">Spinning up servers, securing keys, and wiring APIs still steals hours you dont have—and you're not an engineer.</p>
-                  </div>
+              <Card variant="glass" hover className="px-8 py-6 border-primary-main/20 shadow-[0_4px_24px_0_rgba(20,20,40,0.18)] relative overflow-hidden max-w-2xl mx-auto group hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 rounded-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-primary-main/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
+                <div className="text-center relative z-10">
+                  <h3 className="text-xl md:text-2xl font-bold text-primary-main group-hover:text-primary-light transition-colors duration-300">So simple you'll actually enjoy automating.</h3>
                 </div>
               </Card>
             </div>
@@ -390,11 +335,11 @@ export default function LandingPage() {
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
-                        <Mouse className="w-8 h-8 text-primary-main" />
+                        <FileText className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
-                    <CardTitle className="mb-4 text-center">One-Click Deploy</CardTitle>
-                    <p className={cn(typography.body, "text-center")}>Launch a workflow—no docker, no updates, no drama.</p>
+                    <CardTitle className="mb-4 text-center">Document Magic</CardTitle>
+                    <p className={cn(typography.body, "text-center")}>Transform PDFs, Sheets, Docs, and Drive—the whole Google Suite at your fingertips.</p>
                 </CardContent>
               </Card>
 
@@ -409,8 +354,8 @@ export default function LandingPage() {
                         <MessageSquare className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
-                    <CardTitle className="mb-4 text-center">Describe-to-Build</CardTitle>
-                    <p className={cn(typography.body, "text-center")}>Tell Flowdrop what you want; AI drafts your workflow.</p>
+                    <CardTitle className="mb-4 text-center">Chat to Build</CardTitle>
+                    <p className={cn(typography.body, "text-center")}>Create workflows from scratch or upgrade existing ones as simple as talking with a friend.</p>
                 </CardContent>
               </Card>
 
@@ -422,19 +367,19 @@ export default function LandingPage() {
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
                     <div className="p-4 bg-primary-main/20 rounded-2xl">
-                      <Cloud className="w-8 h-8 text-primary-main" />
+                      <Zap className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
-                    <CardTitle className="mb-4 text-center">Hands-Free Infrastructure</CardTitle>
-                    <p className={cn(typography.body, "text-center")}>Auto-scaling, backups, and security—all managed for you.</p>
+                    <CardTitle className="mb-4 text-center">Content Factory</CardTitle>
+                    <p className={cn(typography.body, "text-center")}>Social media posts that slap on demand. Audience on autopilot.</p>
                 </CardContent>
               </Card>
               </div>
             </div>
 
             <div className="text-center max-w-4xl mx-auto">
-              <Card variant="glass" className="p-8 border-primary-main/30 bg-gradient-to-r from-primary-main/10 to-purple-700/10 shadow-[0_4px_24px_0_rgba(20,20,40,0.18)] relative overflow-hidden group hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <Card variant="glass" className="p-8 border-primary-main/30 bg-gradient-to-r from-primary-main/10 to-purple-700/10 shadow-[0_4px_24px_0_rgba(20,20,40,0.18)] relative overflow-hidden group hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500 hover:scale-[1.02] hover:-translate-y-1 rounded-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-700/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full" />
                 <div className="relative z-10">
                   <p className={cn(typography.bodyLarge, "font-semibold text-primary-light group-hover:text-primary-main transition-colors duration-300")}>Bottom line: Flowdrop turns "someday we'll automate that" into "done before lunch."</p>
                 </div>
@@ -902,60 +847,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 relative z-10 snap-start">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card variant="glass" hover className="text-center relative z-20">
-              <CardContent className="pt-4">
-                <div className="flex justify-center mb-6">
-                  <div className="p-4 bg-primary-main/20 rounded-2xl">
-                    <Clock className="w-8 h-8 text-primary-main" />
-                  </div>
-                </div>
-                <CardTitle className="mb-4">60-Second Launch</CardTitle>
-                <p className={typography.body}>
-                  Live workflow in the time it takes to sip.
-                </p>
-              </CardContent>
-            </Card>
-            
-              <Card variant="glass" hover className="text-center relative z-20">
-                <CardContent className="pt-4">
-                  <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-primary-main/20 rounded-2xl">
-                      <Image 
-                        src="/flowdrop-logo-3.png" 
-                        alt="Flowdrop Logo" 
-                        width={32} 
-                        height={32} 
-                        className="w-8 h-8"
-                      />
-                    </div>
-                  </div>
-                <CardTitle className="mb-4">Chat-to-Flow</CardTitle>
-                  <p className={typography.body}>
-                  Describe it; watch nodes appear, ready to run.
-                  </p>
-                </CardContent>
-              </Card>
-            
-              <Card variant="glass" hover className="text-center relative z-20">
-                <CardContent className="pt-4">
-                  <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-primary-main/20 rounded-2xl">
-                      <Cpu className="w-8 h-8 text-primary-main" />
-                  </div>
-                </div>
-                <CardTitle className="mb-4">Zero-Ops Scaling</CardTitle>
-                  <p className={typography.body}>
-                  Autoscale and back-ups on autopilot—no DevOps debt.
-                  </p>
-                </CardContent>
-              </Card>
-          </AnimatedSection>
-        </div>
-      </section>
 
       {/* Built For Section */}
       <section className="py-20 relative z-10">
@@ -964,28 +855,28 @@ export default function LandingPage() {
             <h2 className={cn(typography.h2, "mb-8 text-center")}>Who's Already Cranking With Flowdrop</h2>
             <ul className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto text-lg font-medium mb-10">
               <motion.li 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 ⚡ <strong>Side‑Hustlers</strong>
               </motion.li>
               <motion.li 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 🚀 <strong>Indie SaaS teams</strong>
               </motion.li>
               <motion.li 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 📈 <strong>Sales & Marketing teams</strong>
               </motion.li>
               <motion.li 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-left"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
@@ -995,21 +886,21 @@ export default function LandingPage() {
             
             <div className="space-y-3 mb-8">
               <motion.div 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <strong className="text-primary-main">Mapping</strong> nodes takes forever
               </motion.div>
               <motion.div 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 Im <strong className="text-primary-main">tired</strong> of <span className="text-primary-main">copying</span> between tools
               </motion.div>
               <motion.div 
-                className="px-6 py-3 rounded-xl bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
+                className="px-6 py-3 rounded-full bg-neutral-800/60 backdrop-blur border border-white/5 cursor-pointer transition-all duration-300 hover:bg-neutral-700/60 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10 text-center"
                 whileHover={{ scale: 1.02, y: -2 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
@@ -1069,7 +960,7 @@ export default function LandingPage() {
                   <p className="text-base text-gray-400 mb-4">Simple, powerful, and actually enjoyable to use</p>
                   <div className="space-y-2 text-sm text-primary-main/80">
                     <div>• AI-powered workflow builder</div>
-                    <div>• $19/month for everything</div>
+                    <div>• $9/month for everything</div>
                     <div>• Zero learning curve</div>
                   </div>
                   <div className="h-12"></div>
@@ -1237,7 +1128,7 @@ export default function LandingPage() {
                   ease: "easeOut"
                 }}
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-full p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
                   <Image 
                     src="/logos/apple.svg" 
                     alt="Apple" 
@@ -1262,7 +1153,7 @@ export default function LandingPage() {
                   ease: "easeOut"
                 }}
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-full p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
                   <Image 
                     src="/logos/meta.svg" 
                     alt="Meta" 
@@ -1287,7 +1178,7 @@ export default function LandingPage() {
                   ease: "easeOut"
                 }}
               >
-                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-3xl p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
+                <div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-full p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4">
                   <Image 
                     src="/logos/capital-one.svg" 
                     alt="Capital One" 

@@ -100,7 +100,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
         {pathname === '/' && !loading && shouldHideHeader && (
           <motion.div
             key="sticky-auth"
-            className="fixed top-4 right-6 z-[60]"
+            className="fixed top-4 right-6 z-[60] flex items-center h-14"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -147,10 +147,10 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
               </div>
             ) : (
             <Button
-              variant="secondary"
+              variant="ghost"
               size="sm"
               onClick={() => window.location.href = '/signin'}
-              className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid hover:text-white transition-all duration-300"
+              className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
             >
               <div className="relative flex items-center justify-center">
                 <motion.div

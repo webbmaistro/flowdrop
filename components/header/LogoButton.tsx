@@ -27,7 +27,7 @@ export default function LogoButton({ className = "", isHeroVersion = false }: Lo
     >
       <Link href="/" className="group relative">
         <motion.div
-          className="flex items-center justify-center space-x-3 px-4 py-2.5 bg-primary-main/20 backdrop-blur-sm rounded-full border border-white/10 shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
+          className="flex items-center justify-center space-x-3 px-5 py-3 bg-primary-main/20 backdrop-blur-sm rounded-full shadow-lg group-hover:shadow-primary-main/25 group-hover:shadow-xl transition-all duration-300 relative"
           variants={{
             default: { scale: 1 },
             hover: { scale: 1.05 }
@@ -95,20 +95,19 @@ export default function LogoButton({ className = "", isHeroVersion = false }: Lo
             
             {/* Icon */}
             <div className="relative">
-              <Image 
-                src="/flowdrop-logo-3.png" 
-                alt="Flowdrop Logo" 
-                width={20} 
-                height={20} 
-                className="w-5 h-5"
-              />
+            <Image 
+              src="/flowdrop-logo-3.png" 
+              alt="Flowdrop Logo" 
+              width={23} 
+              height={23} 
+              className="w-6 h-6"
+            />
             </div>
           </motion.div>
-          <span className="text-xl font-bold text-text-primary group-hover:text-primary-light relative">
+          <span className="text-2xl font-bold text-text-primary group-hover:text-primary-light relative">
             Flowdrop
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-[2px] text-primary-main -z-10 -translate-y-[2px] transition-all duration-300" aria-hidden="true">Flowdrop</div>
           </span>
-          <div className="absolute inset-0 rounded-full bg-primary-main/0 group-hover:bg-primary-main/5 group-hover:shadow-[0_0_15px_5px_rgba(139,92,246,0.25)] -z-10 transition-all duration-300" />
         </motion.div>
       </Link>
     </motion.div>

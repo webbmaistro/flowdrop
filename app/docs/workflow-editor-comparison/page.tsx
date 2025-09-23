@@ -233,7 +233,7 @@ export default function WorkflowEditorComparison() {
             </div>
             <div className="bg-primary-main/10 rounded-xl p-6 border border-primary-main">
               <strong>Flowdrop — the lean AI-builder for small teams:</strong> Flowdrop’s first-of-its-kind lovable/cursor style chat UX dominates the workflow space by giving you the fastest time to deployment and upgrading possible.<br />
-              <strong>Flat $19/mo:</strong> No per-task gotchas—scale experiments without surprise overages.<br />
+              <strong>Flat $9/mo:</strong> No per-task gotchas—scale experiments without surprise overages.<br />
               <strong>AI-guided connector builder:</strong> Missing an integration? Describe the endpoint in plain English and Flowdrop’s assistant scaffolds the webhook/HTTP call for you. Weekly log-ins unlock fresh “plug-and-play” connectors.
             </div>
           </div>

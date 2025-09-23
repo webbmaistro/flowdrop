@@ -56,12 +56,12 @@ export default function AuthButtons({ user, loading, onSignOut, className = "" }
           </Button>
         </>
       ) : (
-        <Button
-          variant="primary"
-          size="sm"
-          onClick={() => window.location.href = '/signin'}
-          className="shadow-lg backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid hover:text-white transition-all duration-300"
-        >
+         <Button
+           variant="ghost"
+           size="sm"
+           onClick={() => window.location.href = '/signin'}
+           className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
+         >
           <div className="relative flex items-center justify-center">
             <motion.div
               className="flex items-center gap-1.5 px-2"
