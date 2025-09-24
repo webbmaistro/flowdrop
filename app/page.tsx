@@ -187,7 +187,7 @@ export default function LandingPage() {
       </div>
       
       {/* Hero Section */}
-      <section className="relative isolate flex flex-col items-center justify-start text-center gap-6 min-h-[calc(100vh-theme(space.16))] px-4 pt-32 md:pt-40 pb-8 z-10 snap-start">
+      <section className="relative isolate flex flex-col items-center justify-center text-center gap-6 min-h-screen px-4 pt-6 pb-8 md:pt-10 md:pb-8 z-10 snap-start">
         
         {/* Background Layers */}
         <div className="absolute inset-0 w-full h-full">
@@ -199,26 +199,26 @@ export default function LandingPage() {
         </div>
 
         {/* Main Content - z-20 */}
-        <div className="relative z-20 max-w-4xl mx-auto">
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-4">
           <motion.div
-            className="flex flex-col items-center gap-12 md:gap-16"
+            className="flex flex-col items-center justify-center gap-8 md:gap-16 w-full"
             initial="hidden"
             animate="visible"
             variants={containerVariants}
           >
             
             {/* Main Content */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col items-center text-center gap-6 md:gap-8 w-full max-w-3xl mx-auto">
               <motion.h1 
                 variants={itemVariants}
-                className={cn(typography.h1, "text-balance")}
+                className={cn(typography.h1, "text-balance text-center")}
               >
                 <AnimatedHeadline text="Automation shouldn't feel like another job." />
               </motion.h1>
               
               <motion.p 
                 variants={itemVariants}
-                className="text-xl md:text-2xl text-text-secondary text-balance"
+                className="text-lg md:text-2xl text-text-secondary text-balance text-center"
               >
                 What if it felt... <em className="text-primary-main font-medium">effortless?</em>
               </motion.p>
@@ -233,30 +233,35 @@ export default function LandingPage() {
 
               {/* Email Capture Form as Main CTA */}
               <motion.div variants={itemVariants}>
-                <div className="flex flex-col items-center gap-4">
-                  <motion.div
-                    className="relative w-full max-w-[400px]"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                  >
+                <div className="flex flex-col items-center gap-4 w-full">
+                  <div className="relative w-full max-w-[400px]">
                     {!submitted ? (
                       <div className="flex flex-col w-full gap-3">
-                        <Input
-                          type="email"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          placeholder="Enter your email"
-                          variant="glass"
-                          className="flex-1"
-                        />
-                        <Button
-                          onClick={handleSubmit}
-                          variant="primary"
-                          className="h-[52px] w-full px-8 btn-liquid text-white font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
-                          whileHover="hover"
-                          initial="default"
-                          animate="default"
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
                         >
+                          <Input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            placeholder="Enter your email"
+                            variant="glass"
+                            className="flex-1"
+                          />
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <Button
+                            onClick={handleSubmit}
+                            variant="primary"
+                            className="h-[52px] w-full px-8 btn-liquid text-white font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
+                            whileHover="hover"
+                            initial="default"
+                            animate="default"
+                          >
                           <div className="relative flex items-center justify-center w-full">
                             <motion.div
                               className="flex items-center gap-2"
@@ -281,12 +286,13 @@ export default function LandingPage() {
                             </motion.div>
                           </div>
                         </Button>
+                        </motion.div>
                       </div>
                     ) : (
                       <p className="text-success-500 text-sm">Thanks! We'll keep you updated.</p>
                     )}
                     {error && <p className="text-error-500 text-sm mt-2">{error}</p>}
-                  </motion.div>
+                  </div>
                   <p className="text-text-secondary text-sm">Drop your email to get early access and launch updates—don't miss out!</p>
                 </div>
               </motion.div>
@@ -294,10 +300,10 @@ export default function LandingPage() {
               {/* Sliding Banner */}
               <motion.div 
                 variants={itemVariants}
-                className="w-full mt-8 -mx-4"
+                className="w-screen mt-8 -mx-4 md:-mx-6 lg:-mx-8"
               >
                 <SlidingBanner 
-                  speed={30}
+                  speed={15}
                   direction="left"
                   pauseOnHover={true}
                   className="py-4"

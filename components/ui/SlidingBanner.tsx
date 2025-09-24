@@ -25,7 +25,7 @@ const integrations = [
 
 export default function SlidingBanner({ 
   className, 
-  speed = 20, 
+  speed = 15, 
   direction = 'left',
   pauseOnHover = true 
 }: SlidingBannerProps) {
@@ -35,7 +35,7 @@ export default function SlidingBanner({
   return (
     <div className={cn("relative overflow-hidden", className)}>
       <motion.div
-        className="flex items-center gap-6 whitespace-nowrap"
+        className="flex items-center gap-4 md:gap-6 whitespace-nowrap"
         animate={{
           x: direction === 'left' ? `-${(100 / 3)}%` : `${(100 / 3)}%`,
         }}
@@ -49,7 +49,7 @@ export default function SlidingBanner({
         {duplicatedIntegrations.map((integration, index) => (
           <motion.div
             key={`${integration.name}-${index}`}
-            className="flex items-center gap-4 px-8 py-3 rounded-full transition-all duration-300 group cursor-pointer relative overflow-hidden flex-shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10"
+            className="flex items-center gap-2 md:gap-4 px-4 md:px-8 py-3 rounded-full transition-all duration-300 group cursor-pointer relative overflow-hidden flex-shrink-0 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-white/20 hover:shadow-lg hover:shadow-primary-main/10"
             whileHover={{ 
               scale: 1.05,
               y: -2,
@@ -74,10 +74,6 @@ export default function SlidingBanner({
           </motion.div>
         ))}
       </motion.div>
-      
-      {/* Gradient overlays for smooth fade effect */}
-      <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-background via-background/80 to-transparent pointer-events-none z-10" />
-      <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-background via-background/80 to-transparent pointer-events-none z-10" />
     </div>
   );
 }

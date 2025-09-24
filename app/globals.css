@@ -240,6 +240,45 @@ html {
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Click animation keyframes */
+@keyframes buttonPress {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes buttonDepress {
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
 /* On hover, upgrade btn-hover-ready to the premium liquid style */
 .btn-hover-ready:hover {
   background: linear-gradient(
@@ -283,7 +322,48 @@ html {
   background-size: 200% 200%;
   animation: liquid 20s linear infinite;
   box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Active/Pressed state for modern depressed button feel */
+.btn-liquid:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 
+    0 0 15px rgba(139, 92, 246, 0.3), 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: buttonDepress 0.15s ease-out;
+}
+
+/* Focus state for accessibility */
+.btn-liquid:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Ripple effect container - separate from shimmer effect */
+.btn-liquid-ripple {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ripple effect on click */
+.btn-liquid:active .btn-liquid-ripple {
+  width: 300px;
+  height: 300px;
+  animation: ripple 0.6s ease-out;
 }
 
 /* Perfect ring border with bright white glow that blends with brand color */
@@ -357,6 +437,32 @@ html {
   pointer-events: none;
 }
 
+/* Active state for hover-only liquid buttons */
+.btn-liquid-hover:active {
+  transform: translateY(2px) scale(0.98);
+  box-shadow: 
+    0 0 15px rgba(139, 92, 246, 0.3), 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: buttonDepress 0.15s ease-out;
+}
+
+/* Ripple effect for hover-only liquid buttons */
+.btn-liquid-hover:active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  animation: ripple 0.6s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
 .btn-liquid::before {
   content: '';
   position: absolute;
@@ -405,7 +511,7 @@ html {
 .not-button-link {
   background: none !important;
   border: none !important;
-  border-radius: 0.5rem !important;
+  border-radius: 9999px !important;
   padding: 0.5rem 0.75rem !important;
   margin: 0 !important;
   font-weight: normal !important;
