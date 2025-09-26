@@ -64,11 +64,11 @@ const CardGrid: React.FC<CardGridProps> = ({ cards, className = "" }) => {
             variants={cardVariants}
             className="group"
           >
-            <Card className="h-full bg-neutral-900/50 border-neutral-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] group-hover:border-purple-500/20">
+            <Card className="h-full bg-neutral-900/50 border-neutral-800 rounded-4xl shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] group-hover:border-purple-500/20">
               <CardContent className="p-6 flex flex-col h-full">
                 {/* Icon Area */}
                 <div className="flex justify-center mb-6">
-                  <div className="p-4 bg-purple-500/10 rounded-2xl group-hover:bg-purple-500/20 transition-colors duration-300">
+                  <div className="p-4 bg-purple-500/10 rounded-4xl group-hover:bg-purple-500/20 transition-colors duration-300">
                     <IconComponent className="w-8 h-8 text-purple-500" />
                   </div>
                 </div>
@@ -100,5 +100,107 @@ const CardGrid: React.FC<CardGridProps> = ({ cards, className = "" }) => {
     </motion.div>
   );
 };
+
+export default CardGrid; 
+
+      initial="hidden"
+
+      whileInView="visible"
+
+      viewport={{ once: true, margin: "-100px" }}
+
+    >
+
+      {cards.map((card, index) => {
+
+        const IconComponent = card.icon;
+
+        
+
+        return (
+
+          <motion.div
+
+            key={index}
+
+            variants={cardVariants}
+
+            className="group"
+
+          >
+
+            <Card className="h-full bg-neutral-900/50 border-neutral-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.02] group-hover:border-purple-500/20">
+
+              <CardContent className="p-6 flex flex-col h-full">
+
+                {/* Icon Area */}
+
+                <div className="flex justify-center mb-6">
+
+                  <div className="p-4 bg-purple-500/10 rounded-2xl group-hover:bg-purple-500/20 transition-colors duration-300">
+
+                    <IconComponent className="w-8 h-8 text-purple-500" />
+
+                  </div>
+
+                </div>
+
+
+
+                {/* Heading */}
+
+                <h3 className="text-xl font-semibold text-white mb-4 text-center group-hover:text-purple-100 transition-colors duration-300">
+
+                  {card.title}
+
+                </h3>
+
+
+
+                {/* Body Copy */}
+
+                <p className="text-neutral-400 text-center mb-6 flex-grow leading-relaxed">
+
+                  {card.description}
+
+                </p>
+
+
+
+                {/* Optional CTA Button */}
+
+                {card.cta && (
+
+                  <Button
+
+                    onClick={() => window.open(card.cta!.href, '_blank')}
+
+                    className="w-full bg-purple-500 hover:bg-purple-600 text-white font-medium rounded-xl transition-all duration-300 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-neutral-900 group-hover:shadow-lg group-hover:shadow-purple-500/25"
+
+                  >
+
+                    {card.cta.text}
+
+                  </Button>
+
+                )}
+
+              </CardContent>
+
+            </Card>
+
+          </motion.div>
+
+        );
+
+      })}
+
+    </motion.div>
+
+  );
+
+};
+
+
 
 export default CardGrid; 

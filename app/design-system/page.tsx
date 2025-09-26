@@ -58,7 +58,7 @@ export default function DesignSystemPage() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-background-glass backdrop-blur-lg rounded-2xl border border-white/10">
+              <div className="p-4 bg-background-glass backdrop-blur-lg rounded-4xl border border-white/10">
                 <Zap className="w-8 h-8 text-primary-main" />
               </div>
             </motion.div>
@@ -308,7 +308,7 @@ export default function DesignSystemPage() {
                 <Card variant="glass" hover className="text-center">
                   <CardContent className="pt-8">
                     <div className="flex justify-center mb-6">
-                      <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <div className="p-4 bg-primary-main/20 rounded-4xl">
                         <Cloud className="w-8 h-8 text-primary-main" />
                       </div>
                     </div>
@@ -322,7 +322,7 @@ export default function DesignSystemPage() {
                 <Card variant="glass" hover className="text-center">
                   <CardContent className="pt-8">
                     <div className="flex justify-center mb-6">
-                      <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <div className="p-4 bg-primary-main/20 rounded-4xl">
                         <Zap className="w-8 h-8 text-primary-main" />
                       </div>
                     </div>
@@ -336,7 +336,7 @@ export default function DesignSystemPage() {
                 <Card variant="glass" hover className="text-center">
                   <CardContent className="pt-8">
                     <div className="flex justify-center mb-6">
-                      <div className="p-4 bg-primary-main/20 rounded-2xl">
+                      <div className="p-4 bg-primary-main/20 rounded-4xl">
                         <Cpu className="w-8 h-8 text-primary-main" />
                       </div>
                     </div>

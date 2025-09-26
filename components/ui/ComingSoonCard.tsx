@@ -6,7 +6,7 @@ export function ComingSoonCard({
   items: string[];
 }) {
   return (
-    <div className="w-full rounded-2xl border border-white/5 bg-white/5 p-8 backdrop-blur">
+    <div className="w-full rounded-4xl border border-white/5 bg-white/5 p-8 backdrop-blur">
       {/* header */}
       <h2 className="mb-6 text-xl font-semibold tracking-tight">
         {title}

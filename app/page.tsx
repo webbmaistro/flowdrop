@@ -340,7 +340,7 @@ export default function LandingPage() {
                   </div>
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                    <div className="p-4 bg-primary-main/20 rounded-4xl">
                         <FileText className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
@@ -356,7 +356,7 @@ export default function LandingPage() {
                   </div>
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                    <div className="p-4 bg-primary-main/20 rounded-4xl">
                         <MessageSquare className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
@@ -372,7 +372,7 @@ export default function LandingPage() {
                   </div>
                 <CardContent className="pt-4">
                   <div className="flex justify-center mb-6">
-                    <div className="p-4 bg-primary-main/20 rounded-2xl">
+                    <div className="p-4 bg-primary-main/20 rounded-4xl">
                       <Zap className="w-8 h-8 text-primary-main" />
                     </div>
                   </div>
@@ -934,9 +934,9 @@ export default function LandingPage() {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="grid md:grid-cols-3 gap-6 mb-12 px-4 md:px-0">
               <motion.div 
-                className="bg-gradient-to-br from-red-500/10 to-orange-500/10 backdrop-blur border border-red-500/20 rounded-xl p-6 text-center"
+                className="bg-gradient-to-br from-red-500/10 to-orange-500/10 backdrop-blur border border-red-500/20 rounded-4xl p-6 text-center"
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
@@ -953,8 +953,8 @@ export default function LandingPage() {
               </motion.div>
               
               <motion.div 
-                className="bg-gradient-to-br from-primary-main/20 to-purple-500/20 backdrop-blur border border-primary-main/30 rounded-xl p-6 text-center relative overflow-hidden scale-110"
-                whileHover={{ scale: 1.12, y: -4 }}
+                className="bg-gradient-to-br from-primary-main/20 to-purple-500/20 backdrop-blur border border-primary-main/30 rounded-4xl p-6 text-center relative overflow-hidden scale-105"
+                whileHover={{ scale: 1.08, y: -4 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary-main/5 to-purple-500/5 animate-pulse"></div>
@@ -966,7 +966,7 @@ export default function LandingPage() {
                   <p className="text-base text-gray-400 mb-4">Simple, powerful, and actually enjoyable to use</p>
                   <div className="space-y-2 text-sm text-primary-main/80">
                     <div>• AI-powered workflow builder</div>
-                    <div>• $9/month for everything</div>
+                    <div>• Starts at $9/month for everything</div>
                     <div>• Zero learning curve</div>
                   </div>
                   <div className="h-12"></div>
@@ -974,7 +974,7 @@ export default function LandingPage() {
               </motion.div>
               
               <motion.div 
-                className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur border border-blue-500/20 rounded-xl p-6 text-center"
+                className="bg-gradient-to-br from-blue-500/10 to-indigo-500/10 backdrop-blur border border-blue-500/20 rounded-4xl p-6 text-center"
                 whileHover={{ scale: 1.02, y: -4 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
               >
@@ -1047,9 +1047,9 @@ export default function LandingPage() {
                   ease: "easeOut"
                 }}
               >
-                <div className="bg-gradient-to-br from-neutral-800/60 to-neutral-700/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 relative overflow-hidden group hover:border-primary-main/30 hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500">
+                <div className="bg-gradient-to-br from-neutral-800/60 to-neutral-700/40 backdrop-blur-sm border border-white/10 rounded-4xl p-6 relative overflow-hidden group hover:border-primary-main/30 hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500">
                   {/* Background glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-4xl"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-start gap-3 mb-4">
@@ -1082,9 +1082,9 @@ export default function LandingPage() {
                   ease: "easeOut"
                 }}
               >
-                <div className="bg-gradient-to-br from-neutral-800/60 to-neutral-700/40 backdrop-blur-sm border border-white/10 rounded-2xl p-6 relative overflow-hidden group hover:border-primary-main/30 hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500">
+                <div className="bg-gradient-to-br from-neutral-800/60 to-neutral-700/40 backdrop-blur-sm border border-white/10 rounded-4xl p-6 relative overflow-hidden group hover:border-primary-main/30 hover:shadow-[0_8px_32px_0_rgba(139,92,246,0.15)] transition-all duration-500">
                   {/* Background glow on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary-main/5 via-transparent to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-4xl"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-start gap-3 mb-4">

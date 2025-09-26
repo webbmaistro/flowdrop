@@ -130,9 +130,9 @@ export const inputVariants = {
 } as const;
 
 export const cardVariants = {
-  default: 'bg-background-card rounded-2xl border border-border-primary shadow-lg p-6',
-  glass: 'bg-background-glass backdrop-blur-lg border border-white/10 rounded-2xl shadow-xl p-6',
-  elevated: 'bg-background-card rounded-2xl border border-border-primary shadow-2xl p-6',
+  default: 'bg-background-card rounded-4xl border border-border-primary shadow-lg p-6',
+  glass: 'bg-background-glass backdrop-blur-lg border border-white/10 rounded-4xl shadow-xl p-6',
+  elevated: 'bg-background-card rounded-4xl border border-border-primary shadow-2xl p-6',
 } as const;
 
 // Animation utilities

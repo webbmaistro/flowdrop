@@ -105,7 +105,7 @@ export default function MobileMenu({ isOpen, onToggle, pathname, user, loading, 
                     {user ? (
                       <div className="space-y-4">
                         {/* User Info */}
-                        <div className="flex items-center gap-3 p-4 bg-primary-main/10 backdrop-blur-sm rounded-2xl border border-primary-main/20">
+                        <div className="flex items-center gap-3 p-4 bg-primary-main/10 backdrop-blur-sm rounded-4xl border border-primary-main/20">
                           <div className="w-12 h-12 bg-primary-main/20 rounded-full flex items-center justify-center">
                             <span className="text-lg font-bold text-primary-main">
                               {user.email?.charAt(0).toUpperCase()}

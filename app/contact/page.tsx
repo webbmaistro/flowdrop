@@ -183,7 +183,7 @@ export default function ContactPage() {
             variants={containerVariants}
           >
             <motion.div variants={itemVariants} className="flex justify-center mb-6">
-              <div className="p-4 bg-primary-main/20 rounded-2xl">
+              <div className="p-4 bg-primary-main/20 rounded-4xl">
                 <Mail className="w-8 h-8 text-primary-main" />
               </div>
             </motion.div>
@@ -203,7 +203,7 @@ export default function ContactPage() {
             </motion.p>
 
             <motion.div variants={itemVariants} className="mb-12">
-              <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-2xl px-6 py-4">
+              <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-4xl px-6 py-4">
                 <Mail className="w-5 h-5 text-primary-main" />
                 <span className="text-lg font-medium text-text-primary">webb@flowdrop.xyz</span>
               </div>
