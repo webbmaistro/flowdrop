@@ -24,7 +24,7 @@ export default function CompanyLogosSection() {
               <motion.div
                 key={idx}
                 className="flex flex-col items-center group"
-                whileHover={hoverTransforms.tile.within?.whileHover || hoverTransforms.tile.whileHover}
+                whileHover={hoverTransforms.tile.whileHover}
                 transition={hoverTransforms.tile.transition}
               >
                 <motion.div className="w-20 h-20 bg-gradient-to-br from-white/20 via-white/15 to-white/25 backdrop-blur-sm border border-white/20 rounded-full p-5 flex items-center justify-center group-hover:border-white/30 group-hover:shadow-[0_12px_40px_0_rgba(255,255,255,0.15)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)] transition-all duration-500 mb-4"
