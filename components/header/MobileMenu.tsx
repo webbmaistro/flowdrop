@@ -133,7 +133,7 @@ export default function MobileMenu({ isOpen, onToggle, pathname, user, loading, 
                     ) : (
                       <div className="space-y-3">
                         <button
-                          onClick={() => handleLinkClick('/signin')}
+                          onClick={() => window.location.href = 'https://app.flowdrop.xyz/'}
                           className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-primary-main hover:bg-primary-hover text-white rounded-full font-medium shadow-lg shadow-primary-main/25 transition-all duration-200"
                         >
                           <ArrowRight className="w-5 h-5" />

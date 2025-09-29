@@ -8,7 +8,6 @@ import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
-import ComingSoon from "@/components/ui/ComingSoon";
 
 const docCategories = [
   {

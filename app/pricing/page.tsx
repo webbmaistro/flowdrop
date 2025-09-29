@@ -2,8 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { containerVariants, itemVariants } from '@/lib/motion';
 import { Check, Star, Zap, Users, Rocket, Crown, Building2 } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, Section } from '@/components/ui';
+import { PlanCard } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
@@ -12,23 +14,6 @@ export default function PricingPage() {
   const [hoveredPlan, setHoveredPlan] = useState<string | null>(null);
   const [firstHover, setFirstHover] = useState<string | null>(null);
   const [hoveredCredit, setHoveredCredit] = useState<string | null>(null);
-
-  const startCheckout = async (priceId: string) => {
-    setLoadingId(priceId);
-    try {
-      const res = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        body: JSON.stringify({ priceId, userId: 'demo-user' }), // Replace with real user ID
-      });
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      }
-    } catch (error) {
-      console.error('Checkout error:', error);
-      setLoadingId(null);
-    }
-  };
 
   const plans = [
     {
@@ -44,8 +29,8 @@ export default function PricingPage() {
         'Basic AI tools',
         'Community support'
       ],
-      cta: 'Contact Us',
-      ctaAction: () => window.location.href = '/contact'
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = '/signin'
     },
     {
       name: 'Solo',
@@ -60,8 +45,8 @@ export default function PricingPage() {
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Contact Us',
-      ctaAction: () => window.location.href = '/contact'
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/'
     },
     {
       name: 'Builder',
@@ -77,8 +62,8 @@ export default function PricingPage() {
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Contact Us',
-      ctaAction: () => window.location.href = '/contact'
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/'
     },
     {
       name: 'Growth',
@@ -94,8 +79,8 @@ export default function PricingPage() {
         'Premium model access',
         'Enables model selectors'
       ],
-      cta: 'Contact Us',
-      ctaAction: () => window.location.href = '/contact'
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/'
     },
     {
       name: 'Enterprise',
@@ -112,79 +97,92 @@ export default function PricingPage() {
         'Dedicated support',
         'Custom integrations'
       ],
-      cta: 'Contact Us',
-      ctaAction: () => window.location.href = '/contact'
+      cta: 'Get Started',
+      ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/'
     },
   ];
 
-  // Additional usage credits
-  const additionalCredits = [
-    {
-      name: '3K Credits',
-      price: '$25',
-      description: 'One-time purchase',
-      credits: '3,000',
-      popular: false
-    },
-    {
-      name: '1K Credits',
-      price: '$10',
-      description: 'One-time purchase',
-      credits: '1,000',
-      popular: true
-    }
-  ];
+  // Note: additionalCredits and credit purchase UI are disabled/removed
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  // Variants imported from lib/motion
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
-      {/* Early Access Message */}
-      <section className="py-12 bg-primary-main/10 border-b border-primary-main/20">
+      {/* Live Product Launch Message */}
+      <section className="py-16 bg-gradient-to-br from-primary-main/15 via-purple-700/10 to-primary-main/20 border-b border-primary-main/30">
         <div className="container mx-auto px-6">
           <motion.div
-            className="max-w-4xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 bg-primary-main/20 text-primary-main px-4 py-2 rounded-full text-sm font-semibold mb-4">
-              <Star className="w-4 h-4" />
-              Early Access
-            </div>
-            <h2 className="text-2xl font-bold text-white mb-3">
-              Flowdrop is currently in early access
+            <motion.div 
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500/30 to-emerald-600/30 text-green-400 px-6 py-3 rounded-full text-sm font-bold mb-6 border border-green-500/40 shadow-lg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <Rocket className="w-4 h-4" />
+              Now Live & Ready
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Transform Your Workflows with 
+              <span className="bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent bg-[length:200%_200%] animate-[liquid_20s_linear_infinite]"> AI That Works</span>
             </h2>
-            <p className="text-text-muted text-lg max-w-2xl mx-auto">
-              We're building something amazing and would love to hear about your AI workflow needs. 
-              Contact us to discuss pricing and get early access to our platform.
+            <p className="text-text-muted text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
+              The future of AI workflows is here. Start building, automating, and scaling your processes 
+              <span className="text-white font-semibold"> in minutes, not months</span>. 
+              Join thousands of teams already creating powerful AI workflows.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button
+                className="bg-gradient-to-r from-[#8B5CF6] to-[#7C3AED] hover:from-[#8B5CF6]/90 hover:to-[#7C3AED]/90 text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = 'https://app.flowdrop.xyz/'}
+              >
+                Start Building Now
+              </motion.button>
+              <motion.button
+                className="border-2 border-primary-main/50 text-primary-main hover:bg-primary-main/10 font-semibold py-4 px-8 rounded-full text-lg transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.location.href = '/contact'}
+              >
+                See Live Demo
+              </motion.button>
+            </div>
+            <motion.div 
+              className="flex flex-wrap justify-center items-center gap-6 mt-8 text-sm text-text-muted/80"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-400" />
+                <span>Visual workflow builder</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-400" />
+                <span>Start free today</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Check className="w-4 h-4 text-green-400" />
+                <span>Cancel anytime</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Pricing Cards */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
+      <Section>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-7xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
             {plans.map((plan, index) => {
               const IconComponent = plan.icon;
               return (
@@ -196,115 +194,50 @@ export default function PricingPage() {
                     plan.highlight && 'lg:scale-105',
                     hoveredPlan === plan.name && 'scale-[1.02] -translate-y-1'
                   )}
-                  animate={firstHover === plan.name ? {
-                    scale: [1, 1.03, 1],
-                  } : {}}
-                  transition={firstHover === plan.name ? {
-                    duration: 0.6,
-                    ease: [0.4, 0, 0.2, 1],
-                    times: [0, 0.3, 1]
-                  } : {}}
-                  onAnimationComplete={() => {
-                    if (firstHover === plan.name) {
-                      setFirstHover(null);
-                    }
-                  }}
-                  onMouseEnter={() => {
-                    setHoveredPlan(plan.name);
-                    if (!firstHover) setFirstHover(plan.name);
-                  }}
+                  animate={firstHover === plan.name ? { scale: [1, 1.03, 1] } : {}}
+                  transition={firstHover === plan.name ? { duration: 0.6, ease: [0.4, 0, 0.2, 1], times: [0, 0.3, 1] } : {}}
+                  onAnimationComplete={() => { if (firstHover === plan.name) setFirstHover(null); }}
+                  onMouseEnter={() => { setHoveredPlan(plan.name); if (!firstHover) setFirstHover(plan.name); }}
                   onMouseLeave={() => setHoveredPlan(null)}
                 >
-                  <Card 
-                    variant={plan.highlight ? "glass" : "default"} 
-                    hover={true}
-                    className={cn(
-                      'h-full relative transition-all duration-500 ease-out overflow-visible',
-                      plan.highlight && 'border-primary-main/30 bg-gradient-to-br from-primary-main/10 via-primary-main/5 to-purple-700/10 shadow-2xl shadow-primary-main/20',
-                      hoveredPlan === plan.name && 'border-primary-main/50 bg-gradient-to-br from-primary-main/15 via-primary-main/8 to-purple-700/15 shadow-2xl shadow-primary-main/30'
-                    )}
-                  >
-                    {plan.highlight && (
-                      <motion.span
-                        role="status"
-                        aria-label="Recommended plan"
-                        className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ 
-                          opacity: 1, 
-                          y: 0,
-                          scale: hoveredPlan === plan.name ? 1.05 : 1
-                        }}
-                        transition={{ duration: 0.35, ease: "easeOut" }}
-                      >
-                        <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
-                          <div className="flex items-center space-x-2">
-                            <Star className="w-3 h-3 text-purple-300" />
-                            <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">
-                              Recommended
-                            </span>
-                          </div>
-                        </div>
-                      </motion.span>
-                    )}
-                    
-                    <CardHeader>
-                      <div className="flex items-center space-x-3 mb-2">
-                        <IconComponent className="w-6 h-6 text-primary-main" />
-                        <CardTitle className="text-2xl">{plan.name}</CardTitle>
-                      </div>
-                      <CardDescription>{plan.description}</CardDescription>
-                      {index > 0 && (
-                        <p className="text-sm text-text-muted mt-1">Includes all features from {plans[index-1].name}</p>
-                      )}
-                    </CardHeader>
-                    
-                    <CardContent className="space-y-6">
-                      <div className="text-center">
-                        <div className="flex items-baseline justify-center">
-                          <span className="text-4xl font-bold">{plan.price}</span>
-                          <span className="text-text-muted ml-1">{plan.period}</span>
+                  {plan.highlight && (
+                    <motion.span
+                      role="status"
+                      aria-label="Recommended plan"
+                      className="absolute -top-6 left-1/2 -translate-x-1/2 z-10"
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0, scale: hoveredPlan === plan.name ? 1.05 : 1 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    >
+                      <div className="bg-purple-700/20 backdrop-blur-sm border border-purple-600/40 rounded-full px-4 py-2 shadow-sm shadow-purple-500/10">
+                        <div className="flex items-center space-x-2">
+                          <Star className="w-3 h-3 text-purple-300" />
+                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-300">Recommended</span>
                         </div>
                       </div>
-                      
-                      <ul className="space-y-3">
-                        {plan.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-start space-x-3">
-                            <Check className="w-5 h-5 text-success-500 mt-0.5 flex-shrink-0" />
-                            <span className={typography.bodySmall}>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      
-                      <div className="pt-4">
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.5, delay: 0.3 }}
-                        >
-                          <Button
-                            variant="primary"
-                            size="lg"
-                            className={cn(
-                              "w-full text-white font-semibold btn-hover-ready rounded-full",
-                              hoveredPlan === plan.name && "btn-liquid ring-white-glow"
-                            )}
-                            onClick={() => plan.ctaAction()}
-                            loading={plan.priceId ? loadingId === plan.priceId : false}
-                            disabled={plan.priceId ? loadingId === plan.priceId : false}
-                          >
-                            {plan.priceId && loadingId === plan.priceId ? 'Redirecting...' : plan.cta}
-                          </Button>
-                        </motion.div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    </motion.span>
+                  )}
+
+                  <PlanCard
+                    name={plan.name}
+                    description={plan.description}
+                    price={plan.price}
+                    period={plan.period}
+                    IconComponent={IconComponent as any}
+                    features={plan.features}
+                    ctaLabel={plan.cta}
+                    onCta={plan.ctaAction}
+                    highlight={plan.highlight}
+                    hovered={hoveredPlan === plan.name}
+                    loading={!!plan.priceId && loadingId === plan.priceId}
+                    disabled={!!plan.priceId && loadingId === plan.priceId}
+                    prevPlanName={index > 0 ? plans[index-1].name : undefined}
+                  />
                 </motion.div>
               );
             })}
-          </motion.div>
-        </div>
-      </section>
+        </motion.div>
+      </Section>
 
       {/* Additional Credits Section - TEMPORARILY DISABLED */}
       {/* 
@@ -411,14 +344,13 @@ export default function PricingPage() {
       */}
 
       {/* FAQ Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
+      <Section>
+        <motion.div
+          className="max-w-4xl mx-auto text-center"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
             <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-12")}>
               Frequently Asked Questions
             </motion.h2>
@@ -460,9 +392,8 @@ export default function PricingPage() {
                 </CardContent>
               </Card>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+        </motion.div>
+      </Section>
     </div>
   );
 } 

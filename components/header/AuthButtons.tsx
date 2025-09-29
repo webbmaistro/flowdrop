@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LogOut, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui';
@@ -14,6 +14,9 @@ interface AuthButtonsProps {
 }
 
 export default function AuthButtons({ user, loading, onSignOut, className = "" }: AuthButtonsProps) {
+  const [isSignOutHovered, setIsSignOutHovered] = useState(false);
+  const [isLoginHovered, setIsLoginHovered] = useState(false);
+
   if (loading) return null;
 
   return (
@@ -26,13 +29,14 @@ export default function AuthButtons({ user, loading, onSignOut, className = "" }
             size="sm"
             onClick={onSignOut}
             className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
+            onHoverStart={() => setIsSignOutHovered(true)}
+            onHoverEnd={() => setIsSignOutHovered(false)}
           >
             <div className="relative flex items-center justify-center">
               <motion.div
                 className="flex items-center gap-1.5 px-2"
                 initial="default"
-                whileHover="hover"
-                animate="default"
+                animate={isSignOutHovered ? "hover" : "default"}
                 variants={{
                   default: { x: 0 },
                   hover: { x: 0 }
@@ -44,6 +48,7 @@ export default function AuthButtons({ user, loading, onSignOut, className = "" }
                     default: { width: 0, opacity: 0, marginLeft: -4 },
                     hover: { width: "auto", opacity: 1, marginLeft: 0 }
                   }}
+                  animate={isSignOutHovered ? "hover" : "default"}
                   transition={{ duration: 0.3 }}
                   style={{ overflow: "hidden" }}
                 >
@@ -57,15 +62,16 @@ export default function AuthButtons({ user, loading, onSignOut, className = "" }
          <Button
            variant="ghost"
            size="sm"
-           onClick={() => window.location.href = '/signin'}
+           onClick={() => window.location.href = 'https://app.flowdrop.xyz/'}
            className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
+           onHoverStart={() => setIsLoginHovered(true)}
+           onHoverEnd={() => setIsLoginHovered(false)}
          >
           <div className="relative flex items-center justify-center">
             <motion.div
               className="flex items-center gap-1.5 px-2"
               initial="default"
-              whileHover="hover"
-              animate="default"
+              animate={isLoginHovered ? "hover" : "default"}
               variants={{
                 default: { x: 0 },
                 hover: { x: 0 }
@@ -77,6 +83,7 @@ export default function AuthButtons({ user, loading, onSignOut, className = "" }
                   default: { width: 0, opacity: 0, marginLeft: -4 },
                   hover: { width: "auto", opacity: 1, marginLeft: 0 }
                 }}
+                animate={isLoginHovered ? "hover" : "default"}
                 transition={{ duration: 0.3 }}
                 style={{ overflow: "hidden" }}
               >

@@ -254,7 +254,7 @@ export default function WorkflowEditorComparison() {
           <Button
             variant="primary"
             className="h-[52px] w-full max-w-[400px] px-8 btn-liquid text-white font-semibold rounded-full shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20 group relative overflow-hidden"
-            onClick={() => window.location.href = '/signin'}
+            onClick={() => window.location.href = 'https://app.flowdrop.xyz/'}
             whileHover="hover"
             initial="default"
             animate="default"

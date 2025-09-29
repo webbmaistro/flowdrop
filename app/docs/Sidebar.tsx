@@ -12,9 +12,9 @@ const nav = [
 
 const nodeLibrary = {
   "Workflow Triggers": [
-    { href: "/docs/nodes/manual-trigger", label: "Manual Trigger" },
+    { href: "/docs/nodes/trigger", label: "Manual Trigger" },
     { href: "/docs/nodes/schedule", label: "Schedule" },
-    { href: "/docs/nodes/email", label: "Email" },
+    { href: "/docs/nodes/gmail-read-emails", label: "Email" },
     { href: "/docs/nodes/webhook", label: "Webhook" },
   ],
   "Action Nodes": {

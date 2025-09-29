@@ -10,9 +10,9 @@ const nodeCategories = [
     title: "Workflow Triggers",
     description: "Nodes that start your workflows",
     nodes: [
-      { name: "Manual Trigger", href: "/docs/nodes/manual-trigger", description: "Start workflows manually", icon: Clock, color: "text-blue-500" },
+      { name: "Manual Trigger", href: "/docs/nodes/trigger", description: "Start workflows manually", icon: Clock, color: "text-blue-500" },
       { name: "Schedule", href: "/docs/nodes/schedule", description: "Trigger workflows on a schedule", icon: Clock, color: "text-green-500" },
-      { name: "Email", href: "/docs/nodes/email", description: "Trigger on new emails", icon: Mail, color: "text-purple-500" },
+      { name: "Email", href: "/docs/nodes/gmail-read-emails", description: "Trigger on new emails", icon: Mail, color: "text-purple-500" },
       { name: "Webhook", href: "/docs/nodes/webhook", description: "Trigger via HTTP requests", icon: ExternalLink, color: "text-orange-500" },
     ]
   },

@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Send, Check } from 'lucide-react';
-import { Button, Input, Card, CardContent } from '@/components/ui';
+import { containerVariants, itemVariants } from '@/lib/motion';
+import { Mail, Check } from 'lucide-react';
+import { CTAButton, Input, Card, CardContent, Section } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
@@ -56,32 +57,18 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  // Variants imported from lib/motion
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
       {/* Contact Form */}
-      <section className="py-20 pt-32">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-2xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={containerVariants}
-          >
+      <Section className="pt-32">
+        <motion.div
+          className="max-w-2xl mx-auto"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+        >
             <motion.h2 variants={itemVariants} className={cn(typography.h2, "mb-6 text-center")}>
               Send us a Message
             </motion.h2>
@@ -152,25 +139,21 @@ export default function ContactPage() {
                         />
                       </div>
                       
-                      <Button
+                      <CTAButton
                         type="submit"
-                        variant="primary"
-                        size="lg"
-                        className="w-full btn-liquid rounded-full text-white font-semibold shadow-lg shadow-primary-main/25 ring-2 ring-primary-main/20"
-                        loading={isSubmitting}
-                        icon={<Send className="w-5 h-5" />}
                         disabled={isSubmitting}
+                        className="w-full"
+                        hoverLiquidOnly
                       >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
-                      </Button>
+                      </CTAButton>
                     </form>
                   )}
                 </CardContent>
               </Card>
             </motion.div>
-          </motion.div>
-        </div>
-      </section>
+        </motion.div>
+      </Section>
 
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">

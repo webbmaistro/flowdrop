@@ -188,6 +188,84 @@ html {
   }
 }
 
+/* Seamless marquee for sliding banner */
+@keyframes marquee-x {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-y {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+/* Slower animation - moves 50% distance but at 25% speed */
+@keyframes marquee-x-very-slow {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-y-very-slow {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.marquee-track {
+  animation: marquee-x var(--marquee-duration, 20s) var(--marquee-easing, linear) infinite;
+  will-change: transform;
+}
+
+.marquee-track.reverse {
+  animation-direction: reverse;
+}
+
+.marquee-track.marquee-vertical {
+  animation-name: marquee-y;
+  flex-direction: column;
+}
+
+.marquee-track.marquee-vertical.reverse {
+  animation-direction: reverse;
+}
+
+/* Slower variants - 4x slower timing */
+.marquee-track.marquee-very-slow {
+  animation-name: marquee-x-very-slow;
+  animation-timing-function: linear;
+}
+
+.marquee-track.marquee-very-slow.reverse {
+  animation-direction: reverse;
+}
+
+.marquee-track.marquee-very-slow.marquee-vertical {
+  animation-name: marquee-y-very-slow;
+}
+
+.marquee-track.marquee-very-slow.marquee-vertical.reverse {
+  animation-direction: reverse;
+}
+
+.marquee-track.marquee-pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
 /* Card entrance animation */
 @keyframes cardEntrance {
   from {

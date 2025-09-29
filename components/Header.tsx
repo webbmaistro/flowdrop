@@ -30,6 +30,8 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [isSignOutHovered, setIsSignOutHovered] = useState(false);
+  const [isLoginHovered, setIsLoginHovered] = useState(false);
   const pathname = usePathname();
 
   // Show header when scrolled > 50vh OR scrolling up
@@ -116,13 +118,14 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                   size="sm"
                   onClick={handleSignOut}
                   className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
+                  onHoverStart={() => setIsSignOutHovered(true)}
+                  onHoverEnd={() => setIsSignOutHovered(false)}
                 >
                   <div className="relative flex items-center justify-center">
                     <motion.div
                       className="flex items-center gap-1.5 px-2"
                       initial="default"
-                      whileHover="hover"
-                      animate="default"
+                      animate={isSignOutHovered ? "hover" : "default"}
                       variants={{
                         default: { x: 0 },
                         hover: { x: 0 }
@@ -134,6 +137,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                           default: { width: 0, opacity: 0, marginLeft: -4 },
                           hover: { width: "auto", opacity: 1, marginLeft: 0 }
                         }}
+                        animate={isSignOutHovered ? "hover" : "default"}
                         transition={{ duration: 0.3 }}
                         style={{ overflow: "hidden" }}
                       >
@@ -147,15 +151,16 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => window.location.href = '/signin'}
+              onClick={() => window.location.href = 'https://app.flowdrop.xyz/'}
               className="backdrop-blur-sm group relative overflow-hidden px-3 btn-liquid-hover hover:text-white border border-transparent"
+              onHoverStart={() => setIsLoginHovered(true)}
+              onHoverEnd={() => setIsLoginHovered(false)}
             >
               <div className="relative flex items-center justify-center">
                 <motion.div
                   className="flex items-center gap-1.5 px-2"
                   initial="default"
-                  whileHover="hover"
-                  animate="default"
+                  animate={isLoginHovered ? "hover" : "default"}
                   variants={{
                     default: { x: 0 },
                     hover: { x: 0 }
@@ -167,6 +172,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
                       default: { width: 0, opacity: 0, marginLeft: -4 },
                       hover: { width: "auto", opacity: 1, marginLeft: 0 }
                     }}
+                    animate={isLoginHovered ? "hover" : "default"}
                     transition={{ duration: 0.3 }}
                     style={{ overflow: "hidden" }}
                   >
@@ -193,12 +199,12 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <div className="flex items-center justify-between px-6 py-4"> {/* Same as persistent: top-0 + py-4 = 16px */}
+        <div className="relative flex items-center justify-between px-6 py-4"> {/* Same as persistent: top-0 + py-4 = 16px */}
             {/* Logo */}
             <LogoButton />
 
-            {/* Desktop Navigation */}
-            <Navigation pathname={pathname} />
+            {/* Desktop Navigation - centered to viewport */}
+            <Navigation pathname={pathname} className="md:absolute md:left-1/2 md:-translate-x-1/2 md:z-10" />
 
             {/* CTA Buttons */}
             <AuthButtons 

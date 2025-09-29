@@ -10,7 +10,7 @@ interface HeaderWrapperProps {
 export default function HeaderWrapper({ children }: HeaderWrapperProps) {
   const pathname = usePathname();
   const isLanding = pathname === "/";
-  const isAuthPage = pathname === "/signin" || pathname === "/signup";
+  const isAuthPage = false;
   
   return (
     <>

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { containerVariants, itemVariants } from '@/lib/motion';
 import { 
   Button, 
   Input, 
@@ -30,20 +31,7 @@ export default function DesignSystemPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  };
+  // Variants imported from lib/motion
 
   return (
     <div className="min-h-screen bg-background text-text-primary">
@@ -352,16 +340,7 @@ export default function DesignSystemPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-background-footer border-t border-border-primary py-12">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className={cn(typography.bodySmall, "text-text-muted")}>
-              Design System built with ❤️ using Next.js, Tailwind CSS, and Framer Motion
-            </p>
-          </div>
-        </div>
-      </footer>
+      {/* Footer removed; global Footer is rendered by app/layout.tsx */}
     </div>
   );
 } 
