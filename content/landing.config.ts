@@ -109,6 +109,18 @@ export const mobileStories: MobileStory[] = [
       label: { text: 'AI node editing', colorClass: 'bg-orange-500/20 backdrop-blur-sm border border-orange-500/30 text-orange-400 px-2 py-1' },
     },
   },
+  {
+    title: 'Advanced AI-Powered Nodes',
+    copy: 'Cutting-edge AI nodes with advanced capabilities. Build sophisticated workflows with powerful AI tools.',
+    screenshot: {
+      url: 'flowdrop.xyz/advanced-editor',
+      src: '/screenshots/webfloweditor2.png',
+      alt: 'Flowdrop Advanced AI-Powered Nodes',
+      width: 400,
+      height: 300,
+      label: { text: 'Advanced AI nodes', colorClass: 'bg-blue-500/20 backdrop-blur-sm border border-blue-500/30 text-blue-400 px-2 py-1' },
+    },
+  },
 ];
 
 
