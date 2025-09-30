@@ -34,8 +34,7 @@ export default function FinalCTASection({
           <div className="bg-white/5 backdrop-blur rounded-xl p-6 flex flex-col items-center gap-4 border border-white/10">
             <div className="text-center mb-2">
               <h3 className="text-lg font-semibold text-gray-300 mb-2">{title}</h3>
-              <p className="text-sm text-gray-400 flex items-center justify-center gap-2">
-                <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z" fill="#a78bfa"/></svg>
+              <p className="text-sm text-gray-400 text-center">
                 {subtitle}
               </p>
             </div>
