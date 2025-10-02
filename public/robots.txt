@@ -1,27 +1,13 @@
+# *
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /auth
+Disallow: /dashboard
 
-# Sitemap location
+# Host
+Host: https://flowdrop.xyz
+
+# Sitemaps
 Sitemap: https://flowdrop.xyz/sitemap.xml
-
-# Disallow admin and API routes
-Disallow: /admin/
-Disallow: /api/
-Disallow: /auth/
-Disallow: /dashboard/
-
-# Allow important pages
-Allow: /docs/
-Allow: /pricing/
-Allow: /contact/
-Allow: /privacy/
-Allow: /terms/
-
-# Specific rules for major search engines
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1 

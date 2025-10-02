@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "screenshots": "node scripts/manage-screenshots.js"
@@ -17,6 +18,7 @@
     "framer-motion": "^12.19.1",
     "lucide-react": "^0.511.0",
     "next": "15.3.3",
+    "next-sitemap": "^4.2.3",
     "posthog-js": "^1.255.1",
     "posthog-node": "^5.1.1",
     "react": "^19.0.0",
