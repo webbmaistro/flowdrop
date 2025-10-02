@@ -2,6 +2,7 @@
 module.exports = {
   siteUrl: 'https://flowdrop.xyz',
   generateRobotsTxt: true,
+  generateIndexSitemap: false, // Generate single sitemap instead of index
   exclude: [
     '/admin',
     '/api',
@@ -9,37 +10,35 @@ module.exports = {
     '/dashboard',
   ],
   additionalPaths: async (config) => {
-    const currentDate = new Date().toISOString().split('T')[0];
-    
     return [
-      // Main Pages
+      // Main Pages (most recent)
       {
         loc: '/',
-        lastmod: currentDate,
+        lastmod: '2025-09-30',
         changefreq: 'weekly',
         priority: 1.0,
       },
       {
         loc: '/pricing',
-        lastmod: currentDate,
+        lastmod: '2025-09-30',
         changefreq: 'monthly',
         priority: 0.8,
       },
       {
         loc: '/contact',
-        lastmod: currentDate,
+        lastmod: '2025-09-25',
         changefreq: 'monthly',
         priority: 0.6,
       },
       {
         loc: '/privacy',
-        lastmod: currentDate,
+        lastmod: '2025-09-05',
         changefreq: 'yearly',
         priority: 0.3,
       },
       {
         loc: '/terms',
-        lastmod: currentDate,
+        lastmod: '2025-09-05',
         changefreq: 'yearly',
         priority: 0.3,
       },
@@ -47,171 +46,171 @@ module.exports = {
       // Documentation Pages
       {
         loc: '/docs',
-        lastmod: currentDate,
+        lastmod: '2025-09-25',
         changefreq: 'weekly',
         priority: 0.8,
       },
       {
         loc: '/docs/workflow-builder-basics',
-        lastmod: currentDate,
+        lastmod: '2025-09-25',
         changefreq: 'weekly',
         priority: 0.7,
       },
       {
         loc: '/docs/ai-blocks-nodes',
-        lastmod: currentDate,
+        lastmod: '2025-09-12',
         changefreq: 'weekly',
         priority: 0.7,
       },
       {
         loc: '/docs/cli-api-reference',
-        lastmod: currentDate,
+        lastmod: '2025-09-12',
         changefreq: 'weekly',
         priority: 0.7,
       },
       {
         loc: '/docs/authentication-pricing',
-        lastmod: currentDate,
+        lastmod: '2025-09-25',
         changefreq: 'monthly',
         priority: 0.6,
       },
       {
         loc: '/docs/changelog',
-        lastmod: currentDate,
+        lastmod: '2025-09-25',
         changefreq: 'weekly',
         priority: 0.5,
       },
       {
         loc: '/docs/roadmap',
-        lastmod: currentDate,
+        lastmod: '2025-09-12',
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/workflow-editor-comparison',
-        lastmod: currentDate,
+        lastmod: '2025-09-12',
         changefreq: 'monthly',
         priority: 0.6,
       },
       
-      // Node Documentation Pages
+      // Node Documentation Pages (mixed dates)
       {
         loc: '/docs/nodes',
-        lastmod: currentDate,
+        lastmod: recent,
         changefreq: 'weekly',
         priority: 0.6,
       },
       {
         loc: '/docs/nodes/ai-switch',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/discord-read-message',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/discord-send-message',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/fetch-webpage',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/for-each',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/gmail-read-emails',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/gmail-write-labels',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/google-docs-read',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/google-sheets-read',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/google-sheets-write',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/http-request',
-        lastmod: currentDate,
+        lastmod: recent,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/if-else',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/image-generation',
-        lastmod: currentDate,
+        lastmod: recent,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/llm-prompt',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/randomize',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/schedule',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/slack-read-message',
-        lastmod: currentDate,
+        lastmod: older,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/trigger',
-        lastmod: currentDate,
+        lastmod: recent,
         changefreq: 'monthly',
         priority: 0.5,
       },
       {
         loc: '/docs/nodes/webhook',
-        lastmod: currentDate,
+        lastmod: medium,
         changefreq: 'monthly',
         priority: 0.5,
       },
@@ -224,9 +223,6 @@ module.exports = {
         allow: '/',
         disallow: ['/admin', '/api', '/auth', '/dashboard'],
       },
-    ],
-    additionalSitemaps: [
-      'https://flowdrop.xyz/sitemap.xml',
     ],
   },
 };
