@@ -20,6 +20,9 @@ const integrations = [
   { name: 'GitHub', logo: '/logos/github.svg' },
   { name: 'Google Calendar', logo: '/logos/google-calendar.svg' },
   { name: 'Notion', logo: '/logos/notion.svg' },
+  { name: 'Microsoft Outlook', logo: '/logos/microsoft-outlook.svg' },
+  { name: 'Microsoft Excel', logo: '/logos/microsoft-excel.svg' },
+  { name: 'Microsoft Word', logo: '/logos/microsoft-word.svg' },
 ];
 
 export default function SlidingBanner({
