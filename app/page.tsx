@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import FinalCTASection from '@/components/landing/FinalCTASection';
 import WhySection from '@/components/landing/WhySection';
+import VideoSection from '@/components/landing/VideoSection';
 const AudienceSection = dynamic(() => import('@/components/landing/AudienceSection'), { ssr: false });
 const ComparisonSection = dynamic(() => import('@/components/landing/ComparisonSection'), { ssr: false });
 const TestimonialsSection = dynamic(() => import('@/components/landing/TestimonialsSection'), { ssr: false });
@@ -36,6 +37,13 @@ export default function LandingPage() {
       
       {/* Hero Section */}
       <HeroSection />
+
+      {/* Video Section */}
+      <VideoSection 
+        videoId="xB7Y4vgSXlo"
+        title="See Flowdrop in Action"
+        subtitle="Watch how easy it is to build powerful automations"
+      />
 
       {/* Why Flowdrop Section */}
       <WhySection />
