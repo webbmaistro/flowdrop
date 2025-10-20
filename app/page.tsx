@@ -10,7 +10,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import FinalCTASection from '@/components/landing/FinalCTASection';
 import WhySection from '@/components/landing/WhySection';
-import VideoSection from '@/components/landing/VideoSection';
+const VideoSection = dynamic(() => import('@/components/landing/VideoSection'), { ssr: false });
 const AudienceSection = dynamic(() => import('@/components/landing/AudienceSection'), { ssr: false });
 const ComparisonSection = dynamic(() => import('@/components/landing/ComparisonSection'), { ssr: false });
 const TestimonialsSection = dynamic(() => import('@/components/landing/TestimonialsSection'), { ssr: false });
