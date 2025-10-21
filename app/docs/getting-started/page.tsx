@@ -6,13 +6,8 @@ import { Play, ArrowRight, CheckCircle, BookOpen, Zap, Users, Settings } from 'l
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
-interface GettingStartedPageProps {
-  videoId?: string;
-}
-
-export default function GettingStartedPage({ 
-  videoId = "YOUR_VIDEO_ID_HERE" // Replace with actual video ID
-}: GettingStartedPageProps) {
+export default function GettingStartedPage() {
+  const videoId = "YOUR_VIDEO_ID_HERE"; // Replace with actual video ID
   const features = [
     "AI Assistant for workflow creation",
     "Visual drag-and-drop canvas editor", 
