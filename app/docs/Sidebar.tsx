@@ -4,10 +4,17 @@ import SidebarLink from "@/components/ui/SidebarLink";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 const nav = [
-  { href: "/docs", label: "Getting Started" },
+  { href: "/docs", label: "Overview" },
   { href: "/docs/ai-workflows-explained", label: "AI Workflows Explained" },
   { href: "/docs/workflow-builder-basics", label: "Workflow Builder Basics" },
   { href: "/docs/workflow-editor-comparison", label: "Workflow Editor Comparison" },
+];
+
+const gettingStarted = [
+  { href: "/docs/getting-started", label: "Flowdrop App Tour" },
+  { href: "/docs/getting-started/quick-start", label: "Quick Start Guide" },
+  { href: "/docs/getting-started/first-workflow", label: "Your First Workflow" },
+  { href: "/docs/getting-started/best-practices", label: "Best Practices" },
 ];
 
 const nodeLibrary = {
@@ -75,6 +82,24 @@ export default function Sidebar() {
             {item.label}
           </SidebarLink>
         ))}
+        
+        {/* Getting Started Section */}
+        <div className="pt-6 border-t border-neutral-800">
+          <CollapsibleSection 
+            title="Getting Started" 
+            defaultOpen={shouldSectionBeOpen(gettingStarted)}
+          >
+            {gettingStarted.map((item) => (
+              <SidebarLink
+                key={item.href}
+                href={item.href}
+                active={pathname === item.href}
+              >
+                {item.label}
+              </SidebarLink>
+            ))}
+          </CollapsibleSection>
+        </div>
         
         {/* Node Library Section */}
         <div className="pt-6 border-t border-neutral-800">

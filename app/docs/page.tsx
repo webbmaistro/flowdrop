@@ -17,10 +17,10 @@ const docCategories = [
     color: 'text-primary-main',
     bgColor: 'bg-primary-main/20',
     items: [
-      { title: 'Quick Start Guide', href: '#', description: 'Get up and running in 5 minutes' },
-      { title: 'Installation', href: '#', description: 'Install and configure Flowdrop' },
-      { title: 'First Workflow', href: '#', description: 'Create your first automation' },
-      { title: 'Best Practices', href: '#', description: 'Learn the recommended patterns' },
+      { title: 'Flowdrop App Tour', href: '/docs/getting-started', description: 'Watch our comprehensive app tour' },
+      { title: 'Quick Start Guide', href: '/docs/getting-started/quick-start', description: 'Get up and running in 5 minutes' },
+      { title: 'First Workflow', href: '/docs/getting-started/first-workflow', description: 'Create your first automation' },
+      { title: 'Best Practices', href: '/docs/getting-started/best-practices', description: 'Learn the recommended patterns' },
     ]
   },
   {
