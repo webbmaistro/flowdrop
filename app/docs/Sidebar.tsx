@@ -72,33 +72,33 @@ export default function Sidebar() {
   return (
     <aside className="hidden md:flex flex-col w-64 border-r border-neutral-800 bg-neutral-950/80">
       <nav className="flex-1 py-8 space-y-2">
-        {/* Main navigation */}
-        {nav.map((item) => (
-          <SidebarLink
-            key={item.href}
-            href={item.href}
-            active={pathname === item.href}
-          >
-            {item.label}
-          </SidebarLink>
-        ))}
+        {/* Getting Started Section - Moved to top */}
+        <CollapsibleSection 
+          title="Getting Started" 
+          defaultOpen={shouldSectionBeOpen(gettingStarted)}
+        >
+          {gettingStarted.map((item) => (
+            <SidebarLink
+              key={item.href}
+              href={item.href}
+              active={pathname === item.href}
+            >
+              {item.label}
+            </SidebarLink>
+          ))}
+        </CollapsibleSection>
         
-        {/* Getting Started Section */}
+        {/* Main navigation */}
         <div className="pt-6 border-t border-neutral-800">
-          <CollapsibleSection 
-            title="Getting Started" 
-            defaultOpen={shouldSectionBeOpen(gettingStarted)}
-          >
-            {gettingStarted.map((item) => (
-              <SidebarLink
-                key={item.href}
-                href={item.href}
-                active={pathname === item.href}
-              >
-                {item.label}
-              </SidebarLink>
-            ))}
-          </CollapsibleSection>
+          {nav.map((item) => (
+            <SidebarLink
+              key={item.href}
+              href={item.href}
+              active={pathname === item.href}
+            >
+              {item.label}
+            </SidebarLink>
+          ))}
         </div>
         
         {/* Node Library Section */}

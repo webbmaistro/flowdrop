@@ -7,7 +7,7 @@ import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 
 export default function GettingStartedPage() {
-  const videoId = "YOUR_VIDEO_ID_HERE"; // Replace with actual video ID
+  const videoId = "Viqi2bkpt-0"; // Flowdrop App Tour
   const features = [
     "AI Assistant for workflow creation",
     "Visual drag-and-drop canvas editor", 
