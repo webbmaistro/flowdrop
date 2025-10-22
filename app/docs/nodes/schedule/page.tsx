@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Clock, Settings, Code, AlertTriangle, CheckCircle, ExternalLink, Zap, Calendar, Repeat } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -615,48 +615,32 @@ export default function ScheduleNode() {
 
       {/* Related Resources */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
+        <h2 className="text-2xl font-bold mb-6">Related Resources</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href="/docs/nodes/trigger">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Trigger Node</div>
-                <div className="text-sm text-neutral-400">Basic workflow entry point</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <RelatedResourceCard
+            href="/docs/nodes/trigger"
+            title="Trigger Node"
+            description="Basic workflow entry point"
+          />
           
-          <Link href="/docs/nodes/webhook">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Webhook Node</div>
-                <div className="text-sm text-neutral-400">Event-driven workflow triggers</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes/webhook"
+            title="Webhook Node"
+            description="Event-driven workflow triggers"
+          />
           
-          <Link href="/docs/nodes/if-else">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">If-Else Node</div>
-                <div className="text-sm text-neutral-400">Conditional workflow routing</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes/if-else"
+            title="If-Else Node"
+            description="Conditional workflow routing"
+          />
           
-          <Link href="/docs/nodes">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Node Library</div>
-                <div className="text-sm text-neutral-400">Explore all available nodes</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes"
+            title="Node Library"
+            description="Explore all available nodes"
+          />
         </div>
       </section>
     </div>

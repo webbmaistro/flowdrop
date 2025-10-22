@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Mail, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import Callout from "@/components/ui/Callout";
@@ -75,7 +75,7 @@ export default function GmailWriteLabelsNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-blue-500" />
+                <Mail className="w-5 h-5 text-primary-main" />
                 Google Integration
               </CardTitle>
               <CardDescription>

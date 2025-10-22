@@ -10,7 +10,7 @@ const nodeCategories = [
     title: "Workflow Triggers",
     description: "Nodes that start your workflows",
     nodes: [
-      { name: "Manual Trigger", href: "/docs/nodes/trigger", description: "Start workflows manually", icon: Clock, color: "text-blue-500" },
+      { name: "Manual Trigger", href: "/docs/nodes/trigger", description: "Start workflows manually", icon: Clock, color: "text-primary-main" },
       { name: "Schedule", href: "/docs/nodes/schedule", description: "Trigger workflows on a schedule", icon: Clock, color: "text-green-500" },
       { name: "Email", href: "/docs/nodes/gmail-read-emails", description: "Trigger on new emails", icon: Mail, color: "text-purple-500" },
       { name: "Webhook", href: "/docs/nodes/webhook", description: "Trigger via HTTP requests", icon: ExternalLink, color: "text-orange-500" },
@@ -21,7 +21,7 @@ const nodeCategories = [
     description: "Nodes that perform actions in your workflows",
     nodes: [
       { name: "LLM Prompt", href: "/docs/nodes/llm-prompt", description: "Generate AI-powered content", icon: Brain, color: "text-purple-500" },
-      { name: "Gmail Read Emails", href: "/docs/nodes/gmail-read-emails", description: "Read Gmail messages", icon: Mail, color: "text-blue-500" },
+      { name: "Gmail Read Emails", href: "/docs/nodes/gmail-read-emails", description: "Read Gmail messages", icon: Mail, color: "text-primary-main" },
       { name: "Gmail Write Labels", href: "/docs/nodes/gmail-write-labels", description: "Manage Gmail labels", icon: Mail, color: "text-red-500" },
     ]
   },
@@ -31,7 +31,7 @@ const nodeCategories = [
     nodes: [
       { name: "If Else", href: "/docs/nodes/if-else", description: "Conditional logic branching", icon: Clock, color: "text-yellow-500" },
       { name: "AI Switch", href: "/docs/nodes/ai-switch", description: "AI-powered decision making", icon: Brain, color: "text-purple-500" },
-      { name: "For Each", href: "/docs/nodes/for-each", description: "Loop through data", icon: Clock, color: "text-blue-500" },
+      { name: "For Each", href: "/docs/nodes/for-each", description: "Loop through data", icon: Clock, color: "text-primary-main" },
     ]
   }
 ];

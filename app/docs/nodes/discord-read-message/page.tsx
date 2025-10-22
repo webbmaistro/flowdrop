@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { MessageSquare, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink, Bell, Hash } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -102,7 +102,7 @@ export default function DiscordReadMessageNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Hash className="w-5 h-5 text-blue-500" />
+                <Hash className="w-5 h-5 text-primary-main" />
                 Discord Server Access
               </CardTitle>
             </CardHeader>

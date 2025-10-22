@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CollapsibleSectionProps {
@@ -9,13 +9,17 @@ interface CollapsibleSectionProps {
   children: React.ReactNode;
   defaultOpen?: boolean;
   className?: string;
+  icon?: LucideIcon;
+  iconColor?: string;
 }
 
 export default function CollapsibleSection({
   title,
   children,
   defaultOpen = false,
-  className
+  className,
+  icon: Icon,
+  iconColor
 }: CollapsibleSectionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -25,7 +29,12 @@ export default function CollapsibleSection({
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between w-full px-4 py-2 text-base font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors"
       >
-        <span>{title}</span>
+        <div className="flex items-center gap-3">
+          {Icon && (
+            <Icon className={cn("w-4 h-4", iconColor || "text-neutral-400")} />
+          )}
+          <span>{title}</span>
+        </div>
         <motion.div
           animate={{ rotate: isOpen ? 90 : 0 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}

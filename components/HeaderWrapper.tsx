@@ -10,6 +10,7 @@ interface HeaderWrapperProps {
 export default function HeaderWrapper({ children }: HeaderWrapperProps) {
   const pathname = usePathname();
   const isLanding = pathname === "/";
+  const isDocsPage = pathname.startsWith('/docs');
   const isAuthPage = false;
   
   return (
@@ -18,7 +19,7 @@ export default function HeaderWrapper({ children }: HeaderWrapperProps) {
         hideAtTopOnLanding={isLanding} 
         isAuthPage={isAuthPage}
       />
-      <main className="pt-16">{children}</main>
+      <main className={isDocsPage ? "pt-0" : "pt-16"}>{children}</main>
     </>
   );
 } 

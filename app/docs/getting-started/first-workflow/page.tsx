@@ -82,6 +82,32 @@ export default function FirstWorkflowPage() {
         </p>
       </div>
 
+      {/* Video Section */}
+      <div className="mb-16">
+        <h2 className={cn(typography.h2, "mb-6")}>
+          Watch: Building Your First Workflow
+        </h2>
+        <div className="relative group">
+          <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary-main/10 to-purple-700/10 border border-primary-main/20">
+            <iframe
+              src="https://www.youtube.com/embed/sS4T_U4iUjo?rel=0&modestbranding=1&showinfo=0&enablejsapi=1"
+              title="Building Your First Workflow"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+            
+            {/* Play overlay for better UX */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </div>
+
+          {/* Decorative elements */}
+          <div className="absolute -top-4 -left-4 w-8 h-8 bg-primary-main/20 rounded-full blur-sm group-hover:bg-primary-main/30 transition-colors duration-300" />
+          <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-purple-500/20 rounded-full blur-sm group-hover:bg-purple-500/30 transition-colors duration-300" />
+        </div>
+      </div>
+
       {/* What is a Workflow */}
       <div className="mb-12">
         <h2 className={cn(typography.h2, "mb-6")}>

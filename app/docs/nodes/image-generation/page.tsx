@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Image, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink, Palette, Sparkles } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
