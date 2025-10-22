@@ -133,7 +133,7 @@ export default function HILEmailNode() {
                   The email address of the person who will receive the approval request.
                 </p>
                 <div className="bg-neutral-900 rounded-lg p-3">
-                  <CodeBlock language="text" code="manager@company.com" />
+                  <CodeBlock lang="text" code="manager@company.com" />
                 </div>
               </div>
 
@@ -143,7 +143,7 @@ export default function HILEmailNode() {
                   The subject line for the approval email. Defaults to "Approval required: Flowdrop workflow step".
                 </p>
                 <div className="bg-neutral-900 rounded-lg p-3">
-                  <CodeBlock language="text" code="Please approve: Marketing campaign launch" />
+                  <CodeBlock lang="text" code="Please approve: Marketing campaign launch" />
                 </div>
               </div>
             </div>
