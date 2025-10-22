@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Brain, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink, MessageSquare, Sparkles } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -14,8 +14,8 @@ export default function LLMPromptNode() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <Brain className="w-6 h-6 text-blue-500" />
+          <div className="p-2 bg-primary-main/20 rounded-lg">
+            <Brain className="w-6 h-6 text-primary-main" />
           </div>
           <div>
             <h1 className="text-3xl font-bold">LLM Prompt</h1>
@@ -75,7 +75,7 @@ export default function LLMPromptNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Brain className="w-5 h-5 text-blue-500" />
+                <Brain className="w-5 h-5 text-primary-main" />
                 AI Service Access
               </CardTitle>
               <CardDescription>
@@ -408,48 +408,32 @@ export default function LLMPromptNode() {
 
       {/* Related Resources */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
+        <h2 className="text-2xl font-bold mb-6">Related Resources</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href="/docs/nodes/image-generation">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Generate Image Node</div>
-                <div className="text-sm text-neutral-400">Create AI-generated images</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <RelatedResourceCard
+            href="/docs/nodes/image-generation"
+            title="Generate Image Node"
+            description="Create AI-generated images"
+          />
           
-          <Link href="/docs/nodes/http-request">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">HTTP Request Node</div>
-                <div className="text-sm text-neutral-400">Integrate with external AI services</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes/http-request"
+            title="HTTP Request Node"
+            description="Integrate with external AI services"
+          />
           
-          <Link href="/docs/nodes/for-each">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">For Each Node</div>
-                <div className="text-sm text-neutral-400">Process multiple items with AI</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes/for-each"
+            title="For Each Node"
+            description="Process multiple items with AI"
+          />
           
-          <Link href="/docs/nodes">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Node Library</div>
-                <div className="text-sm text-neutral-400">Explore all available nodes</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes"
+            title="Node Library"
+            description="Explore all available nodes"
+          />
         </div>
       </section>
     </div>

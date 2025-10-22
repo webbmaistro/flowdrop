@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { PlayCircle, Zap, Settings, AlertTriangle, CheckCircle, ExternalLink, ClipboardList } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -14,8 +14,8 @@ export default function TriggerNode() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <PlayCircle className="w-6 h-6 text-blue-500" />
+          <div className="p-2 bg-primary-main/20 rounded-lg">
+            <PlayCircle className="w-6 h-6 text-primary-main" />
           </div>
           <div>
             <h1 className="text-3xl font-bold">Manual Trigger</h1>
@@ -70,7 +70,7 @@ export default function TriggerNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <ClipboardList className="w-5 h-5 text-blue-500" />
+                <ClipboardList className="w-5 h-5 text-primary-main" />
                 Workflow Access
               </CardTitle>
               <CardDescription>
@@ -387,28 +387,20 @@ export default function TriggerNode() {
 
       {/* Related Resources */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
+        <h2 className="text-2xl font-bold mb-6">Related Resources</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Link href="/docs/nodes/schedule">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Schedule Node</div>
-                <div className="text-sm text-neutral-400">Automatically run workflows on a schedule</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          <RelatedResourceCard
+            href="/docs/nodes/schedule"
+            title="Schedule Node"
+            description="Automatically run workflows on a schedule"
+          />
           
-          <Link href="/docs/nodes/webhook">
-            <Button variant="outline" className="justify-start h-auto p-4 w-full">
-              <div className="text-left">
-                <div className="font-semibold">Webhook Node</div>
-                <div className="text-sm text-neutral-400">Trigger workflows via HTTP requests</div>
-              </div>
-              <ExternalLink className="w-4 h-4 ml-auto" />
-            </Button>
-          </Link>
+          <RelatedResourceCard
+            href="/docs/nodes/webhook"
+            title="Webhook Node"
+            description="Trigger workflows via HTTP requests"
+          />
         </div>
       </section>
     </div>

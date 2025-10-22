@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { MessageSquare, Settings, Code, AlertTriangle, CheckCircle, ExternalLink, Zap, Bell, Hash } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -14,8 +14,8 @@ export default function SlackReadMessageNode() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <MessageSquare className="w-6 h-6 text-blue-500" />
+          <div className="p-2 bg-primary-main/20 rounded-lg">
+            <MessageSquare className="w-6 h-6 text-primary-main" />
           </div>
           <div>
             <h1 className="text-3xl font-bold">Slack Read Message</h1>
@@ -74,7 +74,7 @@ export default function SlackReadMessageNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Bell className="w-5 h-5 text-blue-500" />
+                <Bell className="w-5 h-5 text-primary-main" />
                 Slack Integration
               </CardTitle>
               <CardDescription>
@@ -190,7 +190,7 @@ export default function SlackReadMessageNode() {
               <CardContent>
                 <div className="text-center py-8">
                   <div className="text-neutral-400 mb-2">
-                    <MessageSquare className="w-12 h-12 mx-auto mb-3 text-blue-500/50" />
+                    <MessageSquare className="w-12 h-12 mx-auto mb-3 text-primary-main/50" />
                   </div>
                   <p className="text-neutral-400">
                     The Slack Read Message node has <strong>no optional fields</strong>. All configuration 

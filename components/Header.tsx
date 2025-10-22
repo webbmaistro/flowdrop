@@ -33,6 +33,7 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
   const [isSignOutHovered, setIsSignOutHovered] = useState(false);
   const [isLoginHovered, setIsLoginHovered] = useState(false);
   const pathname = usePathname();
+  const isDocsPage = pathname.startsWith('/docs');
 
   // Show header when scrolled > 50vh OR scrolling up
   const shouldHideHeader = hideAtTopOnLanding && pathname === '/' && !showFullHeader;
@@ -191,9 +192,11 @@ export default function Header({ hideAtTopOnLanding = false, isAuthPage = false 
           'fixed top-0 left-0 right-0 z-30 transition-all duration-300',
           shouldHideHeader 
             ? 'opacity-0 pointer-events-none' 
-            : isScrolled
-              ? 'bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm'
-              : 'bg-gradient-to-b from-black/40 via-black/20 to-transparent'
+            : isDocsPage
+              ? 'bg-transparent backdrop-blur-sm'
+              : isScrolled
+                ? 'bg-gradient-to-b from-black/60 via-black/30 to-transparent backdrop-blur-sm'
+                : 'bg-gradient-to-b from-black/40 via-black/20 to-transparent'
         )}
         initial={{ y: -100 }}
         animate={{ y: 0 }}

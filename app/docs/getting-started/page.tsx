@@ -59,7 +59,7 @@ export default function GettingStartedPage() {
       {/* Video Section */}
       <div className="mb-16">
         <div className="relative group">
-          <div className="relative aspect-video w-full rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary-main/10 to-purple-700/10 border border-primary-main/20">
+          <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary-main/10 to-purple-700/10 border border-primary-main/20">
             <iframe
               src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&enablejsapi=1`}
               title="Flowdrop App Tour"

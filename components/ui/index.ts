@@ -23,3 +23,4 @@ export { default as LabeledScreenshot } from './LabeledScreenshot';
 export { default as SectionHeader } from './SectionHeader';
 export { default as GradientCard } from './GradientCard';
 export { default as CtaWithArrow } from './CtaWithArrow';
+export { default as RelatedResourceCard } from './RelatedResourceCard';

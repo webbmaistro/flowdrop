@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Repeat, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink, List, Hash } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
+import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
@@ -14,8 +14,8 @@ export default function ForEachNode() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-blue-500/20 rounded-lg">
-            <Repeat className="w-6 h-6 text-blue-500" />
+          <div className="p-2 bg-primary-main/20 rounded-lg">
+            <Repeat className="w-6 h-6 text-primary-main" />
           </div>
           <div>
             <h1 className="text-3xl font-bold">For Each</h1>
@@ -74,7 +74,7 @@ export default function ForEachNode() {
           <Card className="border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <List className="w-5 h-5 text-blue-500" />
+                <List className="w-5 h-5 text-primary-main" />
                 Array Data Source
               </CardTitle>
               <CardDescription>
@@ -198,7 +198,7 @@ export default function ForEachNode() {
                       </div>
                       <div>
                         <span className="text-neutral-400">Special:</span>
-                        <span className="ml-2 text-blue-500">isForLoop</span>
+                        <span className="ml-2 text-primary-main">isForLoop</span>
                       </div>
                     </div>
                     <p className="text-neutral-400 mt-2">
