@@ -63,7 +63,7 @@ export default function Sidebar() {
   
   // Helper function to check if a section should be open based on current pathname
   const shouldSectionBeOpen = (sectionNodes: any[]) => {
-    return sectionNodes.some(node => pathname === node.href) || pathname === '/docs';
+    return sectionNodes.some(node => pathname === node.href) || pathname === '/docs' || pathname === '/docs/getting-started';
   };
   
   // Helper function to check if Node Library should be open
@@ -78,7 +78,7 @@ export default function Sidebar() {
       ...nodeLibrary["Flow Control"],
       ...nodeLibrary["Human in the Loop"]
     ];
-    return allNodePaths.some(node => pathname === node.href) || pathname === '/docs';
+    return allNodePaths.some(node => pathname === node.href) || pathname === '/docs' || pathname === '/docs/getting-started';
   };
   
   // Helper function to check if a subsection should be open
