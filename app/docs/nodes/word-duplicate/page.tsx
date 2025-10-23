@@ -52,7 +52,7 @@ export default function WordDuplicateNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Copy}
+        logo="/logos/microsoft-word.svg"
         title="Word Duplicate"
         description="Create a copy of a Word document using the user's OAuth token"
         nodeType="Action"

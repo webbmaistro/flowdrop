@@ -15,26 +15,26 @@ import {
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import CodeBlock from "@/components/ui/CodeBlock";
 
-export default function DiscordSendMessageNode() {
+export default function SlackSendMessageNode() {
   const prerequisites = [
     {
       icon: MessageSquare,
-      title: "Discord Integration",
-      description: "Must have Discord integration properly configured",
+      title: "Slack Integration",
+      description: "Must have Slack integration properly configured",
       requirements: [
-        "Discord integration enabled and configured",
-        "User has authorized Discord access",
-        "Valid Discord bot token and permissions"
+        "Slack integration enabled and configured",
+        "User has authorized Slack access",
+        "Valid Slack bot token and permissions"
       ]
     },
     {
       icon: Hash,
-      title: "Discord Server Access",
+      title: "Slack Workspace Access",
       description: "Required permissions and access",
       requirements: [
-        "Server Membership: User must be a member of the target Discord server",
-        "Channel Permissions: User needs send message permissions for the target channel",
-        "Text Channel: Target must be a text channel (not voice or announcement)"
+        "Workspace Membership: User must be a member of the target Slack workspace",
+        "Channel Access: User needs access to the target channel",
+        "Bot Permissions: Bot must be added to the channel with send message permissions"
       ]
     }
   ];
@@ -42,23 +42,23 @@ export default function DiscordSendMessageNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        logo="/logos/discord.svg"
-        title="Discord Send Message"
-        description="Send messages to Discord channels using server and channel names"
+        logo="/logos/slack.svg"
+        title="Slack Send Message"
+        description="Send messages to Slack channels using channel names"
         nodeType="Action"
-        category="Discord Integration"
+        category="Slack Integration"
         iconName="Send"
         iconColor="primary"
       />
 
       <OverviewSection
-        description="The <strong>Discord Send Message</strong> node is an action node that sends messages to Discord channels using server and channel names. This powerful integration allows you to automate Discord communications from your workflows, sending notifications, updates, and responses to specific channels automatically."
+        description="The <strong>Slack Send Message</strong> node is an action node that sends messages to Slack channels using channel names. This powerful integration allows you to automate Slack communications from your workflows, sending notifications, updates, and responses to specific channels automatically."
         keyFeatures={[
-          "<strong>Discord Integration:</strong> Seamlessly sends messages to Discord servers and channels",
+          "<strong>Slack Integration:</strong> Seamlessly sends messages to Slack workspaces and channels",
           "<strong>User Authorization:</strong> Requires user authorization and access to target channels",
-          "<strong>Name-Based Targeting:</strong> Uses server and channel names for easy configuration",
-          "<strong>Message Content:</strong> Supports full text content with Discord formatting",
-          "<strong>Success Tracking:</strong> Returns message ID and success status for workflow control",
+          "<strong>Name-Based Targeting:</strong> Uses channel names for easy configuration",
+          "<strong>Message Content:</strong> Supports full text content with Slack formatting",
+          "<strong>Success Tracking:</strong> Returns message timestamp and success status for workflow control",
           "<strong>Error Handling:</strong> Graceful error handling with fallback responses"
         ]}
       />
@@ -69,35 +69,28 @@ export default function DiscordSendMessageNode() {
         inputFields={{
           required: [
             {
-              name: "Server Name",
-              type: "text",
-              required: true,
-              valueType: "string",
-              description: "The name of the Discord server (guild) where you want to send the message. Must match exactly as it appears in Discord."
-            },
-            {
               name: "Channel Name",
               type: "text",
               required: true,
               valueType: "string",
-              description: "The name of the text channel where the message will be sent. Do not include the # symbol, just the channel name."
+              description: "The name of the Slack channel where you want to send the message. Do not include the # symbol, just the channel name (e.g., 'general')."
             },
             {
-              name: "Message",
+              name: "Message Content",
               type: "text",
               required: true,
               valueType: "string",
-              description: "The message content to send. Supports Discord markdown formatting (bold, italic, code blocks, etc.)."
+              description: "The message content to send. Supports Slack markdown formatting (bold, italic, code blocks, etc.)."
             }
           ]
         }}
         outputFields={[
           {
-            name: "Message ID",
+            name: "Message Timestamp",
             type: "string",
             required: false,
-            valueType: "Unique message identifier",
-            description: "The unique ID of the sent message. Useful for tracking or editing messages later."
+            valueType: "Slack message timestamp ID",
+            description: "The Slack message timestamp ID (ts) of the sent message. Useful for tracking or editing messages later."
           },
           {
             name: "Success",
@@ -105,20 +98,6 @@ export default function DiscordSendMessageNode() {
             required: false,
             valueType: "Operation success status",
             description: "Returns true if the message was successfully sent, false otherwise."
-          },
-          {
-            name: "Error",
-            type: "string",
-            required: false,
-            valueType: "Error message if failed",
-            description: "Contains the error message if the operation failed, null if successful."
-          },
-          {
-            name: "Channel ID",
-            type: "string",
-            required: false,
-            valueType: "ID of the target channel",
-            description: "The unique ID of the channel where the message was sent."
           }
         ]}
       />
@@ -132,15 +111,14 @@ export default function DiscordSendMessageNode() {
             <CardHeader>
               <CardTitle>Send Simple Notification</CardTitle>
               <CardDescription>
-                Send a basic notification to a Discord channel
+                Send a basic notification to a Slack channel
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "serverName": "My Team Server",
   "channelName": "notifications",
-  "message": "🔔 New user registered: John Doe"
+  "messageContent": "🔔 New user registered: John Doe"
 }`}
                 lang="json"
               />
@@ -160,14 +138,13 @@ export default function DiscordSendMessageNode() {
             <CardContent>
               <CodeBlock
                 code={`{
-  "serverName": "{{config.discordServer}}",
-  "channelName": "alerts",
-  "message": "**Alert**: {{alert.type}}\\n*Severity*: {{alert.severity}}\\n\`\`\`{{alert.details}}\`\`\`"
+  "channelName": "{{config.slackChannel}}",
+  "messageContent": "*Alert*: {{alert.type}}\\n_Severity_: {{alert.severity}}\\n\`\`\`{{alert.details}}\`\`\`"
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3 text-sm">
-                Uses Discord markdown formatting (bold with **, italic with *, code blocks with ```) and template variables.
+                Uses Slack markdown formatting (bold with *, italic with _, code blocks with ```) and template variables.
               </p>
             </CardContent>
           </Card>
@@ -176,7 +153,7 @@ export default function DiscordSendMessageNode() {
             <CardHeader>
               <CardTitle>Auto-Response Workflow</CardTitle>
               <CardDescription>
-                Respond to Discord messages automatically
+                Respond to Slack messages automatically
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -184,7 +161,7 @@ export default function DiscordSendMessageNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>💬 Discord Read Message → 🤖 AI Analysis → ✉️ Discord Send Message</div>
+                    <div>💬 Slack Read Message → 🤖 AI Analysis → ✉️ Slack Send Message</div>
                   </div>
                 </div>
                 <p className="text-neutral-400 text-sm">
@@ -206,7 +183,7 @@ export default function DiscordSendMessageNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>📝 Create Message → 🔄 For Each Channel → 📤 Discord Send Message</div>
+                    <div>📝 Create Message → 🔄 For Each Channel → 📤 Slack Send Message</div>
                   </div>
                 </div>
                 <p className="text-neutral-400 text-sm">
@@ -220,8 +197,8 @@ export default function DiscordSendMessageNode() {
 
       <BestPracticesSection
         dos={[
-          "Use exact server and channel names as they appear",
-          "Leverage Discord markdown for formatted messages",
+          "Use exact channel names as they appear in Slack",
+          "Leverage Slack markdown for formatted messages",
           "Check the success field before proceeding",
           "Use template variables for dynamic content",
           "Implement rate limiting for bulk messages",
@@ -231,11 +208,11 @@ export default function DiscordSendMessageNode() {
           "Don't include # symbol in channel name",
           "Avoid sending too many messages rapidly (rate limits)",
           "Don't forget to handle send failures",
-          "Avoid hardcoding server/channel names when possible",
+          "Avoid hardcoding channel names when possible",
           "Don't send sensitive data without proper security",
           "Avoid creating spam or excessive notifications"
         ]}
-        proTip="Use Discord markdown to create rich, formatted messages: **bold**, *italic*, __underline__, ~~strikethrough~~, `code`, and ```code blocks```. Combine with emojis for more engaging notifications."
+        proTip="Use Slack markdown to create rich, formatted messages: *bold*, _italic_, ~strikethrough~, `code`, and ```code blocks```. Combine with emojis for more engaging notifications."
       />
 
       <TroubleshootingSection
@@ -243,33 +220,28 @@ export default function DiscordSendMessageNode() {
           {
             title: "Permission Denied",
             symptoms: "Node fails with insufficient permissions error",
-            solution: "Verify the user has send message permissions in the target channel. Check that the bot has been added to the server and has proper permissions."
+            solution: "Verify the user has access to the target channel. Check that the bot has been added to the channel and has proper permissions."
           },
           {
-            title: "Server/Channel Not Found",
-            symptoms: "Node fails with 'not found' error",
-            solution: "Ensure server and channel names match exactly as they appear in Discord (case-sensitive). Verify the user is a member of the server and has access to the channel."
+            title: "Channel Not Found",
+            symptoms: "Node fails with 'channel not found' error",
+            solution: "Ensure channel name matches exactly as it appears in Slack (case-sensitive). Verify the user is a member of the workspace and has access to the channel."
           },
           {
             title: "Rate Limit Errors",
             symptoms: "Node fails with rate limit exceeded error",
-            solution: "Implement delays between messages and reduce sending frequency. Discord has rate limits that must be respected (typically 5 messages per 5 seconds per channel)."
+            solution: "Implement delays between messages and reduce sending frequency. Slack has rate limits that must be respected."
           },
           {
             title: "Message Not Appearing",
-            symptoms: "Node succeeds but message doesn't show in Discord",
-            solution: "Refresh Discord client and verify you're viewing the correct channel. Check that the message wasn't deleted by auto-moderation or bot rules."
+            symptoms: "Node succeeds but message doesn't show in Slack",
+            solution: "Refresh Slack client and verify you're viewing the correct channel. Check that the message wasn't deleted by auto-moderation or bot rules."
           }
         ]}
       />
 
       <RelatedResourcesSection
         resources={[
-          {
-            href: "/docs/nodes/discord-read-message",
-            title: "Discord Read Message Node",
-            description: "Read messages from Discord channels"
-          },
           {
             href: "/docs/nodes/llm-prompt",
             title: "LLM Prompt Node",
@@ -279,6 +251,11 @@ export default function DiscordSendMessageNode() {
             href: "/docs/nodes/if-else",
             title: "If-Else Node",
             description: "Add conditional message sending logic"
+          },
+          {
+            href: "/docs/nodes/wait",
+            title: "Wait Node",
+            description: "Add delays between messages to respect rate limits"
           },
           {
             href: "/docs/nodes",

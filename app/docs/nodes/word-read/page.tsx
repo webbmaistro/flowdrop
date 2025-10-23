@@ -52,7 +52,7 @@ export default function WordReadNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Eye}
+        logo="/logos/microsoft-word.svg"
         title="Word Read"
         description="Reads content from a Word document as HTML (preserves formatting)"
         nodeType="Action"

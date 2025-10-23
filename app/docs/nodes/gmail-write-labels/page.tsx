@@ -44,7 +44,7 @@ export default function GmailWriteLabelsNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Mail}
+        logo="/logos/gmail.svg"
         title="Gmail Write Labels"
         description="Create, modify, and manage Gmail labels programmatically"
         nodeType="Action"

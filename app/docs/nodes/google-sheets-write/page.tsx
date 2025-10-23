@@ -41,7 +41,7 @@ export default function GoogleSheetsWriteNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Write"
         description="Write and update data in Google Sheets programmatically"
         nodeType="Action"

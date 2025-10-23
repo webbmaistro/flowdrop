@@ -15,7 +15,7 @@ import {
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import CodeBlock from "@/components/ui/CodeBlock";
 
-export default function GoogleSheetsUpdateRowNode() {
+export default function GoogleSheetsUpdateColumnNode() {
   const prerequisites = [
     {
       icon: Database,
@@ -30,7 +30,7 @@ export default function GoogleSheetsUpdateRowNode() {
     {
       icon: Settings,
       title: "Required Scopes",
-      description: "OAuth scopes needed for updating rows",
+      description: "OAuth scopes needed for updating columns",
       requirements: [
         "https://www.googleapis.com/auth/spreadsheets",
         "https://www.googleapis.com/auth/drive.file"
@@ -42,8 +42,8 @@ export default function GoogleSheetsUpdateRowNode() {
     <NodeLayout>
       <NodeHeader
         logo="/logos/google-sheets.svg"
-        title="Google Sheets Update Row"
-        description="Update entire rows in Google Sheets programmatically"
+        title="Google Sheets Update Column"
+        description="Update entire columns in Google Sheets programmatically"
         nodeType="Action"
         category="Google Sheets Integration"
         iconName="Google Sheets"
@@ -51,12 +51,12 @@ export default function GoogleSheetsUpdateRowNode() {
       />
 
       <OverviewSection
-        description="The <strong>Google Sheets Update Row</strong> node allows you to update entire rows in Google Sheets. This node is perfect for modifying existing data, updating records, or maintaining data consistency across your spreadsheets."
+        description="The <strong>Google Sheets Update Column</strong> node allows you to update entire columns in Google Sheets. This node is perfect for modifying column data, updating records vertically, or maintaining data consistency across your spreadsheets."
         keyFeatures={[
-          "<strong>Row-Level Updates:</strong> Update entire rows with a single operation",
+          "<strong>Column-Level Updates:</strong> Update entire columns with a single operation",
           "<strong>Dynamic Selection:</strong> Browse and select spreadsheets from your Google Drive",
-          "<strong>Flexible Ranges:</strong> Use A1 notation to target specific rows and columns",
-          "<strong>Batch Updates:</strong> Update multiple cells in a row efficiently",
+          "<strong>Flexible Ranges:</strong> Use A1 notation to target specific columns and rows",
+          "<strong>Batch Updates:</strong> Update multiple cells in a column efficiently",
           "<strong>Success Tracking:</strong> Returns detailed update statistics and confirmation"
         ]}
       />
@@ -78,14 +78,14 @@ export default function GoogleSheetsUpdateRowNode() {
               type: "text",
               required: true,
               valueType: "string",
-              description: "A1 notation of the row to update (e.g., Sheet1!A1:D1 or Sheet1!1:1). This specifies which row and columns to update."
+              description: "A1 notation of the column to update (e.g., Sheet1!A:A or Sheet1!A1:A10). This specifies which column and rows to update."
             },
             {
-              name: "Row Data",
+              name: "Column Data",
               type: "JSON Array",
               required: true,
               valueType: "array",
-              description: "Array of values for the row as a JSON array. Each element in the array corresponds to a cell in the row."
+              description: "Array of values for the column as a JSON array. Each element in the array corresponds to a cell in the column."
             }
           ]
         }}
@@ -105,18 +105,11 @@ export default function GoogleSheetsUpdateRowNode() {
             description: "The actual range that was updated in the spreadsheet."
           },
           {
-            name: "Updated Cells",
-            type: "number",
-            required: false,
-            valueType: "Number of cells updated",
-            description: "The total number of cells that were updated."
-          },
-          {
             name: "Success",
             type: "boolean",
             required: false,
             valueType: "Operation success status",
-            description: "Returns true if the row was successfully updated, false otherwise."
+            description: "Returns true if the column was successfully updated, false otherwise."
           }
         ]}
       />
@@ -128,59 +121,58 @@ export default function GoogleSheetsUpdateRowNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Update User Record</CardTitle>
+              <CardTitle>Update Status Column</CardTitle>
               <CardDescription>
-                Update a specific row with user information
+                Update a status column with new values
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
   "spreadsheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
-  "range": "Users!A2:D2",
-  "rowData": ["John Doe", "john@example.com", "Active", "2024-01-15"]
+  "range": "Sheet1!C:C",
+  "columnData": ["Active", "Inactive", "Pending", "Completed", "Cancelled"]
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3 text-sm">
-                Updates row 2 with user information across columns A through D.
+                Updates the entire C column with status values for all rows.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Dynamic Row Update</CardTitle>
+              <CardTitle>Dynamic Column Update</CardTitle>
               <CardDescription>
-                Update row based on workflow data
+                Update column based on workflow data
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
   "spreadsheetId": "{{config.dataSheetId}}",
-  "range": "Sheet1!A{{rowNumber}}:E{{rowNumber}}",
-  "rowData": [
-    "{{user.name}}",
-    "{{user.email}}",
-    "{{status}}",
-    "{{timestamp}}",
-    "{{notes}}"
+  "range": "Sheet1!{{columnLetter}}:{{columnLetter}}",
+  "columnData": [
+    "{{user1.name}}",
+    "{{user2.name}}",
+    "{{user3.name}}",
+    "{{user4.name}}"
   ]
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3 text-sm">
-                Uses template variables to dynamically construct the range and populate row data from workflow context.
+                Uses template variables to dynamically construct the range and populate column data from workflow context.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Status Update Workflow</CardTitle>
+              <CardTitle>Bulk Data Processing Workflow</CardTitle>
               <CardDescription>
-                Automated workflow for updating record statuses
+                Automated workflow for processing and updating column data
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -188,13 +180,40 @@ export default function GoogleSheetsUpdateRowNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>📊 Read Sheets → ✅ Validate Data → 🔄 Update Row → 📧 Send Notification</div>
+                    <div>📊 Read Sheets → 🔄 Process Data → 📝 Update Column → 📧 Send Report</div>
                   </div>
                 </div>
                 <p className="text-neutral-400 text-sm">
-                  Read existing data, validate conditions, update the row with new status, and notify stakeholders.
+                  Read existing data, process it through AI or business logic, update the column with processed results, and send a summary report.
                 </p>
               </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>Formula Column Update</CardTitle>
+              <CardDescription>
+                Update a column with calculated values
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                code={`{
+  "spreadsheetId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+  "range": "Calculations!E:E",
+  "columnData": [
+    "=A2*B2",
+    "=A3*B3", 
+    "=A4*B4",
+    "=A5*B5"
+  ]
+}`}
+                lang="json"
+              />
+              <p className="text-neutral-400 mt-3 text-sm">
+                Updates column E with formulas that calculate values based on other columns.
+              </p>
             </CardContent>
           </Card>
         </div>
@@ -202,22 +221,24 @@ export default function GoogleSheetsUpdateRowNode() {
 
       <BestPracticesSection
         dos={[
-          "Use specific ranges to target exact rows",
-          "Validate row data before updating",
+          "Use specific ranges to target exact columns",
+          "Validate column data before updating",
           "Check the success field before proceeding",
           "Use dynamic variables for flexible workflows",
-          "Match array length to the number of columns in range",
-          "Test with sample data before production use"
+          "Match array length to the number of rows in range",
+          "Test with sample data before production use",
+          "Consider using formulas for calculated columns"
         ]}
         donts={[
           "Don't update without verifying write permissions",
           "Avoid hardcoding ranges when possible",
           "Don't forget to handle update failures",
           "Avoid updating critical data without backups",
-          "Don't assume row data length matches range",
-          "Avoid updating very large ranges frequently"
+          "Don't assume column data length matches range",
+          "Avoid updating very large ranges frequently",
+          "Don't mix data types in the same column update"
         ]}
-        proTip="When updating rows dynamically, use row numbers from previous nodes (like Google Sheets Read) to target specific records. Combine with conditional logic to update only rows that meet certain criteria."
+        proTip="When updating columns dynamically, use column letters from previous nodes (like Google Sheets Read) to target specific columns. Combine with conditional logic to update only columns that meet certain criteria. For calculated values, consider using formulas instead of static values."
       />
 
       <TroubleshootingSection
@@ -230,17 +251,22 @@ export default function GoogleSheetsUpdateRowNode() {
           {
             title: "Invalid Range Format",
             symptoms: "Node fails with 'Invalid range' error",
-            solution: "Check your range uses proper A1 notation (e.g., 'Sheet1!A2:D2'). Ensure the sheet name is correct and the range coordinates are valid."
+            solution: "Check your range uses proper A1 notation (e.g., 'Sheet1!A:A' or 'Sheet1!A1:A10'). Ensure the sheet name is correct and the range coordinates are valid."
           },
           {
-            title: "Row Data Mismatch",
+            title: "Column Data Mismatch",
             symptoms: "Update succeeds but data is incomplete or truncated",
-            solution: "Ensure your row data array length matches the number of columns in your range. If range is A1:D1, provide exactly 4 values in the array."
+            solution: "Ensure your column data array length matches the number of rows in your range. If range is A1:A10, provide exactly 10 values in the array."
           },
           {
             title: "Update Not Reflecting",
             symptoms: "Node succeeds but changes don't appear in spreadsheet",
             solution: "Refresh your spreadsheet view. Check that you're viewing the correct sheet and range. Verify the spreadsheet ID is correct."
+          },
+          {
+            title: "Formula Not Calculating",
+            symptoms: "Formulas are inserted as text instead of being calculated",
+            solution: "Ensure formulas start with '=' and use proper Google Sheets formula syntax. Check that the formulas reference valid cells in your spreadsheet."
           }
         ]}
       />
@@ -250,12 +276,17 @@ export default function GoogleSheetsUpdateRowNode() {
           {
             href: "/docs/nodes/google-sheets-read",
             title: "Google Sheets Read Node",
-            description: "Read data to find rows to update"
+            description: "Read data to find columns to update"
           },
           {
             href: "/docs/nodes/google-sheets-write",
             title: "Google Sheets Write Node",
             description: "Write new data to sheets"
+          },
+          {
+            href: "/docs/nodes/google-sheets-update-row",
+            title: "Google Sheets Update Row Node",
+            description: "Update entire rows instead of columns"
           },
           {
             href: "/docs/nodes/if-else",

@@ -1,9 +1,12 @@
 import React from 'react';
+import Image from 'next/image';
 import { LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface NodeIconProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  logo?: string;
+  alt?: string;
   color?: 'primary' | 'purple' | 'green' | 'red' | 'orange' | 'pink' | 'indigo' | 'blue' | 'yellow';
   className?: string;
 }
@@ -58,6 +61,8 @@ const colorVariants = {
 
 export default function NodeIcon({ 
   icon: Icon, 
+  logo,
+  alt = 'Icon',
   color = 'primary', 
   className 
 }: NodeIconProps) {
@@ -70,7 +75,17 @@ export default function NodeIcon({
       variant.border,
       className
     )}>
-      <Icon className={cn('w-6 h-6', variant.text)} />
+      {logo ? (
+        <Image 
+          src={logo} 
+          alt={alt} 
+          width={24} 
+          height={24}
+          className="w-6 h-6"
+        />
+      ) : Icon ? (
+        <Icon className={cn('w-6 h-6', variant.text)} />
+      ) : null}
     </div>
   );
 }
