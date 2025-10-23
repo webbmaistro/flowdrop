@@ -7,7 +7,7 @@ import { Play, ArrowRight, CheckCircle, BookOpen, Zap, Users, Settings, Clock, B
 import { cn } from '@/lib/utils';
 
 export default function UnderstandingNodeTypesPage() {
-  const videoId = "PLACEHOLDER_VIDEO_ID"; // Placeholder for future video
+  const videoId = "KNMYNKhnT1U"; // YouTube video ID
 
   const nodeCategories = [
     {
@@ -107,18 +107,13 @@ export default function UnderstandingNodeTypesPage() {
       <div className="mb-16">
         <div className="relative group">
           <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary-main/10 to-purple-700/10 border border-primary-main/20">
-            <div className="w-full h-full bg-neutral-800 flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-primary-main/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Play className="w-8 h-8 text-primary-main" />
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-200 mb-2">Node Types Guide</h3>
-                <p className="text-neutral-400">Video coming soon</p>
-              </div>
-            </div>
-            
-            {/* Play overlay for better UX */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="Node Types Guide"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
 
           {/* Decorative elements */}
