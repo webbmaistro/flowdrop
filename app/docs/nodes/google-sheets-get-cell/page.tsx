@@ -41,7 +41,7 @@ export default function GoogleSheetsGetCellNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Get Cell"
         description="Retrieve a single cell value from Google Sheets"
         nodeType="Action"

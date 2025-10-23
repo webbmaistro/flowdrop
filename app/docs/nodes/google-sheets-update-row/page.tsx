@@ -41,7 +41,7 @@ export default function GoogleSheetsUpdateRowNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Update Row"
         description="Update entire rows in Google Sheets programmatically"
         nodeType="Action"

@@ -54,12 +54,12 @@ export default function GoogleDocsDuplicateNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Copy}
+        logo="/logos/google-docs.svg"
         title="Google Docs Duplicate Document"
         description="Duplicates an entire Google Document with all content and formatting"
         nodeType="Action"
         category="Google Integration"
-        iconName="Copy"
+        iconName="Google Docs"
         iconColor="primary"
       />
 

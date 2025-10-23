@@ -52,7 +52,7 @@ export default function GitHubReadCommitsNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={GitCommit}
+        logo="/logos/github.svg"
         title="GitHub Read Commits"
         description="Reads recent commits from a GitHub repository"
         nodeType="Action"

@@ -50,7 +50,7 @@ export default function GitHubCreatePullRequestNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={GitPullRequest}
+        logo="/logos/github.svg"
         title="GitHub Create Pull Request"
         description="Create a pull request in a GitHub repository"
         nodeType="Action"

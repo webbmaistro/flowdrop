@@ -41,7 +41,7 @@ export default function GoogleSheetsReadNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Read"
         description="Read and analyze data from Google Sheets programmatically"
         nodeType="Action"

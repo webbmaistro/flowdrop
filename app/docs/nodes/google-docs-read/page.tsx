@@ -53,7 +53,7 @@ export default function GoogleDocsReadNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileText}
+        logo="/logos/google-docs.svg"
         title="Google Docs Read"
         description="Reads content from a Google Doc using OAuth authentication"
         nodeType="Action"

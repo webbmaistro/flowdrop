@@ -53,7 +53,7 @@ export default function OutlookSendEmailNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Send}
+        logo="/logos/microsoft-outlook.svg"
         title="Outlook Send Email"
         description="Send emails using your connected Outlook account via Microsoft Graph API"
         nodeType="Action"

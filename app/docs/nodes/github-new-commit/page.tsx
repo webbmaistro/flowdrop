@@ -52,7 +52,7 @@ export default function GitHubNewCommitNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={GitCommit}
+        logo="/logos/github.svg"
         title="GitHub New Commit"
         description="Triggers when a commit is pushed to a GitHub repository branch"
         nodeType="Trigger"

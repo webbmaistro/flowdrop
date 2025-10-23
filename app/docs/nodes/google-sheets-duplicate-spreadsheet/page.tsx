@@ -41,7 +41,7 @@ export default function GoogleSheetsDuplicateSpreadsheetNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Duplicate Spreadsheet"
         description="Create a complete copy of a Google Spreadsheet with all sheets and data"
         nodeType="Action"

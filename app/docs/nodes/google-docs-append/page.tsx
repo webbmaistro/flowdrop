@@ -53,7 +53,7 @@ export default function GoogleDocsAppendNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileText}
+        logo="/logos/google-docs.svg"
         title="Google Docs Append"
         description="Appends text to the end of a Google Document using OAuth authentication"
         nodeType="Action"

@@ -42,7 +42,7 @@ export default function DiscordSendMessageNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Send}
+        logo="/logos/discord.svg"
         title="Discord Send Message"
         description="Send messages to Discord channels using server and channel names"
         nodeType="Action"

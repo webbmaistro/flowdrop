@@ -53,12 +53,12 @@ export default function GmailSendEmailNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Send}
+        logo="/logos/gmail.svg"
         title="Gmail Send Email"
         description="Send emails using your connected Gmail account via Gmail API"
         nodeType="Action"
         category="Gmail"
-        iconName="Send"
+        iconName="Gmail"
         iconColor="primary"
       />
 

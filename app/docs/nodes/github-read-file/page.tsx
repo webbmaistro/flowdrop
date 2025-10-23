@@ -54,12 +54,12 @@ export default function GitHubReadFileNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={GitBranch}
+        logo="/logos/github.svg"
         title="GitHub Read File"
         description="Read the raw contents of a file from a GitHub repository using the GitHub Contents API"
         nodeType="Action"
         category="GitHub"
-        iconName="GitBranch"
+        iconName="GitHub"
         iconColor="primary"
       />
 

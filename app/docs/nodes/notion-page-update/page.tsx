@@ -53,7 +53,7 @@ export default function NotionPageUpdateNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Edit}
+        logo="/logos/notion.svg"
         title="Notion Page Update"
         description="Update properties of an existing Notion page"
         nodeType="Action"

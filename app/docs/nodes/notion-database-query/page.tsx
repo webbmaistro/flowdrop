@@ -52,7 +52,7 @@ export default function NotionDatabaseQueryNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Database}
+        logo="/logos/notion.svg"
         title="Notion Database Query"
         description="Query entries from a Notion database with optional filtering and sorting"
         nodeType="Action"

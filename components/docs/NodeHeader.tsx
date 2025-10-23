@@ -3,7 +3,8 @@ import { LucideIcon } from 'lucide-react';
 import NodeIcon from './NodeIcon';
 
 interface NodeHeaderProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
+  logo?: string;
   title: string;
   description: string;
   nodeType: string;
@@ -14,6 +15,7 @@ interface NodeHeaderProps {
 
 export default function NodeHeader({
   icon: Icon,
+  logo,
   title,
   description,
   nodeType,
@@ -24,7 +26,7 @@ export default function NodeHeader({
   return (
     <div className="mb-8">
       <div className="flex items-center gap-3 mb-4">
-        <NodeIcon icon={Icon} color={iconColor} />
+        <NodeIcon icon={Icon} logo={logo} alt={title} color={iconColor} />
         <div>
           <h1 className="text-3xl font-bold">{title}</h1>
           <p className="text-neutral-400">{description}</p>

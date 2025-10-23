@@ -52,7 +52,7 @@ export default function ExcelReadNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/microsoft-excel.svg"
         title="Excel Read"
         description="Read values from an Excel workbook range"
         nodeType="Action"

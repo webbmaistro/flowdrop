@@ -52,7 +52,7 @@ export default function OutlookDraftEmailNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Mail}
+        logo="/logos/microsoft-outlook.svg"
         title="Outlook Draft Email"
         description="Create draft emails using your connected Microsoft Outlook account"
         nodeType="Action"

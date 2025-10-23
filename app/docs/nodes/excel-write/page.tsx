@@ -55,7 +55,7 @@ export default function ExcelWriteNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/microsoft-excel.svg"
         title="Excel Write"
         description="Overwrites cells in an Excel workbook with provided values"
         nodeType="Action"

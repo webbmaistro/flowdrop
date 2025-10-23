@@ -40,7 +40,7 @@ export default function GoogleSheetsCreateSheetNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Create Sheet"
         description="Create new sheets within existing Google Spreadsheets"
         nodeType="Action"

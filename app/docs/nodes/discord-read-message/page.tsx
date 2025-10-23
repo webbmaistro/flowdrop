@@ -52,7 +52,7 @@ export default function DiscordReadMessageNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={MessageSquare}
+        logo="/logos/discord.svg"
         title="Discord Read Message"
         description="Reads the latest message from a Discord channel"
         nodeType="Trigger"

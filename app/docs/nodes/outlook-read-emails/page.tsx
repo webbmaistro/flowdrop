@@ -52,7 +52,7 @@ export default function OutlookReadEmailsNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Mail}
+        logo="/logos/microsoft-outlook.svg"
         title="Outlook Read Emails"
         description="Read and analyze emails from your Microsoft Outlook account"
         nodeType="Action"

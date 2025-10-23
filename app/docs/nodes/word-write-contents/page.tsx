@@ -53,7 +53,7 @@ export default function WordWriteContentsNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileText}
+        logo="/logos/microsoft-word.svg"
         title="Word Write Content"
         description="Overwrite the entire contents of a Word document with formatted HTML"
         nodeType="Action"

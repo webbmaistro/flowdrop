@@ -41,7 +41,7 @@ export default function GoogleSheetsAppendRowNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Append Row"
         description="Append a single row of data to a Google Sheet"
         nodeType="Action"

@@ -41,7 +41,7 @@ export default function GoogleSheetsUpdateColumnNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileSpreadsheet}
+        logo="/logos/google-sheets.svg"
         title="Google Sheets Update Column"
         description="Update entire columns in Google Sheets programmatically"
         nodeType="Action"

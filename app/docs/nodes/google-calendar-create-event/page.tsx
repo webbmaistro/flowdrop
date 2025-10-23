@@ -50,7 +50,7 @@ export default function GoogleCalendarCreateEventNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Calendar}
+        logo="/logos/google-calendar.svg"
         title="Google Calendar Create Event"
         description="Create calendar events in your connected Google account"
         nodeType="Action"

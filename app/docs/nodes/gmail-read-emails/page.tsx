@@ -41,7 +41,7 @@ export default function GmailReadEmailsNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Mail}
+        logo="/logos/gmail.svg"
         title="Gmail Read Emails"
         description="Read and analyze Gmail messages programmatically"
         nodeType="Action"

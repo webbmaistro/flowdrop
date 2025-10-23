@@ -56,6 +56,11 @@ const nodeLibrary = {
       { href: "/docs/nodes/google-docs-create", label: "Create Document" },
       { href: "/docs/nodes/google-docs-duplicate", label: "Duplicate Document" },
     ],
+    "Notion": [
+      { href: "/docs/nodes/notion-database-query", label: "Database Query" },
+      { href: "/docs/nodes/notion-page-create", label: "Page Create" },
+      { href: "/docs/nodes/notion-page-update", label: "Page Update" },
+    ],
     "Discord": [
       { href: "/docs/nodes/discord-send-message", label: "Send Message" },
     ],
@@ -120,6 +125,7 @@ export default function Sidebar() {
       ...nodeLibrary["Action Nodes"]["Gmail"],
       ...nodeLibrary["Action Nodes"]["Google Sheets"],
       ...nodeLibrary["Action Nodes"]["Google Docs"],
+      ...nodeLibrary["Action Nodes"]["Notion"],
       ...nodeLibrary["Action Nodes"]["Discord"],
       ...nodeLibrary["Action Nodes"]["Slack"],
       ...nodeLibrary["Action Nodes"]["X"],
@@ -175,6 +181,14 @@ export default function Sidebar() {
         
         {/* Node Library Section */}
         <div className="pt-6 border-t border-neutral-800">
+          {/* Browse All Nodes Button */}
+          <SidebarLink
+            href="/docs/nodes"
+            active={pathname === '/docs/nodes'}
+          >
+            Browse All Nodes
+          </SidebarLink>
+          
           <CollapsibleSection 
             title="Node Library" 
             defaultOpen={shouldNodeLibraryBeOpen()}
@@ -256,6 +270,22 @@ export default function Sidebar() {
               defaultOpen={false}
             >
               {nodeLibrary["Action Nodes"]["Google Docs"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
+            
+            {/* Notion */}
+            <CollapsibleSection 
+              title="Notion" 
+              defaultOpen={false}
+            >
+              {nodeLibrary["Action Nodes"]["Notion"].map((node) => (
                 <SidebarLink
                   key={node.href}
                   href={node.href}

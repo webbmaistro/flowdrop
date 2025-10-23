@@ -54,12 +54,12 @@ export default function GitHubWriteFileNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={FileText}
+        logo="/logos/github.svg"
         title="GitHub Write File"
         description="Creates or overwrites a file in a new branch of a GitHub repository"
         nodeType="Action"
         category="GitHub"
-        iconName="FileText"
+        iconName="GitHub"
         iconColor="primary"
       />
 

@@ -42,7 +42,7 @@ export default function SlackSendMessageNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Send}
+        logo="/logos/slack.svg"
         title="Slack Send Message"
         description="Send messages to Slack channels using channel names"
         nodeType="Action"

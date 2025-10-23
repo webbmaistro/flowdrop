@@ -53,12 +53,12 @@ export default function NotionPageCreateNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Plus}
+        logo="/logos/notion.svg"
         title="Notion Page Create"
         description="Create a new Notion page in a database or under a parent page"
         nodeType="Action"
         category="Notion Integration"
-        iconName="Plus"
+        iconName="Notion"
         iconColor="primary"
       />
 

@@ -53,12 +53,12 @@ export default function GoogleDocsCreateNode() {
   return (
     <NodeLayout>
       <NodeHeader
-        icon={Plus}
+        logo="/logos/google-docs.svg"
         title="Google Docs Create Document"
         description="Creates a new Google Document using OAuth authentication"
         nodeType="Action"
         category="Google Integration"
-        iconName="Plus"
+        iconName="Google Docs"
         iconColor="primary"
       />
 
