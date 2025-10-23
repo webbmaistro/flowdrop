@@ -221,7 +221,7 @@ export default function GmailSendEmailNode() {
           </CardHeader>
           <CardContent>
             <CodeBlock
-              language="html"
+              lang="html"
               code={`<!DOCTYPE html>
 <html>
 <head>

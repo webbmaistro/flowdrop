@@ -202,7 +202,7 @@ export default function NotionDatabaseQueryNode() {
               <div className="space-y-4">
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Filter by Status</h4>
-                  <CodeBlock language="json">
+                  <CodeBlock lang="json">
 {`{
   "property": "Status",
   "select": {
@@ -213,7 +213,7 @@ export default function NotionDatabaseQueryNode() {
                 </div>
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Filter by Date Range</h4>
-                  <CodeBlock language="json">
+                  <CodeBlock lang="json">
 {`{
   "property": "Created",
   "date": {
@@ -224,7 +224,7 @@ export default function NotionDatabaseQueryNode() {
                 </div>
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Complex Filter</h4>
-                  <CodeBlock language="json">
+                  <CodeBlock lang="json">
 {`{
   "and": [
     {

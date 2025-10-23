@@ -214,7 +214,7 @@ export default function OutlookSendEmailNode() {
           </CardHeader>
           <CardContent>
             <CodeBlock
-              language="html"
+              lang="html"
               code={`<!DOCTYPE html>
 <html>
 <head>
