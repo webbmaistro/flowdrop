@@ -101,18 +101,21 @@ export default function AISwitchNode() {
           {
             name: "Selected Path",
             type: "string",
+            required: true,
             valueType: "Letter of selected node (A, B, C, etc.)",
             description: "The letter identifier of the node selected by the AI for execution. Empty if no execution was selected (when allowed)."
           },
           {
             name: "Reasoning",
             type: "string",
+            required: true,
             valueType: "AI's explanation for the choice",
             description: "The AI's explanation of why it selected the particular path. Useful for debugging and understanding routing decisions."
           },
           {
             name: "Cost",
             type: "number",
+            required: true,
             valueType: "LLM API usage cost",
             description: "The cost of the LLM API call used for routing decision. Helps track and optimize AI usage costs."
           }

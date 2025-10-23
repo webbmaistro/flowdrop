@@ -1,0 +1,29 @@
+warning: in the working copy of 'app/docs/nodes/hil-email/page.tsx', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/app/docs/nodes/hil-email/page.tsx b/app/docs/nodes/hil-email/page.tsx[m
+[1mindex 60b39af..57ac210 100644[m
+[1m--- a/app/docs/nodes/hil-email/page.tsx[m
+[1m+++ b/app/docs/nodes/hil-email/page.tsx[m
+[36m@@ -1,4 +1,4 @@[m
+[31m-"use client";[m
+[32m+[m[32m"use client"[m
+ [m
+ import React from 'react';[m
+ import { Mail, User, Clock, MessageSquare, AlertTriangle } from 'lucide-react';[m
+[36m@@ -243,16 +243,7 @@[m [mexport default function HILEmailNode() {[m
+                   </div>[m
+                 </div>[m
+                 <CodeBlock[m
+[31m-                  code={`{[m
+[31m-  "recipientEmail": "finance@company.com",[m
+[31m-  "subject": "High-Value Transaction Approval Required",[m
+[31m-  "message": "Amount: ${{transaction.amount}}. Approve to proceed with payment.",[m
+[31m-  "contextData": {[m
+[31m-    "amount": "{{transaction.amount}}",[m
+[31m-    "vendor": "{{transaction.vendor}}",[m
+[31m-    "invoiceId": "{{transaction.id}}"[m
+[31m-  }[m
+[31m-}`}[m
+[32m+[m[32m                  code={'{\n  "recipientEmail": "finance@company.com",\n  "subject": "High-Value Transaction Approval Required",\n  "message": "Amount: ${{transaction.amount}}. Approve to proceed with payment.",\n  "contextData": {\n    "amount": "{{transaction.amount}}",\n    "vendor": "{{transaction.vendor}}",\n    "invoiceId": "{{transaction.id}}"\n  }\n}'}[m
+                   lang="json"[m
+                 />[m
+               </div>[m

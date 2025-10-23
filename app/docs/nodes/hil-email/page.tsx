@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React from 'react';
 import { Mail, User, Clock, MessageSquare, AlertTriangle } from 'lucide-react';
@@ -243,16 +243,7 @@ export default function HILEmailNode() {
                   </div>
                 </div>
                 <CodeBlock
-                  code={`{
-  "recipientEmail": "finance@company.com",
-  "subject": "High-Value Transaction Approval Required",
-  "message": "Amount: ${{transaction.amount}}. Approve to proceed with payment.",
-  "contextData": {
-    "amount": "{{transaction.amount}}",
-    "vendor": "{{transaction.vendor}}",
-    "invoiceId": "{{transaction.id}}"
-  }
-}`}
+                  code={'{\n  "recipientEmail": "finance@company.com",\n  "subject": "High-Value Transaction Approval Required",\n  "message": "Amount: ${{transaction.amount}}. Approve to proceed with payment.",\n  "contextData": {\n    "amount": "{{transaction.amount}}",\n    "vendor": "{{transaction.vendor}}",\n    "invoiceId": "{{transaction.id}}"\n  }\n}'}
                   lang="json"
                 />
               </div>
