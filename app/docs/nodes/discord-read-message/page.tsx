@@ -98,36 +98,42 @@ export default function DiscordReadMessageNode() {
           {
             name: "Message Content",
             type: "string",
+            required: true,
             valueType: "The text content of the message",
             description: "The full text content of the latest message in the channel. Returns empty string if message has no text."
           },
           {
             name: "Image URL",
             type: "string",
+            required: true,
             valueType: "URL of attached image",
             description: "The URL of the first image attachment in the message. Returns null if no image is attached."
           },
           {
             name: "Author",
             type: "object",
+            required: true,
             valueType: "Message author information",
             description: "Information about the message author, including username, discriminator, and user ID."
           },
           {
             name: "Message ID",
             type: "string",
+            required: true,
             valueType: "Unique message identifier",
             description: "The unique ID of the message. Useful for tracking or referencing specific messages."
           },
           {
             name: "Timestamp",
             type: "string",
+            required: true,
             valueType: "Message creation timestamp",
             description: "ISO 8601 timestamp of when the message was created."
           },
           {
             name: "Success",
             type: "boolean",
+            required: true,
             valueType: "Operation success status",
             description: "Returns true if the message was successfully read, false otherwise."
           }
