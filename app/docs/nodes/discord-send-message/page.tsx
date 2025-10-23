@@ -73,7 +73,6 @@ export default function DiscordSendMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"My Discord Server"`,
               description: "The name of the Discord server (guild) where you want to send the message. Must match exactly as it appears in Discord."
             },
             {
@@ -81,7 +80,6 @@ export default function DiscordSendMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"general"`,
               description: "The name of the text channel where the message will be sent. Do not include the # symbol, just the channel name."
             },
             {
@@ -89,7 +87,6 @@ export default function DiscordSendMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"Hello from my workflow!"`,
               description: "The message content to send. Supports Discord markdown formatting (bold, italic, code blocks, etc.)."
             }
           ]

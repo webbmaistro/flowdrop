@@ -73,7 +73,6 @@ export default function ImageGenerationNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"A serene mountain landscape at sunset with purple clouds"',
               description: "A detailed text description of the image you want to generate. Be specific about style, composition, colors, mood, and details for best results."
             }
           ],

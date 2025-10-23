@@ -140,7 +140,6 @@ export default function HILEmailNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"manager@company.com"',
               description: "The email address of the person who will receive the approval request. They will receive an email with context and an approval link."
             },
             {
@@ -148,7 +147,6 @@ export default function HILEmailNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"Approval Required: Social Media Post"',
               description: "The subject line of the approval email. Should clearly indicate what needs approval."
             },
             {
@@ -156,7 +154,6 @@ export default function HILEmailNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"Please review the attached content before it is published."',
               description: "The message body of the approval email. Include context, details, and any relevant information for the approver."
             }
           ],

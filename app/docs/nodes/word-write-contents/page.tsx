@@ -95,7 +95,6 @@ export default function WordWriteContentsNode() {
               type: "text",
               required: true,
               valueType: "HTML string",
-              example: '"<h1>Title</h1><p>Content here...</p>"',
               description: "The HTML content to write to the document. Supports standard HTML tags including headings (h1-h6), paragraphs (p), lists (ul, ol), tables, bold (b, strong), italic (i, em), and more."
             }
           ]

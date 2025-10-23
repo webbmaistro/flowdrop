@@ -71,7 +71,6 @@ export default function GoogleSheetsReadNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"`,
               description: "The unique identifier of the Google Spreadsheet (found in the URL)."
             },
             {
@@ -79,7 +78,6 @@ export default function GoogleSheetsReadNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"Sheet1!A1:D10"`,
               description: "The A1 notation range to read (e.g., 'Sheet1!A1:D10', 'Data!A:Z')."
             }
           ],

@@ -90,7 +90,6 @@ export default function WordDuplicateNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"Q4 Report Copy"',
               description: "The name for the duplicated document. Include the .docx extension or it will be added automatically."
             }
           ]

@@ -83,7 +83,6 @@ export default function DiscordReadMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"My Discord Server"`,
               description: "The name of the Discord server (guild) where the channel is located. Must match exactly as it appears in Discord."
             },
             {
@@ -91,7 +90,6 @@ export default function DiscordReadMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"general"`,
               description: "The name of the text channel to monitor. Do not include the # symbol, just the channel name."
             }
           ]

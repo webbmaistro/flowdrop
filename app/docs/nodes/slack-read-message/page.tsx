@@ -73,7 +73,6 @@ export default function SlackReadMessageNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"general"',
               description: "The name of the Slack channel to monitor. Do not include the # symbol, just the channel name."
             }
           ]

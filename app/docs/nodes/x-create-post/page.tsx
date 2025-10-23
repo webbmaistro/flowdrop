@@ -83,7 +83,6 @@ export default function XCreatePostNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: '"Check out our new feature! 🚀"',
               description: "The text content of your post. Must be 280 characters or less for standard posts. Can include emojis, hashtags, and mentions."
             }
           ],

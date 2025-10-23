@@ -71,7 +71,6 @@ export default function GoogleSheetsWriteNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"`,
               description: "The unique identifier of the Google Spreadsheet (found in the URL)."
             },
             {
@@ -79,7 +78,6 @@ export default function GoogleSheetsWriteNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"Sheet1!A1:D10"`,
               description: "The A1 notation range to write to (e.g., 'Sheet1!A1:D10', 'Data!A1')."
             },
             {
@@ -87,7 +85,6 @@ export default function GoogleSheetsWriteNode() {
               type: "array",
               required: true,
               valueType: "2D array",
-              example: `[["Name", "Age"], ["John", 30], ["Jane", 25]]`,
               description: "The data to write as a 2D array. Each inner array represents a row of data."
             }
           ],

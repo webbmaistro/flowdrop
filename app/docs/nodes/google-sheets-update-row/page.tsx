@@ -78,7 +78,6 @@ export default function GoogleSheetsUpdateRowNode() {
               type: "text",
               required: true,
               valueType: "string",
-              example: `"Sheet1!A1:D1" or "Sheet1!1:1"`,
               description: "A1 notation of the row to update (e.g., Sheet1!A1:D1 or Sheet1!1:1). This specifies which row and columns to update."
             },
             {
@@ -86,7 +85,6 @@ export default function GoogleSheetsUpdateRowNode() {
               type: "JSON Array",
               required: true,
               valueType: "array",
-              example: `["John", "Doe", "john@example.com", 30]`,
               description: "Array of values for the row as a JSON array. Each element in the array corresponds to a cell in the row."
             }
           ]
