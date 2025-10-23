@@ -95,7 +95,6 @@ export default function GoogleSheetsWriteNode() {
               required: false,
               defaultValue: "RAW",
               valueType: "RAW or USER_ENTERED",
-              options: "RAW, USER_ENTERED",
               description: "How values should be interpreted. RAW: Values are stored as-is. USER_ENTERED: Values are parsed as if typed by user (formulas, dates, etc.)."
             }
           ]

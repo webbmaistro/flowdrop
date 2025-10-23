@@ -88,7 +88,6 @@ export default function GoogleSheetsReadNode() {
               required: false,
               defaultValue: "ROWS",
               valueType: "ROWS or COLUMNS",
-              options: "ROWS, COLUMNS",
               description: "Determines how the data should be organized. ROWS (default) returns data row by row, COLUMNS returns data column by column."
             }
           ]
