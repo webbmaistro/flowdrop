@@ -5,7 +5,6 @@ import SidebarLink from "@/components/ui/SidebarLink";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 const nav = [
-  { href: "/docs", label: "Overview" },
   { href: "/docs/ai-workflows-explained", label: "AI Workflows Explained" },
   { href: "/docs/workflow-builder-basics", label: "Workflow Builder Basics" },
   { href: "/docs/workflow-editor-comparison", label: "Workflow Editor Comparison" },
@@ -25,6 +24,7 @@ const nodeLibrary = {
     { href: "/docs/nodes/schedule", label: "Schedule" },
     { href: "/docs/nodes/gmail-read-emails", label: "Email" },
     { href: "/docs/nodes/webhook", label: "Webhook" },
+    { href: "/docs/nodes/discord-read-message", label: "Discord Read Message" },
   ],
   "Action Nodes": {
     "General Actions": [
@@ -34,15 +34,23 @@ const nodeLibrary = {
       { href: "/docs/nodes/image-generation", label: "Image Generation" },
     ],
     "Gmail": [
-      { href: "/docs/nodes/gmail-read-emails", label: "Gmail Read Emails" },
-      { href: "/docs/nodes/gmail-write-labels", label: "Gmail Write Labels" },
+      { href: "/docs/nodes/gmail-read-emails", label: "Read Emails" },
+      { href: "/docs/nodes/gmail-write-labels", label: "Write Labels" },
     ],
     "Google Sheets": [
-      { href: "/docs/nodes/google-sheets-read", label: "Google Sheets Read" },
-      { href: "/docs/nodes/google-sheets-write", label: "Google Sheets Write" },
+      { href: "/docs/nodes/google-sheets-read", label: "Read" },
+      { href: "/docs/nodes/google-sheets-write", label: "Write" },
+      { href: "/docs/nodes/google-sheets-update-row", label: "Update Row" },
     ],
     "Discord": [
-      { href: "/docs/nodes/discord-send-message", label: "Discord Send Message" },
+      { href: "/docs/nodes/discord-send-message", label: "Send Message" },
+    ],
+    "X": [
+      { href: "/docs/nodes/x-create-post", label: "Create Post" },
+    ],
+    "Microsoft Word": [
+      { href: "/docs/nodes/word-write-contents", label: "Write Content" },
+      { href: "/docs/nodes/word-duplicate", label: "Duplicate" },
     ],
   },
   "Data Processing": [
@@ -74,6 +82,8 @@ export default function Sidebar() {
       ...nodeLibrary["Action Nodes"]["Gmail"],
       ...nodeLibrary["Action Nodes"]["Google Sheets"],
       ...nodeLibrary["Action Nodes"]["Discord"],
+      ...nodeLibrary["Action Nodes"]["X"],
+      ...nodeLibrary["Action Nodes"]["Microsoft Word"],
       ...nodeLibrary["Data Processing"],
       ...nodeLibrary["Flow Control"],
       ...nodeLibrary["Human in the Loop"]
@@ -201,6 +211,38 @@ export default function Sidebar() {
               defaultOpen={false}
             >
               {nodeLibrary["Action Nodes"]["Discord"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
+            
+            {/* X */}
+            <CollapsibleSection 
+              title="X" 
+              defaultOpen={false}
+            >
+              {nodeLibrary["Action Nodes"]["X"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
+            
+            {/* Microsoft Word */}
+            <CollapsibleSection 
+              title="Microsoft Word" 
+              defaultOpen={false}
+            >
+              {nodeLibrary["Action Nodes"]["Microsoft Word"].map((node) => (
                 <SidebarLink
                   key={node.href}
                   href={node.href}

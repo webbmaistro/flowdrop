@@ -1,7 +1,7 @@
 "use client"
 
 import React from 'react';
-import { FileText, Mail, Brain, Send, Clock, ExternalLink } from 'lucide-react';
+import { FileText, Mail, Brain, Send, Clock, ExternalLink, Twitter, FileSpreadsheet } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import Link from 'next/link';
 
@@ -23,6 +23,13 @@ const nodeCategories = [
       { name: "LLM Prompt", href: "/docs/nodes/llm-prompt", description: "Generate AI-powered content", icon: Brain, color: "text-purple-500" },
       { name: "Gmail Read Emails", href: "/docs/nodes/gmail-read-emails", description: "Read Gmail messages", icon: Mail, color: "text-primary-main" },
       { name: "Gmail Write Labels", href: "/docs/nodes/gmail-write-labels", description: "Manage Gmail labels", icon: Mail, color: "text-red-500" },
+      { name: "X Create Post", href: "/docs/nodes/x-create-post", description: "Create posts on X (Twitter)", icon: Twitter, color: "text-blue-500" },
+      { name: "Word Read", href: "/docs/nodes/word-read", description: "Read Word document content as HTML", icon: FileText, color: "text-blue-600" },
+      { name: "Word Write Content", href: "/docs/nodes/word-write-contents", description: "Overwrite Word document contents", icon: FileText, color: "text-blue-600" },
+      { name: "Word Duplicate", href: "/docs/nodes/word-duplicate", description: "Duplicate Word documents", icon: FileText, color: "text-blue-600" },
+      { name: "Google Sheets Read", href: "/docs/nodes/google-sheets-read", description: "Read data from Google Sheets", icon: FileSpreadsheet, color: "text-green-500" },
+      { name: "Google Sheets Write", href: "/docs/nodes/google-sheets-write", description: "Write data to Google Sheets", icon: FileSpreadsheet, color: "text-green-500" },
+      { name: "Google Sheets Update Row", href: "/docs/nodes/google-sheets-update-row", description: "Update entire rows in Google Sheets", icon: FileSpreadsheet, color: "text-green-500" },
     ]
   },
   {

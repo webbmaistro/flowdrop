@@ -1,167 +1,141 @@
 "use client"
 
 import React from 'react';
-import { Globe, Database, Settings, Code, Zap, AlertTriangle, CheckCircle, ExternalLink, Network, Server } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
-import Callout from "@/components/ui/Callout";
-import CodeBlock from "@/components/ui/CodeBlock";
-import CollapsibleSection from "@/components/ui/CollapsibleSection";
+import { Globe, Network } from 'lucide-react';
+import {
+  NodeLayout,
+  NodeHeader,
+  OverviewSection,
+  PrerequisitesSection,
+  NodeConfigurationSection,
+  BestPracticesSection,
+  RelatedResourcesSection,
+} from '@/components/docs';
+import { Button } from '@/components/ui';
+import { ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
 export default function HttpRequestNode() {
+  const prerequisites = [
+    {
+      icon: Network,
+      title: "Network Access",
+      description: "Must have network access to external services",
+      requirements: [
+        "Network connectivity to target URLs",
+        "Valid and accessible target endpoints",
+        "Proper firewall and security configurations"
+      ]
+    }
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-primary-main/20 rounded-lg">
-            <Globe className="w-6 h-6 text-primary-main" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold">HTTP Request</h1>
-            <p className="text-neutral-400">Make HTTP requests to external APIs and services</p>
-          </div>
-        </div>
-        
-        <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Node Type</h3>
-              <p className="text-neutral-400">Action</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Category</h3>
-              <p className="text-neutral-400">Web Integration</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Icon</h3>
-              <p className="text-neutral-400">Globe</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <NodeLayout>
+      <NodeHeader
+        icon={Globe}
+        title="HTTP Request"
+        description="Make HTTP requests to external APIs and services"
+        nodeType="Action"
+        category="Web Integration"
+        iconName="Globe"
+        iconColor="primary"
+      />
 
-      {/* Overview */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Overview</h2>
-        <p className="text-neutral-300 mb-6">
-          The <strong>HTTP Request</strong> node is an action node that makes HTTP requests to specified URLs 
-          and returns the response. This powerful integration allows you to interact with external APIs, 
-          web services, and HTTP endpoints directly from your workflows.
-        </p>
-        
-        <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-          <h3 className="font-semibold mb-3 flex items-center gap-2">
-            <Zap className="w-5 h-5 text-yellow-500" />
-            Key Features
-          </h3>
-          <ul className="text-neutral-300 space-y-2">
-            <li>• <strong>HTTP Methods:</strong> Supports GET, POST, PUT, DELETE, and PATCH requests</li>
-            <li>• <strong>Flexible Headers:</strong> Customizable request headers for authentication and content type</li>
-            <li>• <strong>Request Body:</strong> Send JSON data with POST, PUT, and PATCH requests</li>
-            <li>• <strong>Response Handling:</strong> Automatic JSON parsing with fallback to text</li>
-            <li>• <strong>Status Tracking:</strong> Returns HTTP status codes and response headers</li>
-            <li>• <strong>Error Handling:</strong> Graceful handling of network failures and invalid responses</li>
-          </ul>
-        </div>
-      </section>
+      <OverviewSection
+        description="The <strong>HTTP Request</strong> node is an action node that makes HTTP requests to specified URLs and returns the response. This powerful integration allows you to interact with external APIs, web services, and HTTP endpoints directly from your workflows."
+        keyFeatures={[
+          "<strong>HTTP Methods:</strong> Supports GET, POST, PUT, DELETE, and PATCH requests",
+          "<strong>Flexible Headers:</strong> Customizable request headers for authentication and content type",
+          "<strong>Request Body:</strong> Send JSON data with POST, PUT, and PATCH requests",
+          "<strong>Response Handling:</strong> Automatic JSON parsing with fallback to text",
+          "<strong>Status Tracking:</strong> Returns HTTP status codes and response headers",
+          "<strong>Error Handling:</strong> Graceful handling of network failures and invalid responses"
+        ]}
+      />
 
-      {/* Prerequisites */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Prerequisites</h2>
-        
-        <div className="space-y-4">
-          <Card className="border-neutral-700">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Network className="w-5 h-5 text-primary-main" />
-                Network Access
-              </CardTitle>
-              <CardDescription>
-                Must have network access to external services
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Network connectivity to target URLs</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Valid and accessible target endpoints</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span className="text-sm">Proper firewall and security configurations</span>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <PrerequisitesSection items={prerequisites} />
 
-      {/* Node Configuration */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Node Configuration</h2>
-        
-        <CollapsibleSection title="Input Fields" defaultOpen={true}>
-          <div className="space-y-4">
-            <Card className="border-neutral-700">
-              <CardHeader>
-                <CardTitle>Required Fields</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold mb-2">URL</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">text</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Required:</span>
-                        <span className="ml-2 text-green-500">Yes</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Example:</span>
-                        <span className="ml-2 text-neutral-200">"https://api.example.com/data"</span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 mt-2">
-                      The target URL for the HTTP request. Must be a valid HTTP or HTTPS endpoint.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold mb-2">Method</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
-                      <div>
-                        <span className="text-neutral-400">Type:</span>
-                        <span className="ml-2 text-neutral-200">dropdown</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Required:</span>
-                        <span className="ml-2 text-green-500">Yes</span>
-                      </div>
-                      <div>
-                        <span className="text-neutral-400">Options:</span>
-                        <span className="ml-2 text-neutral-200">GET, POST, PUT, DELETE, PATCH</span>
-                      </div>
-                    </div>
-                    <p className="text-neutral-400 mt-2">
-                      The HTTP method to use for the request. GET for retrieving data, POST/PUT/PATCH for sending data.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </CollapsibleSection>
-      </section>
+      <NodeConfigurationSection
+        inputFields={{
+          required: [
+            {
+              name: "URL",
+              type: "text",
+              required: true,
+              valueType: "string",
+              description: "The target URL for the HTTP request. Must be a valid HTTP or HTTPS endpoint."
+            },
+            {
+              name: "Method",
+              type: "dropdown",
+              required: true,
+              valueType: "GET, POST, PUT, DELETE, PATCH",
+              description: "The HTTP method to use for the request. GET for retrieving data, POST/PUT/PATCH for sending data, DELETE for removing data."
+            }
+          ],
+          optional: [
+            {
+              name: "Headers",
+              type: "key_value",
+              required: false,
+              valueType: "JSON",
+              description: "Custom headers to include with the request. Common headers include Authorization for API keys, Content-Type for data format, and custom headers required by the API."
+            },
+            {
+              name: "Body",
+              type: "JSON",
+              required: false,
+              valueType: "JSON",
+              description: "Request body for POST, PUT, and PATCH methods. Should be valid JSON data that the API expects."
+            }
+          ]
+        }}
+        outputFields={[
+          {
+            name: "Response",
+            type: "JSON or string",
+            required: false,
+            valueType: "The response from the API",
+            description: "The response body from the HTTP request. Automatically parsed as JSON if possible, otherwise returned as text."
+          },
+          {
+            name: "Status Code",
+            type: "number",
+            required: false,
+            valueType: "HTTP status code",
+            description: "The HTTP status code returned by the server (e.g., 200 for success, 404 for not found, 500 for server error)."
+          },
+          {
+            name: "Headers",
+            type: "JSON",
+            required: false,
+            valueType: "Response headers",
+            description: "The HTTP headers returned by the server. Useful for accessing content type, rate limits, and other metadata."
+          }
+        ]}
+      />
 
-      {/* Related Resources */}
+      <BestPracticesSection
+        dos={[
+          "Use HTTPS URLs whenever possible for security",
+          "Include proper authentication headers (API keys, tokens)",
+          "Handle different HTTP status codes appropriately",
+          "Set appropriate Content-Type headers",
+          "Use GET for reading data, POST/PUT for writing",
+          "Implement retry logic for transient failures"
+        ]}
+        donts={[
+          "Don't hardcode sensitive API keys (use secure storage)",
+          "Avoid making requests without error handling",
+          "Don't ignore HTTP status codes",
+          "Avoid sending large payloads without consideration",
+          "Don't forget rate limiting for repeated requests",
+          "Avoid using GET requests with request bodies"
+        ]}
+        proTip="When working with REST APIs, always check the API documentation for required headers, authentication methods, and expected request formats. Use template variables to dynamically construct URLs and request bodies."
+      />
+
+      {/* Related Resources - Custom format */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Related Resources</h2>
         
@@ -207,6 +181,6 @@ export default function HttpRequestNode() {
           </Link>
         </div>
       </section>
-    </div>
+    </NodeLayout>
   );
 }
