@@ -1,62 +1,76 @@
 "use client"
 
 import React from 'react';
-import { Mail, User, Clock, CheckCircle, AlertTriangle, ExternalLink, MessageSquare, Zap } from 'lucide-react';
-import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent, RelatedResourceCard } from '@/components/ui';
+import { Mail, User, Clock, MessageSquare, AlertTriangle } from 'lucide-react';
+import {
+  NodeLayout,
+  NodeHeader,
+  OverviewSection,
+  PrerequisitesSection,
+  NodeConfigurationSection,
+  BestPracticesSection,
+  TroubleshootingSection,
+  RelatedResourcesSection,
+} from '@/components/docs';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import Callout from "@/components/ui/Callout";
 import CodeBlock from "@/components/ui/CodeBlock";
-import CollapsibleSection from "@/components/ui/CollapsibleSection";
-import Link from 'next/link';
 
 export default function HILEmailNode() {
+  const prerequisites = [
+    {
+      icon: Mail,
+      title: "Email Service",
+      description: "Requires email service for sending approval requests",
+      requirements: [
+        "Email service configured and accessible",
+        "Valid sender email address",
+        "Email delivery permissions and credentials"
+      ]
+    },
+    {
+      icon: User,
+      title: "Approval Process",
+      description: "Understanding of approval workflow requirements",
+      requirements: [
+        "Clear approval criteria and decision points",
+        "Designated approvers with email access",
+        "Understanding of workflow pause and resume behavior"
+      ]
+    }
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto">
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-2 bg-purple-500/20 rounded-lg">
-            <Mail className="w-6 h-6 text-purple-500" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold">Human Approval (Email)</h1>
-            <p className="text-neutral-400">Pause workflow and email a human for approval before continuing</p>
-          </div>
-        </div>
-        
-        <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Node Type</h3>
-              <p className="text-neutral-400">Human in the Loop</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Category</h3>
-              <p className="text-neutral-400">Human in the Loop</p>
-            </div>
-            <div>
-              <h3 className="font-semibold text-neutral-200 mb-2">Icon</h3>
-              <p className="text-neutral-400">Mail</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <NodeLayout>
+      <NodeHeader
+        icon={Mail}
+        title="Human Approval (Email)"
+        description="Pause workflow and email a human for approval before continuing"
+        nodeType="Human in the Loop"
+        category="Human in the Loop"
+        iconName="Mail"
+        iconColor="primary"
+      />
 
-      {/* Overview */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Overview</h2>
-        <p className="text-neutral-300 mb-6">
-          The <strong>Human Approval (Email)</strong> node is a Human in the Loop node that pauses your workflow 
-          and sends an email to a human for approval before continuing. This is essential for workflows that 
-          require human oversight, decision-making, or validation at critical steps.
-        </p>
-        
-        <Callout emoji="⚠️" color="border-yellow-500">
-          <strong>Important:</strong> This node will pause your workflow execution until a human approves the request. 
-          The workflow will not continue until the approval link in the email is clicked.
-        </Callout>
-      </section>
+      <OverviewSection
+        description="The <strong>Human Approval (Email)</strong> node is a Human in the Loop node that pauses your workflow and sends an email to a human for approval before continuing. This is essential for workflows that require human oversight, decision-making, or validation at critical steps."
+        keyFeatures={[
+          "<strong>Workflow Pause:</strong> Automatically pauses execution until approval is received",
+          "<strong>Email Notification:</strong> Sends approval request with context to designated recipient",
+          "<strong>Approval Link:</strong> Includes one-click approval link in email",
+          "<strong>Context Sharing:</strong> Passes workflow data to approver for informed decisions",
+          "<strong>Resume on Approval:</strong> Workflow continues automatically after approval",
+          "<strong>Audit Trail:</strong> Tracks approval status and decision-maker"
+        ]}
+      />
 
-      {/* Use Cases */}
+      <Callout emoji="⚠️" color="border-yellow-500">
+        <strong>Important:</strong> This node will pause your workflow execution until a human approves the request. The workflow will not continue until the approval link in the email is clicked.
+      </Callout>
+
+      <PrerequisitesSection items={prerequisites} />
+
+      {/* Use Cases Section */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-4">Use Cases</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -68,7 +82,7 @@ export default function HILEmailNode() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-300">
+              <p className="text-neutral-300 text-sm">
                 Send generated content to a manager for review before publishing to social media or sending to customers.
               </p>
             </CardContent>
@@ -82,7 +96,7 @@ export default function HILEmailNode() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-300">
+              <p className="text-neutral-300 text-sm">
                 Require human approval for high-value transactions, sensitive data processing, or compliance-critical operations.
               </p>
             </CardContent>
@@ -91,12 +105,12 @@ export default function HILEmailNode() {
           <Card className="bg-neutral-800 border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MessageSquare className="w-5 h-5 text-green-500" />
+                <MessageSquare className="w-5 h-5 text-primary-main" />
                 Customer Communication
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-300">
+              <p className="text-neutral-300 text-sm">
                 Get approval before sending important emails to customers, especially for sensitive or high-value communications.
               </p>
             </CardContent>
@@ -105,12 +119,12 @@ export default function HILEmailNode() {
           <Card className="bg-neutral-800 border-neutral-700">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <Zap className="w-5 h-5 text-purple-500" />
+                <Clock className="w-5 h-5 text-purple-500" />
                 Quality Control
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-neutral-300">
+              <p className="text-neutral-300 text-sm">
                 Have humans review AI-generated content, data analysis results, or automated decisions before they're finalized.
               </p>
             </CardContent>
@@ -118,203 +132,204 @@ export default function HILEmailNode() {
         </div>
       </section>
 
-      {/* Configuration */}
+      <NodeConfigurationSection
+        inputFields={{
+          required: [
+            {
+              name: "Recipient Email",
+              type: "text",
+              required: true,
+              valueType: "string",
+              example: '"manager@company.com"',
+              description: "The email address of the person who will receive the approval request. They will receive an email with context and an approval link."
+            },
+            {
+              name: "Subject",
+              type: "text",
+              required: true,
+              valueType: "string",
+              example: '"Approval Required: Social Media Post"',
+              description: "The subject line of the approval email. Should clearly indicate what needs approval."
+            },
+            {
+              name: "Message",
+              type: "text",
+              required: true,
+              valueType: "string",
+              example: '"Please review the attached content before it is published."',
+              description: "The message body of the approval email. Include context, details, and any relevant information for the approver."
+            }
+          ],
+          optional: [
+            {
+              name: "Context Data",
+              type: "JSON",
+              required: false,
+              valueType: "object",
+              description: "Additional data to include in the approval email. This can contain workflow variables, generated content, or any information the approver needs."
+            }
+          ]
+        }}
+        outputFields={[
+          {
+            name: "Approved",
+            type: "boolean",
+            required: true,
+            valueType: "Approval status",
+            description: "Returns true if the request was approved, false otherwise. Use this to control subsequent workflow steps."
+          },
+          {
+            name: "Approver Email",
+            type: "string",
+            required: true,
+            valueType: "Email of the person who approved",
+            description: "The email address of the person who clicked the approval link."
+          },
+          {
+            name: "Approval Time",
+            type: "string",
+            required: true,
+            valueType: "Timestamp of approval",
+            description: "ISO 8601 timestamp of when the approval was granted."
+          }
+        ]}
+      />
+
+      {/* Examples Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Configuration</h2>
+        <h2 className="text-2xl font-bold mb-4">Examples & Use Cases</h2>
         
         <div className="space-y-6">
-          <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-            <h3 className="text-xl font-semibold mb-4">Input Fields</h3>
-            
-            <div className="space-y-4">
-              <div className="border-l-4 border-blue-500 pl-4">
-                <h4 className="font-semibold text-blue-400 mb-2">To (Required)</h4>
-                <p className="text-neutral-300 mb-2">
-                  The email address of the person who will receive the approval request.
-                </p>
-                <div className="bg-neutral-900 rounded-lg p-3">
-                  <CodeBlock lang="text" code="manager@company.com" />
-                </div>
-              </div>
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>Content Publishing Approval</CardTitle>
+              <CardDescription>
+                Get approval before publishing AI-generated content
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CodeBlock
+                code={`{
+  "recipientEmail": "editor@company.com",
+  "subject": "Approval Required: Blog Post Draft",
+  "message": "Please review the AI-generated blog post below before publishing.",
+  "contextData": {
+    "title": "{{blogPost.title}}",
+    "content": "{{blogPost.content}}",
+    "targetDate": "{{publishDate}}"
+  }
+}`}
+                lang="json"
+              />
+              <p className="text-neutral-400 mt-3 text-sm">
+                Sends blog post draft to editor for approval before publishing.
+              </p>
+            </CardContent>
+          </Card>
 
-              <div className="border-l-4 border-green-500 pl-4">
-                <h4 className="font-semibold text-green-400 mb-2">Subject (Optional)</h4>
-                <p className="text-neutral-300 mb-2">
-                  The subject line for the approval email. Defaults to "Approval required: Flowdrop workflow step".
-                </p>
-                <div className="bg-neutral-900 rounded-lg p-3">
-                  <CodeBlock lang="text" code="Please approve: Marketing campaign launch" />
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>Transaction Approval Workflow</CardTitle>
+              <CardDescription>
+                Require approval for high-value transactions
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="bg-neutral-800 rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Workflow Structure</h4>
+                  <div className="text-sm text-neutral-400 space-y-1">
+                    <div>💳 Transaction Trigger → ✅ Human Approval → 💸 Process Payment → 📧 Confirmation</div>
+                  </div>
                 </div>
+                <CodeBlock
+                  code={`{
+  "recipientEmail": "finance@company.com",
+  "subject": "High-Value Transaction Approval Required",
+  "message": "Amount: ${{transaction.amount}}. Approve to proceed with payment.",
+  "contextData": {
+    "amount": "{{transaction.amount}}",
+    "vendor": "{{transaction.vendor}}",
+    "invoiceId": "{{transaction.id}}"
+  }
+}`}
+                  lang="json"
+                />
               </div>
-            </div>
-          </div>
-
-          <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-            <h3 className="text-xl font-semibold mb-4">Output Fields</h3>
-            
-            <div className="space-y-4">
-              <div className="border-l-4 border-purple-500 pl-4">
-                <h4 className="font-semibold text-purple-400 mb-2">Request Sent</h4>
-                <p className="text-neutral-300">
-                  Boolean value indicating whether the approval email was successfully sent.
-                </p>
-              </div>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">How It Works</h2>
-        
-        <div className="space-y-6">
-          <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-            <h3 className="text-xl font-semibold mb-4">Execution Flow</h3>
-            
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-main rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  1
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Workflow Pauses</h4>
-                  <p className="text-neutral-300">
-                    When the node executes, the workflow pauses and waits for human approval.
-                  </p>
-                </div>
-              </div>
+      <BestPracticesSection
+        dos={[
+          "Include clear context and relevant data in the message",
+          "Use descriptive subject lines that indicate urgency",
+          "Add workflow variables to show what needs approval",
+          "Set appropriate timeout policies for approvals",
+          "Log approval decisions for audit trails",
+          "Test approval emails before production use"
+        ]}
+        donts={[
+          "Don't use for time-critical workflows without fallbacks",
+          "Avoid vague messages without context",
+          "Don't forget to handle rejection scenarios",
+          "Avoid sending approvals to wrong email addresses",
+          "Don't include sensitive data in plain text emails",
+          "Avoid creating bottlenecks with too many approval steps"
+        ]}
+        proTip="Use template variables in your message to show the approver exactly what they're approving. Include key details like amounts, content previews, or affected users directly in the email body."
+      />
 
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-main rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  2
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Email Sent</h4>
-                  <p className="text-neutral-300">
-                    An approval email is sent to the specified recipient with a secure approval link.
-                  </p>
-                </div>
-              </div>
+      <TroubleshootingSection
+        issues={[
+          {
+            title: "Email Not Received",
+            symptoms: "Approver doesn't receive the approval email",
+            solution: "Check spam folders and verify the recipient email address is correct. Ensure your email service is properly configured and has sending permissions."
+          },
+          {
+            title: "Workflow Stuck",
+            symptoms: "Workflow remains paused indefinitely",
+            solution: "This is expected behavior - the workflow waits for approval. Implement timeout logic or send reminder emails. Check that the approval link in the email is working."
+          },
+          {
+            title: "Approval Link Broken",
+            symptoms: "Clicking approval link doesn't work",
+            solution: "Verify your workflow service URL is accessible and properly configured. Check that the approval token hasn't expired."
+          },
+          {
+            title: "Wrong Person Approved",
+            symptoms: "Approval came from unexpected email",
+            solution: "Anyone with access to the approval link can click it. Consider implementing additional verification or using role-based approval systems."
+          }
+        ]}
+      />
 
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-primary-main rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  3
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Human Reviews</h4>
-                  <p className="text-neutral-300">
-                    The human recipient reviews the request and clicks the approval link in the email.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                  4
-                </div>
-                <div>
-                  <h4 className="font-semibold mb-2">Workflow Resumes</h4>
-                  <p className="text-neutral-300">
-                    Once approved, the workflow automatically resumes and continues to the next node.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <Callout emoji="🔒" color="border-green-500">
-            <strong>Security:</strong> Each approval link is unique and tied to a specific workflow execution. 
-            The links expire after a certain period and can only be used once.
-          </Callout>
-        </div>
-      </section>
-
-      {/* Example Workflow */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Example Workflow</h2>
-        
-        <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-          <h3 className="text-xl font-semibold mb-4">Content Approval Workflow</h3>
-          <p className="text-neutral-300 mb-4">
-            Here's how you might use the Human Approval (Email) node in a content marketing workflow:
-          </p>
-          
-          <div className="space-y-4">
-            <div className="flex items-center gap-3 p-3 bg-neutral-700 rounded-lg">
-              <div className="w-6 h-6 bg-primary-main rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
-              <span className="text-neutral-200">AI generates blog post content</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-neutral-700 rounded-lg">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
-              <span className="text-neutral-200">Human Approval (Email) - Send to editor for review</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-neutral-700 rounded-lg">
-              <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
-              <span className="text-neutral-200">Publish to website (after approval)</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-3 bg-neutral-700 rounded-lg">
-              <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center text-white text-xs font-bold">4</div>
-              <span className="text-neutral-200">Share on social media</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Best Practices */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-4">Best Practices</h2>
-        
-        <div className="space-y-4">
-          <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" />
-              Do's
-            </h3>
-            <ul className="space-y-2 text-neutral-300">
-              <li>• Use clear, descriptive email subjects that explain what needs approval</li>
-              <li>• Include context in the email about what the workflow is doing</li>
-              <li>• Set up notifications for when approvals are needed</li>
-              <li>• Consider timeouts for urgent approvals</li>
-              <li>• Test the approval flow before deploying to production</li>
-            </ul>
-          </div>
-
-          <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
-            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-red-500" />
-              Don'ts
-            </h3>
-            <ul className="space-y-2 text-neutral-300">
-              <li>• Don't use this node for high-frequency workflows without proper monitoring</li>
-              <li>• Don't forget to set up fallback processes for unapproved requests</li>
-              <li>• Don't use generic email subjects that don't explain the context</li>
-              <li>• Don't rely solely on email - consider other notification methods</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Related Nodes */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Related Nodes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          <RelatedResourceCard
-            href="/docs/nodes/if-else"
-            title="If Else"
-            description="Add conditional logic to handle different approval outcomes"
-          />
-
-          <RelatedResourceCard
-            href="/docs/nodes/schedule"
-            title="Schedule"
-            description="Set up recurring workflows that require periodic approvals"
-          />
-        </div>
-      </section>
-    </div>
+      <RelatedResourcesSection
+        resources={[
+          {
+            href: "/docs/nodes/if-else",
+            title: "If-Else Node",
+            description: "Add conditional logic based on approval"
+          },
+          {
+            href: "/docs/nodes/llm-prompt",
+            title: "LLM Prompt Node",
+            description: "Generate content that needs approval"
+          },
+          {
+            href: "/docs/workflow-builder-basics",
+            title: "Workflow Builder Basics",
+            description: "Learn about workflow design"
+          },
+          {
+            href: "/docs/nodes",
+            title: "Node Library",
+            description: "Explore all available nodes"
+          }
+        ]}
+      />
+    </NodeLayout>
   );
 }

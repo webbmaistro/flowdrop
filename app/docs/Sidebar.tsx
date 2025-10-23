@@ -5,7 +5,6 @@ import SidebarLink from "@/components/ui/SidebarLink";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
 const nav = [
-  { href: "/docs", label: "Overview" },
   { href: "/docs/ai-workflows-explained", label: "AI Workflows Explained" },
   { href: "/docs/workflow-builder-basics", label: "Workflow Builder Basics" },
   { href: "/docs/workflow-editor-comparison", label: "Workflow Editor Comparison" },
@@ -40,9 +39,17 @@ const nodeLibrary = {
     "Google Sheets": [
       { href: "/docs/nodes/google-sheets-read", label: "Google Sheets Read" },
       { href: "/docs/nodes/google-sheets-write", label: "Google Sheets Write" },
+      { href: "/docs/nodes/google-sheets-update-row", label: "Google Sheets Update Row" },
     ],
     "Discord": [
       { href: "/docs/nodes/discord-send-message", label: "Discord Send Message" },
+    ],
+    "X": [
+      { href: "/docs/nodes/x-create-post", label: "X Create Post" },
+    ],
+    "Microsoft Word": [
+      { href: "/docs/nodes/word-write-contents", label: "Word Write Content" },
+      { href: "/docs/nodes/word-duplicate", label: "Word Duplicate" },
     ],
   },
   "Data Processing": [
@@ -74,6 +81,8 @@ export default function Sidebar() {
       ...nodeLibrary["Action Nodes"]["Gmail"],
       ...nodeLibrary["Action Nodes"]["Google Sheets"],
       ...nodeLibrary["Action Nodes"]["Discord"],
+      ...nodeLibrary["Action Nodes"]["X"],
+      ...nodeLibrary["Action Nodes"]["Microsoft Word"],
       ...nodeLibrary["Data Processing"],
       ...nodeLibrary["Flow Control"],
       ...nodeLibrary["Human in the Loop"]
@@ -201,6 +210,38 @@ export default function Sidebar() {
               defaultOpen={false}
             >
               {nodeLibrary["Action Nodes"]["Discord"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
+            
+            {/* X */}
+            <CollapsibleSection 
+              title="X" 
+              defaultOpen={false}
+            >
+              {nodeLibrary["Action Nodes"]["X"].map((node) => (
+                <SidebarLink
+                  key={node.href}
+                  href={node.href}
+                  active={pathname === node.href}
+                >
+                  {node.label}
+                </SidebarLink>
+              ))}
+            </CollapsibleSection>
+            
+            {/* Microsoft Word */}
+            <CollapsibleSection 
+              title="Microsoft Word" 
+              defaultOpen={false}
+            >
+              {nodeLibrary["Action Nodes"]["Microsoft Word"].map((node) => (
                 <SidebarLink
                   key={node.href}
                   href={node.href}
