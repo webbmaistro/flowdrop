@@ -16,7 +16,7 @@ import {
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
 import CodeBlock from "@/components/ui/CodeBlock";
 
-export default function GoogleDocsReadNode() {
+export default function GoogleDocsAppendNode() {
   const prerequisites = [
     {
       icon: Key,
@@ -31,10 +31,10 @@ export default function GoogleDocsReadNode() {
     {
       icon: Lock,
       title: "Required OAuth Scopes",
-      description: "OAuth scopes needed for document access",
+      description: "OAuth scopes needed for document modification",
       requirements: [
-        "Google Docs Read-Only: Access to read document content",
-        "Google Drive Metadata Read-Only: Access to list and browse documents",
+        "Google Drive File: Access to modify document files",
+        "Google Docs: Access to edit document content",
         "User Consent: User must grant permission for these scopes"
       ]
     },
@@ -54,8 +54,8 @@ export default function GoogleDocsReadNode() {
     <NodeLayout>
       <NodeHeader
         icon={FileText}
-        title="Google Docs Read"
-        description="Reads content from a Google Doc using OAuth authentication"
+        title="Google Docs Append"
+        description="Appends text to the end of a Google Document using OAuth authentication"
         nodeType="Action"
         category="Google Integration"
         iconName="FileText"
@@ -63,13 +63,13 @@ export default function GoogleDocsReadNode() {
       />
 
       <OverviewSection
-        description="The <strong>Google Docs Read</strong> node is an action node that fetches document content from Google Docs using the user's OAuth token. This powerful integration allows you to read and process Google Docs content directly in your workflows, enabling document analysis, content extraction, and automated document processing."
+        description="The <strong>Google Docs Append</strong> node is an action node that appends text to the end of a Google Document using the user's OAuth token. This powerful integration allows you to add content to existing Google Docs directly in your workflows, enabling automated document updates, content logging, and collaborative document building."
         keyFeatures={[
-          "<strong>Google Docs Integration:</strong> Seamlessly reads content from Google Docs",
+          "<strong>Google Docs Integration:</strong> Seamlessly appends content to Google Docs",
           "<strong>OAuth Authentication:</strong> Secure access using user's Google account",
           "<strong>Dynamic Document Selection:</strong> Browse and select from available documents",
-          "<strong>Content Extraction:</strong> Retrieves full document content and metadata",
-          "<strong>Success Tracking:</strong> Returns operation status and document information",
+          "<strong>Text Appending:</strong> Adds text to the end of the document content",
+          "<strong>Success Tracking:</strong> Returns operation status and result information",
           "<strong>Error Handling:</strong> Graceful handling of authentication and access issues"
         ]}
       />
@@ -84,38 +84,31 @@ export default function GoogleDocsReadNode() {
               type: "dynamic_select",
               required: true,
               valueType: "string",
-              description: "The ID of the Google Doc to read from. This field provides dynamic selection options, allowing users to browse and select from their available Google Docs. The ID uniquely identifies the specific document in Google's system."
+              description: "The ID of the Google Doc to append text to. This field provides dynamic selection options, allowing users to browse and select from their available Google Docs. The ID uniquely identifies the specific document in Google's system."
+            },
+            {
+              name: "Text",
+              type: "text_area",
+              required: true,
+              valueType: "string",
+              description: "The text content to append to the end of the document. This can be plain text, formatted content, or any text that should be added to the document."
             }
           ]
         }}
         outputFields={[
           {
-            name: "Document Content",
-            type: "string",
+            name: "Result",
+            type: "JSON",
             required: false,
-            valueType: "The full content of the document",
-            description: "Contains the complete document content as extracted text. The content is processed and returned as plain text, making it easy to use in downstream workflow nodes for analysis, processing, or further manipulation."
-          },
-          {
-            name: "Document Title",
-            type: "string",
-            required: false,
-            valueType: "The title of the document",
-            description: "The human-readable title of the Google Doc as it appears in Google Docs. Useful for identifying and referencing the document in your workflows."
-          },
-          {
-            name: "Document ID",
-            type: "string",
-            required: false,
-            valueType: "The ID of the document that was read",
-            description: "The unique identifier of the document that was successfully read. This confirms which specific document was processed and can be used for logging or reference purposes."
+            valueType: "The result of the append operation",
+            description: "Contains the result of the append operation in JSON format, including details about the operation and any metadata returned by the Google Docs API."
           },
           {
             name: "Success",
             type: "boolean",
             required: false,
             valueType: "Whether the operation succeeded",
-            description: "Boolean value indicating whether the Google Docs read operation was successful. Use this to implement error handling and retry logic in your workflows."
+            description: "Boolean value indicating whether the Google Docs append operation was successful. Use this to implement error handling and retry logic in your workflows."
           }
         ]}
       />
@@ -123,12 +116,12 @@ export default function GoogleDocsReadNode() {
       <TechnicalDetailsSection
         details={[
           {
-            title: "Document Reading Process",
-            description: "How the node fetches and processes Google Docs content",
+            title: "Document Appending Process",
+            description: "How the node appends text to Google Docs",
             items: [
               {
                 title: "Input Validation",
-                description: "The node first validates the document ID input. Ensures document ID is provided, returns null content and false success if missing, and prevents API calls with invalid inputs."
+                description: "The node first validates the document ID and text inputs. Ensures both fields are provided, throws an error if either is missing, and prevents API calls with invalid inputs."
               },
               {
                 title: "User Authentication",
@@ -141,16 +134,16 @@ export default function GoogleDocsReadNode() {
             description: "How the node interfaces with Google's document services",
             items: [
               {
-                title: "Document Retrieval",
-                description: "Uses the Google Docs API to fetch the specified document with the 'DEFAULT_FOR_CURRENT_ACCESS' format, which provides the most comprehensive content representation."
+                title: "Text Appending",
+                description: "Uses the Google Docs API to append the specified text to the end of the document. The text is inserted at the end of the document's current content."
               },
               {
-                title: "Content Extraction",
-                description: "Uses the GoogleDocs.extractGoogleDocText() method to convert the document's structured content into plain text, making it easily readable and processable by other workflow nodes."
+                title: "Operation Result",
+                description: "Returns the result of the append operation, including any metadata or confirmation details provided by the Google Docs API."
               },
               {
-                title: "Response Formatting",
-                description: "Returns the content as plain text string, along with document metadata (title, ID) and operation status, providing a clean interface for downstream processing."
+                title: "Success Confirmation",
+                description: "Sets the success flag to true upon successful completion of the append operation, providing clear feedback about the operation status."
               }
             ]
           },
@@ -182,29 +175,30 @@ export default function GoogleDocsReadNode() {
         <div className="space-y-6">
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Basic Document Reading</CardTitle>
+              <CardTitle>Basic Text Appending</CardTitle>
               <CardDescription>
-                Read content from a specific Google Doc
+                Append simple text to a Google Doc
               </CardDescription>
             </CardHeader>
             <CardContent>
               <CodeBlock
                 code={`{
-  "documentId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+  "documentId": "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+  "text": "This text was added via workflow automation."
 }`}
                 lang="json"
               />
               <p className="text-neutral-400 mt-3 text-sm">
-                This will read the Google Doc with the specified ID and return its content as plain text, along with the document title, ID, and success status.
+                This will append the specified text to the end of the Google Doc with the given ID.
               </p>
             </CardContent>
           </Card>
 
           <Card className="border-neutral-700">
             <CardHeader>
-              <CardTitle>Document Content Analysis Workflow</CardTitle>
+              <CardTitle>Automated Content Logging</CardTitle>
               <CardDescription>
-                Analyze Google Docs content with AI
+                Log workflow results to a Google Doc
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -212,11 +206,33 @@ export default function GoogleDocsReadNode() {
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Workflow Structure</h4>
                   <div className="text-sm text-neutral-400 space-y-1">
-                    <div>📄 Google Docs Read → 🤖 AI Analysis → 📊 Content Summary → 📧 Email Report</div>
+                    <div>📊 Data Processing → 📝 Google Docs Append → 📧 Email Notification</div>
                   </div>
                 </div>
                 <p className="text-neutral-400 text-sm">
-                  Read document content, analyze with AI for insights, generate summary, and email results to stakeholders.
+                  Process data, append results to a shared Google Doc, and notify team members of updates.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border-neutral-700">
+            <CardHeader>
+              <CardTitle>Collaborative Document Building</CardTitle>
+              <CardDescription>
+                Build documents collaboratively with multiple workflow runs
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                <div className="bg-neutral-800 rounded-lg p-4">
+                  <h4 className="font-semibold mb-2">Workflow Structure</h4>
+                  <div className="text-sm text-neutral-400 space-y-1">
+                    <div>🤖 AI Content Generation → 📝 Google Docs Append → 🔄 Repeat for Multiple Sections</div>
+                  </div>
+                </div>
+                <p className="text-neutral-400 text-sm">
+                  Generate content with AI, append each section to a Google Doc, and build comprehensive documents over multiple workflow executions.
                 </p>
               </div>
             </CardContent>
@@ -228,20 +244,22 @@ export default function GoogleDocsReadNode() {
         dos={[
           "Use the dynamic select for easy document browsing",
           "Handle the success status for proper error management",
-          "Consider document size and content complexity",
+          "Consider document size and content complexity when appending large amounts of text",
           "Implement proper error handling for authentication failures",
-          "Use document title for user-friendly identification",
-          "Monitor OAuth token expiration and refresh"
+          "Use meaningful text content that adds value to the document",
+          "Monitor OAuth token expiration and refresh",
+          "Consider formatting when appending structured content"
         ]}
         donts={[
           "Don't hardcode document IDs when dynamic selection is available",
-          "Avoid reading very large documents without content limits",
+          "Avoid appending very large amounts of text in a single operation",
           "Don't ignore authentication and scope requirements",
-          "Avoid processing sensitive documents without proper security",
-          "Don't forget to handle empty or malformed document content",
-          "Avoid making too many API calls in rapid succession"
+          "Avoid appending sensitive information without proper security",
+          "Don't forget to handle empty or malformed text inputs",
+          "Avoid making too many API calls in rapid succession",
+          "Don't append content without considering document structure and formatting"
         ]}
-        proTip="When working with Google Docs content, remember that the document content is returned as plain text, making it perfect for direct use with LLM nodes, text processing, or content analysis. The extracted text preserves the document's readability while being easily processable by other workflow nodes."
+        proTip="When appending content to Google Docs, consider the document's existing structure and formatting. For structured content, you might want to use line breaks or formatting markers to maintain readability. The Google Docs API preserves the document's formatting, so appended text will follow the document's current style."
       />
 
       <TroubleshootingSection
@@ -249,11 +267,11 @@ export default function GoogleDocsReadNode() {
           {
             title: "Authentication Errors",
             symptoms: "Node fails with OAuth or access token errors",
-            solution: "Ensure the user has connected their Google account and granted the required OAuth scopes (Google Docs read-only and Drive metadata read-only)."
+            solution: "Ensure the user has connected their Google account and granted the required OAuth scopes (Google Drive File and Google Docs)."
           },
           {
             title: "Document Not Found",
-            symptoms: "Node returns success: false or empty content",
+            symptoms: "Node returns success: false or operation fails",
             solution: "Verify the document ID is correct and the user has access to the specified document. Check that the document exists and is not deleted."
           },
           {
@@ -262,9 +280,14 @@ export default function GoogleDocsReadNode() {
             solution: "Check that the user has Google Docs and that the OAuth integration is working properly. Verify the required scopes are granted."
           },
           {
-            title: "Content Processing Issues",
-            symptoms: "Document content is malformed or difficult to process",
-            solution: "The Google Docs Read node returns content as plain text, which should be easily processable. If you encounter issues, check that the document is properly formatted and accessible. Consider using the LLM Prompt node for further text processing if needed."
+            title: "Text Not Appearing",
+            symptoms: "Operation succeeds but text doesn't appear in the document",
+            solution: "Check that the text input is not empty and contains valid content. Verify the document is not in a read-only state or shared with view-only permissions."
+          },
+          {
+            title: "Permission Denied",
+            symptoms: "Node fails with permission or access denied errors",
+            solution: "Ensure the user has edit permissions on the target document. Check that the document is not protected or in a read-only state."
           }
         ]}
       />
@@ -272,19 +295,24 @@ export default function GoogleDocsReadNode() {
       <RelatedResourcesSection
         resources={[
           {
+            href: "/docs/nodes/google-docs-read",
+            title: "Google Docs Read Node",
+            description: "Read content from Google Docs before appending"
+          },
+          {
             href: "/docs/nodes/llm-prompt",
             title: "LLM Prompt Node",
-            description: "Process Google Docs content with AI"
+            description: "Generate content to append to documents"
           },
           {
             href: "/docs/nodes/google-sheets-write",
             title: "Google Sheets Write Node",
-            description: "Log document analysis results"
+            description: "Log append operations to spreadsheets"
           },
           {
             href: "/docs/nodes/for-each",
             title: "For Each Node",
-            description: "Process multiple documents"
+            description: "Append content to multiple documents"
           },
           {
             href: "/docs/nodes",
