@@ -104,6 +104,7 @@ Input and output fields configuration.
     {
       name: "Response",
       type: "string",
+      required: false,
       valueType: "The AI response",
       description: "Contains the generated text"
     }
@@ -274,6 +275,7 @@ export default function MyNodePage() {
           {
             name: "Output",
             type: "string",
+            required: false,
             valueType: "Result",
             description: "The output value"
           }

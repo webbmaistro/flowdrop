@@ -97,6 +97,7 @@ export default function YourNodePage() {
           {
             name: "Output Name",  // TODO: Update
             type: "string",  // TODO: Update
+            required: false,  // Output fields are typically not required
             valueType: "Description of output",  // TODO: Update
             description: "Detailed explanation of what this output contains"  // TODO: Update
           }
