@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react';
 import { Mail, User, Clock, MessageSquare, AlertTriangle } from 'lucide-react';

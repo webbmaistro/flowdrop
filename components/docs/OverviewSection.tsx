@@ -11,7 +11,11 @@ export default function OverviewSection({ description, keyFeatures }: OverviewSe
     <section className="mb-12">
       <h2 className="text-2xl font-bold mb-4">Overview</h2>
       <div className="text-neutral-300 mb-6">
-        {typeof description === 'string' ? <p>{description}</p> : description}
+        {typeof description === 'string' ? (
+          <p dangerouslySetInnerHTML={{ __html: description }} />
+        ) : (
+          description
+        )}
       </div>
       
       <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
