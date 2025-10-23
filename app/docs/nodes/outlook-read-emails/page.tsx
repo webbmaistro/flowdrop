@@ -83,8 +83,7 @@ export default function OutlookReadEmailsNode() {
               type: "dropdown",
               required: false,
               valueType: "string",
-              description: "Outlook folder to filter emails by. Options include Inbox, Sent Items, Drafts, etc. Defaults to Inbox if not specified.",
-              options: ["Inbox", "Sent Items", "Drafts", "Deleted Items", "Junk Email"]
+              description: "Outlook folder to filter emails by. Options include Inbox, Sent Items, Drafts, etc. Defaults to Inbox if not specified."
             },
             {
               name: "Max Results",
