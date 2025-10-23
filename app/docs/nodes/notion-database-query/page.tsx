@@ -202,30 +202,33 @@ export default function NotionDatabaseQueryNode() {
               <div className="space-y-4">
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Filter by Status</h4>
-                  <CodeBlock lang="json">
-{`{
+                  <CodeBlock 
+                    lang="json"
+                    code={`{
   "property": "Status",
   "select": {
     "equals": "Published"
   }
 }`}
-                  </CodeBlock>
+                  />
                 </div>
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Filter by Date Range</h4>
-                  <CodeBlock lang="json">
-{`{
+                  <CodeBlock 
+                    lang="json"
+                    code={`{
   "property": "Created",
   "date": {
     "after": "2024-01-01"
   }
 }`}
-                  </CodeBlock>
+                  />
                 </div>
                 <div className="bg-neutral-800 rounded-lg p-4">
                   <h4 className="font-semibold mb-2">Complex Filter</h4>
-                  <CodeBlock lang="json">
-{`{
+                  <CodeBlock 
+                    lang="json"
+                    code={`{
   "and": [
     {
       "property": "Status",
@@ -241,7 +244,7 @@ export default function NotionDatabaseQueryNode() {
     }
   ]
 }`}
-                  </CodeBlock>
+                  />
                 </div>
               </div>
             </CardContent>
