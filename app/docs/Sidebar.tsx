@@ -24,6 +24,7 @@ const nodeLibrary = {
     { href: "/docs/nodes/schedule", label: "Schedule" },
     { href: "/docs/nodes/gmail-read-emails", label: "Email" },
     { href: "/docs/nodes/webhook", label: "Webhook" },
+    { href: "/docs/nodes/discord-read-message", label: "Discord Read Message" },
   ],
   "Action Nodes": {
     "General Actions": [
@@ -33,23 +34,23 @@ const nodeLibrary = {
       { href: "/docs/nodes/image-generation", label: "Image Generation" },
     ],
     "Gmail": [
-      { href: "/docs/nodes/gmail-read-emails", label: "Gmail Read Emails" },
-      { href: "/docs/nodes/gmail-write-labels", label: "Gmail Write Labels" },
+      { href: "/docs/nodes/gmail-read-emails", label: "Read Emails" },
+      { href: "/docs/nodes/gmail-write-labels", label: "Write Labels" },
     ],
     "Google Sheets": [
-      { href: "/docs/nodes/google-sheets-read", label: "Google Sheets Read" },
-      { href: "/docs/nodes/google-sheets-write", label: "Google Sheets Write" },
-      { href: "/docs/nodes/google-sheets-update-row", label: "Google Sheets Update Row" },
+      { href: "/docs/nodes/google-sheets-read", label: "Read" },
+      { href: "/docs/nodes/google-sheets-write", label: "Write" },
+      { href: "/docs/nodes/google-sheets-update-row", label: "Update Row" },
     ],
     "Discord": [
-      { href: "/docs/nodes/discord-send-message", label: "Discord Send Message" },
+      { href: "/docs/nodes/discord-send-message", label: "Send Message" },
     ],
     "X": [
-      { href: "/docs/nodes/x-create-post", label: "X Create Post" },
+      { href: "/docs/nodes/x-create-post", label: "Create Post" },
     ],
     "Microsoft Word": [
-      { href: "/docs/nodes/word-write-contents", label: "Word Write Content" },
-      { href: "/docs/nodes/word-duplicate", label: "Word Duplicate" },
+      { href: "/docs/nodes/word-write-contents", label: "Write Content" },
+      { href: "/docs/nodes/word-duplicate", label: "Duplicate" },
     ],
   },
   "Data Processing": [

@@ -94,24 +94,28 @@ export default function GmailReadEmailsNode() {
           {
             name: "Emails",
             type: "array",
+            required: false,
             valueType: "Array of email objects",
             description: "Array of email objects, each containing id, subject, from, to, date, body (plain text), htmlBody, and snippet. Use For Each node to process individual emails."
           },
           {
             name: "Count",
             type: "number",
+            required: false,
             valueType: "Number of emails retrieved",
             description: "The total number of emails retrieved. Useful for conditional logic and tracking."
           },
           {
             name: "Success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if emails were successfully retrieved, false otherwise."
           },
           {
             name: "Error",
             type: "string",
+            required: false,
             valueType: "Error message if failed",
             description: "Contains the error message if the operation failed, null if successful."
           }

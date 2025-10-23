@@ -81,18 +81,21 @@ export default function RandomizeNode() {
           {
             name: "randomValue",
             type: "string",
+            required: false,
             valueType: "The randomly selected value from the array",
             description: "Contains the randomly selected value from the input array. This is the primary output you'll typically use in your workflow."
           },
           {
             name: "randomIndex",
             type: "number",
+            required: false,
             valueType: "Index position of the selected value",
             description: "The index position (0-based) of the selected value in the original array. Useful for tracking which item was selected."
           },
           {
             name: "originalArray",
             type: "array",
+            required: false,
             valueType: "The original input array",
             description: "The complete original array that was provided as input. Useful for further processing or reference."
           }

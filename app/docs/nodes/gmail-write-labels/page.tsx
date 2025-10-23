@@ -119,24 +119,28 @@ export default function GmailWriteLabelsNode() {
           {
             name: "labelId",
             type: "string",
+            required: false,
             valueType: "Unique identifier of the created/modified label",
             description: "The unique ID assigned by Gmail to this label. Use this for applying the label to emails."
           },
           {
             name: "labelName",
             type: "string",
+            required: false,
             valueType: "Name of the label",
             description: "The name of the label that was created or modified."
           },
           {
             name: "success",
             type: "boolean",
+            required: false,
             valueType: "Whether the operation was successful",
             description: "Returns true if the label was successfully created or modified, false otherwise."
           },
           {
             name: "error",
             type: "string",
+            required: false,
             valueType: "Error message if operation failed",
             description: "Contains the error message if the operation failed, null if successful."
           }

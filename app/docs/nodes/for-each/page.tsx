@@ -91,18 +91,21 @@ export default function ForEachNode() {
           {
             name: "item",
             type: "string",
+            required: false,
             valueType: "Current iteration item",
             description: "The current item being processed in this iteration. This value changes with each loop iteration and is available to all downstream nodes."
           },
           {
             name: "index",
             type: "number",
+            required: false,
             valueType: "Current iteration index",
             description: "The zero-based index of the current item in the array. Useful for tracking progress or making index-based decisions."
           },
           {
             name: "list",
             type: "array",
+            required: false,
             valueType: "Original input array",
             description: "The complete original array being iterated over. Useful for reference or calculating total iterations."
           }

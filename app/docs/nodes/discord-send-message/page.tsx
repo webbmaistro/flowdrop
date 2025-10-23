@@ -95,24 +95,28 @@ export default function DiscordSendMessageNode() {
           {
             name: "Message ID",
             type: "string",
+            required: false,
             valueType: "Unique message identifier",
             description: "The unique ID of the sent message. Useful for tracking or editing messages later."
           },
           {
             name: "Success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if the message was successfully sent, false otherwise."
           },
           {
             name: "Error",
             type: "string",
+            required: false,
             valueType: "Error message if failed",
             description: "Contains the error message if the operation failed, null if successful."
           },
           {
             name: "Channel ID",
             type: "string",
+            required: false,
             valueType: "ID of the target channel",
             description: "The unique ID of the channel where the message was sent."
           }

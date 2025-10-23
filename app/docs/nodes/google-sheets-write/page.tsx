@@ -104,36 +104,42 @@ export default function GoogleSheetsWriteNode() {
           {
             name: "updatedRange",
             type: "string",
+            required: false,
             valueType: "The range that was updated",
             description: "The actual range that was updated in the spreadsheet."
           },
           {
             name: "updatedRows",
             type: "number",
+            required: false,
             valueType: "Number of rows updated",
             description: "The total number of rows that were updated."
           },
           {
             name: "updatedColumns",
             type: "number",
+            required: false,
             valueType: "Number of columns updated",
             description: "The total number of columns that were updated."
           },
           {
             name: "updatedCells",
             type: "number",
+            required: false,
             valueType: "Number of cells updated",
             description: "The total number of cells that were updated."
           },
           {
             name: "success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if the data was successfully written, false otherwise."
           },
           {
             name: "error",
             type: "string",
+            required: false,
             valueType: "Error message if failed",
             description: "Contains the error message if the operation failed, null if successful."
           }

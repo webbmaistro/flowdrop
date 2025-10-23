@@ -97,24 +97,28 @@ export default function GoogleSheetsReadNode() {
           {
             name: "values",
             type: "array",
+            required: false,
             valueType: "2D array of cell values",
             description: "The data read from the spreadsheet as a 2D array. Each row is an array of cell values. Empty cells are represented as empty strings."
           },
           {
             name: "range",
             type: "string",
+            required: false,
             valueType: "The range that was read",
             description: "The actual range that was read from the spreadsheet, which may differ slightly from the input range."
           },
           {
             name: "success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if the data was successfully read, false otherwise."
           },
           {
             name: "error",
             type: "string",
+            required: false,
             valueType: "Error message if failed",
             description: "Contains the error message if the operation failed, null if successful."
           }

@@ -112,6 +112,7 @@ export default function IfElseNode() {
           {
             name: "condition",
             type: "boolean",
+            required: false,
             valueType: "Result of the comparison",
             description: "The boolean result of the comparison operation. True if the condition is met, false otherwise. This value is also used to determine which branch path to execute."
           }

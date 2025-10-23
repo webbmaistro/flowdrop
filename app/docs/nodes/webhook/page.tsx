@@ -118,12 +118,14 @@ export default function WebhookNode() {
           {
             name: "Request Body",
             type: "JSON",
+            required: false,
             valueType: "The body of the incoming request",
             description: "Contains the request body data sent to the webhook. This is typically JSON data but can handle any format. Use this to access the payload sent by the external service that triggered the webhook."
           },
           {
             name: "Request Headers",
             type: "JSON",
+            required: false,
             valueType: "The headers of the incoming request",
             description: "Contains the HTTP headers from the incoming request, merged with any configured custom headers. Incoming headers take precedence over configured headers. Useful for accessing authentication tokens, content types, and other request metadata."
           }

@@ -92,24 +92,28 @@ export default function GoogleDocsReadNode() {
           {
             name: "Document Content",
             type: "JSON",
+            required: false,
             valueType: "The full content of the document",
             description: "Contains the complete document content in JSON format, including all text, formatting, and structural elements. This represents the document's body content as returned by the Google Docs API."
           },
           {
             name: "Document Title",
             type: "string",
+            required: false,
             valueType: "The title of the document",
             description: "The human-readable title of the Google Doc as it appears in Google Docs. Useful for identifying and referencing the document in your workflows."
           },
           {
             name: "Document ID",
             type: "string",
+            required: false,
             valueType: "The ID of the document that was read",
             description: "The unique identifier of the document that was successfully read. This confirms which specific document was processed and can be used for logging or reference purposes."
           },
           {
             name: "Success",
             type: "boolean",
+            required: false,
             valueType: "Whether the operation succeeded",
             description: "Boolean value indicating whether the Google Docs read operation was successful. Use this to implement error handling and retry logic in your workflows."
           }
@@ -117,54 +121,54 @@ export default function GoogleDocsReadNode() {
       />
 
       <TechnicalDetailsSection
-        sections={[
+        details={[
           {
             title: "Document Reading Process",
             description: "How the node fetches and processes Google Docs content",
-            details: [
+            items: [
               {
-                subtitle: "Input Validation",
-                content: "The node first validates the document ID input. Ensures document ID is provided, returns null content and false success if missing, and prevents API calls with invalid inputs."
+                title: "Input Validation",
+                description: "The node first validates the document ID input. Ensures document ID is provided, returns null content and false success if missing, and prevents API calls with invalid inputs."
               },
               {
-                subtitle: "User Authentication",
-                content: "Retrieves the user ID from the workflow service and obtains their Google OAuth access token for secure API access to Google Docs."
+                title: "User Authentication",
+                description: "Retrieves the user ID from the workflow service and obtains their Google OAuth access token for secure API access to Google Docs."
               }
             ]
           },
           {
             title: "Google Docs API Integration",
             description: "How the node interfaces with Google's document services",
-            details: [
+            items: [
               {
-                subtitle: "Document Retrieval",
-                content: "Uses the Google Docs API to fetch the specified document with the 'DEFAULT_FOR_CURRENT_ACCESS' format, which provides the most comprehensive content representation."
+                title: "Document Retrieval",
+                description: "Uses the Google Docs API to fetch the specified document with the 'DEFAULT_FOR_CURRENT_ACCESS' format, which provides the most comprehensive content representation."
               },
               {
-                subtitle: "Content Extraction",
-                content: "Extracts the document body content and title from the API response, providing both the structured content and metadata for downstream processing."
+                title: "Content Extraction",
+                description: "Extracts the document body content and title from the API response, providing both the structured content and metadata for downstream processing."
               },
               {
-                subtitle: "Response Formatting",
-                content: "Returns the content in JSON format, preserving the document's structure and formatting information as provided by Google's API."
+                title: "Response Formatting",
+                description: "Returns the content in JSON format, preserving the document's structure and formatting information as provided by Google's API."
               }
             ]
           },
           {
             title: "Dynamic Document Selection",
             description: "How the node provides dynamic options for document selection",
-            details: [
+            items: [
               {
-                subtitle: "Document Listing",
-                content: "Implements the getDynamicSelectOptions method to fetch available Google Docs and provide them as selectable options in the UI."
+                title: "Document Listing",
+                description: "Implements the getDynamicSelectOptions method to fetch available Google Docs and provide them as selectable options in the UI."
               },
               {
-                subtitle: "User-Specific Access",
-                content: "Only shows documents that the authenticated user has access to, ensuring proper security and access control."
+                title: "User-Specific Access",
+                description: "Only shows documents that the authenticated user has access to, ensuring proper security and access control."
               },
               {
-                subtitle: "Error Handling",
-                content: "Gracefully handles authentication failures and API errors, returning an empty options list when document fetching fails."
+                title: "Error Handling",
+                description: "Gracefully handles authentication failures and API errors, returning an empty options list when document fetching fails."
               }
             ]
           }

@@ -76,12 +76,14 @@ export default function TriggerNode() {
           {
             name: "Execution Time",
             type: "string",
+            required: false,
             valueType: "Timestamp when execution started",
             description: "ISO 8601 timestamp of when this manual execution started. Useful for logging and tracking runs."
           },
           {
             name: "Initial Data",
             type: "JSON (optional)",
+            required: false,
             valueType: "Payload provided at run start",
             description: "Includes the optional payload passed when the workflow was started. If not provided, this will be empty."
           }

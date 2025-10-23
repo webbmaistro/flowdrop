@@ -80,18 +80,21 @@ export default function FetchWebpageNode() {
           {
             name: "Content",
             type: "string",
+            required: false,
             valueType: "The cleaned webpage content",
             description: "The extracted and cleaned content from the webpage. Scripts and style tags have been removed for easier processing."
           },
           {
             name: "Success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if the webpage was successfully fetched and processed, false otherwise."
           },
           {
             name: "Error",
             type: "string",
+            required: false,
             valueType: "Error message if failed",
             description: "Contains the error message if the operation failed, null if successful."
           }

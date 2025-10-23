@@ -94,18 +94,21 @@ export default function HttpRequestNode() {
           {
             name: "Response",
             type: "JSON or string",
+            required: false,
             valueType: "The response from the API",
             description: "The response body from the HTTP request. Automatically parsed as JSON if possible, otherwise returned as text."
           },
           {
             name: "Status Code",
             type: "number",
+            required: false,
             valueType: "HTTP status code",
             description: "The HTTP status code returned by the server (e.g., 200 for success, 404 for not found, 500 for server error)."
           },
           {
             name: "Headers",
             type: "JSON",
+            required: false,
             valueType: "Response headers",
             description: "The HTTP headers returned by the server. Useful for accessing content type, rate limits, and other metadata."
           }

@@ -98,12 +98,14 @@ export default function ScheduleNode() {
           {
             name: "executionTime",
             type: "string",
+            required: false,
             valueType: "ISO 8601 timestamp",
             description: "The exact timestamp when this scheduled execution was triggered. Useful for logging, tracking, and time-based logic in workflows."
           },
           {
             name: "milliseconds",
             type: "number",
+            required: false,
             valueType: "Milliseconds since epoch",
             description: "The execution time in milliseconds since Unix epoch. Provides precise timing for calculations and comparisons."
           }

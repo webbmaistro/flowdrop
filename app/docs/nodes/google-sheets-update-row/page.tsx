@@ -93,24 +93,28 @@ export default function GoogleSheetsUpdateRowNode() {
           {
             name: "Result",
             type: "object",
+            required: false,
             valueType: "Update result object",
             description: "Contains the result of the update operation, including the updated range, number of cells updated, and success status."
           },
           {
             name: "Updated Range",
             type: "string",
+            required: false,
             valueType: "The range that was updated",
             description: "The actual range that was updated in the spreadsheet."
           },
           {
             name: "Updated Cells",
             type: "number",
+            required: false,
             valueType: "Number of cells updated",
             description: "The total number of cells that were updated."
           },
           {
             name: "Success",
             type: "boolean",
+            required: false,
             valueType: "Operation success status",
             description: "Returns true if the row was successfully updated, false otherwise."
           }
