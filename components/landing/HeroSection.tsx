@@ -49,6 +49,27 @@ export default function HeroSection() {
                 <p className="text-text-secondary text-sm">Try free — no credit card required</p>
               </div>
             </motion.div>
+            <motion.div variants={itemVariants} className="mt-4">
+              <a 
+                href="https://www.producthunt.com/products/flowdrop?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-flowdrop" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block group"
+              >
+                <div className="relative rounded-full p-[2px] bg-orange-500 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                  <div className="bg-white rounded-full overflow-hidden flex items-center justify-center" style={{ padding: '2px 10px' }}>
+                    <img 
+                      src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1029484&theme=light&t=1761780106676" 
+                      alt="Flowdrop - Cursor for workflows, automate anything with chat | Product Hunt" 
+                      width="250" 
+                      height="54"
+                      className="block scale-[1.15]"
+                      style={{ maxWidth: '100%', height: 'auto' }}
+                    />
+                  </div>
+                </div>
+              </a>
+            </motion.div>
             <motion.div variants={itemVariants} className="w-screen mt-8 -mx-4 md:-mx-6 lg:-mx-8">
               <SlidingBanner duration={15} direction="left" repeat={4} className="py-4" />
             </motion.div>
