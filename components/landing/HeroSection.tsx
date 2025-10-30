@@ -56,14 +56,14 @@ export default function HeroSection() {
                 rel="noopener noreferrer"
                 className="inline-block group"
               >
-                <div className="relative rounded-full p-[2px] bg-orange-500 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="bg-white rounded-full overflow-hidden flex items-center justify-center" style={{ padding: '2px 10px' }}>
+                <div className="relative rounded-full p-[2px] bg-orange-500 shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105 h-[54px]">
+                  <div className="bg-white rounded-full overflow-hidden flex items-center justify-center h-full px-4">
                     <img 
                       src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1029484&theme=light&t=1761780106676" 
                       alt="Flowdrop - Cursor for workflows, automate anything with chat | Product Hunt" 
                       width="250" 
                       height="54"
-                      className="block scale-[1.15]"
+                      className="block scale-[1.2]"
                       style={{ maxWidth: '100%', height: 'auto' }}
                     />
                   </div>
