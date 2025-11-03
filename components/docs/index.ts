@@ -10,3 +10,4 @@ export { default as NodeConfigurationSection } from './NodeConfigurationSection'
 export { default as ExampleCard } from './ExampleCard';
 export { default as RelatedResourcesSection } from './RelatedResourcesSection';
 export { default as TechnicalDetailsSection } from './TechnicalDetailsSection';
+export { default as ExpressionCard } from './ExpressionCard';
