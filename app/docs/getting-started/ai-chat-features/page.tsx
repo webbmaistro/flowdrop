@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageSquare, Bot, Zap, Settings, Wrench, CheckCircle, ArrowRight, Play, Sparkles, Code, AlertTriangle } from 'lucide-react';
+import { MessageSquare, Bot, Zap, Settings, Wrench, CheckCircle, ArrowRight, Play, Sparkles, Code, AlertTriangle, History, Eye, Bug, TrendingUp } from 'lucide-react';
 import { typography } from '@/lib/styles';
 import { cn } from '@/lib/utils';
 import Callout from "@/components/ui/Callout";
 
 export default function AIChatFeaturesPage() {
-  const placeholderVideoId = "PLACEHOLDER_VIDEO_ID"; // Replace with actual YouTube video ID when ready
+  const videoId = "gi83wK857bo"; // AI Chat Guide Video
   
   const aiAssistantFeatures = [
     {
@@ -107,32 +107,33 @@ export default function AIChatFeaturesPage() {
       {/* Header */}
       <div className="mb-12">
         <h1 className={cn(typography.h1, "mb-4")}>
-          AI Chat Features
+          Building with AI
         </h1>
         <p className={cn(typography.bodyLarge, "text-text-secondary mb-8")}>
-          Discover how Flowdrop's AI Assistant and Webby AI Chat Copilot can help you build, enhance, and troubleshoot your automation workflows with natural language conversations.
+          Learn how to use Flowdrop's AI Assistant to create workflows in one shot, upgrade existing workflows, 
+          and debug issues using execution history and error visibility. The AI chat has complete context 
+          over your workflow's execution data, making it incredibly powerful for automation.
         </p>
       </div>
 
-      {/* Placeholder Video Section */}
+      {/* Video Section */}
       <div className="mb-16">
         <h2 className={cn(typography.h2, "mb-6")}>
-          AI Chat in Action
+          Watch: AI Chat Guide
         </h2>
-        
         <div className="relative group">
           <div className="relative aspect-video w-full max-w-4xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl bg-gradient-to-br from-primary-main/10 to-purple-700/10 border border-primary-main/20">
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-neutral-800 to-neutral-900">
-              <div className="text-center">
-                <Play className="w-16 h-16 text-primary-main mx-auto mb-4" />
-                <h3 className={cn(typography.h3, "text-text-primary mb-2")}>
-                  AI Chat Features Demo
-                </h3>
-                <p className={cn(typography.body, "text-text-secondary")}>
-                  Video coming soon - watch how AI transforms your automation workflow creation
-                </p>
-              </div>
-            </div>
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&enablejsapi=1`}
+              title="AI Chat Guide"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+            
+            {/* Play overlay for better UX */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
           </div>
 
           {/* Decorative elements */}
@@ -256,6 +257,292 @@ export default function AIChatFeaturesPage() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </div>
+
+      {/* Execution History & Error Visibility Section */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 bg-blue-500/20 rounded-xl">
+            <History className="w-6 h-6 text-blue-400" />
+          </div>
+          <h2 className={cn(typography.h2, "text-text-primary")}>
+            Execution History & Error Visibility
+          </h2>
+        </div>
+        
+        <p className={cn(typography.bodyLarge, "text-text-secondary mb-8")}>
+          The AI chat has complete visibility into your workflow's execution history, including all node outputs, 
+          errors, and execution states. This contextual awareness allows the AI to provide intelligent suggestions 
+          and fixes based on real execution data.
+        </p>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-blue-500/20 rounded-lg">
+                <History className="w-5 h-5 text-blue-400" />
+              </div>
+              <h3 className={cn(typography.h3, "text-text-primary")}>
+                Full Execution History
+              </h3>
+            </div>
+            
+            <p className={cn(typography.body, "text-text-secondary mb-4")}>
+              The AI can see every execution of your workflow, including:
+            </p>
+            
+            <ul className="space-y-2">
+              {[
+                "Complete execution timelines",
+                "All node outputs and data",
+                "Execution status and outcomes",
+                "Performance metrics and timing",
+                "Data flow between nodes"
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-red-500/20 rounded-lg">
+                <AlertTriangle className="w-5 h-5 text-red-400" />
+              </div>
+              <h3 className={cn(typography.h3, "text-text-primary")}>
+                Error Visibility
+              </h3>
+            </div>
+            
+            <p className={cn(typography.body, "text-text-secondary mb-4")}>
+              The AI can identify and help fix errors from individual nodes:
+            </p>
+            
+            <ul className="space-y-2">
+              {[
+                "Node-specific error messages",
+                "Authentication failures",
+                "Data validation errors",
+                "API rate limit issues",
+                "Configuration problems"
+              ].map((item, index) => (
+                <li key={index} className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 bg-red-400 rounded-full mt-2 flex-shrink-0" />
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        <Callout emoji="🔍" color="border-blue-500">
+          <strong>Context-Aware Debugging:</strong> When you ask the AI to fix an error, it can see exactly which node failed, 
+          what the error was, what data was passed to that node, and suggest precise fixes based on the execution context.
+        </Callout>
+      </div>
+
+      {/* Getting Started Guide Section */}
+      <div className="mb-16">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="p-3 bg-green-500/20 rounded-xl">
+            <TrendingUp className="w-6 h-6 text-green-400" />
+          </div>
+          <h2 className={cn(typography.h2, "text-text-primary")}>
+            Building with AI Chat
+          </h2>
+        </div>
+
+        <div className="space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-primary-main/20 rounded-full flex items-center justify-center text-primary-main font-bold">
+                1
+              </div>
+              <h3 className={cn(typography.h3, "text-text-primary")}>
+                Creating Workflows with One-Shot Generation
+              </h3>
+            </div>
+            
+            <div className="space-y-3">
+              <p className={cn(typography.body, "text-text-secondary")}>
+                Use the AI Assistant to create complete workflows in one conversation:
+              </p>
+              <ol className="space-y-2 ml-4">
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-primary-main/20 text-primary-main rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    1
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Open the AI chat in your workflow editor
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-primary-main/20 text-primary-main rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    2
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Describe what you want to automate in natural language
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-primary-main/20 text-primary-main rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    3
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Optionally upload files or provide context for better results
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-primary-main/20 text-primary-main rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    4
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Review and test the generated workflow
+                  </span>
+                </li>
+              </ol>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold">
+                2
+              </div>
+              <h3 className={cn(typography.h3, "text-text-primary")}>
+                Upgrading Existing Workflows
+              </h3>
+            </div>
+            
+            <div className="space-y-3">
+              <p className={cn(typography.body, "text-text-secondary")}>
+                Use the AI Chat Copilot to enhance and upgrade your workflows:
+              </p>
+              <ol className="space-y-2 ml-4">
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    1
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Open your existing workflow in the editor
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    2
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Describe what you want to add or change (e.g., "Add error handling", "Add AI categorization")
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    3
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    The AI analyzes your workflow and suggests improvements
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-purple-500/20 text-purple-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    4
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Review and apply the suggested changes
+                  </span>
+                </li>
+              </ol>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="bg-neutral-800/50 rounded-xl p-6 border border-neutral-700"
+          >
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 bg-red-500/20 rounded-full flex items-center justify-center text-red-400 font-bold">
+                3
+              </div>
+              <h3 className={cn(typography.h3, "text-text-primary")}>
+                Debugging with Execution History
+              </h3>
+            </div>
+            
+            <div className="space-y-3">
+              <p className={cn(typography.body, "text-text-secondary")}>
+                Leverage the AI's visibility into execution history to debug issues:
+              </p>
+              <ol className="space-y-2 ml-4">
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    1
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Run your workflow and check for any errors
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    2
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Open the AI chat - it automatically sees all execution history and errors
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    3
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    Ask questions like "Why did this node fail?" or "Fix the authentication error"
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="w-5 h-5 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center text-xs font-semibold mt-0.5 flex-shrink-0">
+                    4
+                  </span>
+                  <span className={cn(typography.bodySmall, "text-text-secondary")}>
+                    The AI provides context-aware fixes based on the actual execution data
+                  </span>
+                </li>
+              </ol>
+            </div>
+          </motion.div>
         </div>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { PlayCircle, Zap, Cog, GitMerge, User } from "lucide-react";
+import { PlayCircle, Zap, Cog, GitMerge, User, Code, BookOpen, Layers } from "lucide-react";
 import SidebarLink from "@/components/ui/SidebarLink";
 import CollapsibleSection from "@/components/ui/CollapsibleSection";
 
@@ -10,10 +10,19 @@ const nav = [
   { href: "/docs/workflow-editor-comparison", label: "Workflow Editor Comparison" },
 ];
 
+const javascriptExpressions = [
+  { href: "/docs/javascript-expressions", label: "Overview" },
+  { href: "/docs/javascript-expressions/string-utilities", label: "String Utilities" },
+  { href: "/docs/javascript-expressions/array-utilities", label: "Array Utilities" },
+  { href: "/docs/javascript-expressions/object-utilities", label: "Object Utilities" },
+  { href: "/docs/javascript-expressions/type-utilities", label: "Type/Utility Helpers" },
+];
+
 const gettingStarted = [
   { href: "/docs/getting-started", label: "Flowdrop App Tour" },
   { href: "/docs/getting-started/quick-start", label: "Quick Start Guide" },
   { href: "/docs/getting-started/first-workflow", label: "Your First Workflow" },
+  { href: "/docs/getting-started/ai-chat-features", label: "Building with AI" },
   { href: "/docs/getting-started/understanding-node-types", label: "Node Types Explained" },
   { href: "/docs/getting-started/best-practices", label: "Best Practices" },
 ];
@@ -149,11 +158,13 @@ export default function Sidebar() {
   
   return (
     <aside className="hidden md:flex flex-col w-64 border-r border-neutral-800 bg-neutral-950/80">
-      <nav className="flex-1 pt-24 pb-8 space-y-2">
+        <nav className="flex-1 pt-24 pb-8 space-y-2">
         {/* Getting Started Section - Moved to top */}
         <CollapsibleSection 
           title="Getting Started" 
           defaultOpen={shouldSectionBeOpen(gettingStarted)}
+          icon={BookOpen}
+          iconColor="text-primary-main"
         >
           {gettingStarted.map((item) => (
             <SidebarLink
@@ -179,6 +190,26 @@ export default function Sidebar() {
           ))}
         </div>
         
+        {/* JavaScript Expressions Section */}
+        <div className="pt-6 border-t border-neutral-800">
+          <CollapsibleSection 
+            title="JavaScript Expressions" 
+            defaultOpen={shouldSectionBeOpen(javascriptExpressions)}
+            icon={Code}
+            iconColor="text-primary-main"
+          >
+            {javascriptExpressions.map((item) => (
+              <SidebarLink
+                key={item.href}
+                href={item.href}
+                active={pathname === item.href}
+              >
+                {item.label}
+              </SidebarLink>
+            ))}
+          </CollapsibleSection>
+        </div>
+        
         {/* Node Library Section */}
         <div className="pt-6 border-t border-neutral-800">
           {/* Browse All Nodes Button */}
@@ -192,6 +223,8 @@ export default function Sidebar() {
           <CollapsibleSection 
             title="Node Library" 
             defaultOpen={shouldNodeLibraryBeOpen()}
+            icon={Layers}
+            iconColor="text-primary-main"
           >
             {/* Workflow Triggers */}
             <CollapsibleSection 
