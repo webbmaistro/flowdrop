@@ -77,7 +77,9 @@ export default function PricingPage() {
         '10,000 credits/month',
         '5 seats included',
         'Premium model access',
-        'Enables model selectors'
+        'Enables model selectors',
+        'Custom integration',
+        'Dedicated support'
       ],
       cta: 'Get Started',
       ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/settings?page=billing'
@@ -95,7 +97,8 @@ export default function PricingPage() {
         'Unlimited seats',
         'Custom pricing',
         'Dedicated support',
-        'Custom integrations'
+        'Custom integrations',
+        'Enables model selectors'
       ],
       cta: 'Get Started',
       ctaAction: () => window.location.href = 'https://app.flowdrop.xyz/settings?page=billing'
