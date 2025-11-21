@@ -390,7 +390,7 @@ export default function PricingPage() {
                 <CardContent className="pt-6">
                   <h3 className="text-lg font-semibold mb-3">Do unused credits roll over?</h3>
                   <p className={typography.body}>
-                    Monthly plan credits reset each month. Additional purchased credits never expire and roll over indefinitely.
+                    Free tier credits reset each month. Premium plans retain all credits. Your monthly allocation adds to your total balance and never expires.
                   </p>
                 </CardContent>
               </Card>
