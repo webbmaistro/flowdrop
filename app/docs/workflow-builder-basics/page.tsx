@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Script from 'next/script';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Workflow, MousePointer, Layers, Zap, Play, Bug, CheckCircle, ArrowRight, Puzzle, Link2, Settings, TestTube, Sparkles, Clock, GitBranch, Database, Code } from 'lucide-react';
 import { Button, Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui';
@@ -651,18 +652,18 @@ export default function WorkflowBuilderBasics() {
                 You now have all the fundamentals you need to create powerful automated workflows. Start with something simple, test thoroughly, and iterate based on what you learn.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button asChild>
-                  <a href="/docs/getting-started/first-workflow" className="flex items-center gap-2">
+                <Link href="/docs/getting-started/first-workflow">
+                  <Button className="flex items-center gap-2">
                     Your First Workflow Tutorial
                     <ArrowRight className="w-4 h-4" />
-                  </a>
-                </Button>
-                <Button variant="outline" asChild>
-                  <a href="/docs/nodes" className="flex items-center gap-2">
+                  </Button>
+                </Link>
+                <Link href="/docs/nodes">
+                  <Button variant="outline" className="flex items-center gap-2">
                     Browse Node Library
                     <Layers className="w-4 h-4" />
-                  </a>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </div>
           </section>
