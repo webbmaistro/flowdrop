@@ -190,26 +190,6 @@ export default function Sidebar() {
           ))}
         </div>
         
-        {/* JavaScript Expressions Section */}
-        <div className="pt-6 border-t border-neutral-800">
-          <CollapsibleSection 
-            title="JavaScript Expressions" 
-            defaultOpen={shouldSectionBeOpen(javascriptExpressions)}
-            icon={Code}
-            iconColor="text-primary-main"
-          >
-            {javascriptExpressions.map((item) => (
-              <SidebarLink
-                key={item.href}
-                href={item.href}
-                active={pathname === item.href}
-              >
-                {item.label}
-              </SidebarLink>
-            ))}
-          </CollapsibleSection>
-        </div>
-        
         {/* Node Library Section */}
         <div className="pt-6 border-t border-neutral-800">
           {/* Browse All Nodes Button */}
@@ -525,6 +505,26 @@ export default function Sidebar() {
             ))}
           </CollapsibleSection>
         </CollapsibleSection>
+        </div>
+        
+        {/* JavaScript Expressions Section */}
+        <div className="pt-6 border-t border-neutral-800">
+          <CollapsibleSection 
+            title="JavaScript Expressions" 
+            defaultOpen={shouldSectionBeOpen(javascriptExpressions)}
+            icon={Code}
+            iconColor="text-primary-main"
+          >
+            {javascriptExpressions.map((item) => (
+              <SidebarLink
+                key={item.href}
+                href={item.href}
+                active={pathname === item.href}
+              >
+                {item.label}
+              </SidebarLink>
+            ))}
+          </CollapsibleSection>
         </div>
       </nav>
     </aside>
