@@ -6,9 +6,9 @@ import { blogStyles } from '@/components/blog/blog-styles';
 import Link from 'next/link';
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const categories = getAllCategories();
-  const category = categories.find((cat) => cat.slug === params.slug);
+  const category = categories.find((cat) => cat.slug === slug);
 
   if (!category) {
     return {
@@ -52,9 +53,10 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { slug } = await params;
   const categories = getAllCategories();
-  const category = categories.find((cat) => cat.slug === params.slug);
+  const category = categories.find((cat) => cat.slug === slug);
 
   if (!category) {
     notFound();
@@ -110,7 +112,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
               key={cat.slug}
               href={`/blog/category/${cat.slug}`}
               className={`${blogStyles.badge.base} ${
-                cat.slug === params.slug ? blogStyles.badge.category : blogStyles.badge.tag
+                cat.slug === slug ? blogStyles.badge.category : blogStyles.badge.tag
               }`}
             >
               {cat.name} ({cat.count})

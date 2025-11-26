@@ -6,9 +6,9 @@ import { blogStyles } from '@/components/blog/blog-styles';
 import Link from 'next/link';
 
 interface TagPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams() {
@@ -19,8 +19,9 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {
+  const { slug } = await params;
   const tags = getAllTags();
-  const tag = tags.find((t) => t.slug === params.slug);
+  const tag = tags.find((t) => t.slug === slug);
 
   if (!tag) {
     return {
@@ -52,9 +53,10 @@ export async function generateMetadata({ params }: TagPageProps): Promise<Metada
   };
 }
 
-export default function TagPage({ params }: TagPageProps) {
+export default async function TagPage({ params }: TagPageProps) {
+  const { slug } = await params;
   const tags = getAllTags();
-  const tag = tags.find((t) => t.slug === params.slug);
+  const tag = tags.find((t) => t.slug === slug);
 
   if (!tag) {
     notFound();
@@ -118,7 +120,7 @@ export default function TagPage({ params }: TagPageProps) {
                 key={t.slug}
                 href={`/blog/tag/${t.slug}`}
                 className={`${blogStyles.badge.base} ${
-                  t.slug === params.slug ? blogStyles.badge.category : blogStyles.badge.tag
+                  t.slug === slug ? blogStyles.badge.category : blogStyles.badge.tag
                 }`}
               >
                 {t.name} ({t.count})
