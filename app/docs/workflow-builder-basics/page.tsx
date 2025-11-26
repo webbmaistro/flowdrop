@@ -302,7 +302,7 @@ export default function WorkflowBuilderBasics() {
       <div className="max-w-4xl mx-auto">
         {/* SEO-Rich Header */}
         <header className="mb-12">
-          <h1 className="text-3xl font-bold mb-2">
+          <h1 className={cn(typography.h1, 'mb-4')}>
             Workflow Builder Basics: Your Complete Guide
           </h1>
           <p className="mb-6 text-neutral-300">

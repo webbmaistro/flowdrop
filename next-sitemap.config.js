@@ -10,6 +10,46 @@ module.exports = {
     '/dashboard',
   ],
   additionalPaths: async (config) => {
+    // Import blog functions
+    const { getAllPostSlugs, getAllCategories, getAllTags } = require('./lib/blog');
+    const fs = require('fs');
+    const path = require('path');
+    
+    // Get blog data
+    const postSlugs = getAllPostSlugs();
+    const categories = getAllCategories();
+    const tags = getAllTags();
+    
+    // Generate blog post paths
+    const blogPosts = postSlugs.map((slug) => {
+      const filePath = path.join(process.cwd(), 'content/blog', `${slug}.md`);
+      const stats = fs.existsSync(filePath) ? fs.statSync(filePath) : null;
+      const lastmod = stats ? stats.mtime.toISOString().split('T')[0] : '2025-11-25';
+      
+      return {
+        loc: `/blog/${slug}`,
+        lastmod,
+        changefreq: 'weekly',
+        priority: '0.6',
+      };
+    });
+    
+    // Generate category paths
+    const categoryPaths = categories.map((category) => ({
+      loc: `/blog/category/${category.slug}`,
+      lastmod: '2025-11-25',
+      changefreq: 'weekly',
+      priority: '0.7',
+    }));
+    
+    // Generate tag paths
+    const tagPaths = tags.map((tag) => ({
+      loc: `/blog/tag/${tag.slug}`,
+      lastmod: '2025-11-25',
+      changefreq: 'monthly',
+      priority: '0.6',
+    }));
+    
     return [
       // Main Pages (most recent)
       {
@@ -24,6 +64,16 @@ module.exports = {
         changefreq: 'monthly',
         priority: '0.8',
       },
+      // Blog Pages
+      {
+        loc: '/blog',
+        lastmod: '2025-11-25',
+        changefreq: 'weekly',
+        priority: '0.8',
+      },
+      ...blogPosts,
+      ...categoryPaths,
+      ...tagPaths,
       {
         loc: '/contact',
         lastmod: '2025-09-25',

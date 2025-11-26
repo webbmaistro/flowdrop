@@ -102,7 +102,7 @@ export default function WorkflowEditorComparison() {
           }}
         />
       </Head>
-      <div className="space-y-12">
+      <div className="max-w-4xl mx-auto space-y-12">
         <div>
           <h1 className={cn(typography.h1, 'mb-8')}>AI Workflow Builders in 2025 Zapier vs Make vs n8n vs Gumloop vs Flowise vs Lindy vs Relevance AI — and where Flowdrop fits</h1>
           {/* Table of Contents */}
