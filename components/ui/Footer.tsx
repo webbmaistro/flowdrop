@@ -48,15 +48,6 @@ const Footer: React.FC = () => {
               >
                 Terms of Service
               </a>
-              <div className="hidden sm:block text-gray-400">•</div>
-              <a
-                href="https://fast-wan.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-gray-600 hover:text-gray-500 transition-colors duration-200 underline hover:no-underline"
-              >
-                Partnership: Fast Wan
-              </a>
             </motion.div>
           </div>
         </div>
