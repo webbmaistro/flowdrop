@@ -8,7 +8,8 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
-    "screenshots": "node scripts/manage-screenshots.js"
+    "screenshots": "node scripts/manage-screenshots.js",
+    "validate-docs": "tsx scripts/validate-docs-metadata.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.49.8",
@@ -52,6 +53,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.10",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
