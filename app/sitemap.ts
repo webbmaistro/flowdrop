@@ -49,9 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const docRoutes: MetadataRoute.Sitemap = Object.values(docsMetadata).map((doc) => {
     // Determine priority based on path depth and type
     let priority = 0.7;
-    if (doc.path === '/docs') {
-      priority = 0.8;
-    } else if (doc.path.includes('/getting-started')) {
+    if (doc.path.includes('/getting-started')) {
       priority = 0.75;
     } else if (doc.type === 'article') {
       priority = 0.8; // Higher priority for article-type content
