@@ -1,3 +1,16 @@
+/**
+ * Main Docs Layout
+ * 
+ * 🚀 ADDING A NEW DOCS PAGE?
+ * See: docs/ADDING_NEW_DOCS_PAGE.md for quick 3-step guide
+ * 
+ * Or follow these steps:
+ * 1. Add config to: lib/docs-metadata-config.ts
+ * 2. Create layout.tsx (see lib/docs-metadata-config.ts for template)
+ * 3. Create your page.tsx as normal
+ * 4. Run: npm run validate-docs (to check everything)
+ */
+
 import React from "react";
 import Sidebar from "./Sidebar";
 
