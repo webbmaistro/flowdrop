@@ -33,7 +33,7 @@ export function generateDocsMetadata(config: DocsMetadataConfig): Metadata {
   return {
     title: fullTitle,
     description,
-    keywords: keywords.length > 0 ? keywords : undefined,
+    keywords: keywords.length > 0 ? [...keywords] : undefined,
     openGraph: {
       title,
       description,
