@@ -9,7 +9,7 @@
 
 ### Key Files
 - **Metadata Config**: `lib/docs-metadata-config.ts` (add your page here)
-- **Layout Template**: `app/docs/_templates/layout.template.tsx` (copy this)
+- **Layout Template**: `docs/templates/layout.template.tsx` (copy this)
 - **Metadata Utilities**: `lib/metadata.ts` (utility functions)
 
 ### Commands
@@ -72,7 +72,7 @@ Checks:
 
 ### Template File
 ```bash
-cp app/docs/_templates/layout.template.tsx app/docs/my-new-page/layout.tsx
+cp docs/templates/layout.template.tsx app/docs/my-new-page/layout.tsx
 ```
 
 Pre-configured template with all the imports and structure you need.

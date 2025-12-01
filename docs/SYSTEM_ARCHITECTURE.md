@@ -86,9 +86,6 @@ flowdrop/
 │   │
 │   ├── layout.tsx                       # Main docs layout (has helper comment)
 │   │
-│   ├── _templates/                      # 🎯 Copy these when adding pages
-│   │   └── layout.template.tsx          # Pre-configured template
-│   │
 │   ├── getting-started/
 │   │   ├── layout.tsx                   # 3 lines - uses shared config
 │   │   ├── page.tsx                     # Your content (can be client component)
@@ -111,7 +108,9 @@ flowdrop/
 │   ├── ADDING_NEW_DOCS_PAGE.md          # ⭐ Quick 3-step guide
 │   ├── SEO_METADATA_GUIDE.md            # Complete documentation
 │   ├── SEO_IMPLEMENTATION_SUMMARY.md    # What we built and why
-│   └── SYSTEM_ARCHITECTURE.md           # This file - visual overview
+│   ├── SYSTEM_ARCHITECTURE.md           # This file - visual overview
+│   └── templates/
+│       └── layout.template.tsx          # 🎯 Copy this when adding pages
 │
 └── package.json                         # Scripts
     └── "validate-docs": "tsx scripts/validate-docs-metadata.ts"
@@ -334,7 +333,7 @@ Total: 20+ meta tags from ONE line of code! 🎉
 ║  🔑 KEY FILES:                                                    ║
 ║     lib/docs-metadata-config.ts  (all configs)                    ║
 ║     lib/metadata.ts              (utilities)                      ║
-║     app/docs/_templates/         (templates)                      ║
+║     docs/templates/              (templates)                      ║
 ║                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════╝
 ```
@@ -343,7 +342,7 @@ Total: 20+ meta tags from ONE line of code! 🎉
 
 1. **Read**: `docs/ADDING_NEW_DOCS_PAGE.md`
 2. **Bookmark**: `lib/docs-metadata-config.ts`
-3. **Copy**: `app/docs/_templates/layout.template.tsx` when adding pages
+3. **Copy**: `docs/templates/layout.template.tsx` when adding pages
 4. **Run**: `npm run validate-docs` before committing
 5. **Test**: Check your page's source code in browser
 

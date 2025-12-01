@@ -30,7 +30,7 @@ export const docsMetadata = {
 **Option A - Copy Template:**
 ```bash
 # From your terminal
-cp app/docs/_templates/layout.template.tsx app/docs/my-new-page/layout.tsx
+cp docs/templates/layout.template.tsx app/docs/my-new-page/layout.tsx
 ```
 
 Then edit `app/docs/my-new-page/layout.tsx`:
