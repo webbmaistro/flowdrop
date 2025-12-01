@@ -4,11 +4,13 @@ interface DocsMetadataConfig {
   title: string;
   description: string;
   path: string; // relative path like '/docs/getting-started'
-  keywords?: string[];
+  keywords?: readonly string[];
   image?: string;
   type?: 'article' | 'website';
   datePublished?: string;
   dateModified?: string;
+  wordCount?: number;
+  timeRequired?: string;
 }
 
 /**
