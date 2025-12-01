@@ -9,7 +9,7 @@
 
 ### Key Files
 - **Metadata Config**: `lib/docs-metadata-config.ts` (add your page here)
-- **Layout Template**: `docs/templates/layout.template.tsx` (copy this)
+- **Layout Template**: See examples in `lib/docs-metadata-config.ts` and existing layout files
 - **Metadata Utilities**: `lib/metadata.ts` (utility functions)
 
 ### Commands
@@ -70,12 +70,24 @@ Checks:
 - Path consistency
 - No duplicate paths
 
-### Template File
-```bash
-cp docs/templates/layout.template.tsx app/docs/my-new-page/layout.tsx
-```
+### Layout File Template
 
-Pre-configured template with all the imports and structure you need.
+Create `app/docs/my-new-page/layout.tsx` with this structure:
+
+```typescript
+import { generateDocsMetadata } from '@/lib/metadata';
+import { docsMetadata } from '@/lib/docs-metadata-config';
+
+export const metadata = generateDocsMetadata(docsMetadata.myNewPage);
+
+export default function MyNewPageLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <>{children}</>;
+}
+```
 
 ## 🤔 Common Questions
 
@@ -112,7 +124,7 @@ A: Edit `lib/docs-metadata-config.ts` - changes apply everywhere automatically.
 
 ## 💡 Pro Tips
 
-- Use the template file (`app/docs/_templates/layout.template.tsx`)
+- Reference existing layout files for the correct structure
 - Keep titles under 60 characters
 - Keep descriptions between 150-160 characters
 - Use 5-10 targeted keywords

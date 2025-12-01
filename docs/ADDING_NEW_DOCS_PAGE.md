@@ -27,13 +27,8 @@ export const docsMetadata = {
 
 ### Step 2: Create Layout File
 
-**Option A - Copy Template:**
-```bash
-# From your terminal
-cp docs/templates/layout.template.tsx app/docs/my-new-page/layout.tsx
-```
+Create `app/docs/my-new-page/layout.tsx`:
 
-Then edit `app/docs/my-new-page/layout.tsx`:
 ```typescript
 import { generateDocsMetadata } from '@/lib/metadata';
 import { docsMetadata } from '@/lib/docs-metadata-config';
@@ -50,15 +45,6 @@ export default function MyNewPageLayout({
   return <>{children}</>;
 }
 ```
-
-**Option B - Create Manually:**
-```bash
-# Create the file
-mkdir -p app/docs/my-new-page
-touch app/docs/my-new-page/layout.tsx
-```
-
-Then paste the code above.
 
 ### Step 3: Create Your Page
 
@@ -239,7 +225,7 @@ export const metadata = generateDocsMetadata(docsMetadata.myNewPage);
 
 - **Full Guide**: See `docs/SEO_METADATA_GUIDE.md`
 - **Implementation Details**: See `docs/SEO_IMPLEMENTATION_SUMMARY.md`
-- **Template**: Copy from `app/docs/_templates/layout.template.tsx`
+- **Template**: See examples in `lib/docs-metadata-config.ts`
 - **Validation**: Run `npx tsx scripts/validate-docs-metadata.ts`
 
 ## 🎉 That's It!

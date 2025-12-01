@@ -108,12 +108,10 @@ flowdrop/
 │   ├── ADDING_NEW_DOCS_PAGE.md          # ⭐ Quick 3-step guide
 │   ├── SEO_METADATA_GUIDE.md            # Complete documentation
 │   ├── SEO_IMPLEMENTATION_SUMMARY.md    # What we built and why
-│   ├── SYSTEM_ARCHITECTURE.md           # This file - visual overview
-│   └── templates/
-│       └── layout.template.tsx          # 🎯 Copy this when adding pages
+│   └── SYSTEM_ARCHITECTURE.md           # This file - visual overview
 │
 └── package.json                         # Scripts
-    └── "validate-docs": "tsx scripts/validate-docs-metadata.ts"
+   └── "validate-docs": "tsx scripts/validate-docs-metadata.ts"
 ```
 
 ## Data Flow
@@ -319,7 +317,7 @@ Total: 20+ meta tags from ONE line of code! 🎉
 ║                                                                   ║
 ║  📝 ADD PAGE:                                                     ║
 ║     1. Edit: lib/docs-metadata-config.ts                          ║
-║     2. Copy: app/docs/_templates/layout.template.tsx              ║
+║     2. Create: app/docs/my-page/layout.tsx (see examples)         ║
 ║     3. Create your page.tsx                                       ║
 ║                                                                   ║
 ║  ✅ VALIDATE:                                                     ║
@@ -342,7 +340,7 @@ Total: 20+ meta tags from ONE line of code! 🎉
 
 1. **Read**: `docs/ADDING_NEW_DOCS_PAGE.md`
 2. **Bookmark**: `lib/docs-metadata-config.ts`
-3. **Copy**: `docs/templates/layout.template.tsx` when adding pages
+3. **Reference**: See existing layout files for examples when adding pages
 4. **Run**: `npm run validate-docs` before committing
 5. **Test**: Check your page's source code in browser
 

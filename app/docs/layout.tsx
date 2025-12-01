@@ -6,7 +6,7 @@
  * 
  * Or follow these steps:
  * 1. Add config to: lib/docs-metadata-config.ts
- * 2. Create layout using template: docs/templates/layout.template.tsx
+ * 2. Create layout.tsx (see lib/docs-metadata-config.ts for template)
  * 3. Create your page.tsx as normal
  * 4. Run: npm run validate-docs (to check everything)
  */
