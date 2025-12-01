@@ -51,7 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     let priority = 0.7;
     if (doc.path.includes('/getting-started')) {
       priority = 0.75;
-    } else if (doc.type === 'article') {
+    } else if ('type' in doc && doc.type === 'article') {
       priority = 0.8; // Higher priority for article-type content
     } else if (doc.path.includes('/nodes/')) {
       priority = 0.5; // Node reference pages
@@ -59,8 +59,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     return {
       url: `${baseUrl}${doc.path}`,
-      lastModified: doc.dateModified ? new Date(doc.dateModified) : new Date(),
-      changeFrequency: doc.type === 'article' ? 'monthly' : 'weekly',
+      lastModified: 'dateModified' in doc && doc.dateModified ? new Date(doc.dateModified) : new Date(),
+      changeFrequency: ('type' in doc && doc.type === 'article') ? 'monthly' : 'weekly',
       priority,
     } as const;
   });
