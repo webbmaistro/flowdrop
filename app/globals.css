@@ -625,4 +625,182 @@ html {
   transform: translateY(0) !important;
 }
 
+/* ========================================
+   BLOG CONTENT STYLES
+   ======================================== */
+
+/* Blog spacing - force extra margin */
+.prose .spacer {
+  display: block;
+  height: 2rem;
+}
+
+/* Blog tables - modern card style */
+.prose table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2rem 0;
+  background: rgba(35, 35, 42, 0.6);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose thead {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(124, 58, 237, 0.1));
+}
+
+.prose th {
+  padding: 1rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  color: #fff;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* First column styling */
+.prose td:first-child {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+/* Emoji in tables */
+.prose td:has(✅),
+.prose td:has(❌) {
+  font-size: 1.1rem;
+}
+
+/* Blog details/accordion - FAQ style */
+.prose details {
+  margin: 1rem 0;
+  padding: 0;
+  background: rgba(35, 35, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.prose details:hover {
+  border-color: rgba(139, 92, 246, 0.3);
+  background: rgba(35, 35, 42, 0.6);
+}
+
+.prose details[open] {
+  background: rgba(35, 35, 42, 0.6);
+  border-color: rgba(139, 92, 246, 0.3);
+}
+
+.prose summary {
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #fff;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+}
+
+.prose summary::-webkit-details-marker {
+  display: none;
+}
+
+.prose summary::after {
+  content: '+';
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: rgba(139, 92, 246, 0.8);
+  transition: transform 0.3s ease;
+}
+
+.prose details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.prose summary:hover {
+  color: rgba(139, 92, 246, 1);
+}
+
+.prose details > *:not(summary) {
+  padding: 0 1.25rem 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Blog blockquotes - callout style */
+.prose blockquote {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.05));
+  border-left: 4px solid rgba(139, 92, 246, 0.6);
+  border-radius: 0 10px 10px 0;
+  font-style: normal;
+}
+
+.prose blockquote p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Blog horizontal rules */
+.prose hr {
+  margin: 3rem 0;
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.3), transparent);
+}
+
+/* Blog lists in tables */
+.prose td ul,
+.prose td ol {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+/* Strong text in blog */
+.prose strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Blog links */
+.prose a {
+  color: rgba(139, 92, 246, 1);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+  transition: all 0.2s ease;
+}
+
+.prose a:hover {
+  color: rgba(167, 139, 250, 1);
+  border-bottom-color: rgba(167, 139, 250, 0.6);
+}
+
+/* Iframe container for videos */
+.prose iframe {
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+
 

@@ -38,6 +38,22 @@ export function BlogContent({ content }: BlogContentProps) {
       inlineCodes.forEach((code) => {
         code.classList.add('font-[family-name:var(--font-geist-mono)]');
       });
+
+      // Make iframes responsive
+      const iframes = contentRef.current.querySelectorAll('iframe');
+      iframes.forEach((iframe) => {
+        const iframeElement = iframe as HTMLIFrameElement;
+        // Ensure iframe is responsive
+        if (!iframeElement.parentElement?.classList.contains('youtube-embed-wrapper')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'youtube-embed-wrapper relative w-full aspect-video my-8 rounded-lg overflow-hidden';
+          iframeElement.parentNode?.insertBefore(wrapper, iframeElement);
+          wrapper.appendChild(iframeElement);
+          iframeElement.className = 'absolute inset-0 w-full h-full border-0';
+          iframeElement.removeAttribute('width');
+          iframeElement.removeAttribute('height');
+        }
+      });
     }
   }, [content]);
 
@@ -49,4 +65,5 @@ export function BlogContent({ content }: BlogContentProps) {
     />
   );
 }
+
 
