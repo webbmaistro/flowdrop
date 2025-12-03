@@ -226,16 +226,35 @@ export function searchPosts(query: string): BlogPost[] {
 
 /**
  * Convert markdown to HTML
+ * Note: Raw HTML (like iframes) needs to be preserved through the pipeline
  */
 export async function markdownToHtml(markdown: string): Promise<string> {
+  // Extract iframes before processing to preserve them
+  // Using [\s\S] instead of . with 's' flag for ES2017 compatibility
+  const iframeRegex = /<iframe[^>]*>[\s\S]*?<\/iframe>/gi;
+  const iframes: string[] = [];
+  let iframeIndex = 0;
+  
+  const markdownWithPlaceholders = markdown.replace(iframeRegex, (match) => {
+    iframes.push(match);
+    return `\n\n<!-- IFRAME_PLACEHOLDER_${iframeIndex++} -->\n\n`;
+  });
+
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkRehype)
+    .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeHighlight)
-    .use(rehypeStringify)
-    .process(markdown);
+    .use(rehypeStringify, { allowDangerousHtml: true })
+    .process(markdownWithPlaceholders);
 
-  return result.toString();
+  let html = result.toString();
+  
+  // Restore iframes
+  iframes.forEach((iframe, index) => {
+    html = html.replace(`<!-- IFRAME_PLACEHOLDER_${index} -->`, iframe);
+  });
+
+  return html;
 }
 
