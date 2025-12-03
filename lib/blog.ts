@@ -230,7 +230,8 @@ export function searchPosts(query: string): BlogPost[] {
  */
 export async function markdownToHtml(markdown: string): Promise<string> {
   // Extract iframes before processing to preserve them
-  const iframeRegex = /<iframe[^>]*>.*?<\/iframe>/gis;
+  // Using [\s\S] instead of . with 's' flag for ES2017 compatibility
+  const iframeRegex = /<iframe[^>]*>[\s\S]*?<\/iframe>/gi;
   const iframes: string[] = [];
   let iframeIndex = 0;
   
