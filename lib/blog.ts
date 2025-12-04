@@ -240,13 +240,19 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     return `\n\n<!-- IFRAME_PLACEHOLDER_${iframeIndex++} -->\n\n`;
   });
 
+  // Convert paragraph-break shortcuts to HTML
+  const markdownWithBreaks = markdownWithPlaceholders.replace(
+    /<!--\s*paragraph-break\s*-->/gi,
+    '<div class="paragraph-break"></div>'
+  );
+
   const result = await unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeHighlight)
     .use(rehypeStringify, { allowDangerousHtml: true })
-    .process(markdownWithPlaceholders);
+    .process(markdownWithBreaks);
 
   let html = result.toString();
   

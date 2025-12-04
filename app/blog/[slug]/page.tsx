@@ -43,7 +43,10 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 
   const url = `https://flowdrop.xyz/blog/${post.slug}`;
-  const ogImage = post.ogImage || 'https://flowdrop.xyz/website-preview.png';
+  // Ensure ogImage is an absolute URL for social media previews
+  const ogImage = post.ogImage 
+    ? (post.ogImage.startsWith('http') ? post.ogImage : `https://flowdrop.xyz${post.ogImage}`)
+    : 'https://flowdrop.xyz/website-preview.png';
 
   return {
     title: `${post.title} | Flowdrop Blog`,
@@ -57,6 +60,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author],
+      siteName: 'Flowdrop',
       images: [
         {
           url: ogImage,
@@ -71,6 +75,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
       title: post.title,
       description: post.description,
       images: [ogImage],
+      site: '@flowdrop',
+      creator: '@flowdrop',
     },
     alternates: {
       canonical: `/blog/${post.slug}`,
@@ -97,7 +103,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
-    image: post.ogImage || 'https://flowdrop.xyz/website-preview.png',
+    image: post.ogImage 
+      ? (post.ogImage.startsWith('http') ? post.ogImage : `https://flowdrop.xyz${post.ogImage}`)
+      : 'https://flowdrop.xyz/website-preview.png',
     datePublished: post.publishedAt,
     dateModified: post.updatedAt || post.publishedAt,
     author: {
@@ -206,6 +214,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             tags={post.tags}
             readingTime={post.readingTime}
             featured={post.featured}
+            ogImage={post.ogImage}
           />
 
           {/* Content with TOC */}

@@ -7,6 +7,7 @@ export { BlogLayout } from './BlogLayout';
 export { BlogCard } from './BlogCard';
 export { BlogHeader } from './BlogHeader';
 export { BlogContent } from './BlogContent';
+export { BlogHeroImage } from './BlogHeroImage';
 export { TableOfContents } from './TableOfContents';
 export { AuthorBio } from './AuthorBio';
 export { RelatedPosts } from './RelatedPosts';

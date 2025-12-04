@@ -3,6 +3,7 @@ import { blogStyles } from './blog-styles';
 import { CategoryBadge, TagBadge } from './CategoryBadge';
 import { ReadingTime } from './ReadingTime';
 import { PublishDate } from './PublishDate';
+import { BlogHeroImage } from './BlogHeroImage';
 
 interface BlogHeaderProps {
   title: string;
@@ -15,6 +16,7 @@ interface BlogHeaderProps {
   tags: string[];
   readingTime?: number;
   featured?: boolean;
+  ogImage?: string;
 }
 
 /**
@@ -31,6 +33,7 @@ export function BlogHeader({
   tags,
   readingTime,
   featured,
+  ogImage,
 }: BlogHeaderProps) {
   return (
     <header className="mb-12">
@@ -51,6 +54,15 @@ export function BlogHeader({
       <p className={`${blogStyles.body.large} text-neutral-400 mb-6`}>
         {description}
       </p>
+
+      {/* Hero Image - positioned after title and description */}
+      {ogImage && (
+        <BlogHeroImage 
+          src={ogImage} 
+          alt={title}
+          priority={true}
+        />
+      )}
 
       {/* Author & Metadata */}
       <div className="flex items-center gap-4 mb-6 flex-wrap">

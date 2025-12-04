@@ -34,6 +34,8 @@ Here's the good news: you can automate PDF to Excel in about two minutes. No cod
 
 Let me show you how.
 
+---
+
 ## Why PDF To Excel Automation Actually Matters
 
 Before we get into the how, let's talk about why this matters for your business productivity.
@@ -51,6 +53,8 @@ That's what happens when you automate PDF to Excel. You get your life back.
 <iframe width="100%" height="400" src="https://www.youtube.com/embed/sS4T_U4iUjo" title="How To Automate PDF To Excel In 2 Minutes (No Code Required)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 12px; margin: 2rem 0;"></iframe>
 
 [Try Flowdrop](https://app.flowdrop.xyz/) and build your first workflow in the next 5 minutes.
+
+---
 
 ## The Old Way vs The New Way
 
@@ -80,6 +84,8 @@ You upload a PDF. The workflow reads it. Pulls out all the data. Creates a new s
 And once you build the workflow, you can run it over and over. Every invoice. Every receipt. Every PDF that shows up in your inbox.
 
 **Watch it work:** One of our users processes 50 invoices in 10 minutes now. Used to take her entire workday. That's 7 hours back every single week.
+
+---
 
 ## How To Build Your PDF To Excel Automation Workflow
 
@@ -126,6 +132,8 @@ Every time you get a new PDF, upload it and run the workflow. Or set it up to tr
 
 However you want to use it, the workflow is ready. And you can process unlimited PDFs once it's built.
 
+---
+
 ## Real-World Example: Invoice Processing Automation
 
 Let me walk you through a real use case we see all the time.
@@ -151,6 +159,8 @@ Your team member gets **19 hours back every week**. That's time they can spend o
 Plus, the data is cleaner. No typos from manual entry. No missed line items. No formatting issues. Just accurate data, every time.
 
 **Want to build this exact workflow?** [Get started with Flowdrop](https://app.flowdrop.xyz/) and get your first automation running today.
+
+---
 
 ## Common Questions About PDF To Excel Automation
 
@@ -184,6 +194,8 @@ Flowdrop starts at $9 per month. That gets you enough credits to process hundred
 
 Plus you can try it for free first. Build the workflow, test it with your actual files, see if it works for your use case.
 
+---
+
 ## Why Flowdrop Makes PDF To Excel Automation So Easy
 
 Here's the thing about most automation tools. They make you feel dumb.
@@ -205,6 +217,8 @@ You don't need to know how to code. You don't need to understand how APIs work. 
 If you can describe what you want in a sentence, you can build it in Flowdrop. That's the whole idea.
 
 We built this because we were tired of automation tools that required a computer science degree to use. Automation should be easy. It should just work.
+
+---
 
 ## What To Do Next: Start Automating PDF To Excel Today
 
