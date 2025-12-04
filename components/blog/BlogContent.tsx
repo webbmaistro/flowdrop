@@ -54,6 +54,15 @@ export function BlogContent({ content }: BlogContentProps) {
           iframeElement.removeAttribute('height');
         }
       });
+
+      // Ensure paragraph-break divs are properly styled
+      const paragraphBreaks = contentRef.current.querySelectorAll('.paragraph-break');
+      paragraphBreaks.forEach((breakEl) => {
+        // Ensure it's a block element
+        if (breakEl instanceof HTMLElement) {
+          breakEl.style.display = 'block';
+        }
+      });
     }
   }, [content]);
 

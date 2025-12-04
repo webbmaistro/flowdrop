@@ -38,6 +38,8 @@ This isn't just an upgrade. It's a reset.
 
 Ready to build with it?
 
+---
+
 ## Why This AI Update Matters
 
 OpenAI went full Fast & Furious with this one:
@@ -64,6 +66,8 @@ Double the context window means you can fit more conversation history, larger do
 **Voice I/O means hands-free workflows are about to explode.**
 Voice mode will unlock an entirely new category of AI applications — from voice assistants to accessibility tools.
 
+<!-- paragraph-break -->
+
 ### In 60 Seconds
 
 OpenAI teased it.
@@ -73,6 +77,8 @@ TechCrunch live-covered it.
 Twitter turned it into a meme war.
 
 Product teams? Already rewriting backlogs.
+
+---
 
 ## What This Means for Builders
 
@@ -94,6 +100,8 @@ With multiple fast models available, smart routing becomes crucial.
 ✅ **Guardrails need to scale with speed.**
 Faster models mean you need faster safety checks and content filters.
 
+---
+
 ## Where Flowdrop Fits In (Quietly)
 
 We're not another shiny toy.
@@ -107,6 +115,8 @@ We like to say: **"Smart orchestration beats raw horsepower."**
 We're not making noise — yet.
 
 But if you're curious where AI-first tools are headed, stay close.
+
+---
 
 ## 5 Actionable Hacks You Can Try Today
 
@@ -158,6 +168,8 @@ async function robustAICall(prompt, retries = 3) {
 }
 ```
 
+---
+
 ## Speed Beats Smarts When Cost Hits $0
 
 GPT-4o Turbo proves it.
@@ -168,6 +180,8 @@ So… what will you rebuild first?
 
 Drop your thoughts. We're rebuilding right there with you.
 
+---
+
 ## What's Next?
 
 Now that you've learned about GPT-4o Turbo, explore:
@@ -175,6 +189,8 @@ Now that you've learned about GPT-4o Turbo, explore:
 - [AI Workflows Explained](/docs/ai-workflows-explained) - Build with the latest models
 - [Getting Started with Flowdrop](/docs/getting-started) - Orchestrate AI workflows visually
 - [Pricing](/pricing) - Start building for free
+
+---
 
 ## Ready to Build?
 

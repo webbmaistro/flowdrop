@@ -26,6 +26,8 @@ An AI workflow is an automated process that uses artificial intelligence to perf
 
 With Flowdrop, you can build these workflows visually—no coding required.
 
+---
+
 ## Why Build AI Workflows?
 
 Before we dive into the tutorial, here's why AI workflows are game-changing for businesses:
@@ -35,6 +37,8 @@ Before we dive into the tutorial, here's why AI workflows are game-changing for 
 - **Scale Operations**: Handle 10x more work without hiring more people
 - **Work 24/7**: Your workflows run around the clock, even while you sleep
 
+---
+
 ## Prerequisites
 
 Before starting, you'll need:
@@ -42,6 +46,8 @@ Before starting, you'll need:
 1. A Flowdrop account (sign up at [flowdrop.xyz](https://flowdrop.xyz))
 2. 5 minutes of your time
 3. An idea of what you want to automate
+
+---
 
 ## Step 1: Choose Your Trigger
 
@@ -83,6 +89,8 @@ Content: {{trigger.data}}
 
 The `{{trigger.data}}` part is dynamic—it pulls data from your trigger automatically.
 
+---
+
 ## Step 3: Make Decisions with Conditions
 
 Want your workflow to take different actions based on AI results? Use the **If/Else** block.
@@ -90,6 +98,8 @@ Want your workflow to take different actions based on AI results? Use the **If/E
 For example:
 - **If** sentiment is positive → Post to social media
 - **Else** → Send to review queue
+
+---
 
 ## Step 4: Take Action
 
@@ -99,6 +109,8 @@ Finally, add action blocks to complete your workflow:
 - **Update Spreadsheet**: Log results to Google Sheets
 - **Post to Slack**: Share updates in channels
 - **HTTP Request**: Integrate with any API
+
+---
 
 ## Step 5: Test and Deploy
 
@@ -110,6 +122,8 @@ Before going live:
 4. Click **"Deploy"** to activate
 
 That's it! Your workflow is now running in production.
+
+---
 
 ## Real-World Example: Content Monitoring
 
@@ -126,6 +140,8 @@ Here's a complete workflow you can build in 5 minutes:
 **Action**: Send summary email
 
 This workflow monitors competitor blogs, extracts insights, and emails you a daily summary—completely automated.
+
+---
 
 ## Advanced Tips
 
@@ -147,6 +163,8 @@ Once you're comfortable with basics:
 ❌ **Mistake 3**: Overcomplicating workflows
 ✅ **Solution**: Start simple, add complexity gradually
 
+---
+
 ## What's Next?
 
 Now that you've built your first workflow, explore:
@@ -155,9 +173,12 @@ Now that you've built your first workflow, explore:
 - [Workflow Builder Basics](/docs/workflow-builder-basics) - Advanced features
 - [JavaScript Expressions](/docs/javascript-expressions) - Dynamic data manipulation
 
+---
+
 ## Get Started Today
 
 Ready to build your first AI workflow? [Sign up for Flowdrop](https://flowdrop.xyz/pricing) and start automating in minutes—no credit card required.
 
 Have questions? [Contact our team](/contact) or check out our [documentation](/docs) for detailed guides.
+
 
