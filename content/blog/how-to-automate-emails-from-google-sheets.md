@@ -2,8 +2,8 @@
 title: "How to Automate Emails from Google Sheets"
 description: "Learn how to automatically send emails based on Google Sheets data. Step-by-step guide for automating email workflows without coding."
 slug: "how-to-automate-emails-from-google-sheets"
-publishedAt: "2025-01-15"
-updatedAt: "2025-01-15"
+publishedAt: "2025-12-04"
+updatedAt: "2025-12-04"
 author: "Flowdrop Team"
 authorBio: "We build AI workflow automation tools for non-coders. Our mission is to make AI accessible to everyone through intuitive visual builders."
 authorImage: "/assets/logo.png"
@@ -173,4 +173,8 @@ Ready to automate your list? [Talk to Flowdrop](https://app.flowdrop.xyz/) and b
 Tell it what you want. Watch it build. Send those emails.
 
 **If you can chat it, you can build it.**
+
+
+
+
 

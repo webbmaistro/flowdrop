@@ -6,6 +6,7 @@ import {
   getRelatedPosts,
   markdownToHtml,
   extractTableOfContents,
+  generateSlug,
 } from '@/lib/blog';
 import {
   BlogLayout,
@@ -147,7 +148,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         '@type': 'ListItem',
         position: 3,
         name: post.category,
-        item: `https://flowdrop.xyz/blog/category/${post.category.toLowerCase()}`,
+        item: `https://flowdrop.xyz/blog/category/${generateSlug(post.category)}`,
       },
       {
         '@type': 'ListItem',
