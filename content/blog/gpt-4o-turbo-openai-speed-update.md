@@ -9,7 +9,7 @@ authorBio: "We build AI workflow automation tools for non-coders. Our mission is
 authorImage: "/assets/logo.png"
 category: "AI News"
 tags: ["gpt-4o", "openai", "ai-updates", "model-optimization", "ai-development"]
-featured: true
+featured: false
 ogImage: "/blog/gpt-4o-turbo-openai-speed-update/op-image.jpg"
 faqSchema:
   - question: "What makes GPT-4o Turbo different from GPT-4?"
