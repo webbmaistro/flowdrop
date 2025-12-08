@@ -28,7 +28,7 @@ With Flowdrop, you can build these workflows visually—no coding required.
 
 ---
 
-## Why Build AI Workflows?
+<section-header text="Why Build AI Workflows?"></section-header>
 
 Before we dive into the tutorial, here's why AI workflows are game-changing for businesses:
 
@@ -91,7 +91,7 @@ The `{{trigger.data}}` part is dynamic—it pulls data from your trigger automat
 
 ---
 
-## Step 3: Make Decisions with Conditions
+<section-header text="Step 3: Make Decisions with Conditions"></section-header>
 
 Want your workflow to take different actions based on AI results? Use the **If/Else** block.
 
@@ -112,7 +112,7 @@ Finally, add action blocks to complete your workflow:
 
 ---
 
-## Step 5: Test and Deploy
+<section-header text="Step 5: Test and Deploy"></section-header>
 
 Before going live:
 
@@ -125,7 +125,7 @@ That's it! Your workflow is now running in production.
 
 ---
 
-## Real-World Example: Content Monitoring
+<section-header text="Real-World Example: Content Monitoring"></section-header>
 
 Here's a complete workflow you can build in 5 minutes:
 
@@ -152,7 +152,9 @@ Once you're comfortable with basics:
 - Store data in variables for reuse across blocks
 - Set up error handling with try/catch blocks
 
-## Common Mistakes to Avoid
+---
+
+<section-header text="Common Mistakes to Avoid"></section-header>
 
 ❌ **Mistake 1**: Not testing before deploying
 ✅ **Solution**: Always run test executions
@@ -175,7 +177,7 @@ Now that you've built your first workflow, explore:
 
 ---
 
-## Get Started Today
+<section-header text="Get Started Today"></section-header>
 
 Ready to build your first AI workflow? [Sign up for Flowdrop](https://flowdrop.xyz/pricing) and start automating in minutes—no credit card required.
 

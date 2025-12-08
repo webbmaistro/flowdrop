@@ -30,6 +30,10 @@ export default function BlogPage() {
   const allPosts = getAllPostsMetadata();
   const featuredPosts = getFeaturedPosts();
   const categories = getAllCategories();
+  
+  // Get featured post slugs to exclude from all posts
+  const featuredSlugs = new Set(featuredPosts.map((post) => post.slug));
+  const nonFeaturedPosts = allPosts.filter((post) => !featuredSlugs.has(post.slug));
 
   return (
     <BlogLayout>
@@ -106,11 +110,11 @@ export default function BlogPage() {
           <h2 className={`${blogStyles.heading.h2} mb-6 bg-gradient-to-r from-purple-400 via-white to-purple-400 bg-clip-text text-transparent`}>
             All Articles
             <span className="text-neutral-400 text-xl ml-3">
-              ({allPosts.length})
+              ({nonFeaturedPosts.length})
             </span>
           </h2>
           <div className={blogStyles.layout.grid.three}>
-            {allPosts.map((post) => (
+            {nonFeaturedPosts.map((post) => (
               <BlogCard key={post.slug} post={post} />
             ))}
           </div>

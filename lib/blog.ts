@@ -111,10 +111,11 @@ export function getAllPostsMetadata(): BlogPostMetadata[] {
 }
 
 /**
- * Get featured posts
+ * Get featured posts (last 3 most recent posts)
  */
-export function getFeaturedPosts(): BlogPost[] {
-  return getAllPosts().filter((post) => post.featured);
+export function getFeaturedPosts(): BlogPostMetadata[] {
+  const allPosts = getAllPostsMetadata();
+  return allPosts.slice(0, 3);
 }
 
 /**
@@ -240,8 +241,18 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     return `\n\n<!-- IFRAME_PLACEHOLDER_${iframeIndex++} -->\n\n`;
   });
 
+  // Extract section-header elements before processing to preserve them
+  const sectionHeaderRegex = /<section-header[^>]*>[\s\S]*?<\/section-header>/gi;
+  const sectionHeaders: string[] = [];
+  let sectionHeaderIndex = 0;
+  
+  const markdownWithSectionHeaders = markdownWithPlaceholders.replace(sectionHeaderRegex, (match) => {
+    sectionHeaders.push(match);
+    return `\n\n<!-- SECTION_HEADER_PLACEHOLDER_${sectionHeaderIndex++} -->\n\n`;
+  });
+
   // Convert paragraph-break shortcuts to HTML
-  const markdownWithBreaks = markdownWithPlaceholders.replace(
+  const markdownWithBreaks = markdownWithSectionHeaders.replace(
     /<!--\s*paragraph-break\s*-->/gi,
     '<div class="paragraph-break"></div>'
   );
@@ -259,6 +270,11 @@ export async function markdownToHtml(markdown: string): Promise<string> {
   // Restore iframes
   iframes.forEach((iframe, index) => {
     html = html.replace(`<!-- IFRAME_PLACEHOLDER_${index} -->`, iframe);
+  });
+
+  // Restore section-header elements
+  sectionHeaders.forEach((sectionHeader, index) => {
+    html = html.replace(`<!-- SECTION_HEADER_PLACEHOLDER_${index} -->`, sectionHeader);
   });
 
   return html;

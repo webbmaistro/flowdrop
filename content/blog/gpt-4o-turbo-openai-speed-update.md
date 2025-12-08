@@ -40,7 +40,7 @@ Ready to build with it?
 
 ---
 
-## Why This AI Update Matters
+<section-header text="Why This AI Update Matters"></section-header>
 
 OpenAI went full Fast & Furious with this one:
 
@@ -80,7 +80,7 @@ Product teams? Already rewriting backlogs.
 
 ---
 
-## What This Means for Builders
+<section-header text="What This Means for Builders"></section-header>
 
 ✅ **Latency is king now.**
 Users expect instant responses. GPT-4o Turbo delivers.
@@ -102,7 +102,7 @@ Faster models mean you need faster safety checks and content filters.
 
 ---
 
-## Where Flowdrop Fits In (Quietly)
+<section-header text="Where Flowdrop Fits In (Quietly)"></section-header>
 
 We're not another shiny toy.
 
@@ -118,7 +118,7 @@ But if you're curious where AI-first tools are headed, stay close.
 
 ---
 
-## 5 Actionable Hacks You Can Try Today
+<section-header text="5 Actionable Hacks You Can Try Today"></section-header>
 
 ### 1. Benchmark Latency in Your Stack
 
@@ -170,7 +170,7 @@ async function robustAICall(prompt, retries = 3) {
 
 ---
 
-## Speed Beats Smarts When Cost Hits $0
+<section-header text="Speed Beats Smarts When Cost Hits $0"></section-header>
 
 GPT-4o Turbo proves it.
 
@@ -192,7 +192,7 @@ Now that you've learned about GPT-4o Turbo, explore:
 
 ---
 
-## Ready to Build?
+<section-header text="Ready to Build?"></section-header>
 
 Want to take advantage of GPT-4o Turbo's speed in your workflows? [Sign up for Flowdrop](https://flowdrop.xyz/pricing) and start building AI workflows with the latest models—no credit card required.
 

@@ -36,7 +36,7 @@ Let me show you how.
 
 ---
 
-## Why PDF To Excel Automation Actually Matters
+<section-header text="Why PDF To Excel Automation Actually Matters"></section-header>
 
 Before we get into the how, let's talk about why this matters for your business productivity.
 
@@ -87,7 +87,7 @@ And once you build the workflow, you can run it over and over. Every invoice. Ev
 
 ---
 
-## How To Build Your PDF To Excel Automation Workflow
+<section-header text="How To Build Your PDF To Excel Automation Workflow"></section-header>
 
 Okay, let's build this thing. I'm going to walk you through the exact steps.
 
@@ -134,7 +134,7 @@ However you want to use it, the workflow is ready. And you can process unlimited
 
 ---
 
-## Real-World Example: Invoice Processing Automation
+<section-header text="Real-World Example: Invoice Processing Automation"></section-header>
 
 Let me walk you through a real use case we see all the time.
 
@@ -196,7 +196,7 @@ Plus you can try it for free first. Build the workflow, test it with your actual
 
 ---
 
-## Why Flowdrop Makes PDF To Excel Automation So Easy
+<section-header text="Why Flowdrop Makes PDF To Excel Automation So Easy"></section-header>
 
 Here's the thing about most automation tools. They make you feel dumb.
 
@@ -220,7 +220,7 @@ We built this because we were tired of automation tools that required a computer
 
 ---
 
-## What To Do Next: Start Automating PDF To Excel Today
+<section-header text="What To Do Next: Start Automating PDF To Excel Today"></section-header>
 
 If you're tired of manually moving data from PDFs to Excel, here's what to do:
 

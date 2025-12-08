@@ -220,7 +220,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           {/* Content with TOC */}
           <div className="lg:grid lg:grid-cols-[1fr_250px] lg:gap-12">
-            <div>
+            <div className="min-w-0">
               <BlogContent content={htmlContent} />
 
               {/* FAQ Section */}

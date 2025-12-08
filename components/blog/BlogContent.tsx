@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { createRoot } from 'react-dom/client';
 import { blogStyles } from './blog-styles';
+import { SectionHeader } from './SectionHeader';
 
 interface BlogContentProps {
   content: string;
@@ -63,13 +65,29 @@ export function BlogContent({ content }: BlogContentProps) {
           breakEl.style.display = 'block';
         }
       });
+
+      // Process section-header custom elements
+      const sectionHeaders = contentRef.current.querySelectorAll('section-header');
+      sectionHeaders.forEach((element) => {
+        // Get text from attribute or element content
+        const textAttr = element.getAttribute('text');
+        const textContent = element.textContent?.trim() || '';
+        const text = textAttr || textContent;
+        
+        if (text) {
+          const wrapper = document.createElement('div');
+          element.parentNode?.replaceChild(wrapper, element);
+          const root = createRoot(wrapper);
+          root.render(<SectionHeader text={text} />);
+        }
+      });
     }
   }, [content]);
 
   return (
     <div
       ref={contentRef}
-      className={blogStyles.content.article}
+      className={`${blogStyles.content.article} overflow-hidden`}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   );

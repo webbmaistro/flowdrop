@@ -20,8 +20,6 @@ faqSchema:
     answer: "Flowdrop supports Gmail and Outlook, so you can send emails through your preferred email service."
 ---
 
-# How To Automate Emails From Google Sheets
-
 Sending custom emails to your whole list, one by one? There's a better way.
 
 Let me show you how to turn your Google Sheet into an email system that sends custom messages to everyone on your list. No code, no stress.
@@ -36,7 +34,7 @@ Here's the thing. With Flowdrop, you just tell it what you want and it builds th
 
 ---
 
-## Who Uses This
+<section-header text="Who Uses This"></section-header>
 
 This automation works for anyone who needs to send personalized emails at scale:
 
@@ -68,7 +66,7 @@ Flowdrop reads each row and sends a personalized email using that data.
 
 ---
 
-## Setting It Up
+<section-header text="Setting It Up"></section-header>
 
 Here's how to build your email automation workflow:
 
@@ -104,7 +102,7 @@ Every person gets their email with their info in it. Done.
 
 ---
 
-## Make Each Email Feel Real
+<section-header text="Make Each Email Feel Real"></section-header>
 
 The magic is in the details. You're not just blasting the same thing to everyone.
 
@@ -124,7 +122,7 @@ Each email lands in their inbox looking like you sat down and wrote it for them.
 
 ---
 
-## Common Questions
+<section-header text="Common Questions"></section-header>
 
 ### Do I need to know how to code?
 
@@ -158,7 +156,7 @@ No more getting stuck halfway through. No more feeling like the tool is smarter 
 
 ---
 
-## Real Talk
+<section-header text="Real Talk"></section-header>
 
 Stop spending hours on batch emails. Stop feeling like you need a tech degree to automate simple stuff.
 
@@ -166,7 +164,7 @@ Your time is worth more than copying and pasting names into emails.
 
 ---
 
-## Start Sending Smart Emails
+<section-header text="Start Sending Smart Emails"></section-header>
 
 Ready to automate your list? [Talk to Flowdrop](https://app.flowdrop.xyz/) and build your workflow in minutes.
 
