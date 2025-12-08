@@ -20,7 +20,7 @@ export function BlogCTA({
     <div className="bg-white/5 backdrop-blur rounded-xl py-8 px-6 flex flex-col items-center gap-6 border border-white/10 mt-12 max-w-3xl mx-auto">
       <div className="text-center">
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">{title}</h2>
-        <p className="text-base text-neutral-400">
+        <p className="text-lg md:text-[21px] text-neutral-400">
           {description}
         </p>
       </div>

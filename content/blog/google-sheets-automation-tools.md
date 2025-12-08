@@ -20,8 +20,6 @@ faqSchema:
     answer: "You can send emails to lists, sum up data into Slack messages, pull invoice details into sheets, post to social media, and more. Any time data changes in your sheet, you can make something happen."
 ---
 
-# Google Sheets Automation Tools That Work (No Code Needed)
-
 Your Google Sheet is just sitting there. It's got all your data, but nothing happens with it until you do something by hand.
 
 What if your sheet could do the work for you?
@@ -58,7 +56,7 @@ Stop moving data around by hand. Let the tools do it.
 
 ---
 
-## The Best Google Sheets Automation Tools
+<section-header text="The Best Google Sheets Automation Tools"></section-header>
 
 ### 1. Flowdrop (Best for Non-Coders)
 
@@ -114,7 +112,7 @@ Done. It builds that for you.
 
 ---
 
-## How to Pick the Right Tool
+<section-header text="How to Pick the Right Tool"></section-header>
 
 Ask yourself these questions:
 
@@ -164,7 +162,7 @@ Some tools need babysitting when apps update. Flowdrop handles changes for you.
 
 ---
 
-## Common Questions
+<section-header text="Common Questions"></section-header>
 
 ### Do these tools work with Excel too?
 
@@ -184,7 +182,7 @@ No. These tools read your sheet and do stuff based on it. They don't mess up you
 
 ---
 
-## Why Most People Pick Flowdrop
+<section-header text="Why Most People Pick Flowdrop"></section-header>
 
 Here's the honest truth about other tools:
 
@@ -202,7 +200,7 @@ No nodes. No mapping. No "why isn't this working" moments.
 
 ---
 
-## Start Automating Your Sheets Today
+<section-header text="Start Automating Your Sheets Today"></section-header>
 
 Your Google Sheet is ready to do more. Pick a tool and get started:
 

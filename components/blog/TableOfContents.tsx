@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { TableOfContentsItem } from '@/types/blog';
 import { blogStyles } from './blog-styles';
 
@@ -14,27 +14,61 @@ interface TableOfContentsProps {
  */
 export function TableOfContents({ items }: TableOfContentsProps) {
   const [activeId, setActiveId] = useState<string>('');
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+    // Wait a bit for dynamic content (like section-headers) to render
+    const setupObserver = () => {
+      const visibleSections = new Map<string, number>();
+
+      observerRef.current = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              visibleSections.set(entry.target.id, entry.intersectionRatio);
+            } else {
+              visibleSections.delete(entry.target.id);
+            }
+          });
+
+          // Find the most visible section
+          if (visibleSections.size > 0) {
+            let maxRatio = 0;
+            let mostVisibleId = '';
+            
+            visibleSections.forEach((ratio, id) => {
+              if (ratio > maxRatio) {
+                maxRatio = ratio;
+                mostVisibleId = id;
+              }
+            });
+
+            if (mostVisibleId) {
+              setActiveId(mostVisibleId);
+            }
           }
-        });
-      },
-      { rootMargin: '-20% 0% -35% 0%' }
-    );
+        },
+        { 
+          rootMargin: '-100px 0px -66% 0px',
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        }
+      );
 
-    items.forEach(({ id }) => {
-      const element = document.getElementById(id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
+      items.forEach(({ id }) => {
+        const element = document.getElementById(id);
+        if (element) {
+          observerRef.current?.observe(element);
+        }
+      });
+    };
 
-    return () => observer.disconnect();
+    // Delay to allow dynamic content to render
+    const timeoutId = setTimeout(setupObserver, 100);
+
+    return () => {
+      clearTimeout(timeoutId);
+      observerRef.current?.disconnect();
+    };
   }, [items]);
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {

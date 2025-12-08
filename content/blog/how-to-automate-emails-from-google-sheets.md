@@ -9,7 +9,7 @@ authorBio: "We build AI workflow automation tools for non-coders. Our mission is
 authorImage: "/assets/logo.png"
 category: "How-To Guides"
 tags: ["google-sheets", "email-automation", "automation", "no-code", "productivity"]
-featured: true
+featured: false
 ogImage: "/blog/how-to-automate-emails-from-google-sheets/op-image.jpg"
 faqSchema:
   - question: "Do I need coding experience to automate emails from Google Sheets?"

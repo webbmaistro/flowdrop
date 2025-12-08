@@ -9,7 +9,7 @@ authorBio: "We build AI workflow automation tools for non-coders. Our mission is
 authorImage: "/assets/logo.png"
 category: "Tutorials"
 tags: ["getting-started", "ai-workflows", "automation", "beginner-guide"]
-featured: false
+featured: true
 ogImage: "/screenshots/webfloweditor.png"
 faqSchema:
   - question: "Do I need coding experience to build AI workflows?"

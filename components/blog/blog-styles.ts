@@ -7,15 +7,15 @@ export const blogStyles = {
   // Typography - Geist Sans for body, Geist Mono for code
   heading: {
     h1: "text-4xl md:text-5xl font-bold tracking-tight mb-4 font-[family-name:var(--font-geist-sans)]",
-    h2: "text-3xl md:text-4xl font-bold tracking-tight mb-3 mt-8 font-[family-name:var(--font-geist-sans)]",
-    h3: "text-2xl md:text-3xl font-semibold mb-2 mt-6 font-[family-name:var(--font-geist-sans)]",
+    h2: "text-2xl md:text-3xl font-bold tracking-tight mb-3 mt-8 font-[family-name:var(--font-geist-sans)] bg-gradient-to-r from-purple-400 via-purple-300 to-purple-400 bg-clip-text text-transparent",
+    h3: "text-xl md:text-2xl font-bold mb-2 mt-6 font-[family-name:var(--font-geist-sans)] text-purple-400",
     h4: "text-xl md:text-2xl font-semibold mb-2 mt-4 font-[family-name:var(--font-geist-sans)]",
   },
   
   body: {
-    base: "text-base md:text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]",
-    large: "text-lg md:text-xl leading-relaxed font-[family-name:var(--font-geist-sans)]",
-    small: "text-sm md:text-base leading-relaxed font-[family-name:var(--font-geist-sans)]",
+    base: "text-lg md:text-[21px] leading-relaxed font-[family-name:var(--font-geist-sans)]",
+    large: "text-xl md:text-[23px] leading-relaxed font-[family-name:var(--font-geist-sans)]",
+    small: "text-base md:text-lg leading-relaxed font-[family-name:var(--font-geist-sans)]",
   },
   
   code: {
@@ -54,7 +54,7 @@ export const blogStyles = {
   // Content area
   content: {
     wrapper: "max-w-6xl mx-auto",
-    article: "prose prose-neutral prose-invert prose-lg max-w-none",
+    article: "prose prose-neutral prose-invert prose-lg max-w-none [&>p]:text-lg [&>p]:md:text-[21px] [&>ul>li]:text-lg [&>ul>li]:md:text-[21px] [&>ol>li]:text-lg [&>ol>li]:md:text-[21px] [&>blockquote]:text-lg [&>blockquote]:md:text-[21px] [&>h2]:text-2xl [&>h2]:md:text-3xl [&>h2]:font-bold [&>h2]:tracking-tight [&>h2]:mb-3 [&>h2]:mt-8 [&>h2]:bg-gradient-to-r [&>h2]:from-purple-400 [&>h2]:via-purple-300 [&>h2]:to-purple-400 [&>h2]:bg-clip-text [&>h2]:text-transparent [&>h3]:text-xl [&>h3]:md:text-2xl [&>h3]:font-bold [&>h3]:mb-2 [&>h3]:mt-6 [&>h3]:text-purple-400",
   },
   
   // Layout

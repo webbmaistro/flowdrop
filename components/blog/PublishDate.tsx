@@ -31,7 +31,7 @@ export function PublishDate({ date, updated, showIcon = true }: PublishDateProps
       {updatedDate && updatedDate.getTime() !== publishDate.getTime() && (
         <>
           <span className={blogStyles.meta.separator}>•</span>
-          <span className="text-xs text-neutral-500">
+          <span className="text-sm text-neutral-500">
             Updated {formatDate(updatedDate)}
           </span>
         </>

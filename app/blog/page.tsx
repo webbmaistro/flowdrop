@@ -109,7 +109,7 @@ export default function BlogPage() {
         <section>
           <h2 className={`${blogStyles.heading.h2} mb-6 bg-gradient-to-r from-purple-400 via-white to-purple-400 bg-clip-text text-transparent`}>
             All Articles
-            <span className="text-neutral-400 text-xl ml-3">
+            <span className="text-neutral-400 text-[21px] ml-3">
               ({nonFeaturedPosts.length})
             </span>
           </h2>
