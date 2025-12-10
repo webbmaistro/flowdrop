@@ -188,7 +188,7 @@ export default function ContactPage() {
             <motion.div variants={itemVariants} className="mb-12">
               <div className="inline-flex items-center space-x-3 bg-background-glass backdrop-blur-lg border border-white/10 rounded-4xl px-6 py-4">
                 <Mail className="w-5 h-5 text-primary-main" />
-                <span className="text-lg font-medium text-text-primary">webb@flowdrop.xyz</span>
+                <span className="text-lg font-medium text-text-primary">contact@flowdrop.xyz</span>
               </div>
             </motion.div>
           </motion.div>
