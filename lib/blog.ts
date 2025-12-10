@@ -251,8 +251,18 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     return `\n\n<!-- SECTION_HEADER_PLACEHOLDER_${sectionHeaderIndex++} -->\n\n`;
   });
 
+  // Extract founders-section elements before processing to preserve them
+  const foundersSectionRegex = /<founders-section[^>]*\/?>/gi;
+  const foundersSections: string[] = [];
+  let foundersSectionIndex = 0;
+  
+  const markdownWithFoundersSections = markdownWithSectionHeaders.replace(foundersSectionRegex, (match) => {
+    foundersSections.push(match);
+    return `\n\n<!-- FOUNDERS_SECTION_PLACEHOLDER_${foundersSectionIndex++} -->\n\n`;
+  });
+
   // Convert paragraph-break shortcuts to HTML
-  const markdownWithBreaks = markdownWithSectionHeaders.replace(
+  const markdownWithBreaks = markdownWithFoundersSections.replace(
     /<!--\s*paragraph-break\s*-->/gi,
     '<div class="paragraph-break"></div>'
   );
@@ -275,6 +285,11 @@ export async function markdownToHtml(markdown: string): Promise<string> {
   // Restore section-header elements
   sectionHeaders.forEach((sectionHeader, index) => {
     html = html.replace(`<!-- SECTION_HEADER_PLACEHOLDER_${index} -->`, sectionHeader);
+  });
+
+  // Restore founders-section elements
+  foundersSections.forEach((foundersSection, index) => {
+    html = html.replace(`<!-- FOUNDERS_SECTION_PLACEHOLDER_${index} -->`, foundersSection);
   });
 
   return html;

@@ -298,9 +298,7 @@ Your future self will thank you.
 
 At Flowdrop, we're making automation simple for everyone. No coding. No tech junk. Just tell us what you want in plain English, and we'll build it for you.
 
-We built this because our founder [Webb Hammond](https://www.linkedin.com/in/webb-hammond/) tried to learn coding four times and failed. Then finally got it. But he thought, why should everyone have to go through that?
-
-Together with our CTO [John Pizzo](https://www.linkedin.com/in/john-pizzo-79b08a167/), we made a tool that anyone can use. Because automation shouldn't be just for tech people. It should be for everyone who's tired of wasting time on boring tasks.
+<founders-section variant="compact" />
 
 ### Your Next Steps
 
@@ -486,3 +484,4 @@ Want to learn more about automation? Check out these guides:
 - [Workflow Editor Comparison](/docs/workflow-editor-comparison) - Compare automation tools
 
 Questions about getting started? [Contact us](/contact) and we'll help you build your first automation.
+

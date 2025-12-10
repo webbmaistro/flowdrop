@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { blogStyles } from './blog-styles';
 import { SectionHeader } from './SectionHeader';
+import { FoundersSection } from './FoundersSection';
 
 interface BlogContentProps {
   content: string;
@@ -80,6 +81,23 @@ export function BlogContent({ content }: BlogContentProps) {
           const root = createRoot(wrapper);
           root.render(<SectionHeader text={text} />);
         }
+      });
+
+      // Process founders-section custom elements
+      const foundersSections = contentRef.current.querySelectorAll('founders-section');
+      foundersSections.forEach((element) => {
+        const variant = element.getAttribute('variant') as 'full' | 'compact' | null;
+        const showBoth = element.getAttribute('show-both') !== 'false';
+        
+        const wrapper = document.createElement('div');
+        element.parentNode?.replaceChild(wrapper, element);
+        const root = createRoot(wrapper);
+        root.render(
+          <FoundersSection 
+            variant={variant || 'compact'} 
+            showBoth={showBoth}
+          />
+        );
       });
     }
   }, [content]);

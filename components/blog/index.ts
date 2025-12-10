@@ -21,5 +21,6 @@ export { PublishDate } from './PublishDate';
 export { Breadcrumbs } from './Breadcrumbs';
 export { BlogCTA } from './BlogCTA';
 export { SectionHeader } from './SectionHeader';
+export { FoundersSection } from './FoundersSection';
 export { blogStyles } from './blog-styles';
 
